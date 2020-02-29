@@ -1,0 +1,5 @@
+# Code editor -----------------------------------
+.vscode
+
+# Node dependencies -----------------------------
+node_modules
