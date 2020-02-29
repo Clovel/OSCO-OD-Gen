@@ -1,12 +1,14 @@
 const {app, BrowserWindow} = require('electron')
+const path = require('path')
 
 function createWindow() {
     /* Create the navigator's window */
-    let lWindow = new BrowserWindow({
+    const lWindow = new BrowserWindow({
         width: 800,
         height: 600,
         webPreferences: {
-            nodeIntegration: true
+            nodeIntegration: true,
+            preload: path.join(__dirname, 'preload.js')
         }
     })
 
@@ -14,7 +16,7 @@ function createWindow() {
     lWindow.loadFile('index.html')
 
     /* Open devtools */
-    lWindow = null
+    //lWindow.webContents.openDevTools()
 }
 
 /* This method will be called when Electron
@@ -22,10 +24,10 @@ function createWindow() {
  * windows.
  * Some APIs can be used only once this event
  * is emitted. */
-app.whenReady().then(createWindow)
+app.on('ready', createWindow)
 
 /* Quit when all windows are closed */
-app.on('window-all-closed', () => {
+app.on('window-all-closed', function () {
     /* On macOS, it is common for an app and it's menu bar
      * to stay active until the user has explicitly close
      * the app. */
@@ -38,8 +40,8 @@ app.on('activate', () => {
     /* On macOS, it is common to recreate the app's
      * window when the Dock icon is clicked
      * and no other windows are opened. */
-    if(lWindow === null) {
-        createWindow
+    if(BrowserWindow.getAllWindows().length === 0) {
+        createWindow()
     }
 })
 
