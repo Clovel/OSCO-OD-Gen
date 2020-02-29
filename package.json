@@ -1,0 +1,23 @@
+{
+    "name": "osco-od-gen",
+    "version": "1.0.0",
+    "description": "Object Dictionary code generator for the OSCO stack",
+    "main": "main.js",
+    "scripts": {
+        "test": "echo \"Error: no test specified\" && exit 1",
+        "start": "electron ."
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/Clovel/OSCO-OD-Gen.git"
+    },
+    "keywords": [
+        "OSCO"
+    ],
+    "author": "Clovis Durand <cd.clovel19@gmail.com>",
+    "license": "GPL-3.0",
+    "bugs": {
+        "url": "https://github.com/Clovel/OSCO-OD-Gen/issues"
+    },
+    "homepage": "https://github.com/Clovel/OSCO-OD-Gen#readme"
+}
