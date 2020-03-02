@@ -6,7 +6,6 @@
 
 /* Includes -------------------------------------------- */
 #include "EDS.hpp"
-#include "INI.hpp"
 
 /* C++ system */
 #include <iostream>
@@ -41,7 +40,7 @@ int main(const int argc, const char * const * const argv) {
     /* Create an EDS instance */
     try {
         std::cout << "[DEBUG] Opening EDS file " << argv[1U] << std::endl;
-        INI lINI((std::string(argv[1U])));
+        EDS lEDS((std::string(argv[1U])));
         std::cerr << "[ERROR] Successfully parsed EDS file " << argv[1U] << " !" << std::endl;
     } catch (const std::exception &e) {
         std::cerr << "[ERROR] Failed to parse EDS file " << argv[1U] << " !" << std::endl;

@@ -8,37 +8,21 @@
 #define EDS_HPP
 
 /* Includes -------------------------------------------- */
-#include <string>
-#include <fstream>
+#include "INI.hpp"
 
 /* Defines --------------------------------------------- */
 
 /* Type definitions ------------------------------------ */
 
 /* Forward declarations -------------------------------- */
-class INIReader;
 
 /* EDS class ------------------------------------------- */
-class EDS {
+class EDS : public INI {
     public:
-        EDS();
+        EDS(const std::string &pFile);
 
         virtual ~EDS();
-
-        /* Getters */
-        std::string fileName(void) const;
-
-        /* Setters */
-        int setFile(const std::string &pFileName);
-
-        /* Parser */
-        int parseEDSFile(const std::string &pFile);
     protected:
-        std::string mFileName;
-        std::fstream mFileStream;
-
-        INIReader *mIni;
-
     private:
 };
 
