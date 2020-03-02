@@ -9,10 +9,14 @@
 
 /* Includes -------------------------------------------- */
 #include <string>
+#include <fstream>
 
 /* Defines --------------------------------------------- */
 
 /* Type definitions ------------------------------------ */
+
+/* Forzqrd declarations -------------------------------- */
+class INIReader;
 
 /* EDS class ------------------------------------------- */
 class EDS {
@@ -26,8 +30,14 @@ class EDS {
 
         /* Setters */
         int setFile(const std::string &pFileName);
+
+        /* Parser */
+        int parseEDSFile(const std::string &pFile);
     protected:
         std::string mFileName;
+        std::fstream mFileStream;
+
+        INIReader *mIni;
 
     private:
 };
