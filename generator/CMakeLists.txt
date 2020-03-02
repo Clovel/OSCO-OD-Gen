@@ -129,10 +129,16 @@ endif(PKG_CONFIG_FOUND)
 
 include_directories(${CMAKE_SOURCE_DIR}/src)
 include_directories(${CMAKE_SOURCE_DIR}/inc)
+include_directories(${CMAKE_SOURCE_DIR}/deps/inipp/inipp/)
+include_directories(${CMAKE_SOURCE_DIR}/deps/inih/)
+include_directories(${CMAKE_SOURCE_DIR}/deps/inih/cpp)
 
 #------------------------------------------------------------------------------
 # Sub-directories 
 #------------------------------------------------------------------------------
+
+# Dependencies
+add_subdirectory(deps)
 
 # Main build
 add_subdirectory(src)
