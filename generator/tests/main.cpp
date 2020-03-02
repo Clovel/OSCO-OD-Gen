@@ -5,7 +5,11 @@
  */
 
 /* Includes -------------------------------------------- */
+/* C++ system */
 #include <iostream>
+
+/* C system */
+#include <cstring>
 
 /* Defines --------------------------------------------- */
 

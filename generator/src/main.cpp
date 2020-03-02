@@ -1,11 +1,15 @@
 /**
- * @brief OSCO-OD-Gen main test file
+ * @brief OSCO-OD-Gen main source file
  * 
  * @file main.cpp
  */
 
 /* Includes -------------------------------------------- */
+/* C++ system */
 #include <iostream>
+
+/* C system */
+#include <cstring>
 
 /* Defines --------------------------------------------- */
 
@@ -26,7 +30,7 @@ static void print_usage(const char * const pProgName)
 /* Main tests ------------------------------------------ */
 /* ----------------------------------------------------- */
 int main(const int argc, const char * const * const argv) {
-    if ((argc < 2) || (strcmp(argv[1], "--help") == 0)) {
+    if ((argc < 2) || (std::strcmp(argv[1], "--help") == 0)) {
         print_usage(argv[0]);
         return EXIT_FAILURE;
     }

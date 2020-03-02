@@ -30,7 +30,7 @@ message("MAIN SOURCES : ${SOURCES}")
 # Link directories ----------------------------------------
 
 # Target definition ---------------------------------------
-add_executable()(${CMAKE_PROJECT_NAME}
+add_executable(${CMAKE_PROJECT_NAME}
     ${SOURCES}
 )
 set_target_properties(${CMAKE_PROJECT_NAME} PROPERTIES 
