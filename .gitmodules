@@ -1,3 +1,6 @@
 [submodule "generator/deps/inipp"]
 	path = generator/deps/inipp
 	url = http://github.com/mcmtroffaes/inipp.git
+[submodule "generator/deps/inih"]
+	path = generator/deps/inih
+	url = https://github.com/benhoyt/inih.git
