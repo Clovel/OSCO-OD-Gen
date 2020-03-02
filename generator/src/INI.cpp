@@ -7,12 +7,16 @@
 /* Includes -------------------------------------------- */
 #include "INI.hpp"
 
+/* C++ System */
 #include <iostream>
 #include <string>
 #include <fstream>
 #include <sstream>
 #include <map>
 #include <vector>
+
+/* C System */
+#include <cstdlib>
 
 /* Defines --------------------------------------------- */
 
@@ -205,3 +209,142 @@ INI::INI(const std::string &pFile) {
 INI::~INI() {
     /* Empty for now */
 }
+
+std::string INI::fileName(void) const {
+    return mFileName;
+}
+
+int INI::getValue(const std::string &pKey,
+    std::string &pOut,
+    const std::string &pSection) const
+{
+    if(mSections.end() != mSections.find(pSection)) {
+        if(mSections.at(pSection).end() != mSections.at(pSection).find(pKey)) {
+            pOut = mSections.at(pSection).at(pKey);
+            return 0;
+        }
+    }
+
+    return -1;
+}
+
+std::vector<std::string> INI::getSections(void) const {
+    std::vector<std::string> lSections;
+
+    for(const auto &lElmt : mSections) {
+        lSections.push_back(lElmt.first);
+    }
+
+    return lSections;
+}
+
+std::vector<std::string> INI::getKeys(const std::string &pSection) const {
+    std::vector<std::string> lKeys;
+
+    if(mSections.end() != mSections.find(pSection)) {
+        for(const auto &lElmt : mSections.at(pSection)) {
+            lKeys.push_back(lElmt.first);
+        }
+    }
+
+    return lKeys;
+}
+
+int INI::getInteger(const std::string &pKey, int &pValue, const std::string &pSection) const {
+    std::string lVal;
+
+    if(0 > getValue(pKey, lVal, pSection)) {
+        /* Key/Value pair not found.
+         * This is either because the section is unknown
+         * or the key is unknown */
+        std::cerr << "[ERROR] <INI::get> Key/value pair not found !" << std::endl;
+        return -1;
+    }
+
+    /* Cast the value */
+    char *lEnd = 0;
+    if(std::string::npos != lVal.find("0x")) {
+        /* Haxadecimal value */
+        pValue = strtol(mSections.at(pSection).at(pKey).c_str(), &lEnd, 16);
+    } else {
+        pValue = strtol(mSections.at(pSection).at(pKey).c_str(), &lEnd, 10);
+    }
+
+    return *lEnd == 0 ? -1 : 0;
+}
+
+int INI::getUnsigned(const std::string &pKey, unsigned int &pValue, const std::string &pSection) const {
+    std::string lVal;
+
+    if(0 > getValue(pKey, lVal, pSection)) {
+        /* Key/Value pair not found.
+         * This is either because the section is unknown
+         * or the key is unknown */
+        std::cerr << "[ERROR] <INI::get> Key/value pair not found !" << std::endl;
+        return -1;
+    }
+
+    /* Cast the value */
+    char *lEnd = 0;
+    if(std::string::npos != lVal.find("0x")) {
+        /* Haxadecimal value */
+        pValue = strtoul(mSections.at(pSection).at(pKey).c_str(), &lEnd, 16);
+    } else {
+        pValue = strtoul(mSections.at(pSection).at(pKey).c_str(), &lEnd, 10);
+    }
+    
+    return *lEnd == 0 ? -1 : 0;
+}
+
+int INI::getString(const std::string &pKey, std::string &pValue, const std::string &pSection) const {
+    return getValue(pKey, pValue, pSection);
+}
+
+int INI::getBoolean(const std::string &pKey, bool &pValue, const std::string &pSection) const {
+    std::string lVal;
+
+    if(0 > getValue(pKey, lVal, pSection)) {
+        /* Key/Value pair not found.
+         * This is either because the section is unknown
+         * or the key is unknown */
+        std::cerr << "[ERROR] <INI::get> Key/value pair not found !" << std::endl;
+        return -1;
+    }
+
+    /* Cast the value */
+    if(("true" == mSections.at(pSection).at(pKey))
+        || (mSections.at(pSection).at(pKey) == "True")
+        || (mSections.at(pSection).at(pKey) == "1"))
+    {
+        pValue = true;
+    } else if ((mSections.at(pSection).at(pKey) == "false")
+        || (mSections.at(pSection).at(pKey) == "False")
+        || (mSections.at(pSection).at(pKey) == "0"))
+    {
+        pValue = false;
+    } else {
+        /* Unexpected value */
+        return -1;
+    }
+
+    return 0;
+}
+
+int INI::getDouble(const std::string &pKey, double &pValue, const std::string &pSection) const {
+    std::string lVal;
+
+    if(0 > getValue(pKey, lVal, pSection)) {
+        /* Key/Value pair not found.
+         * This is either because the section is unknown
+         * or the key is unknown */
+        std::cerr << "[ERROR] <INI::get> Key/value pair not found !" << std::endl;
+        return -1;
+    }
+
+    /* Cast the value */
+    char *lEnd = 0;
+    pValue = strtod(mSections.at(pSection).at(pKey).c_str(), &lEnd);
+    return *lEnd == 0 ? -1 : 0;
+}
+
+

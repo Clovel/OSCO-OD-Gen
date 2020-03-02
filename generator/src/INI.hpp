@@ -38,11 +38,18 @@ class INI {
         /* Getters */
         std::string fileName(void) const;
 
-        std::string getValue(const std::string &pSection,
-            const std::string &pEntry) const;
+        int getValue(const std::string &pKey,
+            std::string &pOut,
+            const std::string &pSection = "default") const;
         
-        std::vector<std::string> getEntries(void) const;
         std::vector<std::string> getSections(void) const;
+        std::vector<std::string> getKeys(const std::string &pSection = "default") const;
+
+        int getInteger(const std::string &pKey, int &pValue, const std::string &pSection = "default") const;
+        int getUnsigned(const std::string &pKey, unsigned int &pValue, const std::string &pSection = "default") const;
+        int getString(const std::string &pKey, std::string &pValue, const std::string &pSection = "default") const;
+        int getBoolean(const std::string &pKey, bool &pValue, const std::string &pSection = "default") const;
+        int getDouble(const std::string &pKey, double &pValue, const std::string &pSection = "default") const;
 
         /* Setters */
         int setFile(const std::string &pFileName);
