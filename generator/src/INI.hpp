@@ -1,5 +1,5 @@
 /**
- * @brief INI file class
+ * @brief INI class
  * 
  * @file INI.hpp
  */
@@ -12,17 +12,26 @@
 #include <fstream>
 #include <map>
 #include <vector>
+#include <exception>
 
 /* Defines --------------------------------------------- */
 
 /* Type definitions ------------------------------------ */
 
-/* Forzqrd declarations -------------------------------- */
+/* Forward declarations -------------------------------- */
 
-/* EDS class ------------------------------------------- */
+/* INI file exception class ---------------------------- */
+class INIException : public std::exception {
+    virtual const char *what(void) const throw()
+    {
+        return "INI file exception occured !";
+    }
+};
+
+/* INI class ------------------------------------------- */
 class INI {
     public:
-        INI();
+        INI(const std::string &pFile);
 
         virtual ~INI();
 
@@ -39,16 +48,12 @@ class INI {
         int setFile(const std::string &pFileName);
 
         /* Parser */
-        int parseEDSFile(const std::string &pFile);
+        int parseFile(const std::string &pFile);
     protected:
         std::string mFileName;
         std::fstream mFileStream;
 
-        std::map<std::string, std::map<std::string, std::string>> mConstents;
-
-        std::map<std::string, std::string> mValues;
-        std::vector<std::string> mSections;
-        std::map<std::string, std::vector<std::string> *> mFields;
+        std::map<std::string, std::map<std::string, std::string>> mSections;
 
     private:
 };
