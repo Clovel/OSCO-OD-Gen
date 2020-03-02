@@ -347,4 +347,7 @@ int INI::getDouble(const std::string &pKey, double &pValue, const std::string &p
     return *lEnd == 0 ? -1 : 0;
 }
 
-
+int INI::generateINI(const std::string &pDest) const {
+    std::ostringstream mOutputFile(pDest);
+    
+}
