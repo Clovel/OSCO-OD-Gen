@@ -51,11 +51,6 @@ class INI {
         int getBoolean(const std::string &pKey, bool &pValue, const std::string &pSection = "default") const;
         int getDouble(const std::string &pKey, double &pValue, const std::string &pSection = "default") const;
 
-        /* Setters */
-        int setFile(const std::string &pFileName);
-
-        /* Parser */
-        int parseFile(const std::string &pFile);
     protected:
         std::string mFileName;
         std::fstream mFileStream;
