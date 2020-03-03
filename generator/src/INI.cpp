@@ -110,6 +110,22 @@ static void removeChar(std::vector<std::string> &pStrs, const char pChar) {
     }
 }
 
+/* Private helper functions ---------------------------- */
+bool INI::sectionExists(const std::string &pSection) const {
+    /* Does this section exist ? */
+    return (mSections.end() != mSections.find(pSection));
+}
+
+bool INI::keyExists(const std::string &pKey, const std::string &pSection) const {
+    /* Does the section and key exist ? 
+     * We also check the section here because otherwise
+     * the "at" method will throw a out_of_range
+     * exception if it soesn't exist. */
+    return ((sectionExists(pSection))
+        && (mSections.at(pSection).end() != mSections.at(pSection).find(pKey)));
+}
+
+
 /* INI class ------------------------------------------- */
 INI::INI(const std::string &pFile) {
     mFileStream.open(pFile, std::ios::in | std::ios::out);
@@ -175,8 +191,7 @@ INI::INI(const std::string &pFile) {
             lSection = lLine.substr(1, lPos - 1);
 
             /* Does this section exist already ? */
-            std::vector<std::string>::iterator lSectionIt = find(mSectionOrder.begin(), mSectionOrder.end(), lSection);
-            if(mSectionOrder.end() != lSectionIt) {
+            if(sectionExists(lSection)) {
                 /* This section already exists ! */
                 std::cerr << "[ERROR] <INI::INI> Duplicate Section in INI file at line " << lLineCount << std::endl;
                 mFileStream.close();
@@ -238,8 +253,7 @@ INI::INI(const std::string &pFile) {
          * First, we must check if the section exists
          */
         if(!lNewSection) {
-            std::vector<std::string>::iterator lKeyIt = find(mSectionElementOrder.at(lSection).begin(), mSectionElementOrder.at(lSection).end(), lKey);
-            if(mSectionElementOrder.at(lSection).end() != lKeyIt) {
+            if(keyExists(lKey)) {
                 /* This key already exists ! */
                 std::cerr << "[ERROR] <INI::INI> Duplicate Key in INI file at line " << lLineCount << std::endl;
                 mFileStream.close();
@@ -275,7 +289,9 @@ int INI::getValue(const std::string &pKey,
     std::string &pOut,
     const std::string &pSection) const
 {
+    /* Check if the section exists */
     if(mSections.end() != mSections.find(pSection)) {
+        /* Check that the key exists */
         if(mSections.at(pSection).end() != mSections.at(pSection).find(pKey)) {
             pOut = mSections.at(pSection).at(pKey);
             return 0;
