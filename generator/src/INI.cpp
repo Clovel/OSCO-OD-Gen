@@ -145,6 +145,7 @@ INI::INI(const std::string &pFile) {
             /* Something went wrong if you are here */
             std::cerr << "[ERROR] <INI::INI> Unknown parsing error at line "
                       << lLineCount << " !" << std::endl;
+            mFileStream.close();
             throw INIException();
         }
 
@@ -164,6 +165,7 @@ INI::INI(const std::string &pFile) {
                 /* End og tag not found, this INI file is corrupt */
                 std::cerr << "[ERROR] <INI::INI> Found unclosed section tag at line " 
                           << lLineCount << " !" << std::endl;
+            mFileStream.close();
                 throw INIException();
             }
 
@@ -178,6 +180,7 @@ INI::INI(const std::string &pFile) {
         if(2U != lKeyValue.size()) {
             std::cerr << "[ERROR] <INI::INI> Invalid key/name pair at line "
                       << lLineCount << " !" << std::endl;
+            mFileStream.close();
             throw INIException();
         }
 
@@ -189,12 +192,14 @@ INI::INI(const std::string &pFile) {
         if(std::string::npos != lKey.find(' ')) {
             std::cerr << "[ERROR] <INI::INI> Space in key at line "
                     << lLineCount << std::endl;
+            mFileStream.close();
             throw INIException();
         }
 
         if(std::string::npos != lValue.find(' ')) {
             std::cerr << "[ERROR] <INI::INI> Space in value at line "
                     << lLineCount << std::endl;
+            mFileStream.close();
             throw INIException();
         }
 
@@ -204,6 +209,7 @@ INI::INI(const std::string &pFile) {
     }
 
     std::cout << "[INFO ] <INI::INI> Parsed INI file " << pFile << " successfully !" << std::endl;
+    mFileStream.close();
 }
 
 INI::~INI() {
