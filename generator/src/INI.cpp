@@ -379,6 +379,93 @@ int INI::getDouble(const std::string &pKey, double &pValue, const std::string &p
     return *lEnd == 0 ? -1 : 0;
 }
 
+
+/* Setters */
+int INI::setInteger(const std::string &pKey, const int &pValue, const std::string &pSection) {
+    std::string lVal = std::to_string(pValue);
+
+    /* Check if the section exists */
+    if(mSections.end() != mSections.find(pSection)) {
+        /* Check if the key exists */
+        if(mSections.at(pSection).end() != mSections.at(pSection).find(pKey)) {
+            /* The key does exist ! */
+            mSections.at(pSection).at(pKey) = lVal;
+
+            return 0;
+        }
+    }
+
+    return -1;
+}
+
+int INI::setUnsigned(const std::string &pKey, const unsigned int &pValue, const std::string &pSection) {
+    std::string lVal = std::to_string(pValue);
+
+    /* Check if the section exists */
+    if(mSections.end() != mSections.find(pSection)) {
+        /* Check if the key exists */
+        if(mSections.at(pSection).end() != mSections.at(pSection).find(pKey)) {
+            /* The key does exist ! */
+            mSections.at(pSection).at(pKey) = lVal;
+
+            return 0;
+        }
+    }
+
+    return -1;
+}
+
+int INI::setString(const std::string &pKey, const std::string &pValue, const std::string &pSection) {
+    /* Check if the section exists */
+    if(mSections.end() != mSections.find(pSection)) {
+        /* Check if the key exists */
+        if(mSections.at(pSection).end() != mSections.at(pSection).find(pKey)) {
+            /* The key does exist ! */
+            mSections.at(pSection).at(pKey) = pValue;
+
+            return 0;
+        }
+    }
+
+    return -1;
+}
+
+int INI::setBoolean(const std::string &pKey, const bool &pValue, const std::string &pSection) {
+    std::string lVal = std::to_string(pValue);
+
+    /* Check if the section exists */
+    if(mSections.end() != mSections.find(pSection)) {
+        /* Check if the key exists */
+        if(mSections.at(pSection).end() != mSections.at(pSection).find(pKey)) {
+            /* The key does exist ! */
+            mSections.at(pSection).at(pKey) = lVal;
+
+            return 0;
+        }
+    }
+
+    return -1;
+}
+
+int INI::setDouble(const std::string &pKey, const double &pValue, const std::string &pSection) {
+    std::string lVal = std::to_string(pValue);
+
+    /* Check if the section exists */
+    if(mSections.end() != mSections.find(pSection)) {
+        /* Check if the key exists */
+        if(mSections.at(pSection).end() != mSections.at(pSection).find(pKey)) {
+            /* The key does exist ! */
+            mSections.at(pSection).at(pKey) = lVal;
+
+            return 0;
+        }
+    }
+
+    return -1;
+}
+
+
+/* Generator */
 int INI::generateINI(const std::string &pDest) const {
 
     /* Are we overwriting our original INI file ? */

@@ -51,6 +51,13 @@ class INI {
         int getBoolean(const std::string &pKey, bool &pValue, const std::string &pSection = "default") const;
         int getDouble(const std::string &pKey, double &pValue, const std::string &pSection = "default") const;
 
+        /* Setters */
+        int setInteger(const std::string &pKey, const int &pValue, const std::string &pSection = "default");
+        int setUnsigned(const std::string &pKey, const unsigned int &pValue, const std::string &pSection = "default");
+        int setString(const std::string &pKey, const std::string &pValue, const std::string &pSection = "default");
+        int setBoolean(const std::string &pKey, const bool &pValue, const std::string &pSection = "default");
+        int setDouble(const std::string &pKey, const double &pValue, const std::string &pSection = "default");
+
         /* Generator */
         int generateINI(const std::string &pDest) const;
     protected:
