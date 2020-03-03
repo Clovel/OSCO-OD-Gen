@@ -205,10 +205,6 @@ INI::INI(const std::string &pFile) {
             removeTrailingChar(lKey, ' ');
         }
 
-        std::cout << "[DEBUG] lLine  = " << lLine  << std::endl;
-        std::cout << "[DEBUG] lKey   = " << lKey   << std::endl;
-        std::cout << "[DEBUG] lValue = " << lValue << std::endl;
-
         /* This is commented because we accept spaces in the keyname */
         // if(std::string::npos != lKey.find(' ')) {
         //     std::cerr << "[ERROR] <INI::INI> Space in key at line "
