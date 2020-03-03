@@ -58,6 +58,8 @@ class INI {
         std::fstream mFileStream;
 
         std::map<std::string, std::map<std::string, std::string>> mSections;
+        std::map<std::string, std::vector<std::string>> mSectionElementOrder;
+        std::vector<std::string> mSectionOrder;
 
     private:
 };

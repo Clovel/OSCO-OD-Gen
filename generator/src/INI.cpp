@@ -171,6 +171,9 @@ INI::INI(const std::string &pFile) {
 
             /* Get the section name */
             lSection = lKey.substr(1, lPos - 1);
+
+            /* Save the section in the section order vector */
+            mSectionOrder.push_back(lSection);
             continue;
         }
 
@@ -205,6 +208,10 @@ INI::INI(const std::string &pFile) {
 
         /* Save our entry */
         mSections[lSection][lKey] = lValue;
+
+        /* Save the entry in the order vector */
+        mSectionElementOrder[lSection].push_back(lKey);
+
         std::cout << "[INFO ] <INI::INI> [" << lSection << "] " << lKey << " = " << mSections.at(lSection).at(lKey) << std::endl;
     }
 
@@ -369,14 +376,14 @@ int INI::generateINI(const std::string &pDest) const {
     }
 
     /* For each section */
-    for(const auto &lSectionPair : mSections) {
+    for(const auto &lSection : mSectionOrder) {
         /* Write the section name */
-        lOutputFileStream << "[" << lSectionPair.first << "]" << std::endl;
+        lOutputFileStream << "[" << lSection << "]" << std::endl;
 
         /* For each key in the section */
-        for(const auto &lKeyPair : mSections.at(lSectionPair.first)) {
+        for(const auto &lKey : mSectionElementOrder.at(lSection)) {
             /* Write the key, the equal sign and the value */
-            lOutputFileStream << lKeyPair.first << "=" << lKeyPair.second << std::endl;
+            lOutputFileStream << lKey << "=" << mSections.at(lSection).at(lKey) << std::endl;
         }
 
         /* Add an empty line between sections.
