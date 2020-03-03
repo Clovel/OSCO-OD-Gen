@@ -14,6 +14,7 @@
 #include <sstream>
 #include <map>
 #include <vector>
+#include <algorithm>
 
 /* C System */
 #include <cstdlib>
@@ -120,7 +121,8 @@ INI::INI(const std::string &pFile) {
     }
 
     /* Set default section name */
-    std::string lSection = "default";
+    std::string lSection    = "default";
+    bool        lNewSection = false;
 
     /* Parse the INI file */
     uint32_t lLineCount = 0U;
@@ -172,8 +174,19 @@ INI::INI(const std::string &pFile) {
             /* Get the section name */
             lSection = lLine.substr(1, lPos - 1);
 
+            /* Does this section exist already ? */
+            std::vector<std::string>::iterator lSectionIt = find(mSectionOrder.begin(), mSectionOrder.end(), lSection);
+            if(mSectionOrder.end() != lSectionIt) {
+                /* This section already exists ! */
+                std::cerr << "[ERROR] <INI::INI> Duplicate Section in INI file at line " << lLineCount << std::endl;
+                mFileStream.close();
+                throw INIException();
+            }
+
             /* Save the section in the section order vector */
             mSectionOrder.push_back(lSection);
+
+            lNewSection = true;
             continue;
         }
 
@@ -221,11 +234,27 @@ INI::INI(const std::string &pFile) {
         //     throw INIException();
         // }
 
+        /* Does this key exist already ? 
+         * First, we must check if the section exists
+         */
+        if(!lNewSection) {
+            std::vector<std::string>::iterator lKeyIt = find(mSectionElementOrder.at(lSection).begin(), mSectionElementOrder.at(lSection).end(), lKey);
+            if(mSectionElementOrder.at(lSection).end() != lKeyIt) {
+                /* This key already exists ! */
+                std::cerr << "[ERROR] <INI::INI> Duplicate Key in INI file at line " << lLineCount << std::endl;
+                mFileStream.close();
+                throw INIException();
+            }
+        }
+
+
         /* Save our entry */
         mSections[lSection][lKey] = lValue;
 
         /* Save the entry in the order vector */
         mSectionElementOrder[lSection].push_back(lKey);
+
+        lNewSection = false;
 
         std::cout << "[INFO ] <INI::INI> [" << lSection << "] " << lKey << " = " << mSections.at(lSection).at(lKey) << std::endl;
     }
