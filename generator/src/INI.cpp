@@ -115,7 +115,7 @@ INI::INI(const std::string &pFile) {
 
     /* Check if the file was opened correctly */
     if(!mFileStream.is_open()) {
-        std::cerr << "[ERROR] <INI::INI> Failed to open file " << pFile << " !" << std::endl;
+        std::cerr << "[ERROR] <INI::INI> Failed to open file " << pFile << std::endl;
         throw INIException();
     }
 
@@ -144,7 +144,7 @@ INI::INI(const std::string &pFile) {
 
             /* Something went wrong if you are here */
             std::cerr << "[ERROR] <INI::INI> Unknown parsing error at line "
-                      << lLineCount << " !" << std::endl;
+                      << lLineCount << std::endl;
             mFileStream.close();
             throw INIException();
         }
@@ -164,8 +164,8 @@ INI::INI(const std::string &pFile) {
             if(std::string::npos == lPos) {
                 /* End og tag not found, this INI file is corrupt */
                 std::cerr << "[ERROR] <INI::INI> Found unclosed section tag at line " 
-                          << lLineCount << " !" << std::endl;
-            mFileStream.close();
+                          << lLineCount << std::endl;
+                mFileStream.close();
                 throw INIException();
             }
 
@@ -182,7 +182,7 @@ INI::INI(const std::string &pFile) {
 
         if(2U != lKeyValue.size()) {
             std::cerr << "[ERROR] <INI::INI> Invalid key/name pair at line "
-                      << lLineCount << " !" << std::endl;
+                      << lLineCount << std::endl;
             mFileStream.close();
             throw INIException();
         }
@@ -473,7 +473,7 @@ int INI::generateINI(const std::string &pDest) const {
 
     std::fstream lOutputFileStream(pDest, std::ios::out);
     if(!lOutputFileStream.is_open()) {
-        std::cerr << "[ERROR] <INI::generateINI> Failed to open file " << pDest << " !" << std::endl;
+        std::cerr << "[ERROR] <INI::generateINI> Failed to open file " << pDest << std::endl;
         return -1;
     }
 
