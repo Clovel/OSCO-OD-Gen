@@ -54,7 +54,7 @@ int main(const int argc, const char * const * const argv) {
     /* Generating the same INI file */
     std::string lCopyEDSFile = lEDSFile.substr(0U, lEDSFile.find_last_of('.')) + ".copy.ini";
     std::cout << "[DEBUG] lCopyEDSFile = " << lCopyEDSFile << std::endl;
-    if(0 > lEDS->generateINI(lCopyEDSFile)) {
+    if(0 > lEDS->generateFile(lCopyEDSFile)) {
         std::cerr << "[ERROR] Failed to generate copy if ini file ! " << std::endl;
         return EXIT_FAILURE;
     }

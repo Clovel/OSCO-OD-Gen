@@ -491,18 +491,18 @@ int INI::setDouble(const std::string &pKey, const double &pValue, const std::str
 
 
 /* Generator */
-int INI::generateINI(const std::string &pDest) const {
+int INI::generateFile(const std::string &pDest) const {
 
     /* Are we overwriting our original INI file ? */
     if(mFileName == pDest) {
         /* Overwrite detectedn not supported for now */
-        std::cerr << "[ERROR] <INI::generateINI> Overwrite detectedn not supported for now." << std::endl;
+        std::cerr << "[ERROR] <INI::generateFile> Overwrite detectedn not supported for now." << std::endl;
         return -1;
     }
 
     std::fstream lOutputFileStream(pDest, std::ios::out);
     if(!lOutputFileStream.is_open()) {
-        std::cerr << "[ERROR] <INI::generateINI> Failed to open file " << pDest << std::endl;
+        std::cerr << "[ERROR] <INI::generateFile> Failed to open file " << pDest << std::endl;
         return -1;
     }
 
@@ -523,6 +523,6 @@ int INI::generateINI(const std::string &pDest) const {
         lOutputFileStream << std::endl;
     }
 
-    std::cout << "[INFO ] <INI::generateINI> Successfully generated INI file " << pDest << std::endl;
+    std::cout << "[INFO ] <INI::generateFile> Successfully generated INI file " << pDest << std::endl;
     return 0;
 }

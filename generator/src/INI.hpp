@@ -59,7 +59,7 @@ class INI {
         int setDouble(const std::string &pKey, const double &pValue, const std::string &pSection = "default");
 
         /* Generator */
-        int generateINI(const std::string &pDest) const;
+        virtual int generateFile(const std::string &pDest) const;
     protected:
         std::string mFileName;
         std::fstream mFileStream;
