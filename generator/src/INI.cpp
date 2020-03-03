@@ -58,7 +58,7 @@ static std::vector<std::string> split(const std::string &pStr, char pDelim) {
 }
 
 static std::string getStrAfterDelim(const std::string &pStr, char pDelim) {
-    size_t lDelimPos = pStr.find(pDelim);
+    size_t lDelimPos = pStr.find_last_of(pDelim);
     size_t lEOLPos   = pStr.find('\n');
 
     /* Check if we found the delimiter */
@@ -77,7 +77,7 @@ static std::string getStrAfterDelim(const std::string &pStr, char pDelim) {
 }
 
 static std::string getStrBeforeDelim(const std::string &pStr, char pDelim) {
-    return pStr.substr(0U, pStr.find(pDelim));
+    return pStr.substr(0U, pStr.find_first_of(pDelim));
 }
 
 static void removeChar(std::string &pStr, const char pChar) {
@@ -150,7 +150,7 @@ INI::INI(const std::string &pFile) {
         }
 
         /* Check if this line is a comment */
-        if('#' == lKey[0U] || ';' == lKey[0U]) {
+        if('#' == lLine[0U] || ';' == lLine[0U]) {
             /* This is a comment */
             std::cout << "[DEBUG] <INI::INI> (" << lLineCount 
                       << ") This is a comment" << std::endl;
@@ -158,9 +158,9 @@ INI::INI(const std::string &pFile) {
         }
 
         /* Check if the is a section name */
-        if('[' == lKey[0U]) {
+        if('[' == lLine[0U]) {
             /* The section tag is [tag] */
-            size_t lPos = lKey.find_first_of(']');
+            size_t lPos = lLine.find_first_of(']');
             if(std::string::npos == lPos) {
                 /* End og tag not found, this INI file is corrupt */
                 std::cerr << "[ERROR] <INI::INI> Found unclosed section tag at line " 
@@ -170,7 +170,7 @@ INI::INI(const std::string &pFile) {
             }
 
             /* Get the section name */
-            lSection = lKey.substr(1, lPos - 1);
+            lSection = lLine.substr(1, lPos - 1);
 
             /* Save the section in the section order vector */
             mSectionOrder.push_back(lSection);
@@ -178,7 +178,7 @@ INI::INI(const std::string &pFile) {
         }
 
         /* Now, try to extract the name/value pair */
-        std::vector<std::string> lKeyValue = split(lKey, '=');
+        std::vector<std::string> lKeyValue = split(lLine, '=');
 
         if(2U != lKeyValue.size()) {
             std::cerr << "[ERROR] <INI::INI> Invalid key/name pair at line "
@@ -188,23 +188,42 @@ INI::INI(const std::string &pFile) {
         }
 
         /* We got a valid keyvalue pair */
-        lKey   = getStrBeforeDelim(lKeyValue[0U], ' ');
-        lValue = getStrAfterDelim(lKeyValue[1U], ' ');
+        lKey   = lKeyValue[0U];
+        lValue = lKeyValue[1U];
 
-        /* Check if there are any more spaces */
-        if(std::string::npos != lKey.find(' ')) {
-            std::cerr << "[ERROR] <INI::INI> Space in key at line "
-                    << lLineCount << std::endl;
-            mFileStream.close();
-            throw INIException();
+        /* Remove prefix and trailing whitespaces */
+        while(' ' == lKey[0U]) {
+            removeFirstChar(lKey, ' ');
+        }
+        while(' ' == lKey[lKey.length() - 1U]) {
+            removeTrailingChar(lKey, ' ');
+        }
+        while(' ' == lValue[0U]) {
+            removeFirstChar(lKey, ' ');
+        }
+        while(' ' == lValue[lValue.length() - 1U]) {
+            removeTrailingChar(lKey, ' ');
         }
 
-        if(std::string::npos != lValue.find(' ')) {
-            std::cerr << "[ERROR] <INI::INI> Space in value at line "
-                    << lLineCount << std::endl;
-            mFileStream.close();
-            throw INIException();
-        }
+        std::cout << "[DEBUG] lLine  = " << lLine  << std::endl;
+        std::cout << "[DEBUG] lKey   = " << lKey   << std::endl;
+        std::cout << "[DEBUG] lValue = " << lValue << std::endl;
+
+        /* This is commented because we accept spaces in the keyname */
+        // if(std::string::npos != lKey.find(' ')) {
+        //     std::cerr << "[ERROR] <INI::INI> Space in key at line "
+        //             << lLineCount << std::endl;
+        //     mFileStream.close();
+        //     throw INIException();
+        // }
+
+        /* This is commented because we accept spaces in the value */
+        // if(std::string::npos != lValue.find(' ')) {
+        //     std::cerr << "[ERROR] <INI::INI> Space in value at line "
+        //             << lLineCount << std::endl;
+        //     mFileStream.close();
+        //     throw INIException();
+        // }
 
         /* Save our entry */
         mSections[lSection][lKey] = lValue;
