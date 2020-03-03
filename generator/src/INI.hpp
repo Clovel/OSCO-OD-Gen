@@ -58,6 +58,14 @@ class INI {
         int setBoolean(const std::string &pKey, const bool &pValue, const std::string &pSection = "default");
         int setDouble(const std::string &pKey, const double &pValue, const std::string &pSection = "default");
 
+        /* Adders */
+        int addSection(const std::string &pSection);
+        int addInteger(const std::string &pKey, const int &pValue, const std::string &pSection = "default");
+        int addUnsigned(const std::string &pKey, const unsigned int &pValue, const std::string &pSection = "default", const int &pBase = 10);
+        int addString(const std::string &pKey, const std::string &pValue, const std::string &pSection = "default");
+        int addBoolean(const std::string &pKey, const bool &pValue, const std::string &pSection = "default");
+        int addDouble(const std::string &pKey, const double &pValue, const std::string &pSection = "default");
+
         /* Generator */
         virtual int generateFile(const std::string &pDest) const;
     protected:

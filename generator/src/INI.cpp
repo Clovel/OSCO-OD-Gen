@@ -506,6 +506,73 @@ int INI::setDouble(const std::string &pKey, const double &pValue, const std::str
 }
 
 
+/* Adders */
+
+int INI::addSection(const std::string &pSection) {
+    /* Does this section exist already ? */
+    if(sectionExists(pSection)) {
+        /* This section already exists ! */
+        std::cerr << "[ERROR] <INI::addSection> Section already exists" << std::endl;
+        return -1;
+    }
+
+    /* Add the section with no keys */
+    mSections[pSection] = std::map<std::string, std::string>();
+    mSectionOrder.push_back(pSection);
+    mSectionElementOrder[pSection] = std::vector<std::string>();
+
+    return -1;
+}
+
+int INI::addInteger(const std::string &pKey, const int &pValue, const std::string &pSection) {
+    return addString(pKey, std::to_string(pValue), pSection);
+}
+
+int INI::addUnsigned(const std::string &pKey, const unsigned int &pValue, const std::string &pSection, const int &pBase) {
+    if(10 == pBase) {
+        return addString(pKey, std::to_string(pValue), pSection);
+    } else if (16 == pBase) {
+        char lStr[6U];
+        std::snprintf(lStr, 6U, "0x%04X", pValue);
+        return addString(pKey, std::string(lStr), pSection);
+    } else {
+        std::cerr << "[ERROR] <INI::addUnsigned> Unknown base specified" << std::endl;
+        return -1;
+    }
+}
+
+int INI::addString(const std::string &pKey, const std::string &pValue, const std::string &pSection) {
+    /* Does this section exist ? */
+    if(!sectionExists(pSection)) {
+        /* This section doesn't exist ! */
+        std::cerr << "[ERROR] <INI::addString> Section doesn't exist" << std::endl;
+        return -1;
+    }
+
+    /* Does the key already exist ? */
+    if(keyExists(pKey)) {
+        /* This key already exists ! */
+        std::cerr << "[ERROR] <INI::addString> Key already exists" << std::endl;
+        return -1;
+    }
+
+    /* Add the key to the associated section */
+    mSections.at(pSection)[pKey] = pValue;
+    mSectionElementOrder.at(pSection).push_back(pKey);
+
+    return 0;
+}
+
+int INI::addBoolean(const std::string &pKey, const bool &pValue, const std::string &pSection) {
+    return addString(pKey, pValue ? "true" : "false", pSection);
+}
+
+int INI::addDouble(const std::string &pKey, const double &pValue, const std::string &pSection) {
+    return addString(pKey, std::to_string(pValue), pSection);
+}
+
+
+
 /* Generator */
 int INI::generateFile(const std::string &pDest) const {
 
