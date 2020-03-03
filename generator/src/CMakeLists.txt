@@ -36,12 +36,6 @@ add_executable(${CMAKE_PROJECT_NAME}
 set_target_properties(${CMAKE_PROJECT_NAME} PROPERTIES 
     PUBLIC_HEADER "${PUBLIC_HEADERS}"
 )
-add_dependencies(${CMAKE_PROJECT_NAME}
-    inih
-)
-target_link_libraries(${CMAKE_PROJECT_NAME}
-    inih
-)
 
 #----------------------------------------------------------------------------
 # The installation is prepended by the CMAKE_INSTALL_PREFIX variable
