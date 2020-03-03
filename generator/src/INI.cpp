@@ -354,6 +354,37 @@ int INI::getDouble(const std::string &pKey, double &pValue, const std::string &p
 }
 
 int INI::generateINI(const std::string &pDest) const {
-    std::ostringstream mOutputFile(pDest);
-    
+
+    /* Are we overwriting our original INI file ? */
+    if(mFileName == pDest) {
+        /* Overwrite detectedn not supported for now */
+        std::cerr << "[ERROR] <INI::generateINI> Overwrite detectedn not supported for now." << std::endl;
+        return -1;
+    }
+
+    std::fstream lOutputFileStream(pDest, std::ios::out);
+    if(!lOutputFileStream.is_open()) {
+        std::cerr << "[ERROR] <INI::generateINI> Failed to open file " << pDest << " !" << std::endl;
+        return -1;
+    }
+
+    /* For each section */
+    for(const auto &lSectionPair : mSections) {
+        /* Write the section name */
+        lOutputFileStream << "[" << lSectionPair.first << "]" << std::endl;
+
+        /* For each key in the section */
+        for(const auto &lKeyPair : mSections.at(lSectionPair.first)) {
+            /* Write the key, the equal sign and the value */
+            lOutputFileStream << lKeyPair.first << "=" << lKeyPair.second << std::endl;
+        }
+
+        /* Add an empty line between sections.
+         * This will also add an empty line at EOF.
+        */
+        lOutputFileStream << std::endl;
+    }
+
+    std::cout << "[INFO ] <INI::generateINI> Successfully generated INI file " << pDest << std::endl;
+    return 0;
 }

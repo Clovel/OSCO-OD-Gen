@@ -9,6 +9,7 @@
 
 /* C++ system */
 #include <iostream>
+#include <string>
 
 /* C system */
 #include <cstring>
@@ -37,13 +38,24 @@ int main(const int argc, const char * const * const argv) {
         return EXIT_FAILURE;
     }
 
+    const std::string lEDSFile = std::string(argv[1U]);
+
     /* Create an EDS instance */
+    EDS *lEDS = nullptr;
     try {
         std::cout << "[DEBUG] Opening EDS file " << argv[1U] << std::endl;
-        EDS lEDS((std::string(argv[1U])));
+        lEDS = new EDS(lEDSFile);
         std::cerr << "[ERROR] Successfully parsed EDS file " << argv[1U] << " !" << std::endl;
     } catch (const std::exception &e) {
         std::cerr << "[ERROR] Failed to parse EDS file " << argv[1U] << " !" << std::endl;
+        return EXIT_FAILURE;
+    }
+
+    /* Generating the same INI file */
+    std::string lCopyEDSFile = lEDSFile.substr(0U, lEDSFile.find_last_of('.')) + ".copy.ini";
+    std::cout << "[DEBUG] lCopyEDSFile = " << lCopyEDSFile << std::endl;
+    if(0 > lEDS->generateINI(lCopyEDSFile)) {
+        std::cerr << "[ERROR] Failed to generate copy if ini file ! " << std::endl;
         return EXIT_FAILURE;
     }
 
