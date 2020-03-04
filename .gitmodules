@@ -1,0 +1,3 @@
+[submodule "generator/deps/initools"]
+	path = generator/deps/initools
+	url = https://github.com/Clovel/initools.git

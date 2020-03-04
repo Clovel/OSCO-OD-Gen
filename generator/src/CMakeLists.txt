@@ -5,13 +5,13 @@
 
 # Header files --------------------------------------------
 file(GLOB PUBLIC_HEADERS
-    ${CMAKE_SOURCE_DIR}/inc/*.h
-    ${CMAKE_SOURCE_DIR}/inc/*.hpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/../inc/*.h
+    ${CMAKE_CURRENT_SOURCE_DIR}/../inc/*.hpp
 )
 
 file(GLOB_RECURSE MODULE_HEADERS
-    ${CMAKE_SOURCE_DIR}/src/*.h
-    ${CMAKE_SOURCE_DIR}/src/*.hpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/*.h
+    ${CMAKE_CURRENT_SOURCE_DIR}/*.hpp
 )
 
 set(HEADERS
@@ -21,8 +21,8 @@ set(HEADERS
 
 # Source files --------------------------------------------
 file(GLOB SOURCES
-    ${CMAKE_SOURCE_DIR}/src/*.c
-    ${CMAKE_SOURCE_DIR}/src/*.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/*.c
+    ${CMAKE_CURRENT_SOURCE_DIR}/*.cpp
 )
 
 message("MAIN SOURCES : ${SOURCES}")
@@ -32,6 +32,12 @@ message("MAIN SOURCES : ${SOURCES}")
 # Target definition ---------------------------------------
 add_executable(${CMAKE_PROJECT_NAME}
     ${SOURCES}
+)
+add_dependencies(${CMAKE_PROJECT_NAME}
+    initools
+)
+target_link_libraries(${CMAKE_PROJECT_NAME}
+    initools
 )
 set_target_properties(${CMAKE_PROJECT_NAME} PROPERTIES 
     PUBLIC_HEADER "${PUBLIC_HEADERS}"
