@@ -507,7 +507,6 @@ int INI::setDouble(const std::string &pKey, const double &pValue, const std::str
 
 
 /* Adders */
-
 int INI::addSection(const std::string &pSection) {
     /* Does this section exist already ? */
     if(sectionExists(pSection)) {
@@ -572,10 +571,8 @@ int INI::addDouble(const std::string &pKey, const double &pValue, const std::str
 }
 
 
-
 /* Generator */
 int INI::generateFile(const std::string &pDest) const {
-
     /* Are we overwriting our original INI file ? */
     if(mFileName == pDest) {
         /* Overwrite detectedn not supported for now */
