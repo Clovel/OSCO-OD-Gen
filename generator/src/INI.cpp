@@ -472,7 +472,7 @@ int INI::setString(const std::string &pKey, const std::string &pValue, const std
 }
 
 int INI::setBoolean(const std::string &pKey, const bool &pValue, const std::string &pSection) {
-    std::string lVal = std::to_string(pValue);
+    std::string lVal = pValue ? "true" : "false";
 
     /* Check if the section exists */
     if(mSections.end() != mSections.find(pSection)) {
