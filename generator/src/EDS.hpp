@@ -22,6 +22,8 @@ class EDS : public INI {
         EDS(const std::string &pFile);
 
         virtual ~EDS();
+
+        int check(void) const;
     protected:
     private:
 };

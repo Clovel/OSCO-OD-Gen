@@ -24,3 +24,7 @@ EDS::EDS(const std::string &pFile) : INI(pFile) {
 EDS::~EDS() {
     /* Empty */
 }
+
+int EDS::check(void) const {
+    /* Empty for now */
+}
