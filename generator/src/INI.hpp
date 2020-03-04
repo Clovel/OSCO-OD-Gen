@@ -8,11 +8,15 @@
 #define INI_HPP
 
 /* Includes -------------------------------------------- */
+/* C++ System */
 #include <string>
 #include <fstream>
 #include <map>
 #include <vector>
 #include <exception>
+
+/* C System */
+#include <cstdint>
 
 /* Defines --------------------------------------------- */
 
@@ -45,23 +49,41 @@ class INI {
         std::vector<std::string> getSections(void) const;
         std::vector<std::string> getKeys(const std::string &pSection = "default") const;
 
-        int getInteger(const std::string &pKey, int &pValue, const std::string &pSection = "default") const;
-        int getUnsigned(const std::string &pKey, unsigned int &pValue, const std::string &pSection = "default") const;
+        int getInt64(const std::string &pKey, int64_t &pValue, const std::string &pSection = "default") const;
+        int getInt32(const std::string &pKey, int32_t &pValue, const std::string &pSection = "default") const;
+        int getInt16(const std::string &pKey, int16_t &pValue, const std::string &pSection = "default") const;
+        int getInt8(const std::string &pKey, int8_t &pValue, const std::string &pSection = "default") const;
+        int getUInt64(const std::string &pKey, uint64_t &pValue, const std::string &pSection = "default") const;
+        int getUInt32(const std::string &pKey, uint32_t &pValue, const std::string &pSection = "default") const;
+        int getUInt16(const std::string &pKey, uint16_t &pValue, const std::string &pSection = "default") const;
+        int getUInt8(const std::string &pKey, uint8_t &pValue, const std::string &pSection = "default") const;
         int getString(const std::string &pKey, std::string &pValue, const std::string &pSection = "default") const;
         int getBoolean(const std::string &pKey, bool &pValue, const std::string &pSection = "default") const;
         int getDouble(const std::string &pKey, double &pValue, const std::string &pSection = "default") const;
 
         /* Setters */
-        int setInteger(const std::string &pKey, const int &pValue, const std::string &pSection = "default");
-        int setUnsigned(const std::string &pKey, const unsigned int &pValue, const std::string &pSection = "default", const int &pBase = 10);
+        int setInt64(const std::string &pKey, const int64_t &pValue, const std::string &pSection = "default");
+        int setInt32(const std::string &pKey, const int32_t &pValue, const std::string &pSection = "default");
+        int setInt16(const std::string &pKey, const int16_t &pValue, const std::string &pSection = "default");
+        int setInt8(const std::string &pKey, const int8_t &pValue, const std::string &pSection = "default");
+        int setUInt64(const std::string &pKey, const uint64_t &pValue, const std::string &pSection = "default", const int &pBase = 10);
+        int setUInt32(const std::string &pKey, const uint32_t &pValue, const std::string &pSection = "default", const int &pBase = 10);
+        int setUInt16(const std::string &pKey, const uint16_t &pValue, const std::string &pSection = "default", const int &pBase = 10);
+        int setUInt8(const std::string &pKey, const uint8_t &pValue, const std::string &pSection = "default", const int &pBase = 10);
         int setString(const std::string &pKey, const std::string &pValue, const std::string &pSection = "default");
         int setBoolean(const std::string &pKey, const bool &pValue, const std::string &pSection = "default");
         int setDouble(const std::string &pKey, const double &pValue, const std::string &pSection = "default");
 
         /* Adders */
         int addSection(const std::string &pSection);
-        int addInteger(const std::string &pKey, const int &pValue, const std::string &pSection = "default");
-        int addUnsigned(const std::string &pKey, const unsigned int &pValue, const std::string &pSection = "default", const int &pBase = 10);
+        int addInt64(const std::string &pKey, const int64_t &pValue, const std::string &pSection = "default");
+        int addInt32(const std::string &pKey, const int32_t &pValue, const std::string &pSection = "default");
+        int addInt16(const std::string &pKey, const int16_t &pValue, const std::string &pSection = "default");
+        int addInt8(const std::string &pKey, const int8_t &pValue, const std::string &pSection = "default");
+        int addUInt64(const std::string &pKey, const uint64_t &pValue, const std::string &pSection = "default", const int &pBase = 10);
+        int addUInt32(const std::string &pKey, const uint32_t &pValue, const std::string &pSection = "default", const int &pBase = 10);
+        int addUInt16(const std::string &pKey, const uint16_t &pValue, const std::string &pSection = "default", const int &pBase = 10);
+        int addUInt8(const std::string &pKey, const uint8_t &pValue, const std::string &pSection = "default", const int &pBase = 10);
         int addString(const std::string &pKey, const std::string &pValue, const std::string &pSection = "default");
         int addBoolean(const std::string &pKey, const bool &pValue, const std::string &pSection = "default");
         int addDouble(const std::string &pKey, const double &pValue, const std::string &pSection = "default");

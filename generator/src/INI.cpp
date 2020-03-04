@@ -18,6 +18,8 @@
 
 /* C System */
 #include <cstdlib>
+#include <cstdint>
+#include <climits>
 
 /* Defines --------------------------------------------- */
 
@@ -323,14 +325,37 @@ std::vector<std::string> INI::getKeys(const std::string &pSection) const {
     return lKeys;
 }
 
-int INI::getInteger(const std::string &pKey, int &pValue, const std::string &pSection) const {
+int INI::getInt64(const std::string &pKey, int64_t &pValue, const std::string &pSection) const {
     std::string lVal;
 
     if(0 > getValue(pKey, lVal, pSection)) {
         /* Key/Value pair not found.
          * This is either because the section is unknown
          * or the key is unknown */
-        std::cerr << "[ERROR] <INI::get> Key/value pair not found !" << std::endl;
+        std::cerr << "[ERROR] <INI::getInt64> Key/value pair not found !" << std::endl;
+        return -1;
+    }
+
+    /* Cast the value */
+    char *lEnd = 0;
+    if(std::string::npos != lVal.find("0x")) {
+        /* Haxadecimal value */
+        pValue = strtoll(mSections.at(pSection).at(pKey).c_str(), &lEnd, 16);
+    } else {
+        pValue = strtoll(mSections.at(pSection).at(pKey).c_str(), &lEnd, 10);
+    }
+
+    return *lEnd == 0 ? -1 : 0;
+}
+
+int INI::getInt32(const std::string &pKey, int32_t &pValue, const std::string &pSection) const {
+    std::string lVal;
+
+    if(0 > getValue(pKey, lVal, pSection)) {
+        /* Key/Value pair not found.
+         * This is either because the section is unknown
+         * or the key is unknown */
+        std::cerr << "[ERROR] <INI::getInt32> Key/value pair not found !" << std::endl;
         return -1;
     }
 
@@ -346,14 +371,101 @@ int INI::getInteger(const std::string &pKey, int &pValue, const std::string &pSe
     return *lEnd == 0 ? -1 : 0;
 }
 
-int INI::getUnsigned(const std::string &pKey, unsigned int &pValue, const std::string &pSection) const {
+int INI::getInt16(const std::string &pKey, int16_t &pValue, const std::string &pSection) const {
     std::string lVal;
 
     if(0 > getValue(pKey, lVal, pSection)) {
         /* Key/Value pair not found.
          * This is either because the section is unknown
          * or the key is unknown */
-        std::cerr << "[ERROR] <INI::get> Key/value pair not found !" << std::endl;
+        std::cerr << "[ERROR] <INI::getInt16> Key/value pair not found !" << std::endl;
+        return -1;
+    }
+
+    /* Cast the value */
+    char *lEnd = 0;
+    int32_t lTempVal = 0;
+    if(std::string::npos != lVal.find("0x")) {
+        /* Haxadecimal value */
+        lTempVal = (int16_t)strtol(mSections.at(pSection).at(pKey).c_str(), &lEnd, 16);
+    } else {
+        lTempVal = (int16_t)strtol(mSections.at(pSection).at(pKey).c_str(), &lEnd, 10);
+    }
+
+    /* Check limits */
+    if(SHRT_MAX < lTempVal || SHRT_MIN > lTempVal) {
+        std::cerr << "[ERROR] <INI::getInt16> Value is out of bounds !" << std::endl;
+        return -1;
+    } else {
+        pValue = (int16_t)lTempVal;
+    }
+
+    return *lEnd == 0 ? -1 : 0;
+}
+
+int INI::getInt8(const std::string &pKey, int8_t &pValue, const std::string &pSection) const {
+    std::string lVal;
+
+    if(0 > getValue(pKey, lVal, pSection)) {
+        /* Key/Value pair not found.
+         * This is either because the section is unknown
+         * or the key is unknown */
+        std::cerr << "[ERROR] <INI::getInt8> Key/value pair not found !" << std::endl;
+        return -1;
+    }
+
+    /* Cast the value */
+    char *lEnd = 0;
+    int32_t lTempVal = 0;
+    if(std::string::npos != lVal.find("0x")) {
+        /* Haxadecimal value */
+        lTempVal = (int16_t)strtol(mSections.at(pSection).at(pKey).c_str(), &lEnd, 16);
+    } else {
+        lTempVal = (int16_t)strtol(mSections.at(pSection).at(pKey).c_str(), &lEnd, 10);
+    }
+
+    /* Check limits */
+    if(SCHAR_MAX < lTempVal || SCHAR_MIN > lTempVal) {
+        std::cerr << "[ERROR] <INI::getInt8> Value is out of bounds !" << std::endl;
+        return -1;
+    } else {
+        pValue = (int8_t)lTempVal;
+    }
+
+    return *lEnd == 0 ? -1 : 0;
+}
+
+int INI::getUInt64(const std::string &pKey, uint64_t &pValue, const std::string &pSection) const {
+    std::string lVal;
+
+    if(0 > getValue(pKey, lVal, pSection)) {
+        /* Key/Value pair not found.
+         * This is either because the section is unknown
+         * or the key is unknown */
+        std::cerr << "[ERROR] <INI::getUInt64> Key/value pair not found !" << std::endl;
+        return -1;
+    }
+
+    /* Cast the value */
+    char *lEnd = 0;
+    if(std::string::npos != lVal.find("0x")) {
+        /* Haxadecimal value */
+        pValue = strtoull(mSections.at(pSection).at(pKey).c_str(), &lEnd, 16);
+    } else {
+        pValue = strtoull(mSections.at(pSection).at(pKey).c_str(), &lEnd, 10);
+    }
+    
+    return *lEnd == 0 ? -1 : 0;
+}
+
+int INI::getUInt32(const std::string &pKey, uint32_t &pValue, const std::string &pSection) const {
+    std::string lVal;
+
+    if(0 > getValue(pKey, lVal, pSection)) {
+        /* Key/Value pair not found.
+         * This is either because the section is unknown
+         * or the key is unknown */
+        std::cerr << "[ERROR] <INI::getUInt32> Key/value pair not found !" << std::endl;
         return -1;
     }
 
@@ -364,6 +476,70 @@ int INI::getUnsigned(const std::string &pKey, unsigned int &pValue, const std::s
         pValue = strtoul(mSections.at(pSection).at(pKey).c_str(), &lEnd, 16);
     } else {
         pValue = strtoul(mSections.at(pSection).at(pKey).c_str(), &lEnd, 10);
+    }
+    
+    return *lEnd == 0 ? -1 : 0;
+}
+
+int INI::getUInt16(const std::string &pKey, uint16_t &pValue, const std::string &pSection) const {
+    std::string lVal;
+
+    if(0 > getValue(pKey, lVal, pSection)) {
+        /* Key/Value pair not found.
+         * This is either because the section is unknown
+         * or the key is unknown */
+        std::cerr << "[ERROR] <INI::getUInt16> Key/value pair not found !" << std::endl;
+        return -1;
+    }
+
+    /* Cast the value */
+    char *lEnd = 0;
+    uint32_t lTempVal = 0U;
+    if(std::string::npos != lVal.find("0x")) {
+        /* Haxadecimal value */
+        lTempVal = strtoul(mSections.at(pSection).at(pKey).c_str(), &lEnd, 16);
+    } else {
+        lTempVal = strtoul(mSections.at(pSection).at(pKey).c_str(), &lEnd, 10);
+    }
+
+    /* Check limits */
+    if(USHRT_MAX < lTempVal) {
+        std::cerr << "[ERROR] <INI::getUInt16> Value is out of bounds !" << std::endl;
+        return -1;
+    } else {
+        pValue = (uint16_t)lTempVal;
+    }
+    
+    return *lEnd == 0 ? -1 : 0;
+}
+
+int INI::getUInt8(const std::string &pKey, uint8_t &pValue, const std::string &pSection) const {
+    std::string lVal;
+
+    if(0 > getValue(pKey, lVal, pSection)) {
+        /* Key/Value pair not found.
+         * This is either because the section is unknown
+         * or the key is unknown */
+        std::cerr << "[ERROR] <INI::getUInt8> Key/value pair not found !" << std::endl;
+        return -1;
+    }
+
+    /* Cast the value */
+    char *lEnd = 0;
+    uint32_t lTempVal = 0U;
+    if(std::string::npos != lVal.find("0x")) {
+        /* Haxadecimal value */
+        lTempVal = strtoul(mSections.at(pSection).at(pKey).c_str(), &lEnd, 16);
+    } else {
+        lTempVal = strtoul(mSections.at(pSection).at(pKey).c_str(), &lEnd, 10);
+    }
+
+    /* Check limits */
+    if(UCHAR_MAX < lTempVal) {
+        std::cerr << "[ERROR] <INI::getUInt8> Value is out of bounds !" << std::endl;
+        return -1;
+    } else {
+        pValue = (uint8_t)lTempVal;
     }
     
     return *lEnd == 0 ? -1 : 0;
@@ -422,7 +598,7 @@ int INI::getDouble(const std::string &pKey, double &pValue, const std::string &p
 
 
 /* Setters */
-int INI::setInteger(const std::string &pKey, const int &pValue, const std::string &pSection) {
+int INI::setInt64(const std::string &pKey, const int64_t &pValue, const std::string &pSection) {
     std::string lVal = std::to_string(pValue);
 
     /* Check if the section exists */
@@ -439,7 +615,114 @@ int INI::setInteger(const std::string &pKey, const int &pValue, const std::strin
     return -1;
 }
 
-int INI::setUnsigned(const std::string &pKey, const unsigned int &pValue, const std::string &pSection, const int &pBase) {
+int INI::setInt32(const std::string &pKey, const int32_t &pValue, const std::string &pSection) {
+    std::string lVal = std::to_string(pValue);
+
+    /* Check if the section exists */
+    if(mSections.end() != mSections.find(pSection)) {
+        /* Check if the key exists */
+        if(mSections.at(pSection).end() != mSections.at(pSection).find(pKey)) {
+            /* The key does exist ! */
+            mSections.at(pSection).at(pKey) = lVal;
+
+            return 0;
+        }
+    }
+
+    return -1;
+}
+
+int INI::setInt16(const std::string &pKey, const int16_t &pValue, const std::string &pSection) {
+    std::string lVal = std::to_string(pValue);
+
+    /* Check if the section exists */
+    if(mSections.end() != mSections.find(pSection)) {
+        /* Check if the key exists */
+        if(mSections.at(pSection).end() != mSections.at(pSection).find(pKey)) {
+            /* The key does exist ! */
+            mSections.at(pSection).at(pKey) = lVal;
+
+            return 0;
+        }
+    }
+
+    return -1;
+}
+
+int INI::setInt8(const std::string &pKey, const int8_t &pValue, const std::string &pSection) {
+    std::string lVal = std::to_string(pValue);
+
+    /* Check if the section exists */
+    if(mSections.end() != mSections.find(pSection)) {
+        /* Check if the key exists */
+        if(mSections.at(pSection).end() != mSections.at(pSection).find(pKey)) {
+            /* The key does exist ! */
+            mSections.at(pSection).at(pKey) = lVal;
+
+            return 0;
+        }
+    }
+
+    return -1;
+}
+
+int INI::setUInt64(const std::string &pKey, const uint64_t &pValue, const std::string &pSection, const int &pBase) {
+    std::string lVal;
+
+    if(10 == pBase) {
+        lVal = std::to_string(pValue);
+    } else if (16 == pBase) {
+        char lStr[18U];
+        std::snprintf(lStr, 18U, "0x%016X", pValue);
+        lVal = std::string(lStr);
+    } else {
+        std::cerr << "[ERROR] <INI::setUInt64> Unknown base specified" << std::endl;
+        return -1;
+    }
+
+    /* Check if the section exists */
+    if(mSections.end() != mSections.find(pSection)) {
+        /* Check if the key exists */
+        if(mSections.at(pSection).end() != mSections.at(pSection).find(pKey)) {
+            /* The key does exist ! */
+            mSections.at(pSection).at(pKey) = lVal;
+
+            return 0;
+        }
+    }
+
+    return -1;
+}
+
+int INI::setUInt32(const std::string &pKey, const uint32_t &pValue, const std::string &pSection, const int &pBase) {
+    std::string lVal;
+
+    if(10 == pBase) {
+        lVal = std::to_string(pValue);
+    } else if (16 == pBase) {
+        char lStr[10U];
+        std::snprintf(lStr, 10U, "0x%08X", pValue);
+        lVal = std::string(lStr);
+    } else {
+        std::cerr << "[ERROR] <INI::setUInt32> Unknown base specified" << std::endl;
+        return -1;
+    }
+
+    /* Check if the section exists */
+    if(mSections.end() != mSections.find(pSection)) {
+        /* Check if the key exists */
+        if(mSections.at(pSection).end() != mSections.at(pSection).find(pKey)) {
+            /* The key does exist ! */
+            mSections.at(pSection).at(pKey) = lVal;
+
+            return 0;
+        }
+    }
+
+    return -1;
+}
+
+int INI::setUInt16(const std::string &pKey, const uint16_t &pValue, const std::string &pSection, const int &pBase) {
     std::string lVal;
 
     if(10 == pBase) {
@@ -449,7 +732,35 @@ int INI::setUnsigned(const std::string &pKey, const unsigned int &pValue, const 
         std::snprintf(lStr, 6U, "0x%04X", pValue);
         lVal = std::string(lStr);
     } else {
-        std::cerr << "[ERROR] <INI::addUnsigned> Unknown base specified" << std::endl;
+        std::cerr << "[ERROR] <INI::setUInt16> Unknown base specified" << std::endl;
+        return -1;
+    }
+
+    /* Check if the section exists */
+    if(mSections.end() != mSections.find(pSection)) {
+        /* Check if the key exists */
+        if(mSections.at(pSection).end() != mSections.at(pSection).find(pKey)) {
+            /* The key does exist ! */
+            mSections.at(pSection).at(pKey) = lVal;
+
+            return 0;
+        }
+    }
+
+    return -1;
+}
+
+int INI::setUInt8(const std::string &pKey, const uint8_t &pValue, const std::string &pSection, const int &pBase) {
+    std::string lVal;
+
+    if(10 == pBase) {
+        lVal = std::to_string(pValue);
+    } else if (16 == pBase) {
+        char lStr[4U];
+        std::snprintf(lStr, 4U, "0x%02X", pValue);
+        lVal = std::string(lStr);
+    } else {
+        std::cerr << "[ERROR] <INI::setUInt8> Unknown base specified" << std::endl;
         return -1;
     }
 
@@ -534,11 +845,49 @@ int INI::addSection(const std::string &pSection) {
     return -1;
 }
 
-int INI::addInteger(const std::string &pKey, const int &pValue, const std::string &pSection) {
+int INI::addInt64(const std::string &pKey, const int64_t &pValue, const std::string &pSection) {
     return addString(pKey, std::to_string(pValue), pSection);
 }
 
-int INI::addUnsigned(const std::string &pKey, const unsigned int &pValue, const std::string &pSection, const int &pBase) {
+int INI::addInt32(const std::string &pKey, const int32_t &pValue, const std::string &pSection) {
+    return addString(pKey, std::to_string(pValue), pSection);
+}
+
+int INI::addInt16(const std::string &pKey, const int16_t &pValue, const std::string &pSection) {
+    return addString(pKey, std::to_string(pValue), pSection);
+}
+
+int INI::addInt8(const std::string &pKey, const int8_t &pValue, const std::string &pSection) {
+    return addString(pKey, std::to_string(pValue), pSection);
+}
+
+int INI::addUInt64(const std::string &pKey, const uint64_t &pValue, const std::string &pSection, const int &pBase) {
+    if(10 == pBase) {
+        return addString(pKey, std::to_string(pValue), pSection);
+    } else if (16 == pBase) {
+        char lStr[18U];
+        std::snprintf(lStr, 18U, "0x%016X", pValue);
+        return addString(pKey, std::string(lStr), pSection);
+    } else {
+        std::cerr << "[ERROR] <INI::addUInt64> Unknown base specified" << std::endl;
+        return -1;
+    }
+}
+
+int INI::addUInt32(const std::string &pKey, const uint32_t &pValue, const std::string &pSection, const int &pBase) {
+    if(10 == pBase) {
+        return addString(pKey, std::to_string(pValue), pSection);
+    } else if (16 == pBase) {
+        char lStr[10U];
+        std::snprintf(lStr, 10U, "0x%08X", pValue);
+        return addString(pKey, std::string(lStr), pSection);
+    } else {
+        std::cerr << "[ERROR] <INI::addUInt32> Unknown base specified" << std::endl;
+        return -1;
+    }
+}
+
+int INI::addUInt16(const std::string &pKey, const uint16_t &pValue, const std::string &pSection, const int &pBase) {
     if(10 == pBase) {
         return addString(pKey, std::to_string(pValue), pSection);
     } else if (16 == pBase) {
@@ -546,7 +895,20 @@ int INI::addUnsigned(const std::string &pKey, const unsigned int &pValue, const 
         std::snprintf(lStr, 6U, "0x%04X", pValue);
         return addString(pKey, std::string(lStr), pSection);
     } else {
-        std::cerr << "[ERROR] <INI::addUnsigned> Unknown base specified" << std::endl;
+        std::cerr << "[ERROR] <INI::addUInt16> Unknown base specified" << std::endl;
+        return -1;
+    }
+}
+
+int INI::addUInt8(const std::string &pKey, const uint8_t &pValue, const std::string &pSection, const int &pBase) {
+    if(10 == pBase) {
+        return addString(pKey, std::to_string(pValue), pSection);
+    } else if (16 == pBase) {
+        char lStr[4U];
+        std::snprintf(lStr, 4U, "0x%02X", pValue);
+        return addString(pKey, std::string(lStr), pSection);
+    } else {
+        std::cerr << "[ERROR] <INI::addUInt8> Unknown base specified" << std::endl;
         return -1;
     }
 }
