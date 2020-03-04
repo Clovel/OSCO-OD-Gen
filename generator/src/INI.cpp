@@ -439,8 +439,19 @@ int INI::setInteger(const std::string &pKey, const int &pValue, const std::strin
     return -1;
 }
 
-int INI::setUnsigned(const std::string &pKey, const unsigned int &pValue, const std::string &pSection) {
-    std::string lVal = std::to_string(pValue);
+int INI::setUnsigned(const std::string &pKey, const unsigned int &pValue, const std::string &pSection, const int &pBase) {
+    std::string lVal;
+
+    if(10 == pBase) {
+        lVal = std::to_string(pValue);
+    } else if (16 == pBase) {
+        char lStr[6U];
+        std::snprintf(lStr, 6U, "0x%04X", pValue);
+        lVal = std::string(lStr);
+    } else {
+        std::cerr << "[ERROR] <INI::addUnsigned> Unknown base specified" << std::endl;
+        return -1;
+    }
 
     /* Check if the section exists */
     if(mSections.end() != mSections.find(pSection)) {

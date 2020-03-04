@@ -53,7 +53,7 @@ class INI {
 
         /* Setters */
         int setInteger(const std::string &pKey, const int &pValue, const std::string &pSection = "default");
-        int setUnsigned(const std::string &pKey, const unsigned int &pValue, const std::string &pSection = "default");
+        int setUnsigned(const std::string &pKey, const unsigned int &pValue, const std::string &pSection = "default", const int &pBase = 10);
         int setString(const std::string &pKey, const std::string &pValue, const std::string &pSection = "default");
         int setBoolean(const std::string &pKey, const bool &pValue, const std::string &pSection = "default");
         int setDouble(const std::string &pKey, const double &pValue, const std::string &pSection = "default");
