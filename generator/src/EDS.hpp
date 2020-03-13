@@ -23,6 +23,7 @@ class EDS : public INI {
 
         virtual ~EDS();
 
+        int reorderEDSSections(void);
         int check(void) const;
     protected:
     private:

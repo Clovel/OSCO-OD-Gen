@@ -25,6 +25,13 @@ EDS::~EDS() {
     /* Empty */
 }
 
+int EDS::reorderEDSSections(void) {
+    /* Empty for now */
+}
+
 int EDS::check(void) const {
     /* Empty for now */
+
+    /* Reorder the sections */
+
 }
