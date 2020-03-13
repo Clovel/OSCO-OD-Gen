@@ -23,10 +23,11 @@ class EDS : public INI {
 
         virtual ~EDS();
 
-        int reorderEDSSections(void);
         int check(void) const;
     protected:
+        int reorderEDSSections(void);
     private:
+        int checkIfSection(const std::string &pSection) const;
 };
 
 #endif /* EDS_HPP */
