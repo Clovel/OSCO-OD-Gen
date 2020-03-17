@@ -24,6 +24,6 @@
     },
     "homepage": "https://github.com/Clovel/OSCO-OD-Gen/",
     "dependencies": {
-        "electron": "^8.0.2"
+        "electron": "^8.1.1"
     }
 }
