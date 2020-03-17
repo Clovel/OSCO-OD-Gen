@@ -45,19 +45,30 @@ int main(const int argc, const char * const * const argv) {
     try {
         std::cout << "[DEBUG] Opening EDS file " << argv[1U] << std::endl;
         lEDS = new EDS(lEDSFile);
-        std::cerr << "[ERROR] Successfully parsed EDS file " << argv[1U] << " !" << std::endl;
+        std::cout << "[INFO ] Successfully parsed EDS file " << argv[1U] << " !" << std::endl;
     } catch (const std::exception &e) {
         std::cerr << "[ERROR] Failed to parse EDS file " << argv[1U] << " !" << std::endl;
         return EXIT_FAILURE;
     }
 
-    /* Generating the same INI file */
-    std::string lCopyEDSFile = lEDSFile.substr(0U, lEDSFile.find_last_of('.')) + ".copy.ini";
-    std::cout << "[DEBUG] lCopyEDSFile = " << lCopyEDSFile << std::endl;
-    if(0 > lEDS->generateFile(lCopyEDSFile)) {
-        std::cerr << "[ERROR] Failed to generate copy if ini file ! " << std::endl;
+    /* Check the EDS file */
+    if(0 == lEDS->check()) {
+        std::cout << "[INFO ] EDS file check : OK" << std::endl;
+    } else {
+        std::cerr << "[ERROR] EDS file check : KO" << std::endl;
+        delete lEDS;
         return EXIT_FAILURE;
     }
 
+    /* Generating the same EDS file */
+    // std::string lCopyEDSFile = lEDSFile.substr(0U, lEDSFile.find_last_of('.')) + ".copy.ini";
+    // std::cout << "[DEBUG] lCopyEDSFile = " << lCopyEDSFile << std::endl;
+    // if(0 > lEDS->generateFile(lCopyEDSFile)) {
+    //     std::cerr << "[ERROR] Failed to generate copy if ini file ! " << std::endl;
+    //     delete lEDS;
+    //     return EXIT_FAILURE;
+    // }
+
+    delete lEDS;
     return EXIT_SUCCESS;
 }
