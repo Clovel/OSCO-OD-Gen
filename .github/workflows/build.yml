@@ -53,6 +53,6 @@ jobs:
           cmake ../generator -DCMAKE_C_FLAGS=/w34716 -DCMAKE_CXX_FLAGS=/w34716
           cmake --build .
 
-      - name: Test Node project
+      - name: Test project
         run: |
           npm test
