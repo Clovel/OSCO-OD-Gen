@@ -1,4 +1,4 @@
-const {app, BrowserWindow} = require('electron')
+const {app, BrowserWindow, nativeTheme} = require('electron')
 const path = require('path')
 const {getDefaultUserDataPath} = require('./appdatapath.js')
 
@@ -53,3 +53,8 @@ app.on('activate', () => {
  * your apps's specific code to the main process.
  * You can also put it in other files 
  * and just include it here */
+
+/* Manage Dark mode themes with the OS's settings */
+nativeTheme.on('updated', function theThemeHasChanged() {
+    updateOSCOODGenTheme(nativeTheme.shouldUseDarkColors);
+})
