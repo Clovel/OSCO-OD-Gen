@@ -1,5 +1,6 @@
 const {app, BrowserWindow} = require('electron')
 const path = require('path')
+const {getDefaultUserDataPath} = require('./appdatapath.js')
 
 function createWindow() {
     /* Create the navigator's window */
@@ -14,6 +15,7 @@ function createWindow() {
 
     /* Load the index.html of the application */
     console.log("[DEBUG] Loading index.html")
+    console.log("[DEBUG] App Data path is : " + getDefaultUserDataPath(process.platform))
     lWindow.loadFile(path.join(__dirname, 'index.html'))
 
     /* Open devtools */
