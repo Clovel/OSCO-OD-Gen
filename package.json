@@ -1,12 +1,14 @@
 {
     "name": "osco-od-gen",
+    "productName": "OSCO-OD-Gen",
     "version": "1.0.0",
     "description": "Object Dictionary code generator for the OSCO stack",
     "main": "app/back/main.js",
     "scripts": {
         "test": "cd build/tests/ && ctest -VV",
         "build-gen": "./buildCGen.sh",
-        "start": "electron ."
+        "start": "electron .",
+        "ts": "tsc"
     },
     "repository": {
         "type": "git",
