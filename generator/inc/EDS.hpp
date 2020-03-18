@@ -10,6 +10,8 @@
 /* Includes -------------------------------------------- */
 #include "INI.hpp"
 
+#include "APIExports.h"
+
 /* Defines --------------------------------------------- */
 
 /* Type definitions ------------------------------------ */
@@ -17,7 +19,7 @@
 /* Forward declarations -------------------------------- */
 
 /* EDS class ------------------------------------------- */
-class EDS : public INI {
+class API_EXPORT EDS : public INI {
     public:
         EDS(const std::string &pFile);
 
