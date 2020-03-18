@@ -13,6 +13,7 @@ function createWindow() {
     })
 
     /* Load the index.html of the application */
+    console.log("[DEBUG] Loading index.html")
     lWindow.loadFile(path.join(__dirname, 'index.html'))
 
     /* Open devtools */
@@ -28,6 +29,7 @@ app.on('ready', createWindow)
 
 /* Quit when all windows are closed */
 app.on('window-all-closed', function () {
+    console.log("[DEBUG] Closing window...")
     /* On macOS, it is common for an app and it's menu bar
      * to stay active until the user has explicitly close
      * the app. */
