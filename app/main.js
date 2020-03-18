@@ -9,7 +9,13 @@ function createWindow() {
         webPreferences: {
             nodeIntegration: true,
             preload: path.join(__dirname, 'preload.js')
-        }
+        },
+
+        /* Frameless window */
+        //frame: false
+
+        /* Hide titlebar */
+        titleBarStyle: 'hidden'
     })
 
     /* Load the index.html of the application */
