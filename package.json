@@ -5,7 +5,7 @@
     "main": "gui/main.js",
     "scripts": {
         "test": "echo \"Error: no test specified\" && exit 1",
-        "prepare": "./buildCGen.sh",
+        "build-gen": "./buildCGen.sh",
         "start": "electron ."
     },
     "repository": {
