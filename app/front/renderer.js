@@ -4,3 +4,8 @@
 // `nodeIntegration` is turned off. Use `preload.js` to
 // selectively enable features needed in the rendering
 // process.
+
+const path = require('path');
+
+/* Paths must be relative to the HTML page that will load this file */
+const {getDefaultUserDataPath} = require(path.join(__dirname, '../../common/appdatapath.js'));
