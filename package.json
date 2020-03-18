@@ -17,7 +17,18 @@
         "CANOpen",
         "CAN"
     ],
-    "author": "Clovis Durand <cd.clovel19@gmail.com>",
+    "author": {
+        "name": "Clovis Durand",
+        "email": "cd.clovel19@gmail.com",
+        "url": "https://github.com/Clovel"
+    },
+    "contributors": [
+        {
+            "name": "Clovis Durand",
+            "email": "cd.clovel19@gmail.com",
+            "url": "https://github.com/Clovel"
+        }
+    ],
     "license": "GPL-3.0",
     "bugs": {
         "url": "https://github.com/Clovel/OSCO-OD-Gen/issues"
