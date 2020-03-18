@@ -16,7 +16,7 @@ function createWindow() {
     /* Load the index.html of the application */
     console.log("[DEBUG] Loading index.html")
     console.log("[DEBUG] App Data path is : " + getDefaultUserDataPath(process.platform))
-    lWindow.loadFile(path.join(__dirname, 'index.html'))
+    lWindow.loadFile(path.join(__dirname, '../front/public/index.html'))
 
     /* Open devtools */
     //lWindow.webContents.openDevTools()
