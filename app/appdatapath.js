@@ -25,9 +25,7 @@ function getAppDataPath(platform) {
  */
 function getDefaultUserDataPath(platform) {
     let lUserDataPath = path.join(getAppDataPath(platform), pkg.name);
-    console.log("[DEBUG] UserDataPath is " + lUserDataPath + ", pkg.name = " + pkg.name);
-    //return lUserDataPath;
-    return "Toto fait du ski !"
+    return lUserDataPath;
 }
 
 module.exports = {
