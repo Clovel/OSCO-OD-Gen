@@ -2,7 +2,7 @@
     "name": "osco-od-gen",
     "version": "1.0.0",
     "description": "Object Dictionary code generator for the OSCO stack",
-    "main": "app/main.js",
+    "main": "app/back/main.js",
     "scripts": {
         "test": "cd build/tests/ && ctest -VV",
         "build-gen": "./buildCGen.sh",
