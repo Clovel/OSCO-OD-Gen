@@ -1,6 +1,6 @@
-const {app, BrowserWindow, nativeTheme} = require('electron')
+const {app, BrowserWindow, nativeTheme, ipcMain} = require('electron')
 const path = require('path')
-const {getDefaultUserDataPath} = require('./appdatapath.js')
+const {getDefaultUserDataPath} = require('../common/appdatapath.js')
 
 function createWindow() {
     /* Create the navigator's window */
@@ -55,6 +55,7 @@ app.on('activate', () => {
  * and just include it here */
 
 /* Manage Dark mode themes with the OS's settings */
-nativeTheme.on('updated', function theThemeHasChanged() {
-    updateOSCOODGenTheme(nativeTheme.shouldUseDarkColors);
-})
+require('./themehandler.js');
+
+/* IPC signal handling */
+require('./ipcBack.js');
