@@ -16,6 +16,14 @@
 
 /* Forward declarations -------------------------------- */
 
+/* EDS exception --------------------------------------- */
+class EDSException : public INIException {
+    virtual const char *what(void) const throw()
+    {
+        return "EDS file exception occured !";
+    }
+};
+
 /* EDS class ------------------------------------------- */
 class EDS : public INI {
     public:
