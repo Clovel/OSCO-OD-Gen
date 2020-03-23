@@ -13,7 +13,7 @@ function createWindow() {
     })
 
     /* Load the index.html of the application */
-    lWindow.loadFile('index.html')
+    lWindow.loadFile(path.join(__dirname, 'index.html'))
 
     /* Open devtools */
     //lWindow.webContents.openDevTools()

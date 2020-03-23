@@ -30,7 +30,22 @@ message("MAIN SOURCES : ${SOURCES}")
 # Link directories ----------------------------------------
 
 # Target definition ---------------------------------------
-add_executable(${CMAKE_PROJECT_NAME}
+add_executable(${CMAKE_PROJECT_NAME}-util
+    ${SOURCES}
+)
+add_dependencies(${CMAKE_PROJECT_NAME}-util
+    initools
+)
+target_link_libraries(${CMAKE_PROJECT_NAME}-util
+    initools
+)
+set_target_properties(${CMAKE_PROJECT_NAME}-util PROPERTIES 
+    PUBLIC_HEADER "${PUBLIC_HEADERS}"
+)
+
+list(REMOVE_ITEM SOURCES ${CMAKE_CURRENT_SOURCE_DIR}/main.cpp)
+
+add_library(${CMAKE_PROJECT_NAME} SHARED
     ${SOURCES}
 )
 add_dependencies(${CMAKE_PROJECT_NAME}
@@ -45,6 +60,12 @@ set_target_properties(${CMAKE_PROJECT_NAME} PROPERTIES
 
 #----------------------------------------------------------------------------
 # The installation is prepended by the CMAKE_INSTALL_PREFIX variable
+install(TARGETS ${CMAKE_PROJECT_NAME}-util
+RUNTIME DESTINATION bin
+LIBRARY DESTINATION lib
+ARCHIVE DESTINATION lib
+PUBLIC_HEADER DESTINATION include
+)
 install(TARGETS ${CMAKE_PROJECT_NAME}
     RUNTIME DESTINATION bin
     LIBRARY DESTINATION lib
