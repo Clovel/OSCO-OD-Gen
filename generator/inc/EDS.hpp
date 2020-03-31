@@ -10,6 +10,7 @@
 /* Includes -------------------------------------------- */
 #include "INI.hpp"
 
+/* Library/API export defines */
 #include "APIExports.h"
 
 /* Defines --------------------------------------------- */
