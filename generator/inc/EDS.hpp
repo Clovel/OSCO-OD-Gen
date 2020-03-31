@@ -35,6 +35,11 @@ class API_EXPORT EDS : public INI {
 
         /* EDS Checker */
         int check(void) const;
+
+        /* Getters */
+        const std::map<std::string, std::map<std::string, std::map<std::string, std::string>>> *odEntries(void) const;
+
+        /* Setters */
     protected:
         /* EDS management */
         int reorderEDSSections(void);
@@ -52,12 +57,36 @@ class API_EXPORT EDS : public INI {
         int checkSubIdx(const std::string &pSection, const uint16_t &pIdx = 0x0000U, const uint8_t &pSubIdx = 0x00U) const;
 
         /* Class attributes */
-        std::vector<std::string> mObjectList;
-        std::vector<std::string> mMandatoryObjectList;
-        std::vector<std::string> mOptionalObjectList;
-        std::vector<std::string> mManufacturerObjectList;
+        std::vector<std::string> mMandatoryObjectList;      /**< The list of MandatoryObjects, as defined in the EDS file */
+        std::vector<std::string> mOptionalObjectList;       /**< The list of OptionalObjects, as defined in the EDS file */
+        std::vector<std::string> mManufacturerObjectList;   /**< The list of ManufacturerObjects, as defined in the EDS file */
 
-        std::map<std::string, std::vector<std::string>> mObjects;
+        /** 
+         * @brief EDS data
+         * 
+         * @details
+         * List of objects, indexed by their object index string,
+         * holding a list of Subobjects, indexed by their (sub)index string,
+         * holding a list of key/value pairs, indexed by their keys.
+         * 
+         * Objects:
+         * - Object0:
+         *   - SubObject0: (itself)
+         *     - Key0 = value0
+         *     - Key1 = value1
+         *   - SubObject1:
+         *     - Key0 = value0
+         *     - Key1 = value1
+         *     - Key2 = value2
+         *   - SubObject2:
+         *     - Key0 = value0
+         * - Object1:
+         *  ...
+         *  ...
+         */
+        std::map<std::string, std::map<std::string, std::map<std::string, std::string>>> mObjects;
+
+        /* TODO : Use pointers to avoid having several copies of the same data */
 };
 
 #endif /* EDS_HPP */

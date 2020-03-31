@@ -250,7 +250,7 @@ static std::string uint64ToHexStr(const uint64_t &pInt, const bool &pZeroX = tru
 /* EDS class implementation ---------------------------- */
 /* Contructors */
 EDS::EDS(const std::string &pFile) : INI(pFile) {
-    /* Get the list of objects */
+    std::vector<std::string> lObjectList;
 
     /* Mandatory objects */
     for(const auto &lElmt : INI::getSectionContents("MandatoryObjects")) {
@@ -258,7 +258,7 @@ EDS::EDS(const std::string &pFile) : INI(pFile) {
             mMandatoryObjectList.push_back(lElmt.second);
         }
     }
-    mObjectList.insert(std::end(mObjectList), std::begin(mMandatoryObjectList), std::end(mMandatoryObjectList));
+    (void)lObjectList.insert(std::end(lObjectList), std::begin(mMandatoryObjectList), std::end(mMandatoryObjectList));
 
     /* Optional Objects */
     for(const auto &lElmt : INI::getSectionContents("OptionalObjects")) {
@@ -266,7 +266,7 @@ EDS::EDS(const std::string &pFile) : INI(pFile) {
             mOptionalObjectList.push_back(lElmt.second);
         }
     }
-    mObjectList.insert(std::end(mObjectList), std::begin(mOptionalObjectList), std::end(mOptionalObjectList));
+    (void)lObjectList.insert(std::end(lObjectList), std::begin(mOptionalObjectList), std::end(mOptionalObjectList));
 
     /* Manufacturer Objects */
     for(const auto &lElmt : INI::getSectionContents("ManufacturerObjects")) {
@@ -274,16 +274,20 @@ EDS::EDS(const std::string &pFile) : INI(pFile) {
             mManufacturerObjectList.push_back(lElmt.second);
         }
     }
-    mObjectList.insert(std::end(mObjectList), std::begin(mManufacturerObjectList), std::end(mManufacturerObjectList));
+    (void)lObjectList.insert(std::end(lObjectList), std::begin(mManufacturerObjectList), std::end(mManufacturerObjectList));
 
-    for(auto &lElmt : mObjectList) {
+    for(auto &lElmt : lObjectList) {
         /* Remove the "0x" prefix of the section names */
         (void)remove0xPrefix(lElmt);
 
-        /* Get all subindex entries for each index entry */
-        mObjects.insert(std::pair<std::string, std::vector<std::string>>(lElmt, getSubIdxList(lElmt)));
-    }
+        /* First, insert the index's data */
+        mObjects[lElmt][lElmt] = INI::getSectionContents(lElmt);
 
+        /* Then, get insert the data of each subindex */
+        for(const auto &lSubIdx : getSubIdxList(lElmt)) {
+            mObjects[lElmt][lSubIdx] = INI::getSectionContents(lSubIdx);
+        }
+    }
 }
 
 /* Destructor */
@@ -739,4 +743,8 @@ std::vector<std::string> EDS::getSubIdxList(const std::string &pIdx) const {
         std::cerr << "[ERROR] <EDS::getSubIdxList> " << pIdx << " is not an index section of the EDS file" << std::endl;
         return std::vector<std::string>();
     }
+}
+
+const std::map<std::string, std::map<std::string, std::map<std::string, std::string>>> *EDS::odEntries(void) const {
+    return &mObjects;
 }
