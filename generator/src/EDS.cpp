@@ -18,6 +18,14 @@
 /* Variable declaration -------------------------------- */
 
 /* Static functions ------------------------------------ */
+/**
+ * @brief Checks if the section given is an Index section.
+ * 
+ * @param[in]   pSection    Section name
+ * @param[out]  pIdx        Extracted index value
+ * 
+ * @return true if this section is a sub-index section, false elsewise.
+ */
 static bool isIndexSection(const std::string &pSection, uint16_t * const pIdx = nullptr) {
     uint32_t lIdx = 0U;
 
@@ -48,6 +56,15 @@ static bool isIndexSection(const std::string &pSection, uint16_t * const pIdx = 
     }
 }
 
+/**
+ * @brief Checks if the section given is a Sub-index section.
+ * 
+ * @param[in]   pSection    Section name
+ * @param[out]  pIdx        Extracted index value
+ * @param[out]  pSubIdx     Extracted sub-index value
+ * 
+ * @return true if this section is a sub-index section, false elsewise.
+ */
 static bool isSubIdxSection(const std::string &pSection, uint16_t * const pIdx = nullptr, uint8_t * const pSubIdx = nullptr) {
     static const std::string sPattern = "sub";
     uint16_t          lIdx     = 0U;
