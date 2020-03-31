@@ -22,29 +22,22 @@ static bool isIndexSection(const std::string &pSection, uint16_t * const pIdx = 
     uint32_t lIdx = 0U;
 
     /* Indexes are 4 hex characters long,
-     * 6 if it has "0x" as a prefix.
+     * and do not have the "0x" prefix
      */
-    if(6U == pSection.size()) {
-        /* Check if the first chars are "0x" */
-        if('0' == pSection.at(0U) && ('x' == pSection.at(1U))) {
-            /* This is a correct hex index */
-        } else {
-            return false;
-        }
-    } else if(4U != pSection.size()) {
+    if(4U != pSection.size()) {
         return false;
     }
 
     /* Try to convert it to a uint16_t */
     try {
-        lIdx = std::stoul(pSection, nullptr, 16);
+        lIdx = std::stoul(pSection, nullptr, 16); /* We could use isxdigit(), but we need the value for next check */
     } catch (const std::exception &e) {
         std::cerr << "[DEBUG] <isIdxSection> std::stoul exception : " << e.what() << std::endl;
         return false;
     }
 
     /* Check interval */
-    if(0U <= lIdx && 0xFFFFU >= lIdx) {
+    if(0x0000U <= lIdx && 0xFFFFU >= lIdx) {
         if(nullptr != pIdx) {
             *pIdx = (uint16_t)lIdx;
         }
