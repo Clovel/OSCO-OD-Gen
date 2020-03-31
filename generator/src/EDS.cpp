@@ -96,6 +96,16 @@ static bool isSubIdxSection(const std::string &pSection, uint16_t * const pIdx =
     }
 }
 
+/**
+ * @brief Removes the "0x" prefix from a hex string
+ * if there is one.
+ * 
+ * @param[in, out]  pHexStr     Hex string to change
+ * 
+ * @return Bool :
+ * - true : the Hex string was changed
+ * - false : the hex string did not change
+ */
 static bool remove0xPrefix(std::string &pHexStr) {
     static const std::string sPrefix = "0x";
 
@@ -111,6 +121,16 @@ static bool remove0xPrefix(std::string &pHexStr) {
     }
 }
 
+/**
+ * @brief Adds the "0x" prefix from a hex string
+ * if there isn't one.
+ * 
+ * @param[in, out]  pHexStr     Hex string to change
+ * 
+ * @return Bool :
+ * - true : the Hex string was changed
+ * - false : the hex string did not change
+ */
 static bool add0xPrefix(std::string &pHexStr) {
     static const std::string sPrefix = "0x";
 
