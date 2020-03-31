@@ -185,6 +185,11 @@ EDS::EDS(const std::string &pFile) : INI(pFile) {
         }
     }
     mObjects.insert(std::end(mObjects), std::begin(mManufacturerObjects), std::end(mManufacturerObjects));
+
+    /* Remove the "0x" prefix of the section names */
+    for(auto &lElmt : mObjects) {
+        (void)remove0xPrefix(lElmt);
+    }
 }
 
 /* Destructor */
