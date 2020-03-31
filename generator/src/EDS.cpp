@@ -96,6 +96,36 @@ static bool isSubIdxSection(const std::string &pSection, uint16_t * const pIdx =
     }
 }
 
+static bool remove0xPrefix(std::string &pHexStr) {
+    static const std::string sPrefix = "0x";
+
+    /* Does the HexString have the "0x" prefix ? */
+    const size_t lPos = pHexStr.find(sPrefix);
+    if(std::string::npos == lPos) {
+        /* Prefix was not found, no change needed */
+        return false;
+    } else {
+        /* Prefix has been found, remove prefix */
+        pHexStr = pHexStr.substr(lPos + sPrefix.size());
+        return true;
+    }
+}
+
+static bool add0xPrefix(std::string &pHexStr) {
+    static const std::string sPrefix = "0x";
+
+    /* Does the HexString have the "0x" prefix ? */
+    const size_t lPos = pHexStr.find(sPrefix);
+    if(std::string::npos == lPos) {
+        /* Prefix was not found, add it */
+        pHexStr = sPrefix + pHexStr;
+        return true;
+    } else {
+        /* Prefix has been found, nothing to do */
+        return false;
+    }
+}
+
 // template<typename T>
 // static std::string intToHexStr(const T &pInt, const bool &pZeroX = true) {
 //     std::stringstream lStream;
