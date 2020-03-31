@@ -8,8 +8,12 @@
 #include "EDS.hpp"
 #include "INI.hpp"
 
+/* C++ system */
 #include <string>
 #include <iostream>
+
+/* C system */
+#include <cstring> /* std::memset() */
 
 /* Defines --------------------------------------------- */
 
@@ -174,7 +178,7 @@ static bool add0xPrefix(std::string &pHexStr) {
  */
 static std::string uint8ToHexStr(const uint8_t &pInt, const bool &pZeroX = true) {
     char lChars[5U];
-    memset(lChars, 0, 5U);
+    std::memset(lChars, 0, 5U);
     if(pZeroX) {
         snprintf(lChars, 5U, "0x%02X", pInt);
     } else {
@@ -195,7 +199,7 @@ static std::string uint8ToHexStr(const uint8_t &pInt, const bool &pZeroX = true)
  */
 static std::string uint16ToHexStr(const uint16_t &pInt, const bool &pZeroX = true) {
     char lChars[5U];
-    memset(lChars, 0, 5U);
+    std::memset(lChars, 0, 5U);
     if(pZeroX) {
         snprintf(lChars, 5U, "0x%04X", pInt);
     } else {
@@ -216,7 +220,7 @@ static std::string uint16ToHexStr(const uint16_t &pInt, const bool &pZeroX = tru
  */
 static std::string uint32ToHexStr(const uint32_t &pInt, const bool &pZeroX = true) {
     char lChars[5U];
-    memset(lChars, 0, 5U);
+    std::memset(lChars, 0, 5U);
     if(pZeroX) {
         snprintf(lChars, 5U, "0x%08X", pInt);
     } else {
@@ -237,7 +241,7 @@ static std::string uint32ToHexStr(const uint32_t &pInt, const bool &pZeroX = tru
  */
 static std::string uint64ToHexStr(const uint64_t &pInt, const bool &pZeroX = true) {
     char lChars[5U];
-    memset(lChars, 0, 5U);
+    std::memset(lChars, 0, 5U);
     if(pZeroX) {
         snprintf(lChars, 5U, "0x%16X", pInt);
     } else {
