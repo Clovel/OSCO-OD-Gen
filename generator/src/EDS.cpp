@@ -115,22 +115,22 @@ static bool isSubIdxSection(const std::string &pSection, uint16_t * const pIdx =
 // }
 
 /* EDS class implementation ---------------------------- */
+/* Contructors */
 EDS::EDS(const std::string &pFile) : INI(pFile) {
     /* Empty */
 }
 
+/* Destructor */
 EDS::~EDS() {
     /* Empty */
 }
 
+/* EDS management */
 int EDS::reorderEDSSections(void) {
     /* Empty for now */
 }
 
-int EDS::checkIfSection(const std::string &pSection) const {
-    //
-}
-
+/* EDS Checker */
 int EDS::checkMandatoryKeys(const std::vector<std::string> &pKeys, const std::string &pSection) const {
     int lResult = 0;
     for(const auto &lElmt : pKeys) {
@@ -278,7 +278,6 @@ int EDS::checkSubIdx(const std::string &pSection, const uint16_t &pIdx, const ui
 
     return 0;
 }
-
 
 int EDS::check(void) const {
     /* Empty for now */
