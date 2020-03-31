@@ -370,14 +370,28 @@ int EDS::checkIndexes(void) const {
     for(const auto &lElmt : mSectionOrder) {
 
         if(isIndexSection(lElmt, &lIdx)) {
-            lResult = checkIdx(lElmt);
+            lResult = checkIndex(lElmt);
 
             /* New index. Unicity checked by parent INI class */
             lNbOfSubs.insert(std::pair<uint16_t, std::pair<uint8_t, uint8_t>>(lIdx, std::pair<uint8_t, uint8_t>(0U, 0U)));
-            if(0 != (lResult = getUInt8("SubNumber", lNbOfSubs.at(lIdx).first, lElmt))) {
-                std::cerr << "[ERROR] <EDS::checkIndexes> (" << lElmt << ") Get SubNumber failed" << std::endl;
-            } else {
-                std::cout << "[DEBUG] <EDS::checkIndexes> (" << lElmt << ") SubNumber = " << lNbOfSubs.at(lIdx).first << std::endl;
+
+            /* Check if ObjectType = 0x7 (meaning there are no subindexes) */
+            uint8_t lObjectType = 0x0U;
+            if(0 != (lResult = getUInt8("ObjectType", lObjectType, lElmt))) {
+                /* ObjectType not found, assuming 0x7 (no sub-indexes) */
+                lObjectType = 0x7U;
+                lResult = 0; /* This is not a cause of error */
+                std::cout << "[WARN ] <EDS::checkIndexes> (" << lElmt << ") ObjectType missing, assuming 0x7" << std::endl;
+            }
+
+            std::cout << "[DEBUG] <EDS::checkIndexes> (" << lElmt << ") ObjectType = " << (uint16_t)lObjectType << std::endl;
+
+            if(0x7 != lObjectType) {
+                if(0 != (lResult = getUInt8("SubNumber", lNbOfSubs.at(lIdx).first, lElmt))) {
+                    std::cerr << "[ERROR] <EDS::checkIndexes> (" << lElmt << ") Get SubNumber failed" << std::endl;
+                } else {
+                    std::cout << "[DEBUG] <EDS::checkIndexes> (" << lElmt << ") SubNumber = " << (uint16_t)lNbOfSubs.at(lIdx).first << std::endl;
+                }
             }
         } else if (isSubIdxSection(lElmt, &lIdx, &lSubIdx)) {
             lResult = checkSubIdx(lElmt, lIdx, lSubIdx);
