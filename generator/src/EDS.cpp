@@ -110,7 +110,31 @@ static bool isSubIdxSection(const std::string &pSection, uint16_t * const pIdx =
 /* EDS class implementation ---------------------------- */
 /* Contructors */
 EDS::EDS(const std::string &pFile) : INI(pFile) {
-    /* Empty */
+    /* Get the list of objects */
+
+    /* Mandatory objects */
+    for(const auto &lElmt : INI::getSectionContents("MandatoryObjects")) {
+        if("SupportedObjects" != lElmt.first) {
+            mMandatoryObjects.push_back(lElmt.second);
+        }
+    }
+    mObjects.insert(std::end(mObjects), std::begin(mMandatoryObjects), std::end(mMandatoryObjects));
+
+    /* Optional Objects */
+    for(const auto &lElmt : INI::getSectionContents("OptionalObjects")) {
+        if("SupportedObjects" != lElmt.first) {
+            mOptionalObjects.push_back(lElmt.second);
+        }
+    }
+    mObjects.insert(std::end(mObjects), std::begin(mOptionalObjects), std::end(mOptionalObjects));
+
+    /* Manufacturer Objects */
+    for(const auto &lElmt : INI::getSectionContents("ManufacturerObjects")) {
+        if("SupportedObjects" != lElmt.first) {
+            mManufacturerObjects.push_back(lElmt.second);
+        }
+    }
+    mObjects.insert(std::end(mObjects), std::begin(mManufacturerObjects), std::end(mManufacturerObjects));
 }
 
 /* Destructor */
