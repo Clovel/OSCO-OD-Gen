@@ -163,16 +163,89 @@ static bool add0xPrefix(std::string &pHexStr) {
     }
 }
 
-// template<typename T>
-// static std::string intToHexStr(const T &pInt, const bool &pZeroX = true) {
-//     std::stringstream lStream;
-//     if(pZeroX) {
-//         lStream << "0x";
-//     }
-//     lStream << std::setfill ('0') << std::setw(sizeof(T)*2) 
-//             << std::hex << pInt;
-//     return lStream.str();
-// }
+/**
+ * @brief Converts a uint8_t value to a hexadecimal string.
+ * The hexadecimal is filled with zeros to fit the type size.
+ * 
+ * @param[in]   pInt    Integer to convert
+ * @param[in]   pZeroX  Weither we add the "0x" prefix or not
+ * 
+ * @return The resulting hexadecimal string
+ */
+static std::string uint8ToHexStr(const uint8_t &pInt, const bool &pZeroX = true) {
+    char lChars[5U];
+    memset(lChars, 0, 5U);
+    if(pZeroX) {
+        snprintf(lChars, 5U, "0x%02X", pInt);
+    } else {
+        snprintf(lChars, 5U, "%02X", pInt);
+    }
+
+    return std::string(lChars);
+}
+
+/**
+ * @brief Converts a uint16_t value to a hexadecimal string.
+ * The hexadecimal is filled with zeros to fit the type size.
+ * 
+ * @param[in]   pInt    Integer to convert
+ * @param[in]   pZeroX  Weither we add the "0x" prefix or not
+ * 
+ * @return The resulting hexadecimal string
+ */
+static std::string uint16ToHexStr(const uint16_t &pInt, const bool &pZeroX = true) {
+    char lChars[5U];
+    memset(lChars, 0, 5U);
+    if(pZeroX) {
+        snprintf(lChars, 5U, "0x%04X", pInt);
+    } else {
+        snprintf(lChars, 5U, "%04X", pInt);
+    }
+
+    return std::string(lChars);
+}
+
+/**
+ * @brief Converts a uint32_t value to a hexadecimal string.
+ * The hexadecimal is filled with zeros to fit the type size.
+ * 
+ * @param[in]   pInt    Integer to convert
+ * @param[in]   pZeroX  Weither we add the "0x" prefix or not
+ * 
+ * @return The resulting hexadecimal string
+ */
+static std::string uint32ToHexStr(const uint32_t &pInt, const bool &pZeroX = true) {
+    char lChars[5U];
+    memset(lChars, 0, 5U);
+    if(pZeroX) {
+        snprintf(lChars, 5U, "0x%08X", pInt);
+    } else {
+        snprintf(lChars, 5U, "%08X", pInt);
+    }
+
+    return std::string(lChars);
+}
+
+/**
+ * @brief Converts a uint64_t value to a hexadecimal string.
+ * The hexadecimal is filled with zeros to fit the type size.
+ * 
+ * @param[in]   pInt    Integer to convert
+ * @param[in]   pZeroX  Weither we add the "0x" prefix or not
+ * 
+ * @return The resulting hexadecimal string
+ */
+static std::string uint64ToHexStr(const uint64_t &pInt, const bool &pZeroX = true) {
+    char lChars[5U];
+    memset(lChars, 0, 5U);
+    if(pZeroX) {
+        snprintf(lChars, 5U, "0x%16X", pInt);
+    } else {
+        snprintf(lChars, 5U, "%16X", pInt);
+    }
+
+    return std::string(lChars);
+}
 
 /* EDS class implementation ---------------------------- */
 /* Contructors */
