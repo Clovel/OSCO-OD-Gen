@@ -49,12 +49,12 @@ static bool isIndexSection(const std::string &pSection, uint16_t * const pIdx = 
 }
 
 static bool isSubIdxSection(const std::string &pSection, uint16_t * const pIdx = nullptr, uint8_t * const pSubIdx = nullptr) {
-    const std::string lPattern = "sub";
+    static const std::string sPattern = "sub";
     uint16_t          lIdx     = 0U;
     uint32_t          lSubIdx  = 0U;
 
     /* A sub index section contains lPattern */
-    const size_t lPos = pSection.find(lPattern);
+    const size_t lPos = pSection.find(sPattern);
     if(std::string::npos == lPos) {
         /* lPattern was not found */
         return false;
@@ -72,7 +72,7 @@ static bool isSubIdxSection(const std::string &pSection, uint16_t * const pIdx =
         return false;
     }
 
-    const std::string lSubIdxStr = pSection.substr(lPos + lPattern.size());
+    const std::string lSubIdxStr = pSection.substr(lPos + sPattern.size());
 
     try {
         lSubIdx = std::stoul(lSubIdxStr, nullptr, 16);
