@@ -8,8 +8,12 @@
 #include "EDS.hpp"
 #include "INI.hpp"
 
+/* C++ system */
 #include <string>
 #include <iostream>
+
+/* C system */
+#include <cstring> /* std::memset() */
 
 /* Defines --------------------------------------------- */
 
@@ -18,33 +22,34 @@
 /* Variable declaration -------------------------------- */
 
 /* Static functions ------------------------------------ */
+/**
+ * @brief Checks if the section given is an Index section.
+ * 
+ * @param[in]   pSection    Section name
+ * @param[out]  pIdx        Extracted index value
+ * 
+ * @return true if this section is a sub-index section, false elsewise.
+ */
 static bool isIndexSection(const std::string &pSection, uint16_t * const pIdx = nullptr) {
     uint32_t lIdx = 0U;
 
     /* Indexes are 4 hex characters long,
-     * 6 if it has "0x" as a prefix.
+     * and do not have the "0x" prefix
      */
-    if(6U == pSection.size()) {
-        /* Check if the first chars are "0x" */
-        if('0' == pSection.at(0U) && ('x' == pSection.at(1U))) {
-            /* This is a correct hex index */
-        } else {
-            return false;
-        }
-    } else if(4U != pSection.size()) {
+    if(4U != pSection.size()) {
         return false;
     }
 
     /* Try to convert it to a uint16_t */
     try {
-        lIdx = std::stoul(pSection, nullptr, 16);
+        lIdx = std::stoul(pSection, nullptr, 16); /* We could use isxdigit(), but we need the value for next check */
     } catch (const std::exception &e) {
         std::cerr << "[DEBUG] <isIdxSection> std::stoul exception : " << e.what() << std::endl;
         return false;
     }
 
     /* Check interval */
-    if(0U <= lIdx && 0xFFFFU >= lIdx) {
+    if(0x0000U <= lIdx && 0xFFFFU >= lIdx) {
         if(nullptr != pIdx) {
             *pIdx = (uint16_t)lIdx;
         }
@@ -55,13 +60,22 @@ static bool isIndexSection(const std::string &pSection, uint16_t * const pIdx = 
     }
 }
 
+/**
+ * @brief Checks if the section given is a Sub-index section.
+ * 
+ * @param[in]   pSection    Section name
+ * @param[out]  pIdx        Extracted index value
+ * @param[out]  pSubIdx     Extracted sub-index value
+ * 
+ * @return true if this section is a sub-index section, false elsewise.
+ */
 static bool isSubIdxSection(const std::string &pSection, uint16_t * const pIdx = nullptr, uint8_t * const pSubIdx = nullptr) {
-    const std::string lPattern = "sub";
+    static const std::string sPattern = "sub";
     uint16_t          lIdx     = 0U;
     uint32_t          lSubIdx  = 0U;
 
     /* A sub index section contains lPattern */
-    const size_t lPos = pSection.find(lPattern);
+    const size_t lPos = pSection.find(sPattern);
     if(std::string::npos == lPos) {
         /* lPattern was not found */
         return false;
@@ -79,7 +93,7 @@ static bool isSubIdxSection(const std::string &pSection, uint16_t * const pIdx =
         return false;
     }
 
-    const std::string lSubIdxStr = pSection.substr(lPos + lPattern.size());
+    const std::string lSubIdxStr = pSection.substr(lPos + sPattern.size());
 
     try {
         lSubIdx = std::stoul(lSubIdxStr, nullptr, 16);
@@ -103,39 +117,203 @@ static bool isSubIdxSection(const std::string &pSection, uint16_t * const pIdx =
     }
 }
 
-// template<typename T>
-// static std::string intToHexStr(const T &pInt, const bool &pZeroX = true) {
-//     std::stringstream lStream;
-//     if(pZeroX) {
-//         lStream << "0x";
-//     }
-//     lStream << std::setfill ('0') << std::setw(sizeof(T)*2) 
-//             << std::hex << pInt;
-//     return lStream.str();
-// }
+/**
+ * @brief Removes the "0x" prefix from a hex string
+ * if there is one.
+ * 
+ * @param[in, out]  pHexStr     Hex string to change
+ * 
+ * @return Bool :
+ * - true : the Hex string was changed
+ * - false : the hex string did not change
+ */
+static bool remove0xPrefix(std::string &pHexStr) {
+    static const std::string sPrefix = "0x";
 
-/* EDS class implementation ---------------------------- */
-EDS::EDS(const std::string &pFile) : INI(pFile) {
-    /* Empty */
+    /* Does the HexString have the "0x" prefix ? */
+    const size_t lPos = pHexStr.find(sPrefix);
+    if(std::string::npos == lPos) {
+        /* Prefix was not found, no change needed */
+        return false;
+    } else {
+        /* Prefix has been found, remove prefix */
+        pHexStr = pHexStr.substr(lPos + sPrefix.size());
+        return true;
+    }
 }
 
+/**
+ * @brief Adds the "0x" prefix from a hex string
+ * if there isn't one.
+ * 
+ * @param[in, out]  pHexStr     Hex string to change
+ * 
+ * @return Bool :
+ * - true : the Hex string was changed
+ * - false : the hex string did not change
+ */
+static bool add0xPrefix(std::string &pHexStr) {
+    static const std::string sPrefix = "0x";
+
+    /* Does the HexString have the "0x" prefix ? */
+    const size_t lPos = pHexStr.find(sPrefix);
+    if(std::string::npos == lPos) {
+        /* Prefix was not found, add it */
+        pHexStr = sPrefix + pHexStr;
+        return true;
+    } else {
+        /* Prefix has been found, nothing to do */
+        return false;
+    }
+}
+
+/**
+ * @brief Converts a uint8_t value to a hexadecimal string.
+ * The hexadecimal is filled with zeros to fit the type size.
+ * 
+ * @param[in]   pInt    Integer to convert
+ * @param[in]   pZeroX  Weither we add the "0x" prefix or not
+ * 
+ * @return The resulting hexadecimal string
+ */
+static std::string uint8ToHexStr(const uint8_t &pInt, const bool &pZeroX = true) {
+    char lChars[5U];
+    std::memset(lChars, 0, 5U);
+    if(pZeroX) {
+        snprintf(lChars, 5U, "0x%02X", pInt);
+    } else {
+        snprintf(lChars, 5U, "%02X", pInt);
+    }
+
+    return std::string(lChars);
+}
+
+/**
+ * @brief Converts a uint16_t value to a hexadecimal string.
+ * The hexadecimal is filled with zeros to fit the type size.
+ * 
+ * @param[in]   pInt    Integer to convert
+ * @param[in]   pZeroX  Weither we add the "0x" prefix or not
+ * 
+ * @return The resulting hexadecimal string
+ */
+static std::string uint16ToHexStr(const uint16_t &pInt, const bool &pZeroX = true) {
+    char lChars[5U];
+    std::memset(lChars, 0, 5U);
+    if(pZeroX) {
+        snprintf(lChars, 5U, "0x%04X", pInt);
+    } else {
+        snprintf(lChars, 5U, "%04X", pInt);
+    }
+
+    return std::string(lChars);
+}
+
+/**
+ * @brief Converts a uint32_t value to a hexadecimal string.
+ * The hexadecimal is filled with zeros to fit the type size.
+ * 
+ * @param[in]   pInt    Integer to convert
+ * @param[in]   pZeroX  Weither we add the "0x" prefix or not
+ * 
+ * @return The resulting hexadecimal string
+ */
+static std::string uint32ToHexStr(const uint32_t &pInt, const bool &pZeroX = true) {
+    char lChars[5U];
+    std::memset(lChars, 0, 5U);
+    if(pZeroX) {
+        snprintf(lChars, 5U, "0x%08X", pInt);
+    } else {
+        snprintf(lChars, 5U, "%08X", pInt);
+    }
+
+    return std::string(lChars);
+}
+
+/**
+ * @brief Converts a uint64_t value to a hexadecimal string.
+ * The hexadecimal is filled with zeros to fit the type size.
+ * 
+ * @param[in]   pInt    Integer to convert
+ * @param[in]   pZeroX  Weither we add the "0x" prefix or not
+ * 
+ * @return The resulting hexadecimal string
+ */
+static std::string uint64ToHexStr(const uint64_t &pInt, const bool &pZeroX = true) {
+    char lChars[5U];
+    std::memset(lChars, 0, 5U);
+    if(pZeroX) {
+        snprintf(lChars, 5U, "0x%16X", pInt);
+    } else {
+        snprintf(lChars, 5U, "%16X", pInt);
+    }
+
+    return std::string(lChars);
+}
+
+/* EDS class implementation ---------------------------- */
+/* Contructors */
+EDS::EDS(const std::string &pFile) : INI(pFile) {
+    std::vector<std::string> lObjectList;
+
+    /* Mandatory objects */
+    for(const auto &lElmt : INI::getSectionContents("MandatoryObjects")) {
+        if("SupportedObjects" != lElmt.first) {
+            mMandatoryObjectList.push_back(lElmt.second);
+        }
+    }
+    (void)lObjectList.insert(std::end(lObjectList), std::begin(mMandatoryObjectList), std::end(mMandatoryObjectList));
+
+    /* Optional Objects */
+    for(const auto &lElmt : INI::getSectionContents("OptionalObjects")) {
+        if("SupportedObjects" != lElmt.first) {
+            mOptionalObjectList.push_back(lElmt.second);
+        }
+    }
+    (void)lObjectList.insert(std::end(lObjectList), std::begin(mOptionalObjectList), std::end(mOptionalObjectList));
+
+    /* Manufacturer Objects */
+    for(const auto &lElmt : INI::getSectionContents("ManufacturerObjects")) {
+        if("SupportedObjects" != lElmt.first) {
+            mManufacturerObjectList.push_back(lElmt.second);
+        }
+    }
+    (void)lObjectList.insert(std::end(lObjectList), std::begin(mManufacturerObjectList), std::end(mManufacturerObjectList));
+
+    for(auto &lElmt : lObjectList) {
+        /* Remove the "0x" prefix of the section names */
+        (void)remove0xPrefix(lElmt);
+
+        /* First, insert the index's data */
+        mObjects[lElmt][lElmt] = INI::getSectionContents(lElmt);
+
+        /* Then, get insert the data of each subindex */
+        for(const auto &lSubIdx : getSubIdxList(lElmt)) {
+            mObjects[lElmt][lSubIdx] = INI::getSectionContents(lSubIdx);
+        }
+    }
+}
+
+/* Destructor */
 EDS::~EDS() {
     /* Empty */
 }
 
+/* EDS management */
 int EDS::reorderEDSSections(void) {
     /* Empty for now */
+
+    /* TODO : Implement reorderEDSSections */
+
+    return 0;
 }
 
-int EDS::checkIfSection(const std::string &pSection) const {
-    //
-}
-
+/* EDS Checker */
 int EDS::checkMandatoryKeys(const std::vector<std::string> &pKeys, const std::string &pSection) const {
     int lResult = 0;
     for(const auto &lElmt : pKeys) {
         if(!keyExists(lElmt, pSection)) {
-            std::cerr << "[ERROR] <EDS::check> Missing key " << lElmt << " for section [" << pSection << "]" << std::endl;
+            std::cerr << "[ERROR] <EDS::checkMandatoryKeys> Missing key " << lElmt << " for section [" << pSection << "]" << std::endl;
             lResult = -1;
         }
     }
@@ -152,14 +330,14 @@ int EDS::checkMandatoryValues(const std::vector<std::string> &pValues, const std
         for(const auto &lElmt : getValues(pSection)) {
             if(lExpectedElmt == lElmt) {
                 if(lFound) {
-                    std::cout << "[WARN ] <EDS::check> Value " << lExpectedElmt << " found " << lFound + 1U << " times" << std::endl;
+                    std::cout << "[WARN ] <EDS::checkMandatoryValues> Value " << lExpectedElmt << " found " << lFound + 1U << " times" << std::endl;
                 }
                 ++lFound;
             }
         }
 
         if(0U == lFound) {
-            std::cerr << "[ERROR] <EDS::check> Missing value " << lExpectedElmt << " for section [" << pSection << "]" << std::endl;
+            std::cerr << "[ERROR] <EDS::checkMandatoryValues> Missing value " << lExpectedElmt << " for section [" << pSection << "]" << std::endl;
             lResult = -1;
         }
     }
@@ -171,7 +349,7 @@ int EDS::checkRecommendedKeys(const std::vector<std::string> &pKeys, const std::
     int lResult = 0;
     for(const auto &lElmt : pKeys) {
         if(!keyExists(lElmt, pSection)) {
-            std::cerr << "[WARN ] <EDS::check> Missing key " << lElmt << " for section [" << pSection << "]" << std::endl;
+            std::cerr << "[WARN ] <EDS::checkRecommendedKeys> Missing key " << lElmt << " for section [" << pSection << "]" << std::endl;
             lResult = -1;
         }
     }
@@ -196,14 +374,28 @@ int EDS::checkIndexes(void) const {
     for(const auto &lElmt : mSectionOrder) {
 
         if(isIndexSection(lElmt, &lIdx)) {
-            lResult = checkIdx(lElmt);
+            lResult = checkIndex(lElmt);
 
             /* New index. Unicity checked by parent INI class */
             lNbOfSubs.insert(std::pair<uint16_t, std::pair<uint8_t, uint8_t>>(lIdx, std::pair<uint8_t, uint8_t>(0U, 0U)));
-            if(0 != (lResult = getUInt8("SubNumber", lNbOfSubs.at(lIdx).first, lElmt))) {
-                std::cerr << "[ERROR] <EDS::checkIndexes> (" << lElmt << ") Get SubNumber failed" << std::endl;
-            } else {
-                std::cout << "[DEBUG] <EDS::checkIndexes> (" << lElmt << ") SubNumber = " << lNbOfSubs.at(lIdx).first << std::endl;
+
+            /* Check if ObjectType = 0x7 (meaning there are no subindexes) */
+            uint8_t lObjectType = 0x0U;
+            if(0 != (lResult = getUInt8("ObjectType", lObjectType, lElmt))) {
+                /* ObjectType not found, assuming 0x7 (no sub-indexes) */
+                lObjectType = 0x7U;
+                lResult = 0; /* This is not a cause of error */
+                std::cout << "[WARN ] <EDS::checkIndexes> (" << lElmt << ") ObjectType missing, assuming 0x7" << std::endl;
+            }
+
+            std::cout << "[DEBUG] <EDS::checkIndexes> (" << lElmt << ") ObjectType = " << (uint16_t)lObjectType << std::endl;
+
+            if(0x7 != lObjectType) {
+                if(0 != (lResult = getUInt8("SubNumber", lNbOfSubs.at(lIdx).first, lElmt))) {
+                    std::cerr << "[ERROR] <EDS::checkIndexes> (" << lElmt << ") Get SubNumber failed" << std::endl;
+                } else {
+                    std::cout << "[DEBUG] <EDS::checkIndexes> (" << lElmt << ") SubNumber = " << (uint16_t)lNbOfSubs.at(lIdx).first << std::endl;
+                }
             }
         } else if (isSubIdxSection(lElmt, &lIdx, &lSubIdx)) {
             lResult = checkSubIdx(lElmt, lIdx, lSubIdx);
@@ -232,12 +424,12 @@ int EDS::checkIndexes(void) const {
     return lError;
 }
 
-int EDS::checkIdx(const std::string &pSection) const {
+int EDS::checkIndex(const std::string &pSection) const {
     /* check if the index is a single entry or if it has sub-indexes */
     uint8_t lNbSubIdx = 0U;
     if(keyExists("SubNumber")) {
         if(0 != getUInt8("SubNumber", lNbSubIdx, pSection)) {
-            std::cerr << "[ERROR] <EDS::checkIdx> (" << pSection << ") Get SubNumber failed" << std::endl;
+            std::cerr << "[ERROR] <EDS::checkIndex> (" << pSection << ") Get SubNumber failed" << std::endl;
             return -1;
         }
     }
@@ -254,19 +446,19 @@ int EDS::checkIdx(const std::string &pSection) const {
         "SubNumber"
     };
     if(0 != checkMandatoryKeys(lMandatoryKeys, pSection)) {
-        //std::cerr << "[ERROR] <EDS::checkIdx> Missing keys for [FileInfo] section" << std::endl;
+        //std::cerr << "[ERROR] <EDS::checkIndex> Missing keys for [FileInfo] section" << std::endl;
         return -1;
     }
 
     /* Check ParameterName length */
     std::string lParamName;
     if(0 != getString("ParameterName", lParamName, pSection)) {
-        std::cerr << "[ERROR] <EDS::checkIdx> (" << pSection << ") Get ParameterName failed" << std::endl;
+        std::cerr << "[ERROR] <EDS::checkIndex> (" << pSection << ") Get ParameterName failed" << std::endl;
         return -1;
     }
 
     if(241U < lParamName.size()) {
-        std::cerr << "[ERROR] <EDS:checkIdx> (" << pSection << ") ParameterName too long" << std::endl;
+        std::cerr << "[ERROR] <EDS:checkIndex> (" << pSection << ") ParameterName too long" << std::endl;
         return -1;
     }
 
@@ -275,10 +467,13 @@ int EDS::checkIdx(const std::string &pSection) const {
 
 int EDS::checkSubIdx(const std::string &pSection, const uint16_t &pIdx, const uint8_t &pSubIdx) const {
     (void)pSection;
+    (void)pIdx;
+    (void)pSubIdx;
+
+    /* TODO : Implement checkSubIdx */
 
     return 0;
 }
-
 
 int EDS::check(void) const {
     /* Empty for now */
@@ -535,4 +730,39 @@ int EDS::check(void) const {
     /* Each line must be 255 characters max */
 
     return 0;
+}
+
+/* Getters */
+std::vector<std::string> EDS::getSubIdxList(const uint16_t &pIdx) const {
+    std::vector<std::string> lSubIndexList;
+
+    uint16_t    lIdx    = 0U;
+    uint8_t     lSub    = 0U;
+
+    for(const auto &lSectionName : mSectionOrder) {
+        /* Is this section a sub index section ? */
+        if(isSubIdxSection(lSectionName, &lIdx, &lSub)) {
+            /* Does this subindex section belong to our index section ? */
+            if(pIdx == lIdx) {
+                lSubIndexList.push_back(lSectionName);
+            }
+        }
+    }
+
+    return lSubIndexList;
+}
+
+std::vector<std::string> EDS::getSubIdxList(const std::string &pIdx) const {
+    uint16_t lIdx = 0U;
+
+    if(isIndexSection(pIdx, &lIdx)) {
+        return getSubIdxList(lIdx);
+    } else {
+        std::cerr << "[ERROR] <EDS::getSubIdxList> " << pIdx << " is not an index section of the EDS file" << std::endl;
+        return std::vector<std::string>();
+    }
+}
+
+const std::map<std::string, std::map<std::string, std::map<std::string, std::string>>> *EDS::odEntries(void) const {
+    return &mObjects;
 }
