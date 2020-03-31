@@ -53,7 +53,7 @@ class API_EXPORT EDS : public INI {
         int checkMandatoryValues(const std::vector<std::string> &pValues, const std::string &pSection = "default") const;
         int checkRecommendedKeys(const std::vector<std::string> &pKeys, const std::string &pSection = "default") const;
         int checkIndexes(void) const;
-        int checkIdx(const std::string &pSection) const;
+        int checkIndex(const std::string &pSection) const;
         int checkSubIdx(const std::string &pSection, const uint16_t &pIdx = 0x0000U, const uint8_t &pSubIdx = 0x00U) const;
 
         /* Class attributes */

@@ -309,7 +309,7 @@ int EDS::checkMandatoryKeys(const std::vector<std::string> &pKeys, const std::st
     int lResult = 0;
     for(const auto &lElmt : pKeys) {
         if(!keyExists(lElmt, pSection)) {
-            std::cerr << "[ERROR] <EDS::check> Missing key " << lElmt << " for section [" << pSection << "]" << std::endl;
+            std::cerr << "[ERROR] <EDS::checkMandatoryKeys> Missing key " << lElmt << " for section [" << pSection << "]" << std::endl;
             lResult = -1;
         }
     }
@@ -326,14 +326,14 @@ int EDS::checkMandatoryValues(const std::vector<std::string> &pValues, const std
         for(const auto &lElmt : getValues(pSection)) {
             if(lExpectedElmt == lElmt) {
                 if(lFound) {
-                    std::cout << "[WARN ] <EDS::check> Value " << lExpectedElmt << " found " << lFound + 1U << " times" << std::endl;
+                    std::cout << "[WARN ] <EDS::checkMandatoryValues> Value " << lExpectedElmt << " found " << lFound + 1U << " times" << std::endl;
                 }
                 ++lFound;
             }
         }
 
         if(0U == lFound) {
-            std::cerr << "[ERROR] <EDS::check> Missing value " << lExpectedElmt << " for section [" << pSection << "]" << std::endl;
+            std::cerr << "[ERROR] <EDS::checkMandatoryValues> Missing value " << lExpectedElmt << " for section [" << pSection << "]" << std::endl;
             lResult = -1;
         }
     }
@@ -345,7 +345,7 @@ int EDS::checkRecommendedKeys(const std::vector<std::string> &pKeys, const std::
     int lResult = 0;
     for(const auto &lElmt : pKeys) {
         if(!keyExists(lElmt, pSection)) {
-            std::cerr << "[WARN ] <EDS::check> Missing key " << lElmt << " for section [" << pSection << "]" << std::endl;
+            std::cerr << "[WARN ] <EDS::checkRecommendedKeys> Missing key " << lElmt << " for section [" << pSection << "]" << std::endl;
             lResult = -1;
         }
     }
@@ -406,12 +406,12 @@ int EDS::checkIndexes(void) const {
     return lError;
 }
 
-int EDS::checkIdx(const std::string &pSection) const {
+int EDS::checkIndex(const std::string &pSection) const {
     /* check if the index is a single entry or if it has sub-indexes */
     uint8_t lNbSubIdx = 0U;
     if(keyExists("SubNumber")) {
         if(0 != getUInt8("SubNumber", lNbSubIdx, pSection)) {
-            std::cerr << "[ERROR] <EDS::checkIdx> (" << pSection << ") Get SubNumber failed" << std::endl;
+            std::cerr << "[ERROR] <EDS::checkIndex> (" << pSection << ") Get SubNumber failed" << std::endl;
             return -1;
         }
     }
@@ -428,19 +428,19 @@ int EDS::checkIdx(const std::string &pSection) const {
         "SubNumber"
     };
     if(0 != checkMandatoryKeys(lMandatoryKeys, pSection)) {
-        //std::cerr << "[ERROR] <EDS::checkIdx> Missing keys for [FileInfo] section" << std::endl;
+        //std::cerr << "[ERROR] <EDS::checkIndex> Missing keys for [FileInfo] section" << std::endl;
         return -1;
     }
 
     /* Check ParameterName length */
     std::string lParamName;
     if(0 != getString("ParameterName", lParamName, pSection)) {
-        std::cerr << "[ERROR] <EDS::checkIdx> (" << pSection << ") Get ParameterName failed" << std::endl;
+        std::cerr << "[ERROR] <EDS::checkIndex> (" << pSection << ") Get ParameterName failed" << std::endl;
         return -1;
     }
 
     if(241U < lParamName.size()) {
-        std::cerr << "[ERROR] <EDS:checkIdx> (" << pSection << ") ParameterName too long" << std::endl;
+        std::cerr << "[ERROR] <EDS:checkIndex> (" << pSection << ") ParameterName too long" << std::endl;
         return -1;
     }
 
