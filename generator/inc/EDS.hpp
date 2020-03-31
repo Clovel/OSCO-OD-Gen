@@ -38,6 +38,10 @@ class API_EXPORT EDS : public INI {
     protected:
         /* EDS management */
         int reorderEDSSections(void);
+
+        /* Getters */
+        std::vector<std::string> getSubIdxList(const uint16_t &pIdx) const;
+        std::vector<std::string> getSubIdxList(const std::string &pIdx) const;
     private:
         /* EDS Checker */
         int checkMandatoryKeys(const std::vector<std::string> &pKeys, const std::string &pSection = "default") const;
@@ -47,10 +51,13 @@ class API_EXPORT EDS : public INI {
         int checkIdx(const std::string &pSection) const;
         int checkSubIdx(const std::string &pSection, const uint16_t &pIdx = 0x0000U, const uint8_t &pSubIdx = 0x00U) const;
 
+        /* Class attributes */
         std::vector<std::string> mObjectList;
         std::vector<std::string> mMandatoryObjectList;
         std::vector<std::string> mOptionalObjectList;
         std::vector<std::string> mManufacturerObjectList;
+
+        std::map<std::string, std::vector<std::string>> mObjects;
 };
 
 #endif /* EDS_HPP */

@@ -276,10 +276,14 @@ EDS::EDS(const std::string &pFile) : INI(pFile) {
     }
     mObjectList.insert(std::end(mObjectList), std::begin(mManufacturerObjectList), std::end(mManufacturerObjectList));
 
-    /* Remove the "0x" prefix of the section names */
     for(auto &lElmt : mObjectList) {
+        /* Remove the "0x" prefix of the section names */
         (void)remove0xPrefix(lElmt);
+
+        /* Get all subindex entries for each index entry */
+        mObjects.insert(std::pair<std::string, std::vector<std::string>>(lElmt, getSubIdxList(lElmt)));
     }
+
 }
 
 /* Destructor */
@@ -704,4 +708,35 @@ int EDS::check(void) const {
     /* Each line must be 255 characters max */
 
     return 0;
+}
+
+/* Getters */
+std::vector<std::string> EDS::getSubIdxList(const uint16_t &pIdx) const {
+    std::vector<std::string> lSubIndexList;
+
+    uint16_t    lIdx    = 0U;
+    uint8_t     lSub    = 0U;
+
+    for(const auto &lSectionName : mSectionOrder) {
+        /* Is this section a sub index section ? */
+        if(isSubIdxSection(lSectionName, &lIdx, &lSub)) {
+            /* Does this subindex section belong to our index section ? */
+            if(pIdx == lIdx) {
+                lSubIndexList.push_back(lSectionName);
+            }
+        }
+    }
+
+    return lSubIndexList;
+}
+
+std::vector<std::string> EDS::getSubIdxList(const std::string &pIdx) const {
+    uint16_t lIdx = 0U;
+
+    if(isIndexSection(pIdx, &lIdx)) {
+        return getSubIdxList(lIdx);
+    } else {
+        std::cerr << "[ERROR] <EDS::getSubIdxList> " << pIdx << " is not an index section of the EDS file" << std::endl;
+        return std::vector<std::string>();
+    }
 }
