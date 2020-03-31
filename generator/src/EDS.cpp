@@ -165,29 +165,29 @@ EDS::EDS(const std::string &pFile) : INI(pFile) {
     /* Mandatory objects */
     for(const auto &lElmt : INI::getSectionContents("MandatoryObjects")) {
         if("SupportedObjects" != lElmt.first) {
-            mMandatoryObjects.push_back(lElmt.second);
+            mMandatoryObjectList.push_back(lElmt.second);
         }
     }
-    mObjects.insert(std::end(mObjects), std::begin(mMandatoryObjects), std::end(mMandatoryObjects));
+    mObjectList.insert(std::end(mObjectList), std::begin(mMandatoryObjectList), std::end(mMandatoryObjectList));
 
     /* Optional Objects */
     for(const auto &lElmt : INI::getSectionContents("OptionalObjects")) {
         if("SupportedObjects" != lElmt.first) {
-            mOptionalObjects.push_back(lElmt.second);
+            mOptionalObjectList.push_back(lElmt.second);
         }
     }
-    mObjects.insert(std::end(mObjects), std::begin(mOptionalObjects), std::end(mOptionalObjects));
+    mObjectList.insert(std::end(mObjectList), std::begin(mOptionalObjectList), std::end(mOptionalObjectList));
 
     /* Manufacturer Objects */
     for(const auto &lElmt : INI::getSectionContents("ManufacturerObjects")) {
         if("SupportedObjects" != lElmt.first) {
-            mManufacturerObjects.push_back(lElmt.second);
+            mManufacturerObjectList.push_back(lElmt.second);
         }
     }
-    mObjects.insert(std::end(mObjects), std::begin(mManufacturerObjects), std::end(mManufacturerObjects));
+    mObjectList.insert(std::end(mObjectList), std::begin(mManufacturerObjectList), std::end(mManufacturerObjectList));
 
     /* Remove the "0x" prefix of the section names */
-    for(auto &lElmt : mObjects) {
+    for(auto &lElmt : mObjectList) {
         (void)remove0xPrefix(lElmt);
     }
 }

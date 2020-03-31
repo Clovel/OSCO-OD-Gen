@@ -47,10 +47,10 @@ class API_EXPORT EDS : public INI {
         int checkIdx(const std::string &pSection) const;
         int checkSubIdx(const std::string &pSection, const uint16_t &pIdx = 0x0000U, const uint8_t &pSubIdx = 0x00U) const;
 
-        std::vector<std::string> mObjects;
-        std::vector<std::string> mMandatoryObjects;
-        std::vector<std::string> mOptionalObjects;
-        std::vector<std::string> mManufacturerObjects;
+        std::vector<std::string> mObjectList;
+        std::vector<std::string> mMandatoryObjectList;
+        std::vector<std::string> mOptionalObjectList;
+        std::vector<std::string> mManufacturerObjectList;
 };
 
 #endif /* EDS_HPP */
