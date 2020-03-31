@@ -200,6 +200,10 @@ EDS::~EDS() {
 /* EDS management */
 int EDS::reorderEDSSections(void) {
     /* Empty for now */
+
+    /* TODO : Implement reorderEDSSections */
+
+    return 0;
 }
 
 /* EDS Checker */
@@ -347,6 +351,10 @@ int EDS::checkIdx(const std::string &pSection) const {
 
 int EDS::checkSubIdx(const std::string &pSection, const uint16_t &pIdx, const uint8_t &pSubIdx) const {
     (void)pSection;
+    (void)pIdx;
+    (void)pSubIdx;
+
+    /* TODO : Implement checkSubIdx */
 
     return 0;
 }
