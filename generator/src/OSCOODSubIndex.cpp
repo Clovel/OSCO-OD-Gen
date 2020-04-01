@@ -44,7 +44,7 @@ uint16_t OSCOODSubIndex::index(void) const {
     return mIndex;
 }
 
-uint16_t OSCOODSubIndex::subIndex(void) const {
+uint8_t OSCOODSubIndex::subIndex(void) const {
     return mSubIndex;
 }
 
@@ -53,6 +53,6 @@ void OSCOODSubIndex::setIndex(const uint16_t &pIndex) {
     mIndex = pIndex;
 }
 
-void OSCOODSubIndex::setSubIndex(const uint16_t &pSubIndex) {
+void OSCOODSubIndex::setSubIndex(const uint8_t &pSubIndex) {
     mSubIndex = pSubIndex;
 }

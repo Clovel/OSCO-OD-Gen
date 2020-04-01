@@ -34,11 +34,11 @@ class API_EXPORT OSCOODSubIndex : OSCOODObject {
 
         /* Getters */
         uint16_t index(void) const;
-        uint16_t subIndex(void) const;
+        uint8_t subIndex(void) const;
 
         /* Setters */
         void setIndex(const uint16_t &pIndex);
-        void setSubIndex(const uint16_t &pSubIndex);
+        void setSubIndex(const uint8_t &pSubIndex);
     protected:
     private:
         uint16_t mIndex;
