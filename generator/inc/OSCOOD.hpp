@@ -13,6 +13,8 @@
 
 /* C++ system */
 #include <map>
+#include <vector>
+#include <exception>
 
 /* C System */
 #include <cstdint>
@@ -24,11 +26,21 @@
 /* Forward declarations -------------------------------- */
 class OSCOODIndex;
 
+/* OSCOOD exception ------------------------------------ */
+class OSCOODException : public std::exception {
+    virtual const char *what(void) const throw()
+    {
+        return "OSCOOD exception occured !";
+    }
+};
+
 /* OSCOOD class ---------------------------------- */
 class API_EXPORT OSCOOD {
     public:
         /* Constructors */
         OSCOOD();
+        OSCOOD(const std::map<uint16_t, OSCOODIndex *> &pObjects);
+        OSCOOD(const std::vector<OSCOODIndex *> &pObjects);
 
         /* Destructor */
         virtual ~OSCOOD();

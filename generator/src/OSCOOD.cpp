@@ -13,6 +13,7 @@
 
 /* C++ system */
 #include <map>
+#include <vector>
 
 /* C System */
 #include <cstdint>
@@ -23,10 +24,30 @@
 
 /* OSCOOD class implemetation -------------------------- */
 /* Constructors */
-OSCOOD::OSCOOD();
+OSCOOD::OSCOOD() {
+    /* Empty */
+}
+
+OSCOOD::OSCOOD(const std::map<uint16_t, OSCOODIndex *> &pObjects) :
+    mObjects(pObjects)
+{
+    /* Empty */
+}
+
+OSCOOD::OSCOOD(const std::vector<OSCOODIndex *> &pObjects)
+{
+    /* Fill our objects with the given argument */
+    for(const auto &lObj : pObjects) {
+        if(!mObjects.insert(std::pair(lObj->index(), lObj)).second) {
+            throw OSCOODException();
+        }
+    }
+}
 
 /* Destructor */
-OSCOOD::~OSCOOD();
+OSCOOD::~OSCOOD() {
+    /* Empty */
+}
 
 /* Getters */
 std::map<uint16_t, OSCOODIndex *> OSCOOD::indexes(void) const {
