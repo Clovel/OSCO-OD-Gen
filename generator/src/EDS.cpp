@@ -388,13 +388,13 @@ int EDS::checkIndexes(void) const {
                 std::cout << "[WARN ] <EDS::checkIndexes> (" << lElmt << ") ObjectType missing, assuming 0x7" << std::endl;
             }
 
-            std::cout << "[DEBUG] <EDS::checkIndexes> (" << lElmt << ") ObjectType = " << (uint16_t)lObjectType << std::endl;
+            // std::cout << "[DEBUG] <EDS::checkIndexes> (" << lElmt << ") ObjectType = " << (uint16_t)lObjectType << std::endl;
 
             if(0x7 != lObjectType) {
                 if(0 != (lResult = getUInt8("SubNumber", lNbOfSubs.at(lIdx).first, lElmt))) {
                     std::cerr << "[ERROR] <EDS::checkIndexes> (" << lElmt << ") Get SubNumber failed" << std::endl;
                 } else {
-                    std::cout << "[DEBUG] <EDS::checkIndexes> (" << lElmt << ") SubNumber = " << (uint16_t)lNbOfSubs.at(lIdx).first << std::endl;
+                    // std::cout << "[DEBUG] <EDS::checkIndexes> (" << lElmt << ") SubNumber = " << (uint16_t)lNbOfSubs.at(lIdx).first << std::endl;
                 }
             }
         } else if (isSubIdxSection(lElmt, &lIdx, &lSubIdx)) {
