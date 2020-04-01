@@ -1,0 +1,53 @@
+name: Generator project build plan
+#author: Clovis Durand
+#description: GitHub action to buid the OSCO-OD-Gen project
+
+on: [push]
+
+jobs:
+  build:
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        # TODO : Make this work for Windows
+        # os: [ubuntu-latest, macOS-latest, windows-latest]
+        os: [ubuntu-latest, macOS-latest]
+        package_manager: [npm]
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@master
+
+      - name: Checkout submodules
+        run: | 
+          git submodule sync --recursive
+          git submodule update --init --recursive
+
+      - name: Installing dependencies (macOS)
+        if: matrix.os == 'macOS-latest'
+        run: |
+          set -x
+          brew update
+          brew install doxygen graphviz coreutils pkg-config
+          ln -s /usr/local/bin/greadlink /usr/local/bin/readlink
+
+      - name: Build C generator project
+        if: matrix.os != 'windows-latest'
+        run: |
+          mkdir build/
+          cd build/
+          cmake ../generator
+          cmake --build .
+
+      - name: Build C generator project (Windows)
+        if: matrix.os == 'windows-latest'
+        run: |
+          mkdir build
+          cd build/
+          cmake ../generator -DCMAKE_C_FLAGS=/w34716 -DCMAKE_CXX_FLAGS=/w34716
+          cmake --build .
+
+      - name: Test project (CTest)
+        run: |
+          cd build/
+          ctest -VV
