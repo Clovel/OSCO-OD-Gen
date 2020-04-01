@@ -13,6 +13,9 @@
 /* Library/API export defines */
 #include "APIExports.h"
 
+/* C++ system */
+#include <map>
+
 /* C System */
 #include <cstdint>
 
@@ -21,6 +24,7 @@
 /* Type definitions ------------------------------------ */
 
 /* Forward declarations -------------------------------- */
+class OSCOODSubIndex;
 
 /* OSCOODIndex class ----------------------------------- */
 class API_EXPORT OSCOODIndex : OSCOODObject {
@@ -34,12 +38,17 @@ class API_EXPORT OSCOODIndex : OSCOODObject {
 
         /* Getters */
         uint16_t index(void) const;
+        std::map<uint8_t, OSCOODSubIndex *> subIndexes(void) const;
 
         /* Setters */
         void setIndex(const uint16_t &pIndex);
+        bool addSubIndex(OSCOODSubIndex *pSubIndex);
+        bool removeSubIndex(const OSCOODSubIndex * const pSubIndex);
+        bool removeSubIndex(const uint8_t &pSubIndex);
     protected:
     private:
         uint16_t mIndex;
+        std::map<uint8_t, OSCOODSubIndex *> mSubObjects;
 };
 
 #endif /* OSCOODINDEX_HPP */
