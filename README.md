@@ -1,10 +1,13 @@
 # OSCO-OD-Gen - CANOpen Object Dictionary Generator for [OSCO](https://github.com/Clovel/OSCO)
 
-<p align="center">
-![Electron project build plan](https://github.com/Clovel/OSCO-OD-Gen/workflows/Electron%20project%20build%20plan/badge.svg?branch=master) ![Generator back-end](https://github.com/Clovel/OSCO-OD-Gen/workflows/Generator%20back-end/badge.svg)
-</p>
-
 This project's is a cross-platform and modern code generator for the CANOpen Object Dictionary of the [OSCO](https://github.com/Clovel/OSCO) stack.
+
+#### Project status
+![Electron project build plan](https://github.com/Clovel/OSCO-OD-Gen/workflows/Electron%20project%20build%20plan/badge.svg?branch=master)
+![Generator back-end](https://github.com/Clovel/OSCO-OD-Gen/workflows/Generator%20back-end/badge.svg)
+
+#### License
+![GitHub](https://img.shields.io/github/license/Clovel/OSCO-OD-Gen)
 
 ## Program goals
 This program aims to implement the following features :
