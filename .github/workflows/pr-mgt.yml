@@ -1,0 +1,11 @@
+name: PR management
+#author: Clovis Durand
+#description: GitHub action to manage issue/PR labels
+
+on:
+  pull_request:
+    types: [opened, closed, reopened]
+
+jobs:
+  pr-mgt:
+    

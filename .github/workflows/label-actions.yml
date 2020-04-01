@@ -1,0 +1,7 @@
+name: Label management
+#author: Clovis Durand
+#description: GitHub action to manage issue/PR labels
+
+on:
+  issues:
+    types: [opened, closed, deleted]
