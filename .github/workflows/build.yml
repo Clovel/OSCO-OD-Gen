@@ -40,12 +40,12 @@ jobs:
           brew install doxygen graphviz coreutils pkg-config
           ln -s /usr/local/bin/greadlink /usr/local/bin/readlink
 
-      - name: Build C generator dependencies
+      - name: Build C generator project
         if: matrix.os != 'windows-latest'
         run: |
           npm run build-gen
 
-      - name: Build C generator dependencies (Windows)
+      - name: Build C generator project (Windows)
         if: matrix.os == 'windows-latest'
         run: |
           mkdir build
