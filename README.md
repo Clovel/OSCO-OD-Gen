@@ -6,11 +6,11 @@ This project's is a cross-platform and modern code generator for the CANOpen Obj
 
 ## Program goals
 This program aims to implement the following features :
-- C Code generator
-- EDS Generator
-- DCF Generator
-- EDS Checker
-- DCF Checker
+- [ ] C Code generator
+- [ ] EDS Generator
+- [ ] DCF Generator
+- [ ] EDS Checker
+- [ ] DCF Checker
 
 ## Library goals
 This project will also build a library to dynamically load EDS/DCF files into the OSCO stack.
@@ -19,6 +19,7 @@ This project will also build a library to dynamically load EDS/DCF files into th
 - [initools](https://github.com/Clovel/initools)
 
 ## Dependencies
+- [initools](https://github.com/Clovel/initools) (Submodule)
 - [electron](https://github.com/electron/electron)
 - [nodejs](https://github.com/nodejs/node)
 - [npm](https://github.com/npm/cli)
