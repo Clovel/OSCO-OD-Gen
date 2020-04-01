@@ -1,6 +1,6 @@
-name: Generator project build plan
+name: Generator back-end
 #author: Clovis Durand
-#description: GitHub action to buid the OSCO-OD-Gen project
+#description: GitHub action to build the OSCO-OD-Gen project
 
 on: [push]
 
