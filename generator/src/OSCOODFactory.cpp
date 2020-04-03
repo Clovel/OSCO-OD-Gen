@@ -45,12 +45,12 @@ static bool caseInSensStringCompare(const std::string &pStr1, const std::string 
         std::equal(pStr1.begin(), pStr1.end(), pStr2.begin(), &compareChar) );
 }
 
-static configFileType_t indentifyFileType(const std::filesystem::path &pFile) {
+static configFileType_t indentifyFileType(const std::string &pFile) {
     static const std::string sEDSExt = ".eds";
     static const std::string sDCFExt = ".dcf";
     static const std::string sXMLExt = ".xml";
 
-    std::string lExt = pFile.extension();
+    std::string lExt = pFile.substr(pFile.find_last_of('.'));
 
     if(caseInSensStringCompare(sEDSExt, lExt)) {
         return FILE_EDS;
@@ -234,7 +234,7 @@ static bool fillObjectAtrributes(OSCOODObject * const pObj, const std::string pK
 
 /* OSCOODFactory class implementation ------------------ */
 /* Builders */
-OSCOOD *OSCOODFactory::buildOSCOOD(const std::filesystem::path &pFile) {
+OSCOOD *OSCOODFactory::buildOSCOOD(const std::string &pFile) {
     switch(indentifyFileType(pFile)) {
         case FILE_EDS:
             return OSCOODFromEDS(pFile);
@@ -247,7 +247,7 @@ OSCOOD *OSCOODFactory::buildOSCOOD(const std::filesystem::path &pFile) {
     }
 }
 
-OSCONode *OSCOODFactory::buildOSCONode(const std::filesystem::path &pFile) {
+OSCONode *OSCOODFactory::buildOSCONode(const std::string &pFile) {
     switch(indentifyFileType(pFile)) {
         case FILE_EDS:
             return OSCONodeFromEDS(pFile);
@@ -261,7 +261,7 @@ OSCONode *OSCOODFactory::buildOSCONode(const std::filesystem::path &pFile) {
 }
 
 /* OSCOOD builders */
-OSCOOD *OSCOODFactory::OSCOODFromEDS(const std::filesystem::path &pFile) {
+OSCOOD *OSCOODFactory::OSCOODFromEDS(const std::string &pFile) {
     /* Parse EDS file */
     EDS lEDS(pFile);
 
@@ -362,18 +362,18 @@ OSCOOD *OSCOODFactory::OSCOODFromEDS(const std::filesystem::path &pFile) {
     return lOD;
 }
 
-OSCOOD *OSCOODFactory::OSCOODFromDCF(const std::filesystem::path &pFile) {
+OSCOOD *OSCOODFactory::OSCOODFromDCF(const std::string &pFile) {
     /* TODO : Implement the DCF factory */
     (void)pFile;
 }
 
 /* OSCONode builders */
-OSCONode *OSCOODFactory::OSCONodeFromEDS(const std::filesystem::path &pFile) {
+OSCONode *OSCOODFactory::OSCONodeFromEDS(const std::string &pFile) {
     //
     (void)pFile;
 }
 
-OSCONode *OSCOODFactory::OSCONodeFromDCF(const std::filesystem::path &pFile) {
+OSCONode *OSCOODFactory::OSCONodeFromDCF(const std::string &pFile) {
     /* TODO : Implement the DCF factory */
     (void)pFile;
 }

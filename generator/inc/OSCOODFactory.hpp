@@ -12,7 +12,6 @@
 #include "APIExports.h"
 
 /* C++ System */
-#include <filesystem>
 #include <string>
 
 /* Defines --------------------------------------------- */
@@ -38,16 +37,16 @@ class OSCONode;
 class API_EXPORT OSCOODFactory {
     public:
         /* Builders */
-        static OSCOOD   *buildOSCOOD(const std::filesystem::path &pFile);
-        static OSCONode *buildOSCONode(const std::filesystem::path &pFile);
+        static OSCOOD   *buildOSCOOD(const std::string &pFile);
+        static OSCONode *buildOSCONode(const std::string &pFile);
     protected:
         /* OSCOOD builders */
-        static OSCOOD   *OSCOODFromEDS(const std::filesystem::path &pFile);
-        static OSCOOD   *OSCOODFromDCF(const std::filesystem::path &pFile);
+        static OSCOOD   *OSCOODFromEDS(const std::string &pFile);
+        static OSCOOD   *OSCOODFromDCF(const std::string &pFile);
 
         /* OSCONode builders */
-        static OSCONode *OSCONodeFromEDS(const std::filesystem::path &pFile);
-        static OSCONode *OSCONodeFromDCF(const std::filesystem::path &pFile);
+        static OSCONode *OSCONodeFromEDS(const std::string &pFile);
+        static OSCONode *OSCONodeFromDCF(const std::string &pFile);
     private:
 };
 
