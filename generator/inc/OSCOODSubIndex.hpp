@@ -23,7 +23,7 @@
 /* Forward declarations -------------------------------- */
 
 /* OSCOODSubIndex class -------------------------------- */
-class API_EXPORT OSCOODSubIndex : OSCOODObject {
+class API_EXPORT OSCOODSubIndex : public OSCOODObject {
     public:
         /* Constructors */
         OSCOODSubIndex();

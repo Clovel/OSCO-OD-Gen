@@ -27,7 +27,7 @@
 class OSCOODSubIndex;
 
 /* OSCOODIndex class ----------------------------------- */
-class API_EXPORT OSCOODIndex : OSCOODObject {
+class API_EXPORT OSCOODIndex : public OSCOODObject {
     public:
         /* Constructors */
         OSCOODIndex();
