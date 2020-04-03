@@ -11,6 +11,9 @@
 /* Library/API export defines */
 #include "APIExports.h"
 
+/* C++ system */
+#include <iostream>
+
 /* C System */
 #include <cstdint>
 
@@ -61,12 +64,14 @@ void OSCOODIndex::setIndex(const uint16_t &pIndex) {
 bool OSCOODIndex::addSubIndex(OSCOODSubIndex *pSubIndex) {
     /* Check if the subindex's index is the same as the index of this object */
     if(pSubIndex->index() != mIndex) {
+        std::cerr << "[ERROR] <OSCOODIndex::addSubIndex> SubIndex's index does not match this index" << std::endl;
         return false;
     }
 
     /* Check if the subindex already exists */
     for(const auto &lSubIdx : mSubObjects) {
         if(pSubIndex->subIndex() == lSubIdx.second->subIndex()) {
+            std::cerr << "[ERROR] <OSCOODIndex::addSubIndex> SubIndex already exists" << std::endl;
             return false;
         }
     }
@@ -74,12 +79,16 @@ bool OSCOODIndex::addSubIndex(OSCOODSubIndex *pSubIndex) {
     /* Add the subindex */
     if(mSubObjects.insert(std::pair<uint8_t, OSCOODSubIndex *>(pSubIndex->subIndex(), pSubIndex)).second) {
         return true;
-    } else return false;
+    } else {
+        std::cerr << "[ERROR] <OSCOODIndex::addSubIndex> Failed to insert subindex to map" << std::endl;
+        return false;
+    }
 }
 
 bool OSCOODIndex::removeSubIndex(const OSCOODSubIndex * const pSubIndex) {
     /* Check if the subindex's index is the same as the index of this object */
     if(pSubIndex->index() != mIndex) {
+        std::cerr << "[ERROR] <OSCOODIndex::removeSubIndex> SubIndex's index does not match this index" << std::endl;
         return false;
     }
 
@@ -91,6 +100,7 @@ bool OSCOODIndex::removeSubIndex(const uint8_t &pSubIndex) {
     for(const auto &lSubIdx : mSubObjects) {
         if(pSubIndex == lSubIdx.second->subIndex()) {
             if(0U == mSubObjects.erase(pSubIndex)) {
+                std::cerr << "[ERROR] <OSCOODIndex::removeSubIndex> Failed to erase subindex from map" << std::endl;
                 return false;
             } else return true;
         }

@@ -14,6 +14,7 @@
 /* C++ system */
 #include <map>
 #include <vector>
+#include <iostream>
 
 /* C System */
 #include <cstdint>
@@ -39,6 +40,7 @@ OSCOOD::OSCOOD(const std::vector<OSCOODIndex *> &pObjects)
     /* Fill our objects with the given argument */
     for(const auto &lObj : pObjects) {
         if(!mObjects.insert(std::pair(lObj->index(), lObj)).second) {
+            std::cerr << "[ERROR] <OSCOOD::OSCOOD> Failed to insert index to map" << std::endl;
             throw OSCOODException();
         }
     }
@@ -64,6 +66,7 @@ bool OSCOOD::addIndex(OSCOODIndex *pIndex) {
     /* Check if the index already exists */
     for(const auto &lIdx : mObjects) {
         if(pIndex->index() == lIdx.second->index()) {
+            std::cerr << "[ERROR] <OSCOOD::addIndex> Index already exists" << std::endl;
             return false;
         }
     }
@@ -71,7 +74,10 @@ bool OSCOOD::addIndex(OSCOODIndex *pIndex) {
     /* Add the subindex */
     if(mObjects.insert(std::pair<uint16_t, OSCOODIndex *>(pIndex->index(), pIndex)).second) {
         return true;
-    } else return false;
+    } else {
+        std::cerr << "[ERROR] <OSCOOD::addIndex> Failed to insert index to map" << std::endl;
+        return false;
+    }
 }
 
 bool OSCOOD::removeIndex(const OSCOODIndex * const pIndex) {
@@ -83,11 +89,13 @@ bool OSCOOD::removeIndex(const uint16_t &pIndex) {
     for(const auto &lIdx : mObjects) {
         if(pIndex == lIdx.second->index()) {
             if(0U == mObjects.erase(pIndex)) {
+                std::cerr << "[ERROR] <OSCOOD::removeIndex> Failed to erase index from map" << std::endl;
                 return false;
             } else return true;
         }
     }
 
     /* Index was not found */
+    std::cerr << "[ERROR] <OSCOOD::removeIndex> Index not found" << std::endl;
     return false;
 }
