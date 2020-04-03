@@ -42,7 +42,7 @@ class API_EXPORT OSCOODSubIndex : public OSCOODObject {
     protected:
     private:
         uint16_t mIndex;
-        uint8_t mSubIndex;
+        uint8_t  mSubIndex;
 };
 
 #endif /* OSCOODSUBINDEX_HPP */
