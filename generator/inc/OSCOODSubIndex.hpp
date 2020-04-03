@@ -23,7 +23,7 @@
 /* Forward declarations -------------------------------- */
 
 /* OSCOODSubIndex class -------------------------------- */
-class API_EXPORT OSCOODSubIndex : OSCOODObject {
+class API_EXPORT OSCOODSubIndex : public OSCOODObject {
     public:
         /* Constructors */
         OSCOODSubIndex();
@@ -42,7 +42,7 @@ class API_EXPORT OSCOODSubIndex : OSCOODObject {
     protected:
     private:
         uint16_t mIndex;
-        uint8_t mSubIndex;
+        uint8_t  mSubIndex;
 };
 
 #endif /* OSCOODSUBINDEX_HPP */
