@@ -69,7 +69,7 @@ bool OSCOOD::addIndex(OSCOODIndex *pIndex) {
     }
 
     /* Add the subindex */
-    if(mObjects.insert(std::pair<uint8_t, OSCOODIndex *>(pIndex->index(), pIndex)).second) {
+    if(mObjects.insert(std::pair<uint16_t, OSCOODIndex *>(pIndex->index(), pIndex)).second) {
         return true;
     } else return false;
 }
