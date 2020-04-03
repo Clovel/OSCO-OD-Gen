@@ -46,7 +46,12 @@ OSCOOD::OSCOOD(const std::vector<OSCOODIndex *> &pObjects)
 
 /* Destructor */
 OSCOOD::~OSCOOD() {
-    /* Empty */
+    for(auto &lObject : mObjects) {
+        if(nullptr != lObject.second) {
+            delete lObject.second;
+            lObject.second = nullptr;
+        }
+    }
 }
 
 /* Getters */

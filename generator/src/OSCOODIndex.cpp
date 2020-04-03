@@ -36,7 +36,12 @@ OSCOODIndex::OSCOODIndex(const uint16_t &pIndex) :
 
 /* Destructors */
 OSCOODIndex::~OSCOODIndex() {
-    /* Empty */
+    for(auto &lSubObject : mSubObjects) {
+        if(nullptr != lSubObject.second) {
+            delete lSubObject.second;
+            lSubObject.second = nullptr;
+        }
+    }
 }
 
 /* Getters */
