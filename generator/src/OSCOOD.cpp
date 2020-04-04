@@ -15,6 +15,7 @@
 #include <map>
 #include <vector>
 #include <iostream>
+#include <sstream>
 
 /* C System */
 #include <cstdint>
@@ -61,6 +62,221 @@ std::map<uint16_t, OSCOODIndex *> OSCOOD::indexes(void) const {
     return mObjects;
 }
 
+std::string OSCOOD::name(void) const {
+    return mName;
+}
+
+std::string OSCOOD::fileName(void) const {
+    return mFileName;
+}
+
+uint8_t OSCOOD::fileVersion(void) const {
+    return mFileVersion;
+}
+
+uint8_t OSCOOD::fileRevision(void) const {
+    return mFileRevision;
+}
+
+std::string OSCOOD::EDSVersion(void) const {
+    return mEDSVersion;
+}
+
+std::string OSCOOD::description(void) const {
+    return mDesription;
+}
+
+std::string OSCOOD::creationDate(const bool &pFormat) const {
+    char lDateStr[20U];
+    struct tm *lDateTimeStruct = std::gmtime(&mCreationDateTime);
+    if(pFormat)
+        (void)strftime(lDateStr, 20U, "%d/%m/%Y", lDateTimeStruct);
+    else
+        (void)strftime(lDateStr, 20U, "%Y-%m-%d", lDateTimeStruct);
+    return std::string(lDateStr);
+}
+
+std::string OSCOOD::creationTime(const bool &pFormat) const {
+    char lTimeStr[20U];
+    struct tm *lDateTimeStruct = std::gmtime(&mCreationDateTime);
+    if(pFormat)
+        (void)strftime(lTimeStr, 20U, "%H:%M:%S", lDateTimeStruct);
+    else
+        (void)strftime(lTimeStr, 20U, "%I:%M%p", lDateTimeStruct);
+    return std::string(lTimeStr);
+}
+
+std::string OSCOOD::createdBy(void) const {
+    return mCreatedBy;
+}
+
+std::string OSCOOD::modificationDate(const bool &pFormat) const {
+    char lDateStr[20U];
+    struct tm *lDateTimeStruct = std::gmtime(&mModificationDateTime);
+    if(pFormat)
+        (void)strftime(lDateStr, 20U, "%d/%m/%Y", lDateTimeStruct);
+    else
+        (void)strftime(lDateStr, 20U, "%Y-%m-%d", lDateTimeStruct);
+    return std::string(lDateStr);
+}
+
+std::string OSCOOD::modificationTime(const bool &pFormat) const {
+    char lTimeStr[20U];
+    struct tm *lDateTimeStruct = std::gmtime(&mModificationDateTime);
+    if(pFormat)
+        (void)strftime(lTimeStr, 20U, "%H:%M:%S", lDateTimeStruct);
+    else
+        (void)strftime(lTimeStr, 20U, "%I:%M%p", lDateTimeStruct);
+    return std::string(lTimeStr);
+}
+
+std::string OSCOOD::modifiedBy(void) const {
+    return mModifiedBy;
+}
+
+std::string OSCOOD::vendorName(void) const {
+    return mVendorName;
+}
+
+uint32_t OSCOOD::vendorNumber(void) const {
+    return mVendorNumber;
+}
+
+std::string OSCOOD::productName(void) const {
+    return mProductName;
+}
+
+uint32_t OSCOOD::productNumber(void) const {
+    return mProductNumber;
+}
+
+uint32_t OSCOOD::revisionNumber(void) const {
+    return mRevisionNumber;
+}
+
+std::string OSCOOD::orderCode(void) const {
+    return mOrderCode;
+}
+
+bool OSCOOD::baudrate10Supported(void) const {
+    return mBaudRate_10;
+}
+
+bool OSCOOD::baudrate20Supported(void) const {
+    return mBaudRate_20;
+}
+
+bool OSCOOD::baudrate50Supported(void) const {
+    return mBaudRate_50;
+}
+
+bool OSCOOD::baudrate125Supported(void) const {
+    return mBaudRate_125;
+}
+
+bool OSCOOD::baudrate250Supported(void) const {
+    return mBaudRate_250;
+}
+
+bool OSCOOD::baudrate500Supported(void) const {
+    return mBaudRate_500;
+}
+
+bool OSCOOD::baudrate800Supported(void) const {
+    return mBaudRate_800;
+}
+
+bool OSCOOD::baudrate1000Supported(void) const {
+    return mBaudRate_1000;
+}
+
+bool OSCOOD::simpleBootUpMaster(void) const {
+    return mSimpleBootUpMaster;
+}
+
+bool OSCOOD::simpleBootUpSlave(void) const {
+    return mSimpleBootUpSlave;
+}
+
+uint8_t OSCOOD::granularity(void) const {
+    return mGranularity;
+}
+
+uint8_t OSCOOD::dynamicChannelsSupported(void) const {
+    return mDynamicChannelsSupported;
+}
+
+bool OSCOOD::groupMessaging(void) const {
+    return mGroupMessaging;
+}
+
+uint16_t OSCOOD::nrOfRPDOs(void) const {
+    return mNrOfRXPDO;
+}
+
+uint16_t OSCOOD::nrOfTPDOs(void) const {
+    return mNrOfTXPDO;
+}
+
+bool OSCOOD::LSSSupported(void) const {
+    return mLSSSupported;
+}
+
+std::string OSCOOD::comments(void) const {
+    return mComments;
+}
+
+std::string OSCOOD::commentLine(const uint32_t &pLine) const {
+    if(mCommentLineCount <= pLine) {
+        std::cerr << "[ERROR] <OSCOOD::commentLine> Line arg out of bounds (bound : " << mCommentLineCount << " <= arg : " << pLine << ")" << std::endl;
+        return "[ERROR OCCURED]";
+    }
+
+    std::istringstream lISS(mComments);
+    for(uint32_t i = 0U; i < mCommentLineCount; i++) {
+        std::string lLine = "";
+        (void)std::getline(lISS, lLine);
+        if(pLine == i) {
+            return lLine;
+        }
+    }
+
+    /* Line not found, shouldn't happen */
+    return "[ERROR OCCURED]";
+}
+
+uint32_t OSCOOD::commentLineCount(void) const {
+    return mCommentLineCount;
+}
+
+bool OSCOOD::dummy0001Supported(void) const {
+    return mDummy0001;
+}
+
+bool OSCOOD::dummy0002Supported(void) const {
+    return mDummy0002;
+}
+
+bool OSCOOD::dummy0003Supported(void) const {
+    return mDummy0003;
+}
+
+bool OSCOOD::dummy0004Supported(void) const {
+    return mDummy0004;
+}
+
+bool OSCOOD::dummy0005Supported(void) const {
+    return mDummy0005;
+}
+
+bool OSCOOD::dummy0006Supported(void) const {
+    return mDummy0006;
+}
+
+bool OSCOOD::dummy0007Supported(void) const {
+    return mDummy0007;
+}
+
 /* Setters */
 bool OSCOOD::addIndex(OSCOODIndex *pIndex) {
     /* Check if the index already exists */
@@ -98,4 +314,278 @@ bool OSCOOD::removeIndex(const uint16_t &pIndex) {
     /* Index was not found */
     std::cerr << "[ERROR] <OSCOOD::removeIndex> Index not found" << std::endl;
     return false;
+}
+
+void OSCOOD::setName(const std::string &pName) {
+    mName = pName;
+}
+
+void OSCOOD::setFileName(const std::string &pFileName) {
+    mFileName = pFileName;
+}
+
+void OSCOOD::setFileVersion(const uint8_t &pVersion) {
+    mFileVersion = pVersion;
+}
+
+void OSCOOD::setFileRevision(const uint8_t &pRevision) {
+    mFileRevision = pRevision;
+}
+
+void OSCOOD::setEDSVersion(const std::string &pVersion) {
+    mEDSVersion = pVersion;
+}
+
+void OSCOOD::setDescription(const std::string &pDescription) {
+    mDesription = pDescription;
+}
+
+bool OSCOOD::setCreationDate(const std::string &pDate) {
+    struct tm lDateTimeStruct;
+    memset(&lDateTimeStruct, 0, sizeof(struct tm));
+
+    /* The input string should only contain the date
+     * in either the YYYY-MM-DD format
+     * or the DD/MM/YYYY format.
+     * 
+     * Both are 10 chars long (+ 1 for the NULL terminator)
+     */
+
+    if(strptime(pDate.c_str(), "%Y-%m-%d", &lDateTimeStruct)) {
+        /* Do nothing */
+    } else if(strptime(pDate.c_str(), "%d/%m/%Y", &lDateTimeStruct)) {
+        /* Do nothing */
+    } else {
+        std::cerr << "[ERROR] <OSCOOD::setCreationDate> Wrong date format" << std::endl;
+        return false;
+    }
+
+    struct tm *lCreationDateTimeStruct = gmtime(&mCreationDateTime);
+    lCreationDateTimeStruct->tm_mday = lDateTimeStruct.tm_mday;
+    lCreationDateTimeStruct->tm_mon  = lDateTimeStruct.tm_mon;
+    lCreationDateTimeStruct->tm_year = lDateTimeStruct.tm_year;
+    mCreationDateTime = mktime(lCreationDateTimeStruct);
+
+    return true;
+}
+
+bool OSCOOD::setCreationTime(const std::string &pTime) {
+    struct tm lDateTimeStruct;
+    memset(&lDateTimeStruct, 0, sizeof(struct tm));
+
+    /* The input string should only contain the time
+     * in either the AM/PM format
+     * or the 24-hour format
+     */
+
+    if(strptime(pTime.c_str(), "%I:%M%p", &lDateTimeStruct)) {
+        /* Do nothing */
+    } else if (strptime(pTime.c_str(), "%H:%M:%S", &lDateTimeStruct)) {
+        /* Do nothing */
+    } else if (strptime(pTime.c_str(), "%H:%M", &lDateTimeStruct)) {
+        /* Do nothing */
+    } else {
+        std::cerr << "[ERROR] <OSCOOD::setCreationTime> Wrong time format" << std::endl;
+        return false;
+    }
+
+    struct tm *lCreationDateTimeStruct = gmtime(&mCreationDateTime);
+    lCreationDateTimeStruct->tm_hour = lDateTimeStruct.tm_hour;
+    lCreationDateTimeStruct->tm_min  = lDateTimeStruct.tm_min;
+    lCreationDateTimeStruct->tm_sec  = lDateTimeStruct.tm_sec;
+    mCreationDateTime = mktime(lCreationDateTimeStruct);
+
+    return true;
+}
+
+void OSCOOD::setCreatedBy(const std::string &pCreatedBy) {
+    mCreatedBy = pCreatedBy;
+}
+
+bool OSCOOD::setModificationDate(const std::string &pDate) {
+    struct tm lDateTimeStruct;
+    memset(&lDateTimeStruct, 0, sizeof(struct tm));
+
+    /* The input string should only contain the date
+     * in either the YYYY-MM-DD format
+     * or the DD/MM/YYYY format.
+     * 
+     * Both are 10 chars long (+ 1 for the NULL terminator)
+     */
+
+    if(strptime(pDate.c_str(), "%Y-%m-%d", &lDateTimeStruct)) {
+        /* Do nothing */
+    } else if(strptime(pDate.c_str(), "%d/%m/%Y", &lDateTimeStruct)) {
+        /* Do nothing */
+    } else {
+        std::cerr << "[ERROR] <OSCOOD::setModificationDate> Wrong date format" << std::endl;
+        return false;
+    }
+
+    struct tm *lModificationDateTimeStruct = gmtime(&mModificationDateTime);
+    lModificationDateTimeStruct->tm_mday = lDateTimeStruct.tm_mday;
+    lModificationDateTimeStruct->tm_mon = lDateTimeStruct.tm_mon;
+    lModificationDateTimeStruct->tm_year = lDateTimeStruct.tm_year;
+    mModificationDateTime = mktime(lModificationDateTimeStruct);
+
+    return true;
+}
+
+bool OSCOOD::setModificationTime(const std::string &pTime) {
+    struct tm lDateTimeStruct;
+    memset(&lDateTimeStruct, 0, sizeof(struct tm));
+
+    /* The input string should only contain the time
+     * in either the AM/PM format
+     * or the 24-hour format
+     */
+
+    if(strptime(pTime.c_str(), "%I:%M%p", &lDateTimeStruct)) {
+        /* Do nothing */
+    } else if (strptime(pTime.c_str(), "%H:%M:%S", &lDateTimeStruct)) {
+        /* Do nothing */
+    } else if (strptime(pTime.c_str(), "%H:%M", &lDateTimeStruct)) {
+        /* Do nothing */
+    } else {
+        std::cerr << "[ERROR] <OSCOOD::setModificationTime> Wrong time format" << std::endl;
+        return false;
+    }
+
+    struct tm *lModificationDateTimeStruct = gmtime(&mModificationDateTime);
+    lModificationDateTimeStruct->tm_hour = lDateTimeStruct.tm_hour;
+    lModificationDateTimeStruct->tm_min  = lDateTimeStruct.tm_min;
+    lModificationDateTimeStruct->tm_sec  = lDateTimeStruct.tm_sec;
+    mModificationDateTime = mktime(lModificationDateTimeStruct);
+
+    return true;
+}
+
+void OSCOOD::setModifiedBy(const std::string &pModifiedBy) {
+    mModifiedBy = pModifiedBy;
+}
+
+void OSCOOD::setVendorName(const std::string &pName) {
+    mVendorName = pName;
+}
+
+void OSCOOD::setVendorNumber(const uint32_t &pNumber) {
+    mVendorNumber = pNumber;
+}
+
+void OSCOOD::setProductName(const std::string &pName) {
+    mProductName = pName;
+}
+
+void OSCOOD::setProductNumber(const uint32_t &pNumber) {
+    mProductNumber = pNumber;
+}
+
+void OSCOOD::setRevisionNumber(const uint32_t &pRevision) {
+    mRevisionNumber = pRevision;
+}
+
+void OSCOOD::setOrderCode(const std::string &pOrderCode) {
+    mOrderCode = pOrderCode;
+}
+
+void OSCOOD::setBaudrate10Supported(const bool &pSupport) {
+    mBaudRate_10 = pSupport;
+}
+
+void OSCOOD::setBaudrate20Supported(const bool &pSupport) {
+    mBaudRate_20 = pSupport;
+}
+
+void OSCOOD::setBaudrate50Supported(const bool &pSupport) {
+    mBaudRate_50 = pSupport;
+}
+
+void OSCOOD::setBaudrate125Supported(const bool &pSupport) {
+    mBaudRate_125 = pSupport;
+}
+
+void OSCOOD::setBaudrate250Supported(const bool &pSupport) {
+    mBaudRate_250 = pSupport;
+}
+
+void OSCOOD::setBaudrate500Supported(const bool &pSupport) {
+    mBaudRate_500 = pSupport;
+}
+
+void OSCOOD::setBaudrate800Supported(const bool &pSupport) {
+    mBaudRate_800 = pSupport;
+}
+
+void OSCOOD::setBaudrate1000Supported(const bool &pSupport) {
+    mBaudRate_1000 = pSupport;
+}
+
+void OSCOOD::setSimpleBootUpMaster(const bool &pSupport) {
+    mBaudRate_10 = pSupport;
+}
+
+void OSCOOD::setSimpleBootUpSlave(const bool &pSupport) {
+    mBaudRate_10 = pSupport;
+}
+
+void OSCOOD::setGranularity(const uint8_t &pGranularity) {
+    mGranularity = pGranularity;
+}
+
+void OSCOOD::setDynamicChannelsSupported(const uint8_t &pChannelCount) {
+    mDynamicChannelsSupported = pChannelCount;
+}
+
+void OSCOOD::setGroupMessaging(const bool &pSupport) {
+    mGroupMessaging = pSupport;
+}
+
+void OSCOOD::setNrOfRPDOs(const uint16_t &pRPDONb) {
+    mNrOfRXPDO = pRPDONb;
+}
+
+void OSCOOD::setNrOfTPDOs(const uint16_t &pTPDONb) {
+    mNrOfTXPDO = pTPDONb;
+}
+
+void OSCOOD::setLSSSupported(const bool &pSupport) {
+    mLSSSupported = pSupport;
+}
+
+void OSCOOD::setComments(const std::string &pComments) {
+    mComments = pComments;
+
+    std::istringstream lISS(mComments);
+    uint32_t lLineCount = 0U;
+    for(std::string lLine; std::getline(lISS, lLine);) {
+        ++lLineCount;
+    }
+}
+
+void OSCOOD::setDummy0001Supported(const bool &pSupport) {
+    mDummy0001 = pSupport;
+}
+
+void OSCOOD::setDummy0002Supported(const bool &pSupport) {
+    mDummy0002 = pSupport;
+}
+
+void OSCOOD::setDummy0003Supported(const bool &pSupport) {
+    mDummy0003 = pSupport;
+}
+
+void OSCOOD::setDummy0004Supported(const bool &pSupport) {
+    mDummy0004 = pSupport;
+}
+
+void OSCOOD::setDummy0005Supported(const bool &pSupport) {
+    mDummy0005 = pSupport;
+}
+
+void OSCOOD::setDummy0006Supported(const bool &pSupport) {
+    mDummy0006 = pSupport;
+}
+
+void OSCOOD::setDummy0007Supported(const bool &pSupport) {
+    mDummy0007 = pSupport;
 }
