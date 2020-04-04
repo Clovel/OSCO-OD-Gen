@@ -19,6 +19,8 @@ set(HEADERS
     ${MODULE_HEADERS}
 )
 
+include_directories(${CMAKE_CURRENT_SOURCE_DIR}/../deps/rapidjson/include/rapidjson/)
+
 # Source files --------------------------------------------
 file(GLOB SOURCES
     ${CMAKE_CURRENT_SOURCE_DIR}/*.c
