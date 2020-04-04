@@ -81,6 +81,8 @@ int main(const int argc, const char * const * const argv) {
         delete lOD;
 
         return EXIT_FAILURE;
+    } else {
+        std::cout << "[INFO ] OSCOODFactory::buildOSCOOD successfully created an Object Dictionary" << std::endl;
     }
 
     //delete lEDS;

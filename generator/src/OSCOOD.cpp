@@ -277,6 +277,37 @@ bool OSCOOD::dummy0007Supported(void) const {
     return mDummy0007;
 }
 
+bool OSCOOD::dummySupported(const uint8_t &pDummy, bool &pSupported) const {
+    switch(pDummy) {
+        case 1U:
+            pSupported = dummy0001Supported();
+            break;
+        case 2U:
+            pSupported = dummy0002Supported();
+            break;
+        case 3U:
+            pSupported = dummy0003Supported();
+            break;
+        case 4U:
+            pSupported = dummy0004Supported();
+            break;
+        case 5U:
+            pSupported = dummy0005Supported();
+            break;
+        case 6U:
+            pSupported = dummy0006Supported();
+            break;
+        case 7U:
+            pSupported = dummy0007Supported();
+            break;
+        default:
+            std::cerr << "[ERROR] <OSCOOD::dummySupported> pDummy out of bounds" << std::endl;
+            return false;
+    }
+
+    return true;
+}
+
 /* Setters */
 bool OSCOOD::addIndex(OSCOODIndex *pIndex) {
     /* Check if the index already exists */
@@ -588,4 +619,40 @@ void OSCOOD::setDummy0006Supported(const bool &pSupport) {
 
 void OSCOOD::setDummy0007Supported(const bool &pSupport) {
     mDummy0007 = pSupport;
+}
+
+bool OSCOOD::setDummySupported(const uint8_t &pDummy, const bool &pSupport) {
+    if(1U > pDummy || 7 < pDummy) {
+        std::cerr << "[ERROR] <OSCOOD::setDummy0007Supported> pDummy out of bounds" << std::endl;
+        return false;
+    }
+
+    switch(pDummy) {
+        case 1U:
+            setDummy0001Supported(pSupport);
+            break;
+        case 2U:
+            setDummy0002Supported(pSupport);
+            break;
+        case 3U:
+            setDummy0003Supported(pSupport);
+            break;
+        case 4U:
+            setDummy0004Supported(pSupport);
+            break;
+        case 5U:
+            setDummy0005Supported(pSupport);
+            break;
+        case 6U:
+            setDummy0006Supported(pSupport);
+            break;
+        case 7U:
+            setDummy0007Supported(pSupport);
+            break;
+        default:
+            std::cerr << "[ERROR] <OSCOOD::setDummySupported> pDummy out of bounds" << std::endl;
+            return false;
+    }
+
+    return true;
 }

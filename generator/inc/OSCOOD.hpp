@@ -98,6 +98,7 @@ class API_EXPORT OSCOOD {
         bool dummy0005Supported(void) const;
         bool dummy0006Supported(void) const;
         bool dummy0007Supported(void) const;
+        bool dummySupported(const uint8_t &pDummy, bool &pSupported) const;
 
         /* Setters */
         bool addIndex(OSCOODIndex *pIndex);
@@ -150,6 +151,7 @@ class API_EXPORT OSCOOD {
         void setDummy0005Supported(const bool &pSupport);
         void setDummy0006Supported(const bool &pSupport);
         void setDummy0007Supported(const bool &pSupport);
+        bool setDummySupported(const uint8_t &pDummy, const bool &pSupport);
     protected:
     private:
         std::map<uint16_t, OSCOODIndex *> mObjects; /**< Contents of the Object Dictionary */
