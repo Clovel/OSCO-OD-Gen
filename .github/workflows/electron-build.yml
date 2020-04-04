@@ -1,6 +1,6 @@
-name: Electron project build plan
+name: Electron application
 #author: Clovis Durand
-#description: GitHub action to buid the OSCO-OD-Gen project
+#description: GitHub action to build the OSCO-OD-Gen project
 
 on: [push]
 
@@ -40,12 +40,12 @@ jobs:
           brew install doxygen graphviz coreutils pkg-config
           ln -s /usr/local/bin/greadlink /usr/local/bin/readlink
 
-      - name: Build C generator dependencies
+      - name: Build C generator project
         if: matrix.os != 'windows-latest'
         run: |
           npm run build-gen
 
-      - name: Build C generator dependencies (Windows)
+      - name: Build C generator project (Windows)
         if: matrix.os == 'windows-latest'
         run: |
           mkdir build
