@@ -19,6 +19,7 @@
 
 /* C System */
 #include <cstdint>
+#include <cstring>
 
 /* Defines --------------------------------------------- */
 
@@ -373,7 +374,7 @@ void OSCOOD::setDescription(const std::string &pDescription) {
 
 bool OSCOOD::setCreationDate(const std::string &pDate) {
     struct tm lDateTimeStruct;
-    memset(&lDateTimeStruct, 0, sizeof(struct tm));
+    std::memset(&lDateTimeStruct, 0, sizeof(struct tm));
 
     /* The input string should only contain the date
      * in either the YYYY-MM-DD format
@@ -402,7 +403,7 @@ bool OSCOOD::setCreationDate(const std::string &pDate) {
 
 bool OSCOOD::setCreationTime(const std::string &pTime) {
     struct tm lDateTimeStruct;
-    memset(&lDateTimeStruct, 0, sizeof(struct tm));
+    std::memset(&lDateTimeStruct, 0, sizeof(struct tm));
 
     /* The input string should only contain the time
      * in either the AM/PM format
@@ -435,7 +436,7 @@ void OSCOOD::setCreatedBy(const std::string &pCreatedBy) {
 
 bool OSCOOD::setModificationDate(const std::string &pDate) {
     struct tm lDateTimeStruct;
-    memset(&lDateTimeStruct, 0, sizeof(struct tm));
+    std::memset(&lDateTimeStruct, 0, sizeof(struct tm));
 
     /* The input string should only contain the date
      * in either the YYYY-MM-DD format
@@ -464,7 +465,7 @@ bool OSCOOD::setModificationDate(const std::string &pDate) {
 
 bool OSCOOD::setModificationTime(const std::string &pTime) {
     struct tm lDateTimeStruct;
-    memset(&lDateTimeStruct, 0, sizeof(struct tm));
+    std::memset(&lDateTimeStruct, 0, sizeof(struct tm));
 
     /* The input string should only contain the time
      * in either the AM/PM format
