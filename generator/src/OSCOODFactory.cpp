@@ -27,7 +27,8 @@ typedef enum _fileType {
     FILE_UNKNOWN = 0U,
     FILE_EDS,
     FILE_DCF,
-    FILE_XML
+    FILE_XML,
+    FILE_JSON
 } configFileType_t;
 
 /* Helper functions ------------------------------------ */
@@ -918,6 +919,7 @@ OSCOOD *OSCOODFactory::buildOSCOOD(const std::string &pFile) {
         case FILE_DCF:
             return OSCOODFromDCF(pFile);
         case FILE_XML:
+        case FILE_JSON:
         default:
             return nullptr;
             break;
