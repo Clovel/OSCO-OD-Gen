@@ -17,6 +17,7 @@
 /* C++ System */
 #include <string>
 #include <iostream>
+#include <sstream>
 
 /* Defines --------------------------------------------- */
 #define NB_GENERIC_KEYS 11U /**< Number of accepted keys for OSCOODObjects */
@@ -232,6 +233,682 @@ static bool fillObjectAtrributes(OSCOODObject * const pObj, const std::string pK
     return true;
 }
 
+static bool fillOSCOODFileInfo(const INI * const pINI, OSCOOD * const pOD) {
+    /* Check arguments */
+    if(nullptr == pINI) {
+        std::cerr << "[ERROR] <fillOSCOODFileInfo> INI file arg is nullptr" << std::endl;
+        return false;
+    }
+
+    if(nullptr == pOD) {
+        std::cerr << "[ERROR] <fillOSCOODFileInfo> OSCO OD arg is nullptr" << std::endl;
+        return false;
+    }
+
+    /* check that the INI file has a FileInfo section */
+    if(!pINI->sectionExists("FileInfo")) {
+        std::cerr << "[ERROR] <fillOSCOODFileInfo> INI file has no FileInfo section" << std::endl;
+        return false;
+    }
+
+    /* Get the FileInfo */
+    std::string lTempVal = "";
+    if(0 == pINI->getValue("FileName", lTempVal, "FileInfo")) {
+        pOD->setFileName(lTempVal);
+    } else {
+        /* Mandatory */
+        std::cerr << "[ERROR] <fillOSCOODFileInfo> Missing mandatory FileInfo key : FileName" << std::endl;
+        return false;
+    }
+
+    if(0 == pINI->getValue("FileVersion", lTempVal, "FileInfo")) {
+        /* Convert string to uint */
+        unsigned long lFileVersion = 0U;
+        try {
+            lFileVersion = stoul(lTempVal);
+            if(0xFFU < lFileVersion) {
+                std::cerr << "[ERROR] <fillOSCOODFileInfo> FileVersion is out of bounds" << std::endl;
+                return false;
+            }
+        } catch (std::exception &e) {
+            std::cerr << "[ERROR] <fillOSCOODFileInfo> FileVersion value invalid" << std::endl;
+            return false;
+        }
+
+        pOD->setFileVersion((uint8_t)lFileVersion);
+    } else {
+        /* Mandatory */
+        std::cerr << "[ERROR] <fillOSCOODFileInfo> Missing mandatory FileInfo key : FileVersion" << std::endl;
+        return false;
+    }
+
+    if(0 == pINI->getValue("FileRevision", lTempVal, "FileInfo")) {
+        /* Convert string to uint */
+        unsigned long lFileRevision = 0U;
+        try {
+            lFileRevision = stoul(lTempVal);
+            if(0xFFU < lFileRevision) {
+                std::cerr << "[ERROR] <fillOSCOODFileInfo> FileRevision is out of bounds" << std::endl;
+                return false;
+            }
+        } catch (std::exception &e) {
+            std::cerr << "[ERROR] <fillOSCOODFileInfo> FileRevision value invalid" << std::endl;
+            return false;
+        }
+
+        pOD->setFileRevision((uint8_t)lFileRevision);
+    } else {
+        /* Mandatory */
+        std::cerr << "[ERROR] <fillOSCOODFileInfo> Missing mandatory FileInfo key : FileRevision" << std::endl;
+        return false;
+    }
+
+    if(0 == pINI->getValue("EDSVersion", lTempVal, "FileInfo")) {
+        pOD->setEDSVersion(lTempVal);
+    } else {
+        /* Optional : If this entry is missing, value is "3.0" */
+        pOD->setEDSVersion("3.0");
+    }
+
+    if(0 == pINI->getValue("Description", lTempVal, "FileInfo")) {
+        if(243U < lTempVal.size()) {
+            std::cerr << "[ERROR] <fillOSCOODFileInfo> Description string is too long" << std::endl;
+            return false;
+        }
+        pOD->setDescription(lTempVal);
+    } else {
+        /* Mandatory */
+        std::cerr << "[ERROR] <fillOSCOODFileInfo> Missing mandatory FileInfo key : Description" << std::endl;
+        return false;
+    }
+
+    if(0 == pINI->getValue("CreationTime", lTempVal, "FileInfo")) {
+        if(!pOD->setCreationTime(lTempVal)) {
+            std::cerr << "[ERROR] <fillOSCOODFileInfo> setCreationTime failed" << std::endl;
+            return false;
+        }
+    } else {
+        /* Mandatory */
+        std::cerr << "[ERROR] <fillOSCOODFileInfo> Missing mandatory FileInfo key : CreationTime" << std::endl;
+        return false;
+    }
+
+    if(0 == pINI->getValue("CreationDate", lTempVal, "FileInfo")) {
+        if(!pOD->setCreationDate(lTempVal)) {
+            std::cerr << "[ERROR] <fillOSCOODFileInfo> setCreationDate failed" << std::endl;
+            return false;
+        }
+    } else {
+        /* Mandatory */
+        std::cerr << "[ERROR] <fillOSCOODFileInfo> Missing mandatory FileInfo key : CreationDate" << std::endl;
+        return false;
+    }
+
+    if(0 == pINI->getValue("CreatedBy", lTempVal, "FileInfo")) {
+        pOD->setCreatedBy(lTempVal);
+    } else {
+        /* Mandatory */
+        std::cerr << "[ERROR] <fillOSCOODFileInfo> Missing mandatory FileInfo key : CreatedBy" << std::endl;
+        return false;
+    }
+
+    if(0 == pINI->getValue("ModificationTime", lTempVal, "FileInfo")) {
+        if(!pOD->setModificationTime(lTempVal)) {
+            std::cerr << "[ERROR] <fillOSCOODFileInfo> setModificationTime failed" << std::endl;
+            return false;
+        }
+    } else {
+        /* Optional */
+        std::cerr << "[WARN ] <fillOSCOODFileInfo> Missing optional FileInfo key : ModificationTime" << std::endl;
+    }
+
+    if(0 == pINI->getValue("ModificationDate", lTempVal, "FileInfo")) {
+        if(!pOD->setModificationDate(lTempVal)) {
+            std::cerr << "[ERROR] <fillOSCOODFileInfo> setModificationDate failed" << std::endl;
+            return false;
+        }
+    } else {
+        /* Optional */
+        std::cerr << "[WARN ] <fillOSCOODFileInfo> Missing optional FileInfo key : ModificationDate" << std::endl;
+    }
+
+    if(0 == pINI->getValue("ModifiedBy", lTempVal, "FileInfo")) {
+        pOD->setModifiedBy(lTempVal);
+    } else {
+        /* Optional */
+        std::cerr << "[WARN ] <fillOSCOODFileInfo> Missing optional FileInfo key : ModifiedBy" << std::endl;
+    }
+
+    return true;
+}
+
+static bool fillOSCOODDeviceInfo(const INI * const pINI, OSCOOD * const pOD) {
+    /* Check arguments */
+    if(nullptr == pINI) {
+        std::cerr << "[ERROR] <fillOSCOODDeviceInfo> INI file arg is nullptr" << std::endl;
+        return false;
+    }
+
+    if(nullptr == pOD) {
+        std::cerr << "[ERROR] <fillOSCOODDeviceInfo> OSCO OD arg is nullptr" << std::endl;
+        return false;
+    }
+
+    /* check that the INI file has a FileInfo section */
+    if(!pINI->sectionExists("DeviceInfo")) {
+        std::cerr << "[ERROR] <fillOSCOODDeviceInfo> INI file has no DeviceInfo section" << std::endl;
+        return false;
+    }
+
+    /* Get the DeviceInfo */
+    std::string lTempVal = "";
+    if(0 == pINI->getValue("VendorName", lTempVal, "DeviceInfo")) {
+        pOD->setVendorName(lTempVal);
+    } else {
+        /* Mandatory */
+        std::cerr << "[ERROR] <fillOSCOODDeviceInfo> Missing mandatory DeviceInfo key : VendorName" << std::endl;
+        return false;
+    }
+
+    if(0 == pINI->getValue("VendorNumber", lTempVal, "DeviceInfo")) {
+        /* Convert string to uint */
+        unsigned long lVendorNumber = 0U;
+
+        try {
+            lVendorNumber = stoul(lTempVal);
+        } catch (std::exception &e) {
+            std::cerr << "[ERROR] <fillOSCOODDeviceInfo> VendorNumber value invalid" << std::endl;
+            return false;
+        }
+
+        pOD->setVendorNumber((uint8_t)lVendorNumber);
+    } else {
+        /* Mandatory */
+        std::cerr << "[ERROR] <fillOSCOODDeviceInfo> Missing mandatory DeviceInfo key : VendorNumber" << std::endl;
+        return false;
+    }
+
+    if(0 == pINI->getValue("ProductName", lTempVal, "DeviceInfo")) {
+        pOD->setProductName(lTempVal);
+    } else {
+        /* Mandatory */
+        std::cerr << "[ERROR] <fillOSCOODDeviceInfo> Missing mandatory DeviceInfo key : ProductName" << std::endl;
+        return false;
+    }
+
+    if(0 == pINI->getValue("ProductNumber", lTempVal, "DeviceInfo")) {
+        /* Convert string to uint */
+        unsigned long lProductNumber = 0U;
+
+        try {
+            lProductNumber = stoul(lTempVal);
+        } catch (std::exception &e) {
+            std::cerr << "[ERROR] <fillOSCOODDeviceInfo> ProductNumber value invalid" << std::endl;
+            return false;
+        }
+
+        pOD->setProductNumber((uint8_t)lProductNumber);
+    } else {
+        /* Mandatory */
+        std::cerr << "[ERROR] <fillOSCOODDeviceInfo> Missing mandatory DeviceInfo key : ProductNumber" << std::endl;
+        return false;
+    }
+
+    if(0 == pINI->getValue("RevisionNumber", lTempVal, "DeviceInfo")) {
+        /* Convert string to uint */
+        unsigned long lRevisionNumber = 0U;
+
+        try {
+            lRevisionNumber = stoul(lTempVal);
+        } catch (std::exception &e) {
+            std::cerr << "[ERROR] <fillOSCOODDeviceInfo> RevisionNumber value invalid" << std::endl;
+            return false;
+        }
+
+        pOD->setRevisionNumber((uint8_t)lRevisionNumber);
+    } else {
+        /* Mandatory */
+        std::cerr << "[ERROR] <fillOSCOODDeviceInfo> Missing mandatory DeviceInfo key : RevisionNumber" << std::endl;
+        return false;
+    }
+
+
+    if(0 == pINI->getValue("OrderCode", lTempVal, "DeviceInfo")) {
+        pOD->setOrderCode(lTempVal);
+    } else {
+        /* Optional */
+        std::cerr << "[WARN ] <fillOSCOODDeviceInfo> Missing optional DeviceInfo key : OrderCode" << std::endl;
+        pOD->setOrderCode("");
+    }
+
+    if(0 == pINI->getValue("BaudRate_10", lTempVal, "DeviceInfo")) {
+        if((lTempVal == "true")
+            || (lTempVal == "True")
+            || (lTempVal == "1"))
+        {
+            pOD->setBaudrate10Supported(true);
+        } else if ((lTempVal == "false")
+            || (lTempVal == "False")
+            || (lTempVal == "0"))
+        {
+            pOD->setBaudrate10Supported(false);
+        } else {
+            std::cerr << "[ERROR] <fillOSCOODDeviceInfo> Invalid BaudRate_10 value" << std::endl;
+            return false;
+        }
+    } else {
+        std::cerr << "[ERROR] <fillOSCOODDeviceInfo> INI file has no BaudRate_10 key" << std::endl;
+        pOD->setBaudrate10Supported(false);
+    }
+
+    if(0 == pINI->getValue("BaudRate_20", lTempVal, "DeviceInfo")) {
+        if((lTempVal == "true")
+            || (lTempVal == "True")
+            || (lTempVal == "1"))
+        {
+            pOD->setBaudrate20Supported(true);
+        } else if ((lTempVal == "false")
+            || (lTempVal == "False")
+            || (lTempVal == "0"))
+        {
+            pOD->setBaudrate20Supported(false);
+        } else {
+            std::cerr << "[ERROR] <fillOSCOODDeviceInfo> Invalid BaudRate_20 value" << std::endl;
+            return false;
+        }
+    } else {
+        std::cerr << "[ERROR] <fillOSCOODDeviceInfo> INI file has no BaudRate_20 key" << std::endl;
+        pOD->setBaudrate20Supported(false);
+    }
+
+    if(0 == pINI->getValue("BaudRate_50", lTempVal, "DeviceInfo")) {
+        if((lTempVal == "true")
+            || (lTempVal == "True")
+            || (lTempVal == "1"))
+        {
+            pOD->setBaudrate50Supported(true);
+        } else if ((lTempVal == "false")
+            || (lTempVal == "False")
+            || (lTempVal == "0"))
+        {
+            pOD->setBaudrate50Supported(false);
+        } else {
+            std::cerr << "[ERROR] <fillOSCOODDeviceInfo> Invalid BaudRate_50 value" << std::endl;
+            return false;
+        }
+    } else {
+        std::cerr << "[ERROR] <fillOSCOODDeviceInfo> INI file has no BaudRate_50 key" << std::endl;
+        pOD->setBaudrate50Supported(false);
+    }
+
+    if(0 == pINI->getValue("BaudRate_125", lTempVal, "DeviceInfo")) {
+        if((lTempVal == "true")
+            || (lTempVal == "True")
+            || (lTempVal == "1"))
+        {
+            pOD->setBaudrate125Supported(true);
+        } else if ((lTempVal == "false")
+            || (lTempVal == "False")
+            || (lTempVal == "0"))
+        {
+            pOD->setBaudrate125Supported(false);
+        } else {
+            std::cerr << "[ERROR] <fillOSCOODDeviceInfo> Invalid BaudRate_125 value" << std::endl;
+            return false;
+        }
+    } else {
+        std::cerr << "[ERROR] <fillOSCOODDeviceInfo> INI file has no BaudRate_125 key" << std::endl;
+        pOD->setBaudrate125Supported(false);
+    }
+
+    if(0 == pINI->getValue("BaudRate_250", lTempVal, "DeviceInfo")) {
+        if((lTempVal == "true")
+            || (lTempVal == "True")
+            || (lTempVal == "1"))
+        {
+            pOD->setBaudrate250Supported(true);
+        } else if ((lTempVal == "false")
+            || (lTempVal == "False")
+            || (lTempVal == "0"))
+        {
+            pOD->setBaudrate250Supported(false);
+        } else {
+            std::cerr << "[ERROR] <fillOSCOODDeviceInfo> Invalid BaudRate_250 value" << std::endl;
+            return false;
+        }
+    } else {
+        std::cerr << "[ERROR] <fillOSCOODDeviceInfo> INI file has no BaudRate_250 key" << std::endl;
+        pOD->setBaudrate250Supported(false);
+    }
+
+    if(0 == pINI->getValue("BaudRate_500", lTempVal, "DeviceInfo")) {
+        if((lTempVal == "true")
+            || (lTempVal == "True")
+            || (lTempVal == "1"))
+        {
+            pOD->setBaudrate500Supported(true);
+        } else if ((lTempVal == "false")
+            || (lTempVal == "False")
+            || (lTempVal == "0"))
+        {
+            pOD->setBaudrate500Supported(false);
+        } else {
+            std::cerr << "[ERROR] <fillOSCOODDeviceInfo> Invalid BaudRate_500 value" << std::endl;
+            return false;
+        }
+    } else {
+        std::cerr << "[ERROR] <fillOSCOODDeviceInfo> INI file has no BaudRate_500 key" << std::endl;
+        pOD->setBaudrate500Supported(false);
+    }
+
+    if(0 == pINI->getValue("BaudRate_800", lTempVal, "DeviceInfo")) {
+        if((lTempVal == "true")
+            || (lTempVal == "True")
+            || (lTempVal == "1"))
+        {
+            pOD->setBaudrate800Supported(true);
+        } else if ((lTempVal == "false")
+            || (lTempVal == "False")
+            || (lTempVal == "0"))
+        {
+            pOD->setBaudrate800Supported(false);
+        } else {
+            std::cerr << "[ERROR] <fillOSCOODDeviceInfo> Invalid BaudRate_800 value" << std::endl;
+            return false;
+        }
+    } else {
+        std::cerr << "[ERROR] <fillOSCOODDeviceInfo> INI file has no BaudRate_800 key" << std::endl;
+        pOD->setBaudrate800Supported(false);
+    }
+
+    if(0 == pINI->getValue("BaudRate_1000", lTempVal, "DeviceInfo")) {
+        if((lTempVal == "true")
+            || (lTempVal == "True")
+            || (lTempVal == "1"))
+        {
+            pOD->setBaudrate1000Supported(true);
+        } else if ((lTempVal == "false")
+            || (lTempVal == "False")
+            || (lTempVal == "0"))
+        {
+            pOD->setBaudrate1000Supported(false);
+        } else {
+            std::cerr << "[ERROR] <fillOSCOODDeviceInfo> Invalid BaudRate_1000 value" << std::endl;
+            return false;
+        }
+    } else {
+        std::cerr << "[ERROR] <fillOSCOODDeviceInfo> INI file has no BaudRate_1000 key" << std::endl;
+        pOD->setBaudrate1000Supported(false);
+    }
+
+    if(0 == pINI->getValue("SimpleBootUpMaster", lTempVal, "DeviceInfo")) {
+        if((lTempVal == "true")
+            || (lTempVal == "True")
+            || (lTempVal == "1"))
+        {
+            pOD->setSimpleBootUpMaster(true);
+        } else if ((lTempVal == "false")
+            || (lTempVal == "False")
+            || (lTempVal == "0"))
+        {
+            pOD->setSimpleBootUpMaster(false);
+        } else {
+            std::cerr << "[ERROR] <fillOSCOODDeviceInfo> Invalid SimpleBootUpMaster value" << std::endl;
+            return false;
+        }
+    } else {
+        std::cerr << "[ERROR] <fillOSCOODDeviceInfo> INI file has no SimpleBootUpMaster key" << std::endl;
+        pOD->setSimpleBootUpMaster(false);
+    }
+
+    if(0 == pINI->getValue("SimpleBootUpSlave", lTempVal, "DeviceInfo")) {
+        if((lTempVal == "true")
+            || (lTempVal == "True")
+            || (lTempVal == "1"))
+        {
+            pOD->setSimpleBootUpSlave(true);
+        } else if ((lTempVal == "false")
+            || (lTempVal == "False")
+            || (lTempVal == "0"))
+        {
+            pOD->setSimpleBootUpSlave(false);
+        } else {
+            std::cerr << "[ERROR] <fillOSCOODDeviceInfo> Invalid SimpleBootUpSlave value" << std::endl;
+            return false;
+        }
+    } else {
+        std::cerr << "[ERROR] <fillOSCOODDeviceInfo> INI file has no SimpleBootUpSlave key" << std::endl;
+        pOD->setSimpleBootUpSlave(false);
+    }
+
+    if(0 == pINI->getValue("Granularity", lTempVal, "DeviceInfo")) {
+        /* Convert string to uint */
+        unsigned long lGranularity = 0U;
+        try {
+            lGranularity = stoul(lTempVal);
+            if(0xFFU < lGranularity) {
+                std::cerr << "[ERROR] <fillOSCOODDeviceInfo> Granularity is out of bounds" << std::endl;
+                return false;
+            }
+        } catch (std::exception &e) {
+            std::cerr << "[ERROR] <fillOSCOODDeviceInfo> Granularity value invalid" << std::endl;
+            return false;
+        }
+
+        pOD->setGranularity((uint8_t)lGranularity);
+    } else {
+        /* Mandatory */
+        std::cerr << "[ERROR] <fillOSCOODDeviceInfo> Missing mandatory DeviceInfo key : Granularity" << std::endl;
+        return false;
+    }
+
+    if(0 == pINI->getValue("DynamicChannelsSupported", lTempVal, "DeviceInfo")) {
+        if((lTempVal == "true")
+            || (lTempVal == "True")
+            || (lTempVal == "1"))
+        {
+            pOD->setDynamicChannelsSupported(true);
+        } else if ((lTempVal == "false")
+            || (lTempVal == "False")
+            || (lTempVal == "0"))
+        {
+            pOD->setDynamicChannelsSupported(false);
+        } else {
+            std::cerr << "[ERROR] <fillOSCOODDeviceInfo> Invalid DynamicChannelsSupported value" << std::endl;
+            return false;
+        }
+    } else {
+        std::cerr << "[ERROR] <fillOSCOODDeviceInfo> INI file has no DynamicChannelsSupported key" << std::endl;
+        pOD->setDynamicChannelsSupported(false);
+    }
+
+    if(0 == pINI->getValue("GroupMessaging", lTempVal, "DeviceInfo")) {
+        if((lTempVal == "true")
+            || (lTempVal == "True")
+            || (lTempVal == "1"))
+        {
+            pOD->setGroupMessaging(true);
+        } else if ((lTempVal == "false")
+            || (lTempVal == "False")
+            || (lTempVal == "0"))
+        {
+            pOD->setGroupMessaging(false);
+        } else {
+            std::cerr << "[ERROR] <fillOSCOODDeviceInfo> Invalid GroupMessaging value" << std::endl;
+            return false;
+        }
+    } else {
+        std::cerr << "[ERROR] <fillOSCOODDeviceInfo> INI file has no GroupMessaging key" << std::endl;
+        pOD->setGroupMessaging(false);
+    }
+
+    if(0 == pINI->getValue("NrOfRXPDO", lTempVal, "DeviceInfo")) {
+        /* Convert string to uint */
+        unsigned long lNrOfRXPDO = 0U;
+        try {
+            lNrOfRXPDO = stoul(lTempVal);
+            if(0xFFFFU < lNrOfRXPDO) {
+                std::cerr << "[ERROR] <fillOSCOODDeviceInfo> NrOfRXPDO is out of bounds" << std::endl;
+                return false;
+            }
+        } catch (std::exception &e) {
+            std::cerr << "[ERROR] <fillOSCOODDeviceInfo> NrOfRXPDO value invalid" << std::endl;
+            return false;
+        }
+
+        pOD->setNrOfRPDOs((uint16_t)lNrOfRXPDO);
+    } else {
+        /* Mandatory */
+        std::cerr << "[ERROR] <fillOSCOODDeviceInfo> Missing mandatory DeviceInfo key : NrOfRXPDO" << std::endl;
+        return false;
+    }
+
+    if(0 == pINI->getValue("NrOfTXPDO", lTempVal, "DeviceInfo")) {
+        /* Convert string to uint */
+        unsigned long lNrOfTXPDO = 0U;
+        try {
+            lNrOfTXPDO = stoul(lTempVal);
+            if(0xFFFFU < lNrOfTXPDO) {
+                std::cerr << "[ERROR] <fillOSCOODDeviceInfo> NrOfTXPDO is out of bounds" << std::endl;
+                return false;
+            }
+        } catch (std::exception &e) {
+            std::cerr << "[ERROR] <fillOSCOODDeviceInfo> NrOfTXPDO value invalid" << std::endl;
+            return false;
+        }
+
+        pOD->setNrOfTPDOs((uint16_t)lNrOfTXPDO);
+    } else {
+        /* Mandatory */
+        std::cerr << "[ERROR] <fillOSCOODDeviceInfo> Missing mandatory DeviceInfo key : NrOfTXPDO" << std::endl;
+        return false;
+    }
+
+    if(0 == pINI->getValue("LSS_Supported", lTempVal, "DeviceInfo")) {
+        if((lTempVal == "true")
+            || (lTempVal == "True")
+            || (lTempVal == "1"))
+        {
+            pOD->setLSSSupported(true);
+        } else if ((lTempVal == "false")
+            || (lTempVal == "False")
+            || (lTempVal == "0"))
+        {
+            pOD->setLSSSupported(false);
+        } else {
+            std::cerr << "[ERROR] <fillOSCOODDeviceInfo> Invalid LSS_Supported value" << std::endl;
+            return false;
+        }
+    } else {
+        std::cerr << "[ERROR] <fillOSCOODDeviceInfo> INI file has no LSS_Supported key" << std::endl;
+        pOD->setLSSSupported(false);
+    }
+
+    return true;
+}
+
+static bool fillOSCOODDummyUsage(const INI * const pINI, OSCOOD * const pOD) {
+    /* Check arguments */
+    if(nullptr == pINI) {
+        std::cerr << "[ERROR] <fillOSCOODDummyUsage> INI file arg is nullptr" << std::endl;
+        return false;
+    }
+
+    if(nullptr == pOD) {
+        std::cerr << "[ERROR] <fillOSCOODDummyUsage> OSCO OD arg is nullptr" << std::endl;
+        return false;
+    }
+
+    pOD->setDummy0001Supported(false);
+    pOD->setDummy0002Supported(false);
+    pOD->setDummy0003Supported(false);
+    pOD->setDummy0004Supported(false);
+    pOD->setDummy0005Supported(false);
+    pOD->setDummy0006Supported(false);
+    pOD->setDummy0007Supported(false);
+
+    /* check that the INI file has a FileInfo section */
+    if(!pINI->sectionExists("FileInfo")) {
+        std::cerr << "[ERROR] <fillOSCOODDummyUsage> INI file has no DummyUsage section" << std::endl;
+        return true;
+    }
+
+    static const std::string lDummyKeyBase = "Dummy000";
+    std::string lTempVal      = "";
+    for(uint8_t i = 1U; i < 8U; i++) {
+        std::string lDummyKey = lDummyKeyBase + (char)(i + 48U); /* ASCII Offset */
+        if(0 == pINI->getValue(lDummyKey, lTempVal, "DummyUsage")) {
+            if((lTempVal == "true")
+                || (lTempVal == "True")
+                || (lTempVal == "1"))
+            {
+                pOD->setDummySupported(i, true);
+            } else if ((lTempVal == "false")
+                || (lTempVal == "False")
+                || (lTempVal == "0"))
+            {
+                pOD->setDummySupported(i, false);
+            } else {
+                std::cerr << "[ERROR] <fillOSCOODDummyUsage> Invalid " << lDummyKey << " value" << std::endl;
+                return false;
+            }
+        } else {
+            std::cerr << "[ERROR] <fillOSCOODDummyUsage> INI file has no " << lDummyKey << " key" << std::endl;
+            pOD->setDummySupported(i, false);
+        }
+    }
+
+    return true;
+}
+
+static bool fillOSCOODComments(const INI * const pINI, OSCOOD * const pOD) {
+    /* Check arguments */
+    if(nullptr == pINI) {
+        std::cerr << "[ERROR] <fillOSCOODComments> INI file arg is nullptr" << std::endl;
+        return false;
+    }
+    
+    if(nullptr == pOD) {
+        std::cerr << "[ERROR] <fillOSCOODComments> OSCO OD arg is nullptr" << std::endl;
+        return false;
+    }
+
+    /* check that the INI file has a Comments section */
+    if(!pINI->sectionExists("Comments")) {
+        std::cerr << "[ERROR] <fillOSCOODComments> INI file has no Comments section" << std::endl;
+        return false;
+    }
+    
+    /* Get line count */
+    static const std::string lLineKeyBase = "Line";
+    std::string lLineCountStr  = "";
+    if(!pINI->getValue("Lines", lLineCountStr, "Comments")) {
+        /* "Lines" key not found, assuming zero */
+        pOD->setComments("");
+    } else {
+        std::string lTempVal = "", lLine = 0U;
+        uint32_t lLineCount = 0U;
+        std::stringstream lCommentSS;
+        std::istringstream(lLineCountStr) >> lLineCount;
+        for(uint32_t i = 1U; i <= lLineCount; i++) {
+            std::ostringstream lOSS;
+            lOSS << i;
+            lLine = lOSS.str();
+            if(!pINI->getValue("lLineKeyBase" + lLine, lTempVal, "Comments")) {
+                std::cerr << "[ERROR] <fillOSCOODComments> Inconsistent data/linecount in Comments section" << std::endl;
+            } else {
+                lCommentSS << lTempVal << std::endl;
+            }
+        }
+
+        /* Set the comments */
+        pOD->setComments(lCommentSS.str());
+    }
+
+    return true;
+}
+
+
 /* OSCOODFactory class implementation ------------------ */
 /* Builders */
 OSCOOD *OSCOODFactory::buildOSCOOD(const std::string &pFile) {
@@ -276,8 +953,34 @@ OSCOOD *OSCOODFactory::OSCOODFromEDS(const std::string &pFile) {
     /* Create an OSCO Object Dictionary */
     OSCOOD *lOD = new OSCOOD;
 
+    /* Fill in the FileInfo */
+    if(!fillOSCOODFileInfo(&lEDS, lOD)) {
+        std::cerr << "[ERROR] <OSCOODFactory::OSCOODFromEDS> Failed to fill in FileInfo data" << std::endl;
+        delete lOD;
+        return nullptr;
+    }
+
+    /* Fill in the DeviceInfo */
+    if(!fillOSCOODDeviceInfo(&lEDS, lOD)) {
+        std::cerr << "[ERROR] <OSCOODFactory::OSCOODFromEDS> Failed to fill in DeviceInfo data" << std::endl;
+        delete lOD;
+        return nullptr;
+    }
+
+    /* Fill in the DummyUsage */
+    if(!fillOSCOODDummyUsage(&lEDS, lOD)) {
+        std::cerr << "[WARN ] <OSCOODFactory::OSCOODFromEDS> Failed to fill in DummyUsage data" << std::endl;
+        std::cerr << "                                       Assuming NONE" << std::endl;
+    }
+
+    /* Fill in the Comments */
+    if(!fillOSCOODComments(&lEDS, lOD)) {
+        std::cerr << "[WARN ] <OSCOODFactory::OSCOODFromEDS> Failed to fill in Comments data" << std::endl;
+        std::cerr << "                                       Assuming NONE" << std::endl;
+    }
+
     /* Set indexes */
-    const std::map<std::string, std::map<std::string, std::map<std::string, std::string>>> * lEntries;
+    const std::map<std::string, std::map<std::string, std::map<std::string, std::string>>> *lEntries = nullptr;
     lEntries = lEDS.odEntries();
     for(const auto &lEntry : *lEntries) {
         /* Temporary variables */
@@ -365,15 +1068,21 @@ OSCOOD *OSCOODFactory::OSCOODFromEDS(const std::string &pFile) {
 OSCOOD *OSCOODFactory::OSCOODFromDCF(const std::string &pFile) {
     /* TODO : Implement the DCF factory */
     (void)pFile;
+
+    return nullptr;
 }
 
 /* OSCONode builders */
 OSCONode *OSCOODFactory::OSCONodeFromEDS(const std::string &pFile) {
-    //
+    /* TODO : Implement the EDS to OSCONode factory */
     (void)pFile;
+
+    return nullptr;
 }
 
 OSCONode *OSCOODFactory::OSCONodeFromDCF(const std::string &pFile) {
     /* TODO : Implement the DCF factory */
     (void)pFile;
+
+    return nullptr;
 }

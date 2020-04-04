@@ -6,7 +6,7 @@
 
 [FileInfo]
 FileName=IO Example
-FileVersion=-
+FileVersion=0
 FileRevision=0
 EDSVersion=4.0
 Description=Open Source CANopen implementation
