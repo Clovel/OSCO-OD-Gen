@@ -64,6 +64,21 @@ option(ENABLE_EXAMPLES "Enable Examples" 1)
 find_package(Doxygen)
 option(ENABLE_DOCS "Build API documentation" ${DOXYGEN_FOUND})
 
+find_package(OpenSSL REQUIRED)
+if(OPENSSL_FOUND)
+    if(APPLE)
+        include_directories(/usr/local/Cellar/openssl@1.1/include)
+        list(APPEND LIB_LIST /usr/local/Cellar/openssl@1.1/lib/libssl.dylib)
+        list(APPEND LIB_LIST /usr/local/Cellar/openssl@1.1/lib/libcrypto.dylib)
+        message(STATUS "OpenSSL Version: ${OPENSSL_VERSION} ${OPENSSL_INCLUDE_DIR} ${OPENSSL_LIBRARIES}")
+    else(APPLE)
+        include_directories(${OPENSSL_INCLUDE_DIR})
+        list(APPEND LIB_LIST ${OPENSSL_LIBRARIES})
+        message(STATUS "OpenSSL Version: ${OPENSSL_VERSION} ${OPENSSL_INCLUDE_DIR} ${OPENSSL_LIBRARIES}")
+    endif(APPLE)
+endif(OPENSSL_FOUND)
+find_package(cpprestsdk REQUIRED)
+
 #------------------------------------------------------------------------------
 # pkg-config dependencies
 #------------------------------------------------------------------------------
