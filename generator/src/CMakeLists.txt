@@ -12,7 +12,7 @@ file(GLOB PUBLIC_HEADERS
     ${CMAKE_CURRENT_SOURCE_DIR}/../inc/*.hpp
 )
 
-file(GLOB_RECURSE MODULE_HEADERS
+file(GLOB MODULE_HEADERS
     ${CMAKE_CURRENT_SOURCE_DIR}/*.h
     ${CMAKE_CURRENT_SOURCE_DIR}/*.hpp
 )
@@ -28,26 +28,13 @@ file(GLOB SOURCES
     ${CMAKE_CURRENT_SOURCE_DIR}/*.cpp
 )
 
+list(REMOVE_ITEM SOURCES ${CMAKE_CURRENT_SOURCE_DIR}/main.cpp)
+
 message("MAIN SOURCES : ${SOURCES}")
 
 # Link directories ----------------------------------------
 
 # Target definition ---------------------------------------
-add_executable(${CMAKE_PROJECT_NAME}-util
-    ${SOURCES}
-)
-add_dependencies(${CMAKE_PROJECT_NAME}-util
-    initools
-)
-target_link_libraries(${CMAKE_PROJECT_NAME}-util
-    initools
-)
-set_target_properties(${CMAKE_PROJECT_NAME}-util PROPERTIES 
-    PUBLIC_HEADER "${PUBLIC_HEADERS}"
-)
-
-list(REMOVE_ITEM SOURCES ${CMAKE_CURRENT_SOURCE_DIR}/main.cpp)
-
 add_library(${CMAKE_PROJECT_NAME} SHARED
     ${SOURCES}
 )
@@ -58,6 +45,19 @@ target_link_libraries(${CMAKE_PROJECT_NAME}
     initools
 )
 set_target_properties(${CMAKE_PROJECT_NAME} PROPERTIES
+    PUBLIC_HEADER "${PUBLIC_HEADERS}"
+)
+
+add_executable(${CMAKE_PROJECT_NAME}-util
+    ${CMAKE_CURRENT_SOURCE_DIR}/main.cpp
+)
+add_dependencies(${CMAKE_PROJECT_NAME}-util
+    ${CMAKE_PROJECT_NAME}
+)
+target_link_libraries(${CMAKE_PROJECT_NAME}-util
+    ${CMAKE_PROJECT_NAME}
+)
+set_target_properties(${CMAKE_PROJECT_NAME}-util PROPERTIES 
     PUBLIC_HEADER "${PUBLIC_HEADERS}"
 )
 
