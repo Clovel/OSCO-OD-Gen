@@ -20,15 +20,16 @@
 class RESTServer {
     public:
         /* Contructors */
-        RESTServer();
-        RESTServer(utility::string_t pURL);
+        RESTServer(const std::string &pAddr, const std::string pPort, const std::string &pPath);
 
-        pplx::task<void> open(void) {
-            return mListener.open();
+        void openWait(void) {
+            (void)mListener.open().wait();
         }
-        pplx::task<void> close(void) {
-            return mListener.close();
+
+        void closeWait(void) {
+            (void)mListener.close().wait();
         }
+
     protected:
         static void handleGet(web::http::http_request pMsg);
         static void handlePut(web::http::http_request pMsg);

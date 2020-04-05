@@ -27,6 +27,10 @@ file(GLOB SOURCES
     ${CMAKE_CURRENT_SOURCE_DIR}/*.cpp
 )
 
+list(REMOVE_ITEM SOURCES ${CMAKE_CURRENT_SOURCE_DIR}/main.cpp)
+
+message("cpprest-api SOURCES : ${SOURCES}")
+
 # Link directories ----------------------------------------
 
 # Target definition ---------------------------------------
@@ -43,16 +47,13 @@ set_target_properties(cpprest-api PROPERTIES
 )
 
 add_executable(cpprest-api-test
-    main.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/main.cpp
 )
 add_dependencies(cpprest-api-test
     cpprest-api
 )
 target_link_libraries(cpprest-api-test PUBLIC
     cpprest-api
-    PRIVATE 
-    ${Boost_SYSTEM_LIBRARY}
-    cpprestsdk::cpprest
 )
 
 #----------------------------------------------------------------------------

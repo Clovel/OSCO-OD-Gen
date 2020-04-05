@@ -40,25 +40,19 @@ int main(const int argc, const char * const * const argv) {
         return EXIT_FAILURE;
     }
 
-    utility::string_t lPort = U(argv[1U]);
-    utility::string_t lAddr = U(ADDRESS);
-    lAddr.append(U(":"));
-    lAddr.append(lPort);
+    std::string lAddr = ADDRESS;
+    std::string lPort = std::string(argv[1U]);
+    std::string lPath = "OSCO-OD-Gen/Action";
 
-    web::uri_builder lURI(lAddr);
-    lURI.append_path(U("OSCO-OD-Gen/Action"));
+    gRESTServer = std::unique_ptr<RESTServer>(new RESTServer(lAddr, lPort, lPath));
+    gRESTServer->openWait();
 
-    lAddr = lURI.to_uri().to_string();
-
-    gRESTServer = std::unique_ptr<RESTServer>(new RESTServer(lAddr));
-    gRESTServer->open().wait();
-
-    std::cout << "[INFO] Listening for request at: " << lAddr << std::endl;
+    std::cout << "[INFO] Listening for request at: " << lAddr << ":" << lPort << "/" << lPath << std::endl;
 
     std::string lLine;
     std::getline(std::cin, lLine);
 
-    gRESTServer->close().wait();
+    gRESTServer->closeWait();
 
     return EXIT_SUCCESS;
 }

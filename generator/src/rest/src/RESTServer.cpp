@@ -18,12 +18,20 @@
 
 /* RESTServer class implementation --------------------- */
 /* Contructors */
-RESTServer::RESTServer() {
-    /* Empty */
-}
+RESTServer::RESTServer(const std::string &pAddr, const std::string pPort, const std::string &pPath) {
+    utility::string_t lAddr = U(pAddr);
+    utility::string_t lPort = U(pPort);
+    utility::string_t lPath = U(pPath);
 
-RESTServer::RESTServer(utility::string_t pURL) : mListener(pURL)
-{
+    lAddr.append(U(":"));
+    lAddr.append(lPort);
+
+    web::uri_builder lURI(lAddr);
+    lURI.append_path(lPath);
+
+    utility::string_t lListenerAddr = lURI.to_uri().to_string();
+
+    mListener = web::http::experimental::listener::http_listener(lListenerAddr);
     std::function<void(web::http::http_request)> lGetFct = &RESTServer::handleGet;
     mListener.support(web::http::methods::GET, lGetFct);
 
