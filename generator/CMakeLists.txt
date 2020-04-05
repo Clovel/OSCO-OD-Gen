@@ -77,7 +77,10 @@ if(OPENSSL_FOUND)
         message(STATUS "OpenSSL Version: ${OPENSSL_VERSION} ${OPENSSL_INCLUDE_DIR} ${OPENSSL_LIBRARIES}")
     endif(APPLE)
 endif(OPENSSL_FOUND)
-find_package(cpprestsdk REQUIRED)
+if(UNIX AND NOT APPLE)
+    set(cpprestsdk_DIR /usr/lib/${CMAKE_LIBRARY_ARCHITECTURE}/cmake/)
+endif(UNIX AND NOT APPLE)
+find_package(cpprestsdk REQUIRED NAMES cpprestsdk cpprest)
 
 #------------------------------------------------------------------------------
 # pkg-config dependencies

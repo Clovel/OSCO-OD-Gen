@@ -35,7 +35,7 @@ list(REMOVE_ITEM SOURCES ${CMAKE_CURRENT_SOURCE_DIR}/main.cpp)
 add_library(cpprest-api SHARED
     ${SOURCES}
 )
-target_link_libraries(cpprest-api
+target_link_libraries(cpprest-api PRIVATE
     cpprestsdk::cpprest
 )
 set_target_properties(cpprest-api PROPERTIES
@@ -48,9 +48,11 @@ add_executable(cpprest-api-test
 add_dependencies(cpprest-api-test
     cpprest-api
 )
-target_link_libraries(cpprest-api-test
-    cpprestsdk::cpprest
+target_link_libraries(cpprest-api-test PUBLIC
     cpprest-api
+)
+target_link_libraries(cpprest-api-test PRIVATE
+    cpprestsdk::cpprest
 )
 
 #----------------------------------------------------------------------------
