@@ -50,8 +50,8 @@ add_dependencies(cpprest-api-test
 )
 target_link_libraries(cpprest-api-test PUBLIC
     cpprest-api
-)
-target_link_libraries(cpprest-api-test PRIVATE
+    PRIVATE 
+    ${Boost_SYSTEM_LIBRARY}
     cpprestsdk::cpprest
 )
 

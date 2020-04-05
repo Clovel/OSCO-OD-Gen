@@ -64,6 +64,7 @@ option(ENABLE_EXAMPLES "Enable Examples" 1)
 find_package(Doxygen)
 option(ENABLE_DOCS "Build API documentation" ${DOXYGEN_FOUND})
 
+# cpprest dependency
 find_package(OpenSSL REQUIRED)
 if(OPENSSL_FOUND)
     if(APPLE)
@@ -79,6 +80,7 @@ if(OPENSSL_FOUND)
 endif(OPENSSL_FOUND)
 if(UNIX AND NOT APPLE)
     set(cpprestsdk_DIR /usr/lib/${CMAKE_LIBRARY_ARCHITECTURE}/cmake/)
+    find_package(Boost COMPONENTS system REQUIRED)
 endif(UNIX AND NOT APPLE)
 find_package(cpprestsdk REQUIRED NAMES cpprestsdk cpprest)
 
