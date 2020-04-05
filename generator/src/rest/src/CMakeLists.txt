@@ -3,9 +3,6 @@
 # 
 # -----------------------------------------------------------------------------
 
-# Subdirectories ------------------------------------------
-add_subdirectory(rest)
-
 # Header files --------------------------------------------
 file(GLOB PUBLIC_HEADERS
     ${CMAKE_CURRENT_SOURCE_DIR}/../inc/*.h
@@ -22,54 +19,49 @@ set(HEADERS
     ${MODULE_HEADERS}
 )
 
+include_directories(${CMAKE_CURRENT_SOURCE_DIR}/../inc/)
+
 # Source files --------------------------------------------
 file(GLOB SOURCES
     ${CMAKE_CURRENT_SOURCE_DIR}/*.c
     ${CMAKE_CURRENT_SOURCE_DIR}/*.cpp
 )
 
-message("MAIN SOURCES : ${SOURCES}")
-
 # Link directories ----------------------------------------
 
 # Target definition ---------------------------------------
-add_executable(${CMAKE_PROJECT_NAME}-util
-    ${SOURCES}
-)
-add_dependencies(${CMAKE_PROJECT_NAME}-util
-    initools
-)
-target_link_libraries(${CMAKE_PROJECT_NAME}-util
-    initools
-)
-set_target_properties(${CMAKE_PROJECT_NAME}-util PROPERTIES 
-    PUBLIC_HEADER "${PUBLIC_HEADERS}"
-)
-
 list(REMOVE_ITEM SOURCES ${CMAKE_CURRENT_SOURCE_DIR}/main.cpp)
 
-add_library(${CMAKE_PROJECT_NAME} SHARED
+add_library(cpprest-api SHARED
     ${SOURCES}
 )
-add_dependencies(${CMAKE_PROJECT_NAME}
-    initools
+target_link_libraries(cpprest-api
+    cpprestsdk::cpprest
 )
-target_link_libraries(${CMAKE_PROJECT_NAME}
-    initools
-)
-set_target_properties(${CMAKE_PROJECT_NAME} PROPERTIES
+set_target_properties(cpprest-api PROPERTIES
     PUBLIC_HEADER "${PUBLIC_HEADERS}"
+)
+
+add_executable(cpprest-api-test
+    main.cpp
+)
+add_dependencies(cpprest-api-test
+    cpprest-api
+)
+target_link_libraries(cpprest-api-test
+    cpprestsdk::cpprest
+    cpprest-api
 )
 
 #----------------------------------------------------------------------------
 # The installation is prepended by the CMAKE_INSTALL_PREFIX variable
-install(TARGETS ${CMAKE_PROJECT_NAME}-util
+install(TARGETS cpprest-api
 RUNTIME DESTINATION bin
 LIBRARY DESTINATION lib
 ARCHIVE DESTINATION lib
 PUBLIC_HEADER DESTINATION include
 )
-install(TARGETS ${CMAKE_PROJECT_NAME}
+install(TARGETS cpprest-api-test
     RUNTIME DESTINATION bin
     LIBRARY DESTINATION lib
     ARCHIVE DESTINATION lib
