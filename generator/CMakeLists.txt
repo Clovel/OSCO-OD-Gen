@@ -65,6 +65,8 @@ option(ENABLE_EXAMPLES "Enable Examples" 1)
 find_package(Doxygen)
 option(ENABLE_DOCS "Build API documentation" ${DOXYGEN_FOUND})
 
+find_package(Threads REQUIRED)
+
 #------------------------------------------------------------------------------
 # pkg-config dependencies
 #------------------------------------------------------------------------------

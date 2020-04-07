@@ -20,16 +20,11 @@ set(HEADERS
 )
 
 include_directories(${CMAKE_CURRENT_SOURCE_DIR}/../inc/)
-include_directories(${CMAKE_CURRENT_SOURCE_DIR}/../../../deps/http-parser/)
 
 # Source files --------------------------------------------
 file(GLOB SOURCES
     ${CMAKE_CURRENT_SOURCE_DIR}/*.c
     ${CMAKE_CURRENT_SOURCE_DIR}/*.cpp
-)
-
-set(HTTP_PARSER_SOURCES
-    ${CMAKE_CURRENT_SOURCE_DIR}/../../../deps/http-parser/http_parser.c
 )
 
 list(REMOVE_ITEM SOURCES ${CMAKE_CURRENT_SOURCE_DIR}/main.cpp)
@@ -39,12 +34,13 @@ message("cpprest-api SOURCES : ${SOURCES}")
 # Link directories ----------------------------------------
 
 # Target definition ---------------------------------------
+list(REMOVE_ITEM SOURCES ${CMAKE_CURRENT_SOURCE_DIR}/main.cpp)
+
 add_library(cpprest-api SHARED
     ${SOURCES}
-    ${HTTP_PARSER_SOURCES}
 )
 target_link_libraries(cpprest-api PRIVATE
-    ${CMAKE_THREAD_LIBS_INIT}
+    cpprestsdk::cpprest
 )
 set_target_properties(cpprest-api PROPERTIES
     PUBLIC_HEADER "${PUBLIC_HEADERS}"

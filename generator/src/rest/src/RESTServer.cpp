@@ -7,112 +7,243 @@
 /* Includes -------------------------------------------- */
 #include "RESTServer.hpp"
 
+#include "http_parser.h"
+#include "http_parser_callbacks.h"
+
 /* C++ system */
 #include <iostream>
 
+/* C errno */
+#include <cstring>
+#include <cstdlib>
+#include <errno.h>
+
+/* C Network */
+#include <sys/socket.h> /* socket */
+#include <netinet/in.h> /* sockaddr_in */
+#include <unistd.h>     /* close */
+
 /* Defines --------------------------------------------- */
+#define SERVER_BUFFER_SIZE 4096U
 
 /* Type definitions ------------------------------------ */
 
 /* Forward declarations -------------------------------- */
 
+/* Helper functions ------------------------------------ */
+
 /* RESTServer class implementation --------------------- */
 /* Contructors */
-RESTServer::RESTServer(const std::string &pAddr, const std::string pPort, const std::string &pPath) {
-    utility::string_t lAddr = U(pAddr);
-    utility::string_t lPort = U(pPort);
-    utility::string_t lPath = U(pPath);
+RESTServer::RESTServer(const std::string &pAddr, const std::string pPort, const std::string &pPath) :
+    mAddr(pAddr),
+    mPort(pPort),
+    mPath(pPath),
+    mHttpParser(nullptr),
+    mHttpParserSettings(nullptr)
+{
+    /* Initialize HTTP Parser */
+    mHttpParser = (http_parser *)malloc(sizeof(http_parser));
+    http_parser_init(mHttpParser, HTTP_REQUEST);
 
-    lAddr.append(U(":"));
-    lAddr.append(lPort);
+    /* Initialize HTTP Parser settings */
+    mHttpParserSettings = (http_parser_settings *)malloc(sizeof(http_parser_settings));
+    if(0 != httpParserCallbackInit(mHttpParserSettings)) {
+        std::cerr << "[ERROR] <RESTServer::RESTServer> httpParserCallbackInit failed" << std::endl;
 
-    web::uri_builder lURI(lAddr);
-    lURI.append_path(lPath);
+        free(mHttpParser);
+        free(mHttpParserSettings);
 
-    utility::string_t lListenerAddr = lURI.to_uri().to_string();
-
-    mListener = web::http::experimental::listener::http_listener(lListenerAddr);
-    std::function<void(web::http::http_request)> lGetFct = &RESTServer::handleGet;
-    mListener.support(web::http::methods::GET, lGetFct);
-
-    std::function<void(web::http::http_request)> lPutFct = &RESTServer::handlePut;
-    mListener.support(web::http::methods::PUT, lPutFct);
-
-    std::function<void(web::http::http_request)> lPostFct = &RESTServer::handlePost;
-    mListener.support(web::http::methods::POST, lPostFct);
-
-    std::function<void(web::http::http_request)> lDelFct = &RESTServer::handleDelete;
-    mListener.support(web::http::methods::DEL, lDelFct);
+        throw RESTServerException();
+    }
 }
 
-void RESTServer::handleGet(web::http::http_request pMsg) {
-    std::cout << "[INFO ] <RESTServer::handleGet> Msg : " << std::endl << pMsg.to_string() << std::endl;
-    std::cout << "[INFO ] <RESTServer::handleGet> Relative URI : " << std::endl << pMsg.relative_uri().to_string() << std::endl;
-    std::cout << "[INFO ] <RESTServer::handleGet> Decoded relative URI : " << std::endl << web::uri::decode(pMsg.relative_uri().path()) << std::endl;
+/* Destructor */
+RESTServer::~RESTServer() {
+    if(nullptr != mHttpParser) {
+        free(mHttpParser);
+        mHttpParser = nullptr;
+    }
 
-    std::cout << "[DEBUG] <RESTServer::handleGet> pMsg.relative_uri().path() = " << pMsg.relative_uri().path() << std::endl;
-    std::cout << "[DEBUG] <RESTServer::handleGet> Decoded pMsg.relative_uri().path() = " << web::uri::decode(pMsg.relative_uri().path()) << std::endl;
-    auto lPaths = web::uri::split_path(web::uri::decode(pMsg.relative_uri().path()));
-    if(lPaths.empty()) {
-        std::cout << "[DEBUG] <RESTServer::handleGet> lPaths is empty" << std::endl;
-        // pMsg.reply(web::http::status_codes::OK);
-        // return;
-    } else {
-        for(auto lIt1 = lPaths.begin(); lIt1 != lPaths.end(); lIt1++) {
-            std::cout << U("Path") << U(" ") << *lIt1 << std::endl;
+    if(nullptr != mHttpParserSettings) {
+        free(mHttpParserSettings);
+        mHttpParserSettings = nullptr;
+    }
+}
+
+/* Getters */
+std::string RESTServer::address(void) const {
+    return mAddr;
+}
+
+std::string RESTServer::port(void) const {
+    return mPort;
+}
+
+std::string RESTServer::apiPath(void) const {
+    return mPath;
+}
+
+/* Server management */
+bool RESTServer::open(void) {
+    /* Create a socket */
+    errno = 0;
+    int lSocket = socket(AF_INET, SOCK_STREAM, IPPROTO_IP);
+    if(0 > mServerSocket) {
+        std::cerr << "[ERROR] <RESTServer::open> Failed to create socket" << std::endl;
+        if(0 != errno) {
+            std::cerr << "        errno = " << errno << " (" << strerror(errno) << ")" << std::endl;
+        }
+
+        return false;
+    }
+
+    /* Set the socket member variable */
+    mServerSocket = lSocket;
+
+    /* Initialisation de la structure sockaddr_in */
+    struct sockaddr_in lServerAddrIn;
+    std::memset(&lServerAddrIn, 0, sizeof(struct sockaddr_in));
+    /* Socket type */
+    lServerAddrIn.sin_family = AF_INET;
+    /* Accpeted client IP addresses */
+    lServerAddrIn.sin_addr.s_addr = INADDR_ANY;
+    /* Port */
+    lServerAddrIn.sin_port = htons(std::atoi(mPort.c_str()));
+
+    /* Set socket options */
+    errno = 0;
+    const int lEnableOption = 1;
+    if(0 > setsockopt(mServerSocket, SOL_SOCKET, SO_REUSEADDR, (const void *)&lEnableOption, sizeof(lEnableOption))) {
+        std::cerr << "[ERROR] <RESTServer::open> setsockopt SO_REUSEADDR failed" << std::endl;
+        if(0 != errno) {
+            std::cerr << "        errno = " << errno << " (" << strerror(errno) << ")" << std::endl;
+        }
+
+        return false;
+    }
+    if(0 > setsockopt(mServerSocket, SOL_SOCKET, SO_REUSEPORT, (const void *)&lEnableOption, sizeof(lEnableOption))) {
+        std::cerr << "[ERROR] <RESTServer::open> setsockopt SO_REUSEPORT failed" << std::endl;
+        if(0 != errno) {
+            std::cerr << "        errno = " << errno << " (" << strerror(errno) << ")" << std::endl;
+        }
+
+        return false;
+    }
+
+    /* Bind socket */
+    errno = 0;
+    if(0 > bind(mServerSocket, (const struct sockaddr *)&lServerAddrIn , sizeof(lServerAddrIn))) {
+        std::cerr << "[ERROR] <RESTServer::open> Failed to bind socket" << std::endl;
+        if(0 != errno) {
+            std::cerr << "        errno = " << errno << " (" << strerror(errno) << ")" << std::endl;
+        }
+
+        return false;
+    }
+
+    return true;
+}
+
+bool RESTServer::listen(void) {
+    /* Listen for connections */
+    errno = 0;
+    if(0 > ::listen(mServerSocket, 32)) {
+        std::cerr << "[ERROR] <RESTServer::listen> Failed to listen for new connections" << std::endl;
+        if(0 != errno) {
+            std::cerr << "        errno = " << errno << " (" << strerror(errno) << ")" << std::endl;
+        }
+
+        return false;
+    }
+
+    /* Set up before listening in */
+    int lClientSock = 0;
+    struct sockaddr_in lClientAddrIn;
+    std::memset(&lClientAddrIn, 0, sizeof(struct sockaddr_in));
+    socklen_t lsInSize = sizeof(lClientAddrIn);
+    char lClientMsg[SERVER_BUFFER_SIZE];
+
+    /* Start listening loop */
+    while((lClientSock = accept(mServerSocket, (struct sockaddr *)&lClientAddrIn, &lsInSize))) {
+        /* Check if the client is valid */
+        if(0 <= lClientSock) {
+            /* Read the contents of the message */
+            size_t lReadBytes = 0;
+            while(0 < (lReadBytes = recv(lClientSock, lClientMsg, SERVER_BUFFER_SIZE, 0))) {
+                /* Process the message */
+                std::cout << "[DEBUG] <RESTServer::listen> Got message : " << std::endl
+                          << lClientMsg << std::endl;
+                
+                processClientMessage(lClientMsg, lReadBytes);
+            }
+
+            /* Close the client's socket */
+            errno = 0;
+            if(0 > ::close(lClientSock)) {
+                std::cerr << "[ERROR] <RESTServer::listen> Failed to close client socket" << std::endl;
+                if(0 != errno) {
+                    std::cerr << "        errno = " << errno << " (" << strerror(errno) << ")" << std::endl;
+                }
+
+                return false;
+            }
+        } else {
+            std::cerr << "[ERROR] <RESTServer::listen> Failed to accept client connection" << std::endl;
+            if(0 != errno) {
+                std::cerr << "        errno = " << errno << " (" << strerror(errno) << ")" << std::endl;
+            }
+
+            return false;
         }
     }
 
-    std::cout << "[DEBUG] <RESTServer::handleGet> pMsg.relative_uri().query() = " << pMsg.relative_uri().query() << std::endl;
-    std::cout << "[DEBUG] <RESTServer::handleGet> Decoded pMsg.relative_uri().query() = " << web::uri::decode(pMsg.relative_uri().query()) << std::endl;
-#if 0
-    auto lQuery = web::uri::split_query(web::uri::decode(pMsg.relative_uri().query()));
-    if(lQuery.empty()) {
-        std::cout << "[DEBUG] <RESTServer::handleGet> lQuery is empty" << std::endl;
-        pMsg.reply(web::http::status_codes::OK);
-        return;
-    } else {
-        for(auto lIt2 = lQuery.begin(); lIt2 != lQuery.end(); lIt2++) {
-            std::cout << U("Query") << U(" ") << lIt2->second << std::endl;
+    return true;
+}
+
+bool RESTServer::close(void) {
+    errno = 0;
+    if(0 > ::close(mServerSocket)) {
+        std::cerr << "[ERROR] <RESTServer::close> Failed to close socket" << std::endl;
+        if(0 != errno) {
+            std::cerr << "        errno = " << errno << " (" << strerror(errno) << ")" << std::endl;
         }
+
+        return false;
     }
 
-    auto lQueryLtr = lQuery.find(U("request"));
-    std::cout << U("lQueryLtr") << U(" ") << lQueryLtr->first << std::endl;
-    utility::string_t lRequest = lQueryLtr->second;
-    std::cout << U("Request") << U(" ") << lRequest << std::endl;
-#else
-    utility::string_t lRequest = web::uri::decode(pMsg.relative_uri().query());
-#endif
+    return true;
+}
 
-    if(U("get_developers") == lRequest) {
-        /* Build JSON */
-        web::json::value lResult = web::json::value::object();
-        lResult[U("name")] = web::json::value::string(U("Clovis Durand"));
-        lResult[U("age")] = web::json::value::string(U("24"));
-
-        /* Serialize JSON */
-        utility::string_t lResponse = lResult.serialize();
-        std::cout << "[DEBUG] <RESTServer::handleGet> Response is : " << std::endl << lResponse << std::endl;
-
-        pMsg.reply(web::http::status_codes::OK, lResult);
-        return;
+bool RESTServer::processClientMessage(const char * const pMsg, const size_t &pReadBytes) const {
+    /* Set a httpMessage_t var for the HTTP Parser */
+    httpMessage_t lHTTPMsg;
+    std::memset(&lHTTPMsg, 0, sizeof(httpMessage_t));
+    if(0 != httpParserCallbackMessageSetter(&lHTTPMsg)) {
+        std::cerr << "[ERROR] <RESTServer::processClientMessage> httpParserCallbackMessageSetter failed" << std::endl;
+        return false;
     }
 
-    pMsg.reply(web::http::status_codes::OK);
-}
+    /* Parse the HTTP request */
+    size_t lNParsed = http_parser_execute(mHttpParser, mHttpParserSettings, pMsg, pReadBytes);
 
-void RESTServer::handlePut(web::http::http_request pMsg) {
-    std::cout << pMsg.to_string() << std::endl;
-    pMsg.reply(web::http::status_codes::OK);
-}
+    /* Handle errors */
+    if(pReadBytes != lNParsed) {
+        std::cerr << "[ERROR] <RESTServer::processClientMessage> http_parser_execute : lNParsed (" << lNParsed << ") != pReadBytes (" << pReadBytes << ")" << std::endl;
+        return false;
+    }
 
-void RESTServer::handlePost(web::http::http_request pMsg) {
-    std::cout << pMsg.to_string() << std::endl;
-    pMsg.reply(web::http::status_codes::OK);
-}
+    /* Message should be parsed */
+    std::cout << "[DEBUG] <RESTServer::processClientMessage> lHTTPMsg :" << std::endl
+        << "        lHTTPMsg.method       : " << lHTTPMsg.method << std::endl
+        << "        lHTTPMsg.status_code  : " << lHTTPMsg.status_code << std::endl
+        << "        lHTTPMsg.request_path : " << std::string(lHTTPMsg.request_path) << std::endl
+        << "        lHTTPMsg.request_uri  : " << std::string(lHTTPMsg.request_uri) << std::endl
+        << "        lHTTPMsg.query_string : " << std::string(lHTTPMsg.query_string) << std::endl
+        << "        lHTTPMsg.body         : " << std::string(lHTTPMsg.body) << std::endl
+        << "        lHTTPMsg.url          : " << std::string(lHTTPMsg.url) << std::endl;
 
-void RESTServer::handleDelete(web::http::http_request pMsg) {
-    std::cout << pMsg.to_string() << std::endl;
-    pMsg.reply(web::http::status_codes::OK);
+    /* Parse the URL */
+    
+
+    return true;
 }

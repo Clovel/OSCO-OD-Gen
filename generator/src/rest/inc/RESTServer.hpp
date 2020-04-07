@@ -8,13 +8,25 @@
 #define RESTSERVER_HPP
 
 /* Includes -------------------------------------------- */
-#include <cpprest/http_listener.h>
+/* C++ system */
+#include <exception>
+#include <string>
 
 /* Defines --------------------------------------------- */
 
 /* Type definitions ------------------------------------ */
 
 /* Forward declarations -------------------------------- */
+struct http_parser;
+struct http_parser_settings;
+
+/* RESTServer exception -------------------------------- */
+class RESTServerException : public std::exception {
+    virtual const char *what(void) const throw()
+    {
+        return "RESTServer exception occured !";
+    }
+};
 
 /* RESTServer class ------------------------------------ */
 class RESTServer {
@@ -22,21 +34,38 @@ class RESTServer {
         /* Contructors */
         RESTServer(const std::string &pAddr, const std::string pPort, const std::string &pPath);
 
-        void openWait(void) {
-            (void)mListener.open().wait();
-        }
+        /* Destructor */
+        virtual ~RESTServer();
 
-        void closeWait(void) {
-            (void)mListener.close().wait();
-        }
+        /* Getters */
+        std::string address(void) const;
+        std::string port(void) const;
+        std::string apiPath(void) const;
+
+        /* Server management */
+        bool open(void);
+        bool listen(void);
+        bool close(void);
 
     protected:
-        static void handleGet(web::http::http_request pMsg);
-        static void handlePut(web::http::http_request pMsg);
-        static void handlePost(web::http::http_request pMsg);
-        static void handleDelete(web::http::http_request pMsg);
     private:
-        web::http::experimental::listener::http_listener mListener;
+        /* Request processing functions */
+        bool processClientMessage(const char * const pMsg, const size_t &pReadBytes) const;
+        // bool processGetRequest(const std::string &pMsg) const;
+        // bool processPutRequest(const std::string &pMsg) const;
+        // bool processPostRequest(const std::string &pMsg) const;
+        // bool processDelRequest(const std::string &pMsg) const;
+
+        /* Networking member variables */
+        int mServerSocket;
+
+        std::string mAddr;
+        std::string mPort;
+        std::string mPath;
+
+        /* HTTP Parser member variable */
+        http_parser *mHttpParser;
+        http_parser_settings *mHttpParserSettings;
 };
 
 #endif /* RESTSERVER_HPP */

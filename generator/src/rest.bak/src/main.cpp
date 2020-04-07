@@ -15,7 +15,7 @@
 #include <cstring>
 
 /* Defines --------------------------------------------- */
-#define ADDRESS "localhost"
+#define ADDRESS "http://localhost"
 
 /* Notes ----------------------------------------------- */
 
@@ -44,23 +44,15 @@ int main(const int argc, const char * const * const argv) {
     std::string lPort = std::string(argv[1U]);
     std::string lPath = "OSCO-OD-Gen/Action";
 
-    /* Create server */
     gRESTServer = std::unique_ptr<RESTServer>(new RESTServer(lAddr, lPort, lPath));
-
-    /* Open server */
-    if(!gRESTServer->open()) {
-        return EXIT_FAILURE;
-    }
+    gRESTServer->openWait();
 
     std::cout << "[INFO] Listening for request at: " << lAddr << ":" << lPort << "/" << lPath << std::endl;
 
-    /* Main loop */
-    gRESTServer->listen();
+    std::string lLine;
+    std::getline(std::cin, lLine);
 
-    /* Close server */
-    if(!gRESTServer->close()) {
-        return EXIT_FAILURE;
-    }
+    gRESTServer->closeWait();
 
     return EXIT_SUCCESS;
 }
