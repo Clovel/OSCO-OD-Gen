@@ -8,9 +8,6 @@
 #include "OSCOOD.hpp"
 #include "OSCOODIndex.hpp"
 
-/* Library/API export defines */
-#include "APIExports.h"
-
 /* C++ system */
 #include <map>
 #include <vector>

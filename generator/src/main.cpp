@@ -10,7 +10,7 @@
 
 #include "EDS.hpp"
 
-#include "RESTServer.hpp"
+#include "OSCOODREST.hpp"
 
 /* C++ system */
 #include <iostream>
@@ -25,7 +25,6 @@
 /* Notes ----------------------------------------------- */
 
 /* Variable declaration -------------------------------- */
-std::unique_ptr<RESTServer> gRESTServer;
 
 /* Type definitions ------------------------------------ */
 
@@ -46,7 +45,7 @@ int main(const int argc, const char * const * const argv) {
         return EXIT_FAILURE;
     }
 
-    const std::string lAddr = ADDRESS;
+    const std::string lAddr = std::string(ADDRESS);
     const std::string lPort = std::string(argv[1U]);
     const std::string lPath = "OSCO-OD-Gen";
 
@@ -62,21 +61,27 @@ int main(const int argc, const char * const * const argv) {
         return EXIT_FAILURE;
     } else {
         std::cout << "[INFO ] OSCOODFactory::buildOSCOOD successfully created an Object Dictionary" << std::endl;
+        lOD->setName(lOD->fileName());
     }
 
     /* Set up the REST API Server */
-    gRESTServer = std::unique_ptr<RESTServer>(new RESTServer(lAddr, lPort, lPath));
+    OSCOODREST lRESTServer = OSCOODREST::instance(lAddr, lPort, lPath);
+    lRESTServer.addOD(lOD);
 
     /* Open server socket */
-    if(!gRESTServer->open()) {
+    if(!lRESTServer.open()) {
+        delete lOD;
         return EXIT_FAILURE;
     }
 
+    std::cout << "[INFO ] Listening for request at: " << lAddr << ":" << lPort << "/" << lPath << std::endl;
+
     /* Loop for the REST API Server */
-    gRESTServer->listen();
+    lRESTServer.listen();
 
     /* Close server */
-    if(!gRESTServer->close()) {
+    if(!lRESTServer.close()) {
+        delete lOD;
         return EXIT_FAILURE;
     }
 
