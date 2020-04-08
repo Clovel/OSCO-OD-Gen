@@ -6,7 +6,7 @@ services:
     container_name: osco-od-gen-image
     build:
       context: ../
-      dockerfile: Dockerfile
+      dockerfile: docker/Dockerfile
     volumes:
       - '../:/repository'
     privileged: true
