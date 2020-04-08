@@ -1,0 +1,30 @@
+name: Docker build
+#author: Clovis Durand
+#description: GitHub action to build the OSCO-OD-Gen project
+
+on: [push]
+
+jobs:
+  build:
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        # TODO : Make this work for Windows
+        # os: [ubuntu-latest, macOS-latest, windows-latest]
+        os: [ubuntu-latest, macOS-latest]
+        package_manager: [npm]
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@master
+
+      - name: Checkout submodules
+        run: | 
+          git submodule sync --recursive
+          git submodule update --init --recursive
+
+      - name: Build Docker image
+        if: matrix.os != 'windows-latest'
+        run: |
+          cd docker
+          docker-compose build
