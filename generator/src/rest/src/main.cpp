@@ -31,6 +31,15 @@ static void printUsage(const char * const pProgName)
     std::cout << "        <arg1> : Localhost port number" << std::endl;
 }
 
+/* REST Test callbacks */
+static RESTServer::methodFct_t sGetCallback = [](const std::string &pMsg, std::string &pOut) -> bool {
+    (void)pMsg;
+
+    pOut += "{\"ACK\": true}\r\n";
+
+    return true;
+};
+
 /* ----------------------------------------------------- */
 /* Main tests ------------------------------------------ */
 /* ----------------------------------------------------- */
@@ -46,6 +55,9 @@ int main(const int argc, const char * const * const argv) {
 
     /* Create server */
     gRESTServer = std::unique_ptr<RESTServer>(new RESTServer(lAddr, lPort, lPath));
+
+    /* Set REST API callbacks */
+    gRESTServer->setGetCallback(sGetCallback);
 
     /* Open server */
     if(!gRESTServer->open()) {

@@ -60,6 +60,39 @@ std::string RESTServer::apiPath(void) const {
     return mPath;
 }
 
+RESTServer::methodFct_t RESTServer::getCallback(void) const {
+    return mGetCallback;
+}
+
+RESTServer::methodFct_t RESTServer::postCallback(void) const {
+    return mPostCallback;
+}
+
+RESTServer::methodFct_t RESTServer::putCallback(void) const {
+    return mPutCallback;
+}
+
+RESTServer::methodFct_t RESTServer::delCallback(void) const {
+    return mDelCallback;
+}
+
+/* Setters */
+void RESTServer::setGetCallback(const methodFct_t &pFct) {
+    mGetCallback = pFct;
+}
+
+void RESTServer::setPostCallback(const methodFct_t &pFct) {
+    mPostCallback = pFct;
+}
+
+void RESTServer::setPutCallback(const methodFct_t &pFct) {
+    mPutCallback = pFct;
+}
+
+void RESTServer::setDelCallback(const methodFct_t &pFct) {
+    mDelCallback = pFct;
+}
+
 /* Server management */
 bool RESTServer::open(void) {
     /* Create a socket */
@@ -229,7 +262,7 @@ bool RESTServer::processClientMessage(const char * const pMsg, const size_t &pRe
 
             /* Build response */
             lResponse = std::string(htmlResponseCode200) + "\r\n";
-            lResponse += "{\"ACK\": true}\r\n";
+            getCallback()("{\"ACK\": true}\r\n", lResponse);
 
             lSentBytes = send(pClientSocket, lResponse.c_str(), std::strlen(lResponse.c_str()), 0);
             if(0 > lSentBytes) {
