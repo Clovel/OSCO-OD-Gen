@@ -138,7 +138,6 @@ include_directories(
 
 # Dependencies
 add_subdirectory(deps)
-add_subdirectory(src/rest)
 
 # Main build
 add_subdirectory(src)

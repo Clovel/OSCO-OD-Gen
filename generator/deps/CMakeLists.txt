@@ -5,3 +5,4 @@
 
 # Sub-directories -----------------------------------------
 add_subdirectory(initools)
+add_subdirectory(RESTServer)
