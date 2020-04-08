@@ -11,7 +11,7 @@ jobs:
       matrix:
         # TODO : Make this work for Windows
         # os: [ubuntu-latest, macOS-latest, windows-latest]
-        os: [ubuntu-latest, macOS-latest]
+        os: [ubuntu-latest]
         package_manager: [npm]
 
     steps:
@@ -24,7 +24,6 @@ jobs:
           git submodule update --init --recursive
 
       - name: Build Docker image
-        if: matrix.os != 'windows-latest'
         run: |
           cd docker
           docker-compose build
