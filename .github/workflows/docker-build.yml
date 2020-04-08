@@ -12,7 +12,6 @@ jobs:
         # TODO : Make this work for Windows
         # os: [ubuntu-latest, macOS-latest, windows-latest]
         os: [ubuntu-latest]
-        package_manager: [npm]
 
     steps:
       - name: Checkout
