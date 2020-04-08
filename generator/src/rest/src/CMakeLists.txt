@@ -9,6 +9,11 @@ file(GLOB PUBLIC_HEADERS
     ${CMAKE_CURRENT_SOURCE_DIR}/../inc/*.hpp
 )
 
+file(GLOB RESOURCE_HEADERS
+    ${CMAKE_CURRENT_SOURCE_DIR}/../resources/*.h
+    ${CMAKE_CURRENT_SOURCE_DIR}/../resources/*.hpp
+)
+
 file(GLOB_RECURSE MODULE_HEADERS
     ${CMAKE_CURRENT_SOURCE_DIR}/*.h
     ${CMAKE_CURRENT_SOURCE_DIR}/*.hpp
@@ -17,7 +22,11 @@ file(GLOB_RECURSE MODULE_HEADERS
 set(HEADERS
     ${PUBLIC_HEADERS}
     ${MODULE_HEADERS}
+    ${RESOURCE_HEADERS}
 )
+
+include_directories(${CMAKE_CURRENT_SOURCE_DIR}/../inc/)
+include_directories(${CMAKE_CURRENT_SOURCE_DIR}/../resources/)
 
 # Source files --------------------------------------------
 file(GLOB SOURCES
@@ -25,49 +34,49 @@ file(GLOB SOURCES
     ${CMAKE_CURRENT_SOURCE_DIR}/*.cpp
 )
 
-message("MAIN SOURCES : ${SOURCES}")
-
-# Link directories ----------------------------------------
-
-# Target definition ---------------------------------------
-add_executable(${CMAKE_PROJECT_NAME}-util
-    ${SOURCES}
-)
-add_dependencies(${CMAKE_PROJECT_NAME}-util
-    initools
-)
-target_link_libraries(${CMAKE_PROJECT_NAME}-util
-    initools
-)
-set_target_properties(${CMAKE_PROJECT_NAME}-util PROPERTIES 
-    PUBLIC_HEADER "${PUBLIC_HEADERS}"
+file(GLOB RESOURCE_SOURCES
+    ${CMAKE_CURRENT_SOURCE_DIR}/../resources/*.c
+    ${CMAKE_CURRENT_SOURCE_DIR}/../resources/*.cpp
 )
 
 list(REMOVE_ITEM SOURCES ${CMAKE_CURRENT_SOURCE_DIR}/main.cpp)
 
-add_library(${CMAKE_PROJECT_NAME} SHARED
+message("cpprest-api SOURCES : ${SOURCES};${RESOURCE_SOURCES}")
+
+# Link directories ----------------------------------------
+
+# Target definition ---------------------------------------
+add_library(cpprest-api SHARED
     ${SOURCES}
+    ${RESOURCE_SOURCES}
 )
-add_dependencies(${CMAKE_PROJECT_NAME}
-    initools
+target_link_libraries(cpprest-api PRIVATE
+    ${CMAKE_THREAD_LIBS_INIT}
 )
-target_link_libraries(${CMAKE_PROJECT_NAME}
-    initools
-)
-set_target_properties(${CMAKE_PROJECT_NAME} PROPERTIES 
+set_target_properties(cpprest-api PROPERTIES
     PUBLIC_HEADER "${PUBLIC_HEADERS}"
+)
+
+add_executable(cpprest-api-test
+    ${CMAKE_CURRENT_SOURCE_DIR}/main.cpp
+)
+add_dependencies(cpprest-api-test
+    cpprest-api
+)
+target_link_libraries(cpprest-api-test PUBLIC
+    cpprest-api
 )
 
 #----------------------------------------------------------------------------
 # The installation is prepended by the CMAKE_INSTALL_PREFIX variable
-install(TARGETS ${CMAKE_PROJECT_NAME}-util
+install(TARGETS cpprest-api
     RUNTIME DESTINATION bin
     LIBRARY DESTINATION lib
     ARCHIVE DESTINATION lib
     PUBLIC_HEADER DESTINATION include
 )
 
-install(TARGETS ${CMAKE_PROJECT_NAME}
+install(TARGETS cpprest-api-test
     RUNTIME DESTINATION bin
     LIBRARY DESTINATION lib
     ARCHIVE DESTINATION lib

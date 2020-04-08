@@ -129,6 +129,7 @@ include_directories(
     ${CMAKE_CURRENT_SOURCE_DIR}/inc
     ${CMAKE_CURRENT_SOURCE_DIR}/deps/initools/inc
     ${CMAKE_CURRENT_SOURCE_DIR}/deps/rapidjson/include
+    ${CMAKE_CURRENT_SOURCE_DIR}/src/rest/inc
 )
 
 #------------------------------------------------------------------------------
@@ -137,6 +138,7 @@ include_directories(
 
 # Dependencies
 add_subdirectory(deps)
+add_subdirectory(src/rest)
 
 # Main build
 add_subdirectory(src)
