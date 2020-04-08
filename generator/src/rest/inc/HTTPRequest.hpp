@@ -54,9 +54,21 @@ class HTTPRequestException : public std::exception {
 class HTTPRequest {
     public:
         /* Contructors */
+        /** 
+         * @breif The HTTPRequest constructor
+         * 
+         * @details The constructor parses the HTTP request.
+         * 
+         * @param[in]   pMsg    The received HTTP request
+         * 
+         * @throws #HTTPRequestException if parsing fails
+         */
         HTTPRequest(const std::string &pMsg);
 
         /* Destructor */
+        /**
+         * @brief The HTTPRequest class destructor
+         */
         virtual ~HTTPRequest();
 
         /* Getters */
