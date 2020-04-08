@@ -6,9 +6,7 @@
 
 /* Includes -------------------------------------------- */
 #include "RESTServer.hpp"
-
-#include "http_parser.h"
-#include "http_parser_callbacks.h"
+#include "HTTPRequest.hpp"
 
 /* C++ system */
 #include <iostream>
@@ -37,37 +35,14 @@
 RESTServer::RESTServer(const std::string &pAddr, const std::string pPort, const std::string &pPath) :
     mAddr(pAddr),
     mPort(pPort),
-    mPath(pPath),
-    mHttpParser(nullptr),
-    mHttpParserSettings(nullptr)
+    mPath(pPath)
 {
-    /* Initialize HTTP Parser */
-    mHttpParser = (http_parser *)malloc(sizeof(http_parser));
-    http_parser_init(mHttpParser, HTTP_REQUEST);
-
-    /* Initialize HTTP Parser settings */
-    mHttpParserSettings = (http_parser_settings *)malloc(sizeof(http_parser_settings));
-    if(0 != httpParserCallbackInit(mHttpParserSettings)) {
-        std::cerr << "[ERROR] <RESTServer::RESTServer> httpParserCallbackInit failed" << std::endl;
-
-        free(mHttpParser);
-        free(mHttpParserSettings);
-
-        throw RESTServerException();
-    }
+    /* Empty */
 }
 
 /* Destructor */
 RESTServer::~RESTServer() {
-    if(nullptr != mHttpParser) {
-        free(mHttpParser);
-        mHttpParser = nullptr;
-    }
-
-    if(nullptr != mHttpParserSettings) {
-        free(mHttpParserSettings);
-        mHttpParserSettings = nullptr;
-    }
+    /* Empty */
 }
 
 /* Getters */
@@ -215,35 +190,26 @@ bool RESTServer::close(void) {
 }
 
 bool RESTServer::processClientMessage(const char * const pMsg, const size_t &pReadBytes) const {
+    (void)pReadBytes;
+
+    if(nullptr == pMsg) {
+        std::cerr << "[DEBUG] <RESTServer::processClientMessage> pMsg arg is nullptr" << std::endl;
+        return false;
+    }
+
     /* Set a httpMessage_t var for the HTTP Parser */
-    httpMessage_t lHTTPMsg;
-    std::memset(&lHTTPMsg, 0, sizeof(httpMessage_t));
-    if(0 != httpParserCallbackMessageSetter(&lHTTPMsg)) {
-        std::cerr << "[ERROR] <RESTServer::processClientMessage> httpParserCallbackMessageSetter failed" << std::endl;
-        return false;
-    }
+    HTTPRequest lHTTPRequest((std::string(pMsg)));
 
-    /* Parse the HTTP request */
-    size_t lNParsed = http_parser_execute(mHttpParser, mHttpParserSettings, pMsg, pReadBytes);
-
-    /* Handle errors */
-    if(pReadBytes != lNParsed) {
-        std::cerr << "[ERROR] <RESTServer::processClientMessage> http_parser_execute : lNParsed (" << lNParsed << ") != pReadBytes (" << pReadBytes << ")" << std::endl;
-        return false;
-    }
-
-    /* Message should be parsed */
-    std::cout << "[DEBUG] <RESTServer::processClientMessage> lHTTPMsg :" << std::endl
-        << "        lHTTPMsg.method       : " << lHTTPMsg.method << std::endl
-        << "        lHTTPMsg.status_code  : " << lHTTPMsg.status_code << std::endl
-        << "        lHTTPMsg.request_path : " << std::string(lHTTPMsg.request_path) << std::endl
-        << "        lHTTPMsg.request_uri  : " << std::string(lHTTPMsg.request_uri) << std::endl
-        << "        lHTTPMsg.query_string : " << std::string(lHTTPMsg.query_string) << std::endl
-        << "        lHTTPMsg.body         : " << std::string(lHTTPMsg.body) << std::endl
-        << "        lHTTPMsg.url          : " << std::string(lHTTPMsg.url) << std::endl;
-
-    /* Parse the URL */
-    
+    /* For debug purposes, print everything */
+    std::cout << "[DEBUG] <RESTServer::processClientMessage> HTTPRequest contents : " << std::endl
+        << "        Raw : " << std::endl << lHTTPRequest.msg() << std::endl
+        << "        Method     : " << lHTTPRequest.methodStr() << std::endl
+        << "        URL        : " << lHTTPRequest.URL() << std::endl
+        << "        HTTPV      : " << lHTTPRequest.httpVersionStr() << std::endl
+        << "        Host       : " << lHTTPRequest.host() << std::endl
+        << "        User-Agent : " << lHTTPRequest.userAgent() << std::endl
+        << "        Accept     : " << lHTTPRequest.accept() << std::endl
+        ;
 
     return true;
 }
