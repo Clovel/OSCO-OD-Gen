@@ -154,7 +154,7 @@ std::string JSONFactory::OSCOODSubIndexToJSON(const OSCOODSubIndex &pSubIdx, rap
         char lBuf[7U];
         std::memset(lBuf, 0, 7U);
         snprintf(lBuf, 7U, "0x%04X", pSubIdx.index());
-        lVal.SetString(lBuf, 7U, sJsonAlloc);
+        lVal.SetString(lBuf, 6U, sJsonAlloc);
         lDoc->AddMember("Index", lVal, sJsonAlloc);
     }
     /* Get SubIndex */
@@ -163,7 +163,7 @@ std::string JSONFactory::OSCOODSubIndexToJSON(const OSCOODSubIndex &pSubIdx, rap
         char lBuf[5U];
         std::memset(lBuf, 0, 5U);
         snprintf(lBuf, 5U, "0x%02X", (uint16_t)pSubIdx.subIndex());
-        lVal.SetString(lBuf, 5U, sJsonAlloc);
+        lVal.SetString(lBuf, 4U, sJsonAlloc);
         lDoc->AddMember("SubIndex", lVal, sJsonAlloc);
     }
     /* Add OSCO type */
@@ -216,7 +216,7 @@ std::string JSONFactory::OSCOODIndexToJSON(const OSCOODIndex &pIdx, rapidjson::D
         char lBuf[7U];
         std::memset(lBuf, 0, 7U);
         snprintf(lBuf, 7U, "0x%04X", pIdx.index());
-        lVal.SetString(lBuf, 7U, sJsonAlloc);
+        lVal.SetString(lBuf, 6U, sJsonAlloc);
         lDoc->AddMember("Index", lVal, sJsonAlloc);
     }
     /* Get SubIdexes */
