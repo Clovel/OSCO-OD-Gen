@@ -25,13 +25,15 @@
 /* OSCOOD class implemetation -------------------------- */
 /* Constructors */
 OSCOOD::OSCOOD() {
-    /* Empty */
+    std::memset(&mCreationDateTime,     0, sizeof(mCreationDateTime));
+    std::memset(&mModificationDateTime, 0, sizeof(mModificationDateTime));
 }
 
 OSCOOD::OSCOOD(const std::map<uint16_t, OSCOODIndex *> &pObjects) :
     mObjects(pObjects)
 {
-    /* Empty */
+    std::memset(&mCreationDateTime,     0, sizeof(mCreationDateTime));
+    std::memset(&mModificationDateTime, 0, sizeof(mModificationDateTime));
 }
 
 OSCOOD::OSCOOD(const std::vector<OSCOODIndex *> &pObjects)
