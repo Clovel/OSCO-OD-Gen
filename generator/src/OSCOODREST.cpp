@@ -49,7 +49,7 @@ OSCOODREST::~OSCOODREST() {
 }
 
 /* Get singleton */
-OSCOODREST * const OSCOODREST::createInstance(const std::string &pAddr, const std::string pPort, const std::string &pPath) {
+OSCOODREST *OSCOODREST::createInstance(const std::string &pAddr, const std::string pPort, const std::string &pPath) {
     if(nullptr == sSingleton) {
         sSingleton = new OSCOODREST(pAddr, pPort, pPath);
     } else {
@@ -61,7 +61,7 @@ OSCOODREST * const OSCOODREST::createInstance(const std::string &pAddr, const st
     return sSingleton;
 }
 
-OSCOODREST * const OSCOODREST::instance(void) {
+OSCOODREST *OSCOODREST::instance(void) {
     return sSingleton;
 }
 
@@ -105,6 +105,7 @@ bool OSCOODREST::addOD(OSCOOD * const pOD) {
 /* REST Callbacks */
 HttpStatus OSCOODREST::OSCOOD_GET(const std::string &pPath, const std::vector<std::string> &pQueries, std::string &pOut) {
     (void)pQueries;
+    (void)pPath;
 
     /* Get OSCOODREST instance */
     OSCOODREST * const lRESTServer = OSCOODREST::instance();
