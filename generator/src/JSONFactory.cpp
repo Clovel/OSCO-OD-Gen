@@ -264,257 +264,280 @@ std::string JSONFactory::OSCOODToJSON(const OSCOOD &pOD) {
         lVal.SetString(pOD.name().c_str(), pOD.name().size(), lAlloc);
         lDoc.AddMember("name", lVal, lAlloc);
     }
-    /* Get file name */
+    /* Get FileInfo */
     {
-        rapidjson::Value lVal;
-        lVal.SetString(pOD.fileName().c_str(), pOD.fileName().size(), lAlloc);
-        lDoc.AddMember("FileName", lVal, lAlloc);
+        rapidjson::Value lFileInfoVal(rapidjson::kObjectType);
+        /* Get file name */
+        {
+            rapidjson::Value lVal;
+            lVal.SetString(pOD.fileName().c_str(), pOD.fileName().size(), lAlloc);
+            lFileInfoVal.AddMember("FileName", lVal, lAlloc);
+        }
+        /* Get file version */
+        {
+            rapidjson::Value lVal;
+            lVal.SetInt(pOD.fileVersion());
+            lFileInfoVal.AddMember("FileVersion", lVal, lAlloc);
+        }
+        /* Get file revision */
+        {
+            rapidjson::Value lVal;
+            lVal.SetInt(pOD.fileRevision());
+            lFileInfoVal.AddMember("FileRevision", lVal, lAlloc);
+        }
+        /* Get EDS Version */
+        {
+            rapidjson::Value lVal;
+            lVal.SetString(pOD.EDSVersion().c_str(), pOD.EDSVersion().size(), lAlloc);
+            lFileInfoVal.AddMember("EDSVersion", lVal, lAlloc);
+        }
+        /* Get description */
+        {
+            rapidjson::Value lVal;
+            lVal.SetString(pOD.description().c_str(), pOD.description().size(), lAlloc);
+            lFileInfoVal.AddMember("Description", lVal, lAlloc);
+        }
+        /* Get CreationDate */
+        {
+            rapidjson::Value lVal;
+            lVal.SetString(pOD.creationDate().c_str(), pOD.creationDate().size(), lAlloc);
+            lFileInfoVal.AddMember("CreationDate", lVal, lAlloc);
+        }
+        /* Get CreationTime */
+        {
+            rapidjson::Value lVal;
+            lVal.SetString(pOD.creationTime().c_str(), pOD.creationTime().size(), lAlloc);
+            lFileInfoVal.AddMember("CreationTime", lVal, lAlloc);
+        }
+        /* Get CreatedBy */
+        {
+            rapidjson::Value lVal;
+            lVal.SetString(pOD.createdBy().c_str(), pOD.createdBy().size(), lAlloc);
+            lFileInfoVal.AddMember("CreatedBy", lVal, lAlloc);
+        }
+        /* Get ModificationDate */
+        {
+            rapidjson::Value lVal;
+            lVal.SetString(pOD.modificationDate().c_str(), pOD.modificationDate().size(), lAlloc);
+            lFileInfoVal.AddMember("ModificationDate", lVal, lAlloc);
+        }
+        /* Get ModificationTime */
+        {
+            rapidjson::Value lVal;
+            lVal.SetString(pOD.modificationTime().c_str(), pOD.modificationTime().size(), lAlloc);
+            lFileInfoVal.AddMember("ModificationTime", lVal, lAlloc);
+        }
+        /* Get ModifiedBy */
+        {
+            rapidjson::Value lVal;
+            lVal.SetString(pOD.modifiedBy().c_str(), pOD.modifiedBy().size(), lAlloc);
+            lFileInfoVal.AddMember("ModifiedBy", lVal, lAlloc);
+        }
+        lDoc.AddMember("FileInfo", lFileInfoVal, lAlloc);
     }
-    /* Get file version */
+
+    /* Get DeviceInfo */
     {
-        rapidjson::Value lVal;
-        lVal.SetInt(pOD.fileVersion());
-        lDoc.AddMember("FileVersion", lVal, lAlloc);
+        rapidjson::Value lDeviceInfoVal(rapidjson::kObjectType);
+        /* Get VendorName */
+        {
+            rapidjson::Value lVal;
+            lVal.SetString(pOD.vendorName().c_str(), pOD.vendorName().size(), lAlloc);
+            lDeviceInfoVal.AddMember("VendorName", lVal, lAlloc);
+        }
+        /* Get VendorNumber */
+        {
+            rapidjson::Value lVal;
+            lVal.SetInt(pOD.vendorNumber());
+            lDeviceInfoVal.AddMember("VendorNumber", lVal, lAlloc);
+        }
+        /* Get ProductName */
+        {
+            rapidjson::Value lVal;
+            lVal.SetString(pOD.productName().c_str(), pOD.productName().size(), lAlloc);
+            lDeviceInfoVal.AddMember("ProductName", lVal, lAlloc);
+        }
+        /* Get ProductNumber */
+        {
+            rapidjson::Value lVal;
+            lVal.SetInt(pOD.productNumber());
+            lDeviceInfoVal.AddMember("ProductNumber", lVal, lAlloc);
+        }
+        /* Get RevisionNumber */
+        {
+            rapidjson::Value lVal;
+            lVal.SetInt(pOD.productNumber());
+            lDeviceInfoVal.AddMember("ProductNumber", lVal, lAlloc);
+        }
+        /* Get OrderCode */
+        {
+            rapidjson::Value lVal;
+            lVal.SetString(pOD.orderCode().c_str(), pOD.orderCode().size(), lAlloc);
+            lDeviceInfoVal.AddMember("OrderCode", lVal, lAlloc);
+        }
+        /* Get BaudRate_10 */
+        {
+            rapidjson::Value lVal;
+            lVal.SetBool(pOD.baudrate10Supported());
+            lDeviceInfoVal.AddMember("BaudRate_10", lVal, lAlloc);
+        }
+        /* Get BaudRate_20 */
+        {
+            rapidjson::Value lVal;
+            lVal.SetBool(pOD.baudrate20Supported());
+            lDeviceInfoVal.AddMember("BaudRate_20", lVal, lAlloc);
+        }
+        /* Get BaudRate_50 */
+        {
+            rapidjson::Value lVal;
+            lVal.SetBool(pOD.baudrate50Supported());
+            lDeviceInfoVal.AddMember("BaudRate_50", lVal, lAlloc);
+        }
+        /* Get BaudRate_125 */
+        {
+            rapidjson::Value lVal;
+            lVal.SetBool(pOD.baudrate125Supported());
+            lDeviceInfoVal.AddMember("BaudRate_125", lVal, lAlloc);
+        }
+        /* Get BaudRate_250 */
+        {
+            rapidjson::Value lVal;
+            lVal.SetBool(pOD.baudrate250Supported());
+            lDeviceInfoVal.AddMember("BaudRate_250", lVal, lAlloc);
+        }
+        /* Get BaudRate_500 */
+        {
+            rapidjson::Value lVal;
+            lVal.SetBool(pOD.baudrate500Supported());
+            lDeviceInfoVal.AddMember("BaudRate_500", lVal, lAlloc);
+        }
+        /* Get BaudRate_800 */
+        {
+            rapidjson::Value lVal;
+            lVal.SetBool(pOD.baudrate800Supported());
+            lDeviceInfoVal.AddMember("BaudRate_800", lVal, lAlloc);
+        }
+        /* Get BaudRate_1000 */
+        {
+            rapidjson::Value lVal;
+            lVal.SetBool(pOD.baudrate1000Supported());
+            lDeviceInfoVal.AddMember("BaudRate_1000", lVal, lAlloc);
+        }
+        /* Get SimpleBootUpMaster */
+        {
+            rapidjson::Value lVal;
+            lVal.SetBool(pOD.simpleBootUpMaster());
+            lDeviceInfoVal.AddMember("SimpleBootUpMaster", lVal, lAlloc);
+        }
+        /* Get SimpleBootUpSlave */
+        {
+            rapidjson::Value lVal;
+            lVal.SetBool(pOD.simpleBootUpSlave());
+            lDeviceInfoVal.AddMember("SimpleBootUpSlave", lVal, lAlloc);
+        }
+        /* Get Granularity */
+        {
+            rapidjson::Value lVal;
+            lVal.SetInt(pOD.granularity());
+            lDeviceInfoVal.AddMember("Granularity", lVal, lAlloc);
+        }
+        /* Get DynamicChannelsSupported */
+        {
+            rapidjson::Value lVal;
+            lVal.SetInt(pOD.dynamicChannelsSupported());
+            lDeviceInfoVal.AddMember("DynamicChannelsSupported", lVal, lAlloc);
+        }
+        /* Get GroupMessaging */
+        {
+            rapidjson::Value lVal;
+            lVal.SetBool(pOD.groupMessaging());
+            lDeviceInfoVal.AddMember("GroupMessaging", lVal, lAlloc);
+        }
+        /* Get NrOfRXPDO */
+        {
+            rapidjson::Value lVal;
+            lVal.SetInt(pOD.nrOfRPDOs());
+            lDeviceInfoVal.AddMember("NrOfRXPDO", lVal, lAlloc);
+        }
+        /* Get NrOfTXPDO */
+        {
+            rapidjson::Value lVal;
+            lVal.SetInt(pOD.nrOfTPDOs());
+            lDeviceInfoVal.AddMember("NrOfTXPDO", lVal, lAlloc);
+        }
+        /* Get LSS_Supported */
+        {
+            rapidjson::Value lVal;
+            lVal.SetBool(pOD.LSSSupported());
+            lDeviceInfoVal.AddMember("LSS_Supported", lVal, lAlloc);
+        }
+        lDoc.AddMember("DeviceInfo", lDeviceInfoVal, lAlloc);
+    } 
+
+    /* Get Comment section */
+    {
+        rapidjson::Value lCommentsVal(rapidjson::kObjectType);
+        /* Get Comment line count */
+        {
+            rapidjson::Value lVal;
+            lVal.SetInt(pOD.commentLineCount());
+            lCommentsVal.AddMember("Lines", lVal, lAlloc);
+        }
+        /* Get comments */
+        {
+            rapidjson::Value lVal;
+            lVal.SetString(pOD.comments().c_str(), pOD.comments().size(), lAlloc);
+            lCommentsVal.AddMember("Comments", lVal, lAlloc);
+        }
+        lDoc.AddMember("Comments", lCommentsVal, lAlloc);
     }
-    /* Get file revision */
+
+    /* Get DummyUsage section */
     {
-        rapidjson::Value lVal;
-        lVal.SetInt(pOD.fileRevision());
-        lDoc.AddMember("FileRevision", lVal, lAlloc);
-    }
-    /* Get EDS Version */
-    {
-        rapidjson::Value lVal;
-        lVal.SetString(pOD.EDSVersion().c_str(), pOD.EDSVersion().size(), lAlloc);
-        lDoc.AddMember("EDSVersion", lVal, lAlloc);
-    }
-    /* Get description */
-    {
-        rapidjson::Value lVal;
-        lVal.SetString(pOD.description().c_str(), pOD.description().size(), lAlloc);
-        lDoc.AddMember("Description", lVal, lAlloc);
-    }
-    /* Get CreationDate */
-    {
-        rapidjson::Value lVal;
-        lVal.SetString(pOD.creationDate().c_str(), pOD.creationDate().size(), lAlloc);
-        lDoc.AddMember("CreationDate", lVal, lAlloc);
-    }
-    /* Get CreationTime */
-    {
-        rapidjson::Value lVal;
-        lVal.SetString(pOD.creationTime().c_str(), pOD.creationTime().size(), lAlloc);
-        lDoc.AddMember("CreationTime", lVal, lAlloc);
-    }
-    /* Get CreatedBy */
-    {
-        rapidjson::Value lVal;
-        lVal.SetString(pOD.createdBy().c_str(), pOD.createdBy().size(), lAlloc);
-        lDoc.AddMember("CreatedBy", lVal, lAlloc);
-    }
-    /* Get ModificationDate */
-    {
-        rapidjson::Value lVal;
-        lVal.SetString(pOD.modificationDate().c_str(), pOD.modificationDate().size(), lAlloc);
-        lDoc.AddMember("ModificationDate", lVal, lAlloc);
-    }
-    /* Get ModificationTime */
-    {
-        rapidjson::Value lVal;
-        lVal.SetString(pOD.modificationTime().c_str(), pOD.modificationTime().size(), lAlloc);
-        lDoc.AddMember("ModificationTime", lVal, lAlloc);
-    }
-    /* Get ModifiedBy */
-    {
-        rapidjson::Value lVal;
-        lVal.SetString(pOD.modifiedBy().c_str(), pOD.modifiedBy().size(), lAlloc);
-        lDoc.AddMember("ModifiedBy", lVal, lAlloc);
-    }
-    /* Get VendorName */
-    {
-        rapidjson::Value lVal;
-        lVal.SetString(pOD.vendorName().c_str(), pOD.vendorName().size(), lAlloc);
-        lDoc.AddMember("VendorName", lVal, lAlloc);
-    }
-    /* Get VendorNumber */
-    {
-        rapidjson::Value lVal;
-        lVal.SetInt(pOD.vendorNumber());
-        lDoc.AddMember("VendorNumber", lVal, lAlloc);
-    }
-    /* Get ProductName */
-    {
-        rapidjson::Value lVal;
-        lVal.SetString(pOD.productName().c_str(), pOD.productName().size(), lAlloc);
-        lDoc.AddMember("ProductName", lVal, lAlloc);
-    }
-    /* Get ProductNumber */
-    {
-        rapidjson::Value lVal;
-        lVal.SetInt(pOD.productNumber());
-        lDoc.AddMember("ProductNumber", lVal, lAlloc);
-    }
-    /* Get RevisionNumber */
-    {
-        rapidjson::Value lVal;
-        lVal.SetInt(pOD.productNumber());
-        lDoc.AddMember("ProductNumber", lVal, lAlloc);
-    }
-    /* Get OrderCode */
-    {
-        rapidjson::Value lVal;
-        lVal.SetString(pOD.orderCode().c_str(), pOD.orderCode().size(), lAlloc);
-        lDoc.AddMember("OrderCode", lVal, lAlloc);
-    }
-    /* Get BaudRate_10 */
-    {
-        rapidjson::Value lVal;
-        lVal.SetBool(pOD.baudrate10Supported());
-        lDoc.AddMember("BaudRate_10", lVal, lAlloc);
-    }
-    /* Get BaudRate_20 */
-    {
-        rapidjson::Value lVal;
-        lVal.SetBool(pOD.baudrate20Supported());
-        lDoc.AddMember("BaudRate_20", lVal, lAlloc);
-    }
-    /* Get BaudRate_50 */
-    {
-        rapidjson::Value lVal;
-        lVal.SetBool(pOD.baudrate50Supported());
-        lDoc.AddMember("BaudRate_50", lVal, lAlloc);
-    }
-    /* Get BaudRate_125 */
-    {
-        rapidjson::Value lVal;
-        lVal.SetBool(pOD.baudrate125Supported());
-        lDoc.AddMember("BaudRate_125", lVal, lAlloc);
-    }
-    /* Get BaudRate_250 */
-    {
-        rapidjson::Value lVal;
-        lVal.SetBool(pOD.baudrate250Supported());
-        lDoc.AddMember("BaudRate_250", lVal, lAlloc);
-    }
-    /* Get BaudRate_500 */
-    {
-        rapidjson::Value lVal;
-        lVal.SetBool(pOD.baudrate500Supported());
-        lDoc.AddMember("BaudRate_500", lVal, lAlloc);
-    }
-    /* Get BaudRate_800 */
-    {
-        rapidjson::Value lVal;
-        lVal.SetBool(pOD.baudrate800Supported());
-        lDoc.AddMember("BaudRate_800", lVal, lAlloc);
-    }
-    /* Get BaudRate_1000 */
-    {
-        rapidjson::Value lVal;
-        lVal.SetBool(pOD.baudrate1000Supported());
-        lDoc.AddMember("BaudRate_1000", lVal, lAlloc);
-    }
-    /* Get SimpleBootUpMaster */
-    {
-        rapidjson::Value lVal;
-        lVal.SetBool(pOD.simpleBootUpMaster());
-        lDoc.AddMember("SimpleBootUpMaster", lVal, lAlloc);
-    }
-    /* Get SimpleBootUpSlave */
-    {
-        rapidjson::Value lVal;
-        lVal.SetBool(pOD.simpleBootUpSlave());
-        lDoc.AddMember("SimpleBootUpSlave", lVal, lAlloc);
-    }
-    /* Get Granularity */
-    {
-        rapidjson::Value lVal;
-        lVal.SetInt(pOD.granularity());
-        lDoc.AddMember("Granularity", lVal, lAlloc);
-    }
-    /* Get DynamicChannelsSupported */
-    {
-        rapidjson::Value lVal;
-        lVal.SetInt(pOD.dynamicChannelsSupported());
-        lDoc.AddMember("DynamicChannelsSupported", lVal, lAlloc);
-    }
-    /* Get GroupMessaging */
-    {
-        rapidjson::Value lVal;
-        lVal.SetBool(pOD.groupMessaging());
-        lDoc.AddMember("GroupMessaging", lVal, lAlloc);
-    }
-    /* Get NrOfRXPDO */
-    {
-        rapidjson::Value lVal;
-        lVal.SetInt(pOD.nrOfRPDOs());
-        lDoc.AddMember("NrOfRXPDO", lVal, lAlloc);
-    }
-    /* Get NrOfTXPDO */
-    {
-        rapidjson::Value lVal;
-        lVal.SetInt(pOD.nrOfTPDOs());
-        lDoc.AddMember("NrOfTXPDO", lVal, lAlloc);
-    }
-    /* Get LSS_Supported */
-    {
-        rapidjson::Value lVal;
-        lVal.SetBool(pOD.LSSSupported());
-        lDoc.AddMember("LSS_Supported", lVal, lAlloc);
-    }
-    /* Get Comment line count */
-    {
-        rapidjson::Value lVal;
-        lVal.SetInt(pOD.commentLineCount());
-        lDoc.AddMember("Lines", lVal, lAlloc);
-    }
-    /* Get comments */
-    {
-        rapidjson::Value lVal;
-        lVal.SetString(pOD.comments().c_str(), pOD.comments().size(), lAlloc);
-        lDoc.AddMember("Comments", lVal, lAlloc);
-    }
-    /* Get Dummy0001 */
-    {
-        rapidjson::Value lVal;
-        lVal.SetBool(pOD.dummy0001Supported());
-        lDoc.AddMember("Dummy0001", lVal, lAlloc);
-    }
-    /* Get Dummy0002 */
-    {
-        rapidjson::Value lVal;
-        lVal.SetBool(pOD.dummy0002Supported());
-        lDoc.AddMember("Dummy0002", lVal, lAlloc);
-    }
-    /* Get Dummy0003 */
-    {
-        rapidjson::Value lVal;
-        lVal.SetBool(pOD.dummy0003Supported());
-        lDoc.AddMember("Dummy0003", lVal, lAlloc);
-    }
-    /* Get Dummy0004 */
-    {
-        rapidjson::Value lVal;
-        lVal.SetBool(pOD.dummy0004Supported());
-        lDoc.AddMember("Dummy0004", lVal, lAlloc);
-    }
-    /* Get Dummy0005 */
-    {
-        rapidjson::Value lVal;
-        lVal.SetBool(pOD.dummy0005Supported());
-        lDoc.AddMember("Dummy0005", lVal, lAlloc);
-    }
-    /* Get Dummy0006 */
-    {
-        rapidjson::Value lVal;
-        lVal.SetBool(pOD.dummy0006Supported());
-        lDoc.AddMember("Dummy0006", lVal, lAlloc);
-    }
-    /* Get Dummy0007 */
-    {
-        rapidjson::Value lVal;
-        lVal.SetBool(pOD.dummy0007Supported());
-        lDoc.AddMember("Dummy0007", lVal, lAlloc);
+        rapidjson::Value lDummyUsageVal(rapidjson::kObjectType);
+        /* Get Dummy0001 */
+        {
+            rapidjson::Value lVal;
+            lVal.SetBool(pOD.dummy0001Supported());
+            lDummyUsageVal.AddMember("Dummy0001", lVal, lAlloc);
+        }
+        /* Get Dummy0002 */
+        {
+            rapidjson::Value lVal;
+            lVal.SetBool(pOD.dummy0002Supported());
+            lDummyUsageVal.AddMember("Dummy0002", lVal, lAlloc);
+        }
+        /* Get Dummy0003 */
+        {
+            rapidjson::Value lVal;
+            lVal.SetBool(pOD.dummy0003Supported());
+            lDummyUsageVal.AddMember("Dummy0003", lVal, lAlloc);
+        }
+        /* Get Dummy0004 */
+        {
+            rapidjson::Value lVal;
+            lVal.SetBool(pOD.dummy0004Supported());
+            lDummyUsageVal.AddMember("Dummy0004", lVal, lAlloc);
+        }
+        /* Get Dummy0005 */
+        {
+            rapidjson::Value lVal;
+            lVal.SetBool(pOD.dummy0005Supported());
+            lDummyUsageVal.AddMember("Dummy0005", lVal, lAlloc);
+        }
+        /* Get Dummy0006 */
+        {
+            rapidjson::Value lVal;
+            lVal.SetBool(pOD.dummy0006Supported());
+            lDummyUsageVal.AddMember("Dummy0006", lVal, lAlloc);
+        }
+        /* Get Dummy0007 */
+        {
+            rapidjson::Value lVal;
+            lVal.SetBool(pOD.dummy0007Supported());
+            lDummyUsageVal.AddMember("Dummy0007", lVal, lAlloc);
+        }
+        lDoc.AddMember("DummyUsage", lDummyUsageVal, lAlloc);
     }
     /* Add OSCO type */
     {
