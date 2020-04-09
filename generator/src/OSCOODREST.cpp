@@ -113,7 +113,7 @@ HttpStatus OSCOODREST::OSCOOD_GET(const std::string &pPath, const std::vector<st
     /* Get the Object dictionary JSON */
     const std::string lODJSON = JSONFactory::OSCOODToJSON(*lRESTServer->ODs().at("IO Example"));
 
-    std::cout << "[DEBUG] <OSCOODREST::OSCOOD_GET> JSON : " << lODJSON << std::endl;
+    //std::cout << "[DEBUG] <OSCOODREST::OSCOOD_GET> JSON : " << lODJSON << std::endl;
 
     pOut = lODJSON + "\r\n";
 

@@ -123,7 +123,7 @@ std::string JSONFactory::OSCOODObjectToJSON(const OSCOODObject &pObj, rapidjson:
         /* Create output string */
         lOutput = std::string(lStrBuf.GetString()) + "\r\n";
 
-        std::cout << "[DEBUG] <JSONFactory::OSCOODObjectToJSON> JSON : " << lOutput << std::endl;
+        //std::cout << "[DEBUG] <JSONFactory::OSCOODObjectToJSON> JSON : " << lOutput << std::endl;
 
         delete lDoc;
     }
@@ -185,7 +185,7 @@ std::string JSONFactory::OSCOODSubIndexToJSON(const OSCOODSubIndex &pSubIdx, rap
         /* Create output string */
         std::string lOutput = std::string(lStrBuf.GetString()) + "\r\n";
 
-        std::cout << "[DEBUG] <JSONFactory::OSCOODSubIndexToJSON> JSON : " << lOutput << std::endl;
+        //std::cout << "[DEBUG] <JSONFactory::OSCOODSubIndexToJSON> JSON : " << lOutput << std::endl;
 
         delete lDoc;
     }
@@ -259,7 +259,7 @@ std::string JSONFactory::OSCOODIndexToJSON(const OSCOODIndex &pIdx, rapidjson::D
         /* Create output string */
         lOutput = std::string(lStrBuf.GetString()) + "\r\n";
 
-        std::cout << "[DEBUG] <JSONFactory::OSCOODIndexToJSON> JSON : " << lOutput << std::endl;
+        //std::cout << "[DEBUG] <JSONFactory::OSCOODIndexToJSON> JSON : " << lOutput << std::endl;
 
         delete lDoc;
     }
@@ -599,7 +599,7 @@ std::string JSONFactory::OSCOODToJSON(const OSCOOD &pOD, rapidjson::Document * c
         /* Create output string */
         lOutput = std::string(lStrBuf.GetString()) + "\r\n";
 
-        std::cout << "[DEBUG] <JSONFactory::OSCOODToJSON> JSON : " << lOutput << std::endl;
+        //std::cout << "[DEBUG] <JSONFactory::OSCOODToJSON> JSON : " << lOutput << std::endl;
 
         delete lDoc;
     }
@@ -651,7 +651,7 @@ std::string JSONFactory::OSCONodeToJSON(const OSCONode &pNode, rapidjson::Docume
         /* Create output string */
         lOutput = std::string(lStrBuf.GetString()) + "\r\n";
 
-        std::cout << "[DEBUG] <JSONFactory::OSCONodeToJSON> JSON : " << lOutput << std::endl;
+        //std::cout << "[DEBUG] <JSONFactory::OSCONodeToJSON> JSON : " << lOutput << std::endl;
 
         delete lDoc;
     }
