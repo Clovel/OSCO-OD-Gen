@@ -367,7 +367,7 @@ std::string JSONFactory::OSCOODToJSON(const OSCOOD &pOD) {
         {
             rapidjson::Value lVal;
             lVal.SetInt(pOD.productNumber());
-            lDeviceInfoVal.AddMember("ProductNumber", lVal, lAlloc);
+            lDeviceInfoVal.AddMember("RevisionNumber", lVal, lAlloc);
         }
         /* Get OrderCode */
         {
