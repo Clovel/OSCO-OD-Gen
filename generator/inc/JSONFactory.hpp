@@ -11,6 +11,9 @@
 /* Library/API export defines */
 #include "APIExports.h"
 
+/* RapidJSON */
+#include "rapidjson/document.h"
+
 /* C++ System */
 #include <string>
 
@@ -44,11 +47,11 @@ class OSCOODObject;
  */
 class API_EXPORT JSONFactory {
     public:
-        static std::string OSCOODObjectToJSON(const OSCOODObject &pObj);
-        static std::string OSCOODSubIndexToJSON(const OSCOODSubIndex &pSubIdx);
-        static std::string OSCOODIndexToJSON(const OSCOODIndex &pIdx);
-        static std::string OSCOODToJSON(const OSCOOD &pOD);
-        static std::string OSCONodeToJSON(const OSCONode &pNode);
+        static std::string OSCOODObjectToJSON(const OSCOODObject &pObj, rapidjson::Document * const pDoc = nullptr);
+        static std::string OSCOODSubIndexToJSON(const OSCOODSubIndex &pSubIdx, rapidjson::Document * const pDoc = nullptr);
+        static std::string OSCOODIndexToJSON(const OSCOODIndex &pIdx, rapidjson::Document * const pDoc = nullptr);
+        static std::string OSCOODToJSON(const OSCOOD &pOD, rapidjson::Document * const pDoc = nullptr);
+        static std::string OSCONodeToJSON(const OSCONode &pNode, rapidjson::Document * const pDoc = nullptr);
     protected:
     private:
 };
