@@ -31,8 +31,10 @@ class OSCOOD;
 /* OSCOOD class ---------------------------------- */
 class API_EXPORT OSCOODREST : public RESTServer {
     public:
+        /* Create singleton */
+        static OSCOODREST * const createInstance(const std::string &pAddr, const std::string pPort, const std::string &pPath);
         /* Get singleton */
-        static OSCOODREST &instance(const std::string &pAddr, const std::string pPort, const std::string &pPath);
+        static OSCOODREST * const instance(void);
 
         /* Destructors */
         virtual ~OSCOODREST();

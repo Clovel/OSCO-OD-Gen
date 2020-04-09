@@ -65,11 +65,11 @@ int main(const int argc, const char * const * const argv) {
     }
 
     /* Set up the REST API Server */
-    OSCOODREST lRESTServer = OSCOODREST::instance(lAddr, lPort, lPath);
-    lRESTServer.addOD(lOD);
+    OSCOODREST *lRESTServer = OSCOODREST::createInstance(lAddr, lPort, lPath);
+    lRESTServer->addOD(lOD);
 
     /* Open server socket */
-    if(!lRESTServer.open()) {
+    if(!lRESTServer->open()) {
         delete lOD;
         return EXIT_FAILURE;
     }
@@ -77,14 +77,16 @@ int main(const int argc, const char * const * const argv) {
     std::cout << "[INFO ] Listening for request at: " << lAddr << ":" << lPort << "/" << lPath << std::endl;
 
     /* Loop for the REST API Server */
-    lRESTServer.listen();
+    lRESTServer->listen();
 
     /* Close server */
-    if(!lRESTServer.close()) {
+    if(!lRESTServer->close()) {
+        delete lRESTServer;
         delete lOD;
         return EXIT_FAILURE;
     }
 
+    delete lRESTServer;
     delete lOD;
     return EXIT_SUCCESS;
 }

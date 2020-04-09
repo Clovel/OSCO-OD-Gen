@@ -29,6 +29,9 @@
 
 /* Type definitions ------------------------------------ */
 
+/* Static variables ------------------------------------ */
+static OSCOODREST *sSingleton = nullptr;
+
 /* OSCOODREST class implemetation ---------------------- */
 
 /* Constructors */
@@ -48,8 +51,19 @@ OSCOODREST::~OSCOODREST() {
 }
 
 /* Get singleton */
-OSCOODREST &OSCOODREST::instance(const std::string &pAddr, const std::string pPort, const std::string &pPath) {
-    static OSCOODREST sSingleton(pAddr, pPort, pPath);
+OSCOODREST * const OSCOODREST::createInstance(const std::string &pAddr, const std::string pPort, const std::string &pPath) {
+    if(nullptr == sSingleton) {
+        sSingleton = new OSCOODREST(pAddr, pPort, pPath);
+    } else {
+        (void)pAddr;
+        (void)pPort;
+        (void)pPath;
+    }
+
+    return sSingleton;
+}
+
+OSCOODREST * const OSCOODREST::instance(void) {
     return sSingleton;
 }
 
