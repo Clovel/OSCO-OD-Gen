@@ -9,8 +9,8 @@
         "CreationDate":"2016-03-25",
         "CreationTime":"03:24PM",
         "CreatedBy":"JP",
-        "ModificationDate":"4446895-11-05",
-        "ModificationTime":"02:16AM",
+        "ModificationDate":"1970-01-01",
+        "ModificationTime":"12:00AM",
         "ModifiedBy":""
     },
     "DeviceInfo":{
@@ -38,7 +38,7 @@
         "LSS_Supported":false
     },
     "Comments":{
-        "Lines":-1027473406,
+        "Lines":0,
         "Comments":""
     },
     "DummyUsage":{
@@ -60,10 +60,10 @@
             "DefaultValue":"",
             "LowLimit":"",
             "HighLimit":"0",
-            "PDOMapping":false,
-            "ObjFlags":0,
-            "CompactSubObj":false,
-            "Index":"0x1000\u0000",
+            "PDOMapping":true,
+            "ObjFlags":1701011310,
+            "CompactSubObj":true,
+            "Index":"0x1000",
             "SubIndexes":[
 
             ],
@@ -79,9 +79,9 @@
             "LowLimit":"",
             "HighLimit":"1",
             "PDOMapping":false,
-            "ObjFlags":0,
+            "ObjFlags":1,
             "CompactSubObj":false,
-            "Index":"0x1001\u0000",
+            "Index":"0x1001",
             "SubIndexes":[
 
             ],
@@ -99,7 +99,7 @@
             "PDOMapping":false,
             "ObjFlags":0,
             "CompactSubObj":false,
-            "Index":"0x1002\u0000",
+            "Index":"0x1002",
             "SubIndexes":[
 
             ],
@@ -117,7 +117,7 @@
             "PDOMapping":false,
             "ObjFlags":0,
             "CompactSubObj":false,
-            "Index":"0x1003\u0000",
+            "Index":"0x1003",
             "SubIndexes":[
                 {
                     "SubNumber":0,
@@ -131,8 +131,8 @@
                     "PDOMapping":false,
                     "ObjFlags":0,
                     "CompactSubObj":false,
-                    "Index":"0x1003\u0000",
-                    "SubIndex":"0x00\u0000",
+                    "Index":"0x1003",
+                    "SubIndex":"0x00",
                     "OSCO Type":"OSCOODSubIndex"
                 },
                 {
@@ -147,8 +147,8 @@
                     "PDOMapping":false,
                     "ObjFlags":0,
                     "CompactSubObj":false,
-                    "Index":"0x1003\u0000",
-                    "SubIndex":"0x01\u0000",
+                    "Index":"0x1003",
+                    "SubIndex":"0x01",
                     "OSCO Type":"OSCOODSubIndex"
                 },
                 {
@@ -163,8 +163,8 @@
                     "PDOMapping":false,
                     "ObjFlags":0,
                     "CompactSubObj":false,
-                    "Index":"0x1003\u0000",
-                    "SubIndex":"0x02\u0000",
+                    "Index":"0x1003",
+                    "SubIndex":"0x02",
                     "OSCO Type":"OSCOODSubIndex"
                 },
                 {
@@ -179,8 +179,8 @@
                     "PDOMapping":false,
                     "ObjFlags":0,
                     "CompactSubObj":false,
-                    "Index":"0x1003\u0000",
-                    "SubIndex":"0x03\u0000",
+                    "Index":"0x1003",
+                    "SubIndex":"0x03",
                     "OSCO Type":"OSCOODSubIndex"
                 },
                 {
@@ -195,8 +195,8 @@
                     "PDOMapping":false,
                     "ObjFlags":0,
                     "CompactSubObj":false,
-                    "Index":"0x1003\u0000",
-                    "SubIndex":"0x04\u0000",
+                    "Index":"0x1003",
+                    "SubIndex":"0x04",
                     "OSCO Type":"OSCOODSubIndex"
                 },
                 {
@@ -211,8 +211,8 @@
                     "PDOMapping":false,
                     "ObjFlags":0,
                     "CompactSubObj":false,
-                    "Index":"0x1003\u0000",
-                    "SubIndex":"0x05\u0000",
+                    "Index":"0x1003",
+                    "SubIndex":"0x05",
                     "OSCO Type":"OSCOODSubIndex"
                 },
                 {
@@ -227,8 +227,8 @@
                     "PDOMapping":false,
                     "ObjFlags":0,
                     "CompactSubObj":false,
-                    "Index":"0x1003\u0000",
-                    "SubIndex":"0x06\u0000",
+                    "Index":"0x1003",
+                    "SubIndex":"0x06",
                     "OSCO Type":"OSCOODSubIndex"
                 },
                 {
@@ -243,8 +243,8 @@
                     "PDOMapping":false,
                     "ObjFlags":0,
                     "CompactSubObj":false,
-                    "Index":"0x1003\u0000",
-                    "SubIndex":"0x07\u0000",
+                    "Index":"0x1003",
+                    "SubIndex":"0x07",
                     "OSCO Type":"OSCOODSubIndex"
                 },
                 {
@@ -259,8 +259,8 @@
                     "PDOMapping":false,
                     "ObjFlags":0,
                     "CompactSubObj":false,
-                    "Index":"0x1003\u0000",
-                    "SubIndex":"0x08\u0000",
+                    "Index":"0x1003",
+                    "SubIndex":"0x08",
                     "OSCO Type":"OSCOODSubIndex"
                 }
             ],
@@ -278,7 +278,7 @@
             "PDOMapping":false,
             "ObjFlags":0,
             "CompactSubObj":false,
-            "Index":"0x1005\u0000",
+            "Index":"0x1005",
             "SubIndexes":[
 
             ],
@@ -296,7 +296,7 @@
             "PDOMapping":false,
             "ObjFlags":0,
             "CompactSubObj":false,
-            "Index":"0x1006\u0000",
+            "Index":"0x1006",
             "SubIndexes":[
 
             ],
@@ -314,7 +314,7 @@
             "PDOMapping":false,
             "ObjFlags":0,
             "CompactSubObj":false,
-            "Index":"0x1007\u0000",
+            "Index":"0x1007",
             "SubIndexes":[
 
             ],
@@ -332,7 +332,7 @@
             "PDOMapping":false,
             "ObjFlags":0,
             "CompactSubObj":false,
-            "Index":"0x1008\u0000",
+            "Index":"0x1008",
             "SubIndexes":[
 
             ],
@@ -350,7 +350,7 @@
             "PDOMapping":false,
             "ObjFlags":0,
             "CompactSubObj":false,
-            "Index":"0x1009\u0000",
+            "Index":"0x1009",
             "SubIndexes":[
 
             ],
@@ -368,7 +368,7 @@
             "PDOMapping":false,
             "ObjFlags":0,
             "CompactSubObj":false,
-            "Index":"0x100A\u0000",
+            "Index":"0x100A",
             "SubIndexes":[
 
             ],
@@ -386,7 +386,7 @@
             "PDOMapping":false,
             "ObjFlags":0,
             "CompactSubObj":false,
-            "Index":"0x1010\u0000",
+            "Index":"0x1010",
             "SubIndexes":[
                 {
                     "SubNumber":0,
@@ -400,8 +400,8 @@
                     "PDOMapping":false,
                     "ObjFlags":0,
                     "CompactSubObj":false,
-                    "Index":"0x1010\u0000",
-                    "SubIndex":"0x00\u0000",
+                    "Index":"0x1010",
+                    "SubIndex":"0x00",
                     "OSCO Type":"OSCOODSubIndex"
                 },
                 {
@@ -416,8 +416,8 @@
                     "PDOMapping":false,
                     "ObjFlags":0,
                     "CompactSubObj":false,
-                    "Index":"0x1010\u0000",
-                    "SubIndex":"0x01\u0000",
+                    "Index":"0x1010",
+                    "SubIndex":"0x01",
                     "OSCO Type":"OSCOODSubIndex"
                 }
             ],
@@ -435,7 +435,7 @@
             "PDOMapping":false,
             "ObjFlags":0,
             "CompactSubObj":false,
-            "Index":"0x1011\u0000",
+            "Index":"0x1011",
             "SubIndexes":[
                 {
                     "SubNumber":0,
@@ -449,8 +449,8 @@
                     "PDOMapping":false,
                     "ObjFlags":0,
                     "CompactSubObj":false,
-                    "Index":"0x1011\u0000",
-                    "SubIndex":"0x00\u0000",
+                    "Index":"0x1011",
+                    "SubIndex":"0x00",
                     "OSCO Type":"OSCOODSubIndex"
                 },
                 {
@@ -465,8 +465,8 @@
                     "PDOMapping":false,
                     "ObjFlags":0,
                     "CompactSubObj":false,
-                    "Index":"0x1011\u0000",
-                    "SubIndex":"0x01\u0000",
+                    "Index":"0x1011",
+                    "SubIndex":"0x01",
                     "OSCO Type":"OSCOODSubIndex"
                 }
             ],
@@ -484,7 +484,7 @@
             "PDOMapping":false,
             "ObjFlags":0,
             "CompactSubObj":false,
-            "Index":"0x1014\u0000",
+            "Index":"0x1014",
             "SubIndexes":[
 
             ],
@@ -502,7 +502,7 @@
             "PDOMapping":false,
             "ObjFlags":0,
             "CompactSubObj":false,
-            "Index":"0x1015\u0000",
+            "Index":"0x1015",
             "SubIndexes":[
 
             ],
@@ -520,7 +520,7 @@
             "PDOMapping":false,
             "ObjFlags":0,
             "CompactSubObj":false,
-            "Index":"0x1016\u0000",
+            "Index":"0x1016",
             "SubIndexes":[
                 {
                     "SubNumber":0,
@@ -534,8 +534,8 @@
                     "PDOMapping":false,
                     "ObjFlags":0,
                     "CompactSubObj":false,
-                    "Index":"0x1016\u0000",
-                    "SubIndex":"0x00\u0000",
+                    "Index":"0x1016",
+                    "SubIndex":"0x00",
                     "OSCO Type":"OSCOODSubIndex"
                 },
                 {
@@ -550,8 +550,8 @@
                     "PDOMapping":false,
                     "ObjFlags":0,
                     "CompactSubObj":false,
-                    "Index":"0x1016\u0000",
-                    "SubIndex":"0x01\u0000",
+                    "Index":"0x1016",
+                    "SubIndex":"0x01",
                     "OSCO Type":"OSCOODSubIndex"
                 },
                 {
@@ -566,24 +566,8 @@
                     "PDOMapping":false,
                     "ObjFlags":0,
                     "CompactSubObj":false,
-                    "Index":"0x1016\u0000",
-                    "SubIndex":"0x02\u0000",
-                    "OSCO Type":"OSCOODSubIndex"
-                },
-                {
-                    "SubNumber":0,
-                    "ParameterName":"Consumer heartbeat time",
-                    "ObjectType":7,
-                    "DataType":7,
-                    "AccessType":"rw",
-                    "DefaultValue":"",
-                    "LowLimit":"",
-                    "HighLimit":"0",
-                    "PDOMapping":false,
-                    "ObjFlags":1651864370,
-                    "CompactSubObj":true,
-                    "Index":"0x1016\u0000",
-                    "SubIndex":"0x03\u0000",
+                    "Index":"0x1016",
+                    "SubIndex":"0x02",
                     "OSCO Type":"OSCOODSubIndex"
                 },
                 {
@@ -598,8 +582,24 @@
                     "PDOMapping":false,
                     "ObjFlags":0,
                     "CompactSubObj":false,
-                    "Index":"0x1016\u0000",
-                    "SubIndex":"0x04\u0000",
+                    "Index":"0x1016",
+                    "SubIndex":"0x03",
+                    "OSCO Type":"OSCOODSubIndex"
+                },
+                {
+                    "SubNumber":0,
+                    "ParameterName":"Consumer heartbeat time",
+                    "ObjectType":7,
+                    "DataType":7,
+                    "AccessType":"rw",
+                    "DefaultValue":"",
+                    "LowLimit":"",
+                    "HighLimit":"0",
+                    "PDOMapping":false,
+                    "ObjFlags":0,
+                    "CompactSubObj":false,
+                    "Index":"0x1016",
+                    "SubIndex":"0x04",
                     "OSCO Type":"OSCOODSubIndex"
                 }
             ],
@@ -617,7 +617,7 @@
             "PDOMapping":false,
             "ObjFlags":0,
             "CompactSubObj":false,
-            "Index":"0x1017\u0000",
+            "Index":"0x1017",
             "SubIndexes":[
 
             ],
@@ -635,7 +635,7 @@
             "PDOMapping":false,
             "ObjFlags":0,
             "CompactSubObj":false,
-            "Index":"0x1018\u0000",
+            "Index":"0x1018",
             "SubIndexes":[
                 {
                     "SubNumber":0,
@@ -649,8 +649,8 @@
                     "PDOMapping":false,
                     "ObjFlags":0,
                     "CompactSubObj":false,
-                    "Index":"0x1018\u0000",
-                    "SubIndex":"0x00\u0000",
+                    "Index":"0x1018",
+                    "SubIndex":"0x00",
                     "OSCO Type":"OSCOODSubIndex"
                 },
                 {
@@ -665,8 +665,8 @@
                     "PDOMapping":false,
                     "ObjFlags":0,
                     "CompactSubObj":false,
-                    "Index":"0x1018\u0000",
-                    "SubIndex":"0x01\u0000",
+                    "Index":"0x1018",
+                    "SubIndex":"0x01",
                     "OSCO Type":"OSCOODSubIndex"
                 },
                 {
@@ -681,8 +681,8 @@
                     "PDOMapping":false,
                     "ObjFlags":0,
                     "CompactSubObj":false,
-                    "Index":"0x1018\u0000",
-                    "SubIndex":"0x02\u0000",
+                    "Index":"0x1018",
+                    "SubIndex":"0x02",
                     "OSCO Type":"OSCOODSubIndex"
                 },
                 {
@@ -697,8 +697,8 @@
                     "PDOMapping":false,
                     "ObjFlags":0,
                     "CompactSubObj":false,
-                    "Index":"0x1018\u0000",
-                    "SubIndex":"0x03\u0000",
+                    "Index":"0x1018",
+                    "SubIndex":"0x03",
                     "OSCO Type":"OSCOODSubIndex"
                 },
                 {
@@ -713,8 +713,8 @@
                     "PDOMapping":false,
                     "ObjFlags":0,
                     "CompactSubObj":false,
-                    "Index":"0x1018\u0000",
-                    "SubIndex":"0x04\u0000",
+                    "Index":"0x1018",
+                    "SubIndex":"0x04",
                     "OSCO Type":"OSCOODSubIndex"
                 }
             ],
@@ -732,7 +732,7 @@
             "PDOMapping":false,
             "ObjFlags":0,
             "CompactSubObj":false,
-            "Index":"0x1019\u0000",
+            "Index":"0x1019",
             "SubIndexes":[
 
             ],
@@ -750,7 +750,7 @@
             "PDOMapping":false,
             "ObjFlags":0,
             "CompactSubObj":false,
-            "Index":"0x1029\u0000",
+            "Index":"0x1029",
             "SubIndexes":[
                 {
                     "SubNumber":0,
@@ -764,8 +764,8 @@
                     "PDOMapping":false,
                     "ObjFlags":0,
                     "CompactSubObj":false,
-                    "Index":"0x1029\u0000",
-                    "SubIndex":"0x00\u0000",
+                    "Index":"0x1029",
+                    "SubIndex":"0x00",
                     "OSCO Type":"OSCOODSubIndex"
                 },
                 {
@@ -780,8 +780,8 @@
                     "PDOMapping":false,
                     "ObjFlags":0,
                     "CompactSubObj":false,
-                    "Index":"0x1029\u0000",
-                    "SubIndex":"0x01\u0000",
+                    "Index":"0x1029",
+                    "SubIndex":"0x01",
                     "OSCO Type":"OSCOODSubIndex"
                 },
                 {
@@ -796,8 +796,8 @@
                     "PDOMapping":false,
                     "ObjFlags":0,
                     "CompactSubObj":false,
-                    "Index":"0x1029\u0000",
-                    "SubIndex":"0x02\u0000",
+                    "Index":"0x1029",
+                    "SubIndex":"0x02",
                     "OSCO Type":"OSCOODSubIndex"
                 },
                 {
@@ -812,8 +812,8 @@
                     "PDOMapping":false,
                     "ObjFlags":0,
                     "CompactSubObj":false,
-                    "Index":"0x1029\u0000",
-                    "SubIndex":"0x03\u0000",
+                    "Index":"0x1029",
+                    "SubIndex":"0x03",
                     "OSCO Type":"OSCOODSubIndex"
                 },
                 {
@@ -828,8 +828,8 @@
                     "PDOMapping":false,
                     "ObjFlags":0,
                     "CompactSubObj":false,
-                    "Index":"0x1029\u0000",
-                    "SubIndex":"0x04\u0000",
+                    "Index":"0x1029",
+                    "SubIndex":"0x04",
                     "OSCO Type":"OSCOODSubIndex"
                 },
                 {
@@ -844,8 +844,8 @@
                     "PDOMapping":false,
                     "ObjFlags":0,
                     "CompactSubObj":false,
-                    "Index":"0x1029\u0000",
-                    "SubIndex":"0x05\u0000",
+                    "Index":"0x1029",
+                    "SubIndex":"0x05",
                     "OSCO Type":"OSCOODSubIndex"
                 },
                 {
@@ -860,8 +860,8 @@
                     "PDOMapping":false,
                     "ObjFlags":0,
                     "CompactSubObj":false,
-                    "Index":"0x1029\u0000",
-                    "SubIndex":"0x06\u0000",
+                    "Index":"0x1029",
+                    "SubIndex":"0x06",
                     "OSCO Type":"OSCOODSubIndex"
                 }
             ],
@@ -879,7 +879,7 @@
             "PDOMapping":false,
             "ObjFlags":0,
             "CompactSubObj":false,
-            "Index":"0x1200\u0000",
+            "Index":"0x1200",
             "SubIndexes":[
                 {
                     "SubNumber":0,
@@ -893,8 +893,8 @@
                     "PDOMapping":false,
                     "ObjFlags":0,
                     "CompactSubObj":false,
-                    "Index":"0x1200\u0000",
-                    "SubIndex":"0x00\u0000",
+                    "Index":"0x1200",
+                    "SubIndex":"0x00",
                     "OSCO Type":"OSCOODSubIndex"
                 },
                 {
@@ -909,8 +909,8 @@
                     "PDOMapping":false,
                     "ObjFlags":0,
                     "CompactSubObj":false,
-                    "Index":"0x1200\u0000",
-                    "SubIndex":"0x01\u0000",
+                    "Index":"0x1200",
+                    "SubIndex":"0x01",
                     "OSCO Type":"OSCOODSubIndex"
                 },
                 {
@@ -925,8 +925,8 @@
                     "PDOMapping":false,
                     "ObjFlags":0,
                     "CompactSubObj":false,
-                    "Index":"0x1200\u0000",
-                    "SubIndex":"0x02\u0000",
+                    "Index":"0x1200",
+                    "SubIndex":"0x02",
                     "OSCO Type":"OSCOODSubIndex"
                 }
             ],
@@ -944,7 +944,7 @@
             "PDOMapping":false,
             "ObjFlags":0,
             "CompactSubObj":false,
-            "Index":"0x1400\u0000",
+            "Index":"0x1400",
             "SubIndexes":[
                 {
                     "SubNumber":0,
@@ -958,8 +958,8 @@
                     "PDOMapping":false,
                     "ObjFlags":0,
                     "CompactSubObj":false,
-                    "Index":"0x1400\u0000",
-                    "SubIndex":"0x00\u0000",
+                    "Index":"0x1400",
+                    "SubIndex":"0x00",
                     "OSCO Type":"OSCOODSubIndex"
                 },
                 {
@@ -974,8 +974,8 @@
                     "PDOMapping":false,
                     "ObjFlags":0,
                     "CompactSubObj":false,
-                    "Index":"0x1400\u0000",
-                    "SubIndex":"0x01\u0000",
+                    "Index":"0x1400",
+                    "SubIndex":"0x01",
                     "OSCO Type":"OSCOODSubIndex"
                 },
                 {
@@ -990,8 +990,8 @@
                     "PDOMapping":false,
                     "ObjFlags":0,
                     "CompactSubObj":false,
-                    "Index":"0x1400\u0000",
-                    "SubIndex":"0x02\u0000",
+                    "Index":"0x1400",
+                    "SubIndex":"0x02",
                     "OSCO Type":"OSCOODSubIndex"
                 }
             ],
@@ -1009,7 +1009,7 @@
             "PDOMapping":false,
             "ObjFlags":0,
             "CompactSubObj":false,
-            "Index":"0x1401\u0000",
+            "Index":"0x1401",
             "SubIndexes":[
                 {
                     "SubNumber":0,
@@ -1023,8 +1023,8 @@
                     "PDOMapping":false,
                     "ObjFlags":0,
                     "CompactSubObj":false,
-                    "Index":"0x1401\u0000",
-                    "SubIndex":"0x00\u0000",
+                    "Index":"0x1401",
+                    "SubIndex":"0x00",
                     "OSCO Type":"OSCOODSubIndex"
                 },
                 {
@@ -1039,8 +1039,8 @@
                     "PDOMapping":false,
                     "ObjFlags":0,
                     "CompactSubObj":false,
-                    "Index":"0x1401\u0000",
-                    "SubIndex":"0x01\u0000",
+                    "Index":"0x1401",
+                    "SubIndex":"0x01",
                     "OSCO Type":"OSCOODSubIndex"
                 },
                 {
@@ -1055,8 +1055,8 @@
                     "PDOMapping":false,
                     "ObjFlags":0,
                     "CompactSubObj":false,
-                    "Index":"0x1401\u0000",
-                    "SubIndex":"0x02\u0000",
+                    "Index":"0x1401",
+                    "SubIndex":"0x02",
                     "OSCO Type":"OSCOODSubIndex"
                 }
             ],
@@ -1074,7 +1074,7 @@
             "PDOMapping":false,
             "ObjFlags":0,
             "CompactSubObj":false,
-            "Index":"0x1402\u0000",
+            "Index":"0x1402",
             "SubIndexes":[
                 {
                     "SubNumber":0,
@@ -1088,8 +1088,8 @@
                     "PDOMapping":false,
                     "ObjFlags":0,
                     "CompactSubObj":false,
-                    "Index":"0x1402\u0000",
-                    "SubIndex":"0x00\u0000",
+                    "Index":"0x1402",
+                    "SubIndex":"0x00",
                     "OSCO Type":"OSCOODSubIndex"
                 },
                 {
@@ -1104,8 +1104,8 @@
                     "PDOMapping":false,
                     "ObjFlags":0,
                     "CompactSubObj":false,
-                    "Index":"0x1402\u0000",
-                    "SubIndex":"0x01\u0000",
+                    "Index":"0x1402",
+                    "SubIndex":"0x01",
                     "OSCO Type":"OSCOODSubIndex"
                 },
                 {
@@ -1120,8 +1120,8 @@
                     "PDOMapping":false,
                     "ObjFlags":0,
                     "CompactSubObj":false,
-                    "Index":"0x1402\u0000",
-                    "SubIndex":"0x02\u0000",
+                    "Index":"0x1402",
+                    "SubIndex":"0x02",
                     "OSCO Type":"OSCOODSubIndex"
                 }
             ],
@@ -1139,7 +1139,7 @@
             "PDOMapping":false,
             "ObjFlags":0,
             "CompactSubObj":false,
-            "Index":"0x1403\u0000",
+            "Index":"0x1403",
             "SubIndexes":[
                 {
                     "SubNumber":0,
@@ -1153,8 +1153,8 @@
                     "PDOMapping":false,
                     "ObjFlags":0,
                     "CompactSubObj":false,
-                    "Index":"0x1403\u0000",
-                    "SubIndex":"0x00\u0000",
+                    "Index":"0x1403",
+                    "SubIndex":"0x00",
                     "OSCO Type":"OSCOODSubIndex"
                 },
                 {
@@ -1169,8 +1169,8 @@
                     "PDOMapping":false,
                     "ObjFlags":0,
                     "CompactSubObj":false,
-                    "Index":"0x1403\u0000",
-                    "SubIndex":"0x01\u0000",
+                    "Index":"0x1403",
+                    "SubIndex":"0x01",
                     "OSCO Type":"OSCOODSubIndex"
                 },
                 {
@@ -1185,8 +1185,169 @@
                     "PDOMapping":false,
                     "ObjFlags":0,
                     "CompactSubObj":false,
-                    "Index":"0x1403\u0000",
-                    "SubIndex":"0x02\u0000",
+                    "Index":"0x1403",
+                    "SubIndex":"0x02",
+                    "OSCO Type":"OSCOODSubIndex"
+                }
+            ],
+            "OSCO Type":"OSCOODIndex"
+        },
+        {
+            "SubNumber":9,
+            "ParameterName":"RPDO mapping parameter",
+            "ObjectType":9,
+            "DataType":0,
+            "AccessType":"",
+            "DefaultValue":"",
+            "LowLimit":"",
+            "HighLimit":"",
+            "PDOMapping":false,
+            "ObjFlags":1869182049,
+            "CompactSubObj":true,
+            "Index":"0x1600",
+            "SubIndexes":[
+                {
+                    "SubNumber":0,
+                    "ParameterName":"Number of mapped objects",
+                    "ObjectType":7,
+                    "DataType":5,
+                    "AccessType":"rw",
+                    "DefaultValue":"",
+                    "LowLimit":"",
+                    "HighLimit":"0",
+                    "PDOMapping":false,
+                    "ObjFlags":0,
+                    "CompactSubObj":false,
+                    "Index":"0x1600",
+                    "SubIndex":"0x00",
+                    "OSCO Type":"OSCOODSubIndex"
+                },
+                {
+                    "SubNumber":0,
+                    "ParameterName":"mapped object 1",
+                    "ObjectType":7,
+                    "DataType":7,
+                    "AccessType":"rw",
+                    "DefaultValue":"",
+                    "LowLimit":"",
+                    "HighLimit":"0",
+                    "PDOMapping":false,
+                    "ObjFlags":0,
+                    "CompactSubObj":false,
+                    "Index":"0x1600",
+                    "SubIndex":"0x01",
+                    "OSCO Type":"OSCOODSubIndex"
+                },
+                {
+                    "SubNumber":0,
+                    "ParameterName":"mapped object 2",
+                    "ObjectType":7,
+                    "DataType":7,
+                    "AccessType":"rw",
+                    "DefaultValue":"",
+                    "LowLimit":"",
+                    "HighLimit":"0",
+                    "PDOMapping":false,
+                    "ObjFlags":0,
+                    "CompactSubObj":false,
+                    "Index":"0x1600",
+                    "SubIndex":"0x02",
+                    "OSCO Type":"OSCOODSubIndex"
+                },
+                {
+                    "SubNumber":0,
+                    "ParameterName":"mapped object 3",
+                    "ObjectType":7,
+                    "DataType":7,
+                    "AccessType":"rw",
+                    "DefaultValue":"",
+                    "LowLimit":"",
+                    "HighLimit":"0",
+                    "PDOMapping":false,
+                    "ObjFlags":0,
+                    "CompactSubObj":false,
+                    "Index":"0x1600",
+                    "SubIndex":"0x03",
+                    "OSCO Type":"OSCOODSubIndex"
+                },
+                {
+                    "SubNumber":0,
+                    "ParameterName":"mapped object 4",
+                    "ObjectType":7,
+                    "DataType":7,
+                    "AccessType":"rw",
+                    "DefaultValue":"",
+                    "LowLimit":"",
+                    "HighLimit":"0",
+                    "PDOMapping":false,
+                    "ObjFlags":0,
+                    "CompactSubObj":false,
+                    "Index":"0x1600",
+                    "SubIndex":"0x04",
+                    "OSCO Type":"OSCOODSubIndex"
+                },
+                {
+                    "SubNumber":0,
+                    "ParameterName":"mapped object 5",
+                    "ObjectType":7,
+                    "DataType":7,
+                    "AccessType":"rw",
+                    "DefaultValue":"",
+                    "LowLimit":"",
+                    "HighLimit":"0",
+                    "PDOMapping":false,
+                    "ObjFlags":0,
+                    "CompactSubObj":false,
+                    "Index":"0x1600",
+                    "SubIndex":"0x05",
+                    "OSCO Type":"OSCOODSubIndex"
+                },
+                {
+                    "SubNumber":0,
+                    "ParameterName":"mapped object 6",
+                    "ObjectType":7,
+                    "DataType":7,
+                    "AccessType":"rw",
+                    "DefaultValue":"",
+                    "LowLimit":"",
+                    "HighLimit":"0",
+                    "PDOMapping":false,
+                    "ObjFlags":0,
+                    "CompactSubObj":false,
+                    "Index":"0x1600",
+                    "SubIndex":"0x06",
+                    "OSCO Type":"OSCOODSubIndex"
+                },
+                {
+                    "SubNumber":0,
+                    "ParameterName":"mapped object 7",
+                    "ObjectType":7,
+                    "DataType":7,
+                    "AccessType":"rw",
+                    "DefaultValue":"",
+                    "LowLimit":"",
+                    "HighLimit":"0",
+                    "PDOMapping":false,
+                    "ObjFlags":0,
+                    "CompactSubObj":false,
+                    "Index":"0x1600",
+                    "SubIndex":"0x07",
+                    "OSCO Type":"OSCOODSubIndex"
+                },
+                {
+                    "SubNumber":0,
+                    "ParameterName":"mapped object 8",
+                    "ObjectType":7,
+                    "DataType":7,
+                    "AccessType":"rw",
+                    "DefaultValue":"",
+                    "LowLimit":"",
+                    "HighLimit":"0",
+                    "PDOMapping":false,
+                    "ObjFlags":0,
+                    "CompactSubObj":false,
+                    "Index":"0x1600",
+                    "SubIndex":"0x08",
                     "OSCO Type":"OSCOODSubIndex"
                 }
             ],
@@ -1204,7 +1365,7 @@
             "PDOMapping":false,
             "ObjFlags":0,
             "CompactSubObj":false,
-            "Index":"0x1600\u0000",
+            "Index":"0x1601",
             "SubIndexes":[
                 {
                     "SubNumber":0,
@@ -1218,8 +1379,8 @@
                     "PDOMapping":false,
                     "ObjFlags":0,
                     "CompactSubObj":false,
-                    "Index":"0x1600\u0000",
-                    "SubIndex":"0x00\u0000",
+                    "Index":"0x1601",
+                    "SubIndex":"0x00",
                     "OSCO Type":"OSCOODSubIndex"
                 },
                 {
@@ -1234,8 +1395,8 @@
                     "PDOMapping":false,
                     "ObjFlags":0,
                     "CompactSubObj":false,
-                    "Index":"0x1600\u0000",
-                    "SubIndex":"0x01\u0000",
+                    "Index":"0x1601",
+                    "SubIndex":"0x01",
                     "OSCO Type":"OSCOODSubIndex"
                 },
                 {
@@ -1250,8 +1411,8 @@
                     "PDOMapping":false,
                     "ObjFlags":0,
                     "CompactSubObj":false,
-                    "Index":"0x1600\u0000",
-                    "SubIndex":"0x02\u0000",
+                    "Index":"0x1601",
+                    "SubIndex":"0x02",
                     "OSCO Type":"OSCOODSubIndex"
                 },
                 {
@@ -1266,8 +1427,8 @@
                     "PDOMapping":false,
                     "ObjFlags":0,
                     "CompactSubObj":false,
-                    "Index":"0x1600\u0000",
-                    "SubIndex":"0x03\u0000",
+                    "Index":"0x1601",
+                    "SubIndex":"0x03",
                     "OSCO Type":"OSCOODSubIndex"
                 },
                 {
@@ -1282,8 +1443,8 @@
                     "PDOMapping":false,
                     "ObjFlags":0,
                     "CompactSubObj":false,
-                    "Index":"0x1600\u0000",
-                    "SubIndex":"0x04\u0000",
+                    "Index":"0x1601",
+                    "SubIndex":"0x04",
                     "OSCO Type":"OSCOODSubIndex"
                 },
                 {
@@ -1298,8 +1459,8 @@
                     "PDOMapping":false,
                     "ObjFlags":0,
                     "CompactSubObj":false,
-                    "Index":"0x1600\u0000",
-                    "SubIndex":"0x05\u0000",
+                    "Index":"0x1601",
+                    "SubIndex":"0x05",
                     "OSCO Type":"OSCOODSubIndex"
                 },
                 {
@@ -1314,8 +1475,8 @@
                     "PDOMapping":false,
                     "ObjFlags":0,
                     "CompactSubObj":false,
-                    "Index":"0x1600\u0000",
-                    "SubIndex":"0x06\u0000",
+                    "Index":"0x1601",
+                    "SubIndex":"0x06",
                     "OSCO Type":"OSCOODSubIndex"
                 },
                 {
@@ -1330,8 +1491,8 @@
                     "PDOMapping":false,
                     "ObjFlags":0,
                     "CompactSubObj":false,
-                    "Index":"0x1600\u0000",
-                    "SubIndex":"0x07\u0000",
+                    "Index":"0x1601",
+                    "SubIndex":"0x07",
                     "OSCO Type":"OSCOODSubIndex"
                 },
                 {
@@ -1346,8 +1507,8 @@
                     "PDOMapping":false,
                     "ObjFlags":0,
                     "CompactSubObj":false,
-                    "Index":"0x1600\u0000",
-                    "SubIndex":"0x08\u0000",
+                    "Index":"0x1601",
+                    "SubIndex":"0x08",
                     "OSCO Type":"OSCOODSubIndex"
                 }
             ],
@@ -1365,7 +1526,7 @@
             "PDOMapping":false,
             "ObjFlags":0,
             "CompactSubObj":false,
-            "Index":"0x1601\u0000",
+            "Index":"0x1602",
             "SubIndexes":[
                 {
                     "SubNumber":0,
@@ -1379,8 +1540,8 @@
                     "PDOMapping":false,
                     "ObjFlags":0,
                     "CompactSubObj":false,
-                    "Index":"0x1601\u0000",
-                    "SubIndex":"0x00\u0000",
+                    "Index":"0x1602",
+                    "SubIndex":"0x00",
                     "OSCO Type":"OSCOODSubIndex"
                 },
                 {
@@ -1395,8 +1556,8 @@
                     "PDOMapping":false,
                     "ObjFlags":0,
                     "CompactSubObj":false,
-                    "Index":"0x1601\u0000",
-                    "SubIndex":"0x01\u0000",
+                    "Index":"0x1602",
+                    "SubIndex":"0x01",
                     "OSCO Type":"OSCOODSubIndex"
                 },
                 {
@@ -1411,8 +1572,8 @@
                     "PDOMapping":false,
                     "ObjFlags":0,
                     "CompactSubObj":false,
-                    "Index":"0x1601\u0000",
-                    "SubIndex":"0x02\u0000",
+                    "Index":"0x1602",
+                    "SubIndex":"0x02",
                     "OSCO Type":"OSCOODSubIndex"
                 },
                 {
@@ -1427,8 +1588,8 @@
                     "PDOMapping":false,
                     "ObjFlags":0,
                     "CompactSubObj":false,
-                    "Index":"0x1601\u0000",
-                    "SubIndex":"0x03\u0000",
+                    "Index":"0x1602",
+                    "SubIndex":"0x03",
                     "OSCO Type":"OSCOODSubIndex"
                 },
                 {
@@ -1443,8 +1604,8 @@
                     "PDOMapping":false,
                     "ObjFlags":0,
                     "CompactSubObj":false,
-                    "Index":"0x1601\u0000",
-                    "SubIndex":"0x04\u0000",
+                    "Index":"0x1602",
+                    "SubIndex":"0x04",
                     "OSCO Type":"OSCOODSubIndex"
                 },
                 {
@@ -1459,8 +1620,8 @@
                     "PDOMapping":false,
                     "ObjFlags":0,
                     "CompactSubObj":false,
-                    "Index":"0x1601\u0000",
-                    "SubIndex":"0x05\u0000",
+                    "Index":"0x1602",
+                    "SubIndex":"0x05",
                     "OSCO Type":"OSCOODSubIndex"
                 },
                 {
@@ -1475,8 +1636,8 @@
                     "PDOMapping":false,
                     "ObjFlags":0,
                     "CompactSubObj":false,
-                    "Index":"0x1601\u0000",
-                    "SubIndex":"0x06\u0000",
+                    "Index":"0x1602",
+                    "SubIndex":"0x06",
                     "OSCO Type":"OSCOODSubIndex"
                 },
                 {
@@ -1491,8 +1652,8 @@
                     "PDOMapping":false,
                     "ObjFlags":0,
                     "CompactSubObj":false,
-                    "Index":"0x1601\u0000",
-                    "SubIndex":"0x07\u0000",
+                    "Index":"0x1602",
+                    "SubIndex":"0x07",
                     "OSCO Type":"OSCOODSubIndex"
                 },
                 {
@@ -1507,8 +1668,8 @@
                     "PDOMapping":false,
                     "ObjFlags":0,
                     "CompactSubObj":false,
-                    "Index":"0x1601\u0000",
-                    "SubIndex":"0x08\u0000",
+                    "Index":"0x1602",
+                    "SubIndex":"0x08",
                     "OSCO Type":"OSCOODSubIndex"
                 }
             ],
@@ -1526,7 +1687,7 @@
             "PDOMapping":false,
             "ObjFlags":0,
             "CompactSubObj":false,
-            "Index":"0x1602\u0000",
+            "Index":"0x1603",
             "SubIndexes":[
                 {
                     "SubNumber":0,
@@ -1540,8 +1701,8 @@
                     "PDOMapping":false,
                     "ObjFlags":0,
                     "CompactSubObj":false,
-                    "Index":"0x1602\u0000",
-                    "SubIndex":"0x00\u0000",
+                    "Index":"0x1603",
+                    "SubIndex":"0x00",
                     "OSCO Type":"OSCOODSubIndex"
                 },
                 {
@@ -1556,8 +1717,8 @@
                     "PDOMapping":false,
                     "ObjFlags":0,
                     "CompactSubObj":false,
-                    "Index":"0x1602\u0000",
-                    "SubIndex":"0x01\u0000",
+                    "Index":"0x1603",
+                    "SubIndex":"0x01",
                     "OSCO Type":"OSCOODSubIndex"
                 },
                 {
@@ -1572,8 +1733,8 @@
                     "PDOMapping":false,
                     "ObjFlags":0,
                     "CompactSubObj":false,
-                    "Index":"0x1602\u0000",
-                    "SubIndex":"0x02\u0000",
+                    "Index":"0x1603",
+                    "SubIndex":"0x02",
                     "OSCO Type":"OSCOODSubIndex"
                 },
                 {
@@ -1588,8 +1749,8 @@
                     "PDOMapping":false,
                     "ObjFlags":0,
                     "CompactSubObj":false,
-                    "Index":"0x1602\u0000",
-                    "SubIndex":"0x03\u0000",
+                    "Index":"0x1603",
+                    "SubIndex":"0x03",
                     "OSCO Type":"OSCOODSubIndex"
                 },
                 {
@@ -1604,8 +1765,8 @@
                     "PDOMapping":false,
                     "ObjFlags":0,
                     "CompactSubObj":false,
-                    "Index":"0x1602\u0000",
-                    "SubIndex":"0x04\u0000",
+                    "Index":"0x1603",
+                    "SubIndex":"0x04",
                     "OSCO Type":"OSCOODSubIndex"
                 },
                 {
@@ -1620,8 +1781,8 @@
                     "PDOMapping":false,
                     "ObjFlags":0,
                     "CompactSubObj":false,
-                    "Index":"0x1602\u0000",
-                    "SubIndex":"0x05\u0000",
+                    "Index":"0x1603",
+                    "SubIndex":"0x05",
                     "OSCO Type":"OSCOODSubIndex"
                 },
                 {
@@ -1636,8 +1797,8 @@
                     "PDOMapping":false,
                     "ObjFlags":0,
                     "CompactSubObj":false,
-                    "Index":"0x1602\u0000",
-                    "SubIndex":"0x06\u0000",
+                    "Index":"0x1603",
+                    "SubIndex":"0x06",
                     "OSCO Type":"OSCOODSubIndex"
                 },
                 {
@@ -1652,8 +1813,8 @@
                     "PDOMapping":false,
                     "ObjFlags":0,
                     "CompactSubObj":false,
-                    "Index":"0x1602\u0000",
-                    "SubIndex":"0x07\u0000",
+                    "Index":"0x1603",
+                    "SubIndex":"0x07",
                     "OSCO Type":"OSCOODSubIndex"
                 },
                 {
@@ -1668,169 +1829,8 @@
                     "PDOMapping":false,
                     "ObjFlags":0,
                     "CompactSubObj":false,
-                    "Index":"0x1602\u0000",
-                    "SubIndex":"0x08\u0000",
-                    "OSCO Type":"OSCOODSubIndex"
-                }
-            ],
-            "OSCO Type":"OSCOODIndex"
-        },
-        {
-            "SubNumber":9,
-            "ParameterName":"RPDO mapping parameter",
-            "ObjectType":9,
-            "DataType":0,
-            "AccessType":"",
-            "DefaultValue":"",
-            "LowLimit":"",
-            "HighLimit":"",
-            "PDOMapping":false,
-            "ObjFlags":0,
-            "CompactSubObj":false,
-            "Index":"0x1603\u0000",
-            "SubIndexes":[
-                {
-                    "SubNumber":0,
-                    "ParameterName":"Number of mapped objects",
-                    "ObjectType":7,
-                    "DataType":5,
-                    "AccessType":"rw",
-                    "DefaultValue":"",
-                    "LowLimit":"",
-                    "HighLimit":"0",
-                    "PDOMapping":false,
-                    "ObjFlags":0,
-                    "CompactSubObj":false,
-                    "Index":"0x1603\u0000",
-                    "SubIndex":"0x00\u0000",
-                    "OSCO Type":"OSCOODSubIndex"
-                },
-                {
-                    "SubNumber":0,
-                    "ParameterName":"mapped object 1",
-                    "ObjectType":7,
-                    "DataType":7,
-                    "AccessType":"rw",
-                    "DefaultValue":"",
-                    "LowLimit":"",
-                    "HighLimit":"0",
-                    "PDOMapping":false,
-                    "ObjFlags":0,
-                    "CompactSubObj":false,
-                    "Index":"0x1603\u0000",
-                    "SubIndex":"0x01\u0000",
-                    "OSCO Type":"OSCOODSubIndex"
-                },
-                {
-                    "SubNumber":0,
-                    "ParameterName":"mapped object 2",
-                    "ObjectType":7,
-                    "DataType":7,
-                    "AccessType":"rw",
-                    "DefaultValue":"",
-                    "LowLimit":"",
-                    "HighLimit":"0",
-                    "PDOMapping":false,
-                    "ObjFlags":0,
-                    "CompactSubObj":false,
-                    "Index":"0x1603\u0000",
-                    "SubIndex":"0x02\u0000",
-                    "OSCO Type":"OSCOODSubIndex"
-                },
-                {
-                    "SubNumber":0,
-                    "ParameterName":"mapped object 3",
-                    "ObjectType":7,
-                    "DataType":7,
-                    "AccessType":"rw",
-                    "DefaultValue":"",
-                    "LowLimit":"",
-                    "HighLimit":"0",
-                    "PDOMapping":false,
-                    "ObjFlags":0,
-                    "CompactSubObj":false,
-                    "Index":"0x1603\u0000",
-                    "SubIndex":"0x03\u0000",
-                    "OSCO Type":"OSCOODSubIndex"
-                },
-                {
-                    "SubNumber":0,
-                    "ParameterName":"mapped object 4",
-                    "ObjectType":7,
-                    "DataType":7,
-                    "AccessType":"rw",
-                    "DefaultValue":"",
-                    "LowLimit":"",
-                    "HighLimit":"0",
-                    "PDOMapping":false,
-                    "ObjFlags":0,
-                    "CompactSubObj":false,
-                    "Index":"0x1603\u0000",
-                    "SubIndex":"0x04\u0000",
-                    "OSCO Type":"OSCOODSubIndex"
-                },
-                {
-                    "SubNumber":0,
-                    "ParameterName":"mapped object 5",
-                    "ObjectType":7,
-                    "DataType":7,
-                    "AccessType":"rw",
-                    "DefaultValue":"",
-                    "LowLimit":"",
-                    "HighLimit":"0",
-                    "PDOMapping":false,
-                    "ObjFlags":0,
-                    "CompactSubObj":false,
-                    "Index":"0x1603\u0000",
-                    "SubIndex":"0x05\u0000",
-                    "OSCO Type":"OSCOODSubIndex"
-                },
-                {
-                    "SubNumber":0,
-                    "ParameterName":"mapped object 6",
-                    "ObjectType":7,
-                    "DataType":7,
-                    "AccessType":"rw",
-                    "DefaultValue":"",
-                    "LowLimit":"",
-                    "HighLimit":"0",
-                    "PDOMapping":false,
-                    "ObjFlags":0,
-                    "CompactSubObj":false,
-                    "Index":"0x1603\u0000",
-                    "SubIndex":"0x06\u0000",
-                    "OSCO Type":"OSCOODSubIndex"
-                },
-                {
-                    "SubNumber":0,
-                    "ParameterName":"mapped object 7",
-                    "ObjectType":7,
-                    "DataType":7,
-                    "AccessType":"rw",
-                    "DefaultValue":"",
-                    "LowLimit":"",
-                    "HighLimit":"0",
-                    "PDOMapping":false,
-                    "ObjFlags":0,
-                    "CompactSubObj":false,
-                    "Index":"0x1603\u0000",
-                    "SubIndex":"0x07\u0000",
-                    "OSCO Type":"OSCOODSubIndex"
-                },
-                {
-                    "SubNumber":0,
-                    "ParameterName":"mapped object 8",
-                    "ObjectType":7,
-                    "DataType":7,
-                    "AccessType":"rw",
-                    "DefaultValue":"",
-                    "LowLimit":"",
-                    "HighLimit":"0",
-                    "PDOMapping":false,
-                    "ObjFlags":0,
-                    "CompactSubObj":false,
-                    "Index":"0x1603\u0000",
-                    "SubIndex":"0x08\u0000",
+                    "Index":"0x1603",
+                    "SubIndex":"0x08",
                     "OSCO Type":"OSCOODSubIndex"
                 }
             ],
@@ -1848,7 +1848,7 @@
             "PDOMapping":false,
             "ObjFlags":0,
             "CompactSubObj":false,
-            "Index":"0x1800\u0000",
+            "Index":"0x1800",
             "SubIndexes":[
                 {
                     "SubNumber":0,
@@ -1862,8 +1862,8 @@
                     "PDOMapping":false,
                     "ObjFlags":0,
                     "CompactSubObj":false,
-                    "Index":"0x1800\u0000",
-                    "SubIndex":"0x00\u0000",
+                    "Index":"0x1800",
+                    "SubIndex":"0x00",
                     "OSCO Type":"OSCOODSubIndex"
                 },
                 {
@@ -1878,8 +1878,8 @@
                     "PDOMapping":false,
                     "ObjFlags":0,
                     "CompactSubObj":false,
-                    "Index":"0x1800\u0000",
-                    "SubIndex":"0x01\u0000",
+                    "Index":"0x1800",
+                    "SubIndex":"0x01",
                     "OSCO Type":"OSCOODSubIndex"
                 },
                 {
@@ -1894,8 +1894,8 @@
                     "PDOMapping":false,
                     "ObjFlags":0,
                     "CompactSubObj":false,
-                    "Index":"0x1800\u0000",
-                    "SubIndex":"0x02\u0000",
+                    "Index":"0x1800",
+                    "SubIndex":"0x02",
                     "OSCO Type":"OSCOODSubIndex"
                 },
                 {
@@ -1910,8 +1910,8 @@
                     "PDOMapping":false,
                     "ObjFlags":0,
                     "CompactSubObj":false,
-                    "Index":"0x1800\u0000",
-                    "SubIndex":"0x03\u0000",
+                    "Index":"0x1800",
+                    "SubIndex":"0x03",
                     "OSCO Type":"OSCOODSubIndex"
                 },
                 {
@@ -1926,8 +1926,8 @@
                     "PDOMapping":false,
                     "ObjFlags":0,
                     "CompactSubObj":false,
-                    "Index":"0x1800\u0000",
-                    "SubIndex":"0x04\u0000",
+                    "Index":"0x1800",
+                    "SubIndex":"0x04",
                     "OSCO Type":"OSCOODSubIndex"
                 },
                 {
@@ -1942,8 +1942,8 @@
                     "PDOMapping":false,
                     "ObjFlags":0,
                     "CompactSubObj":false,
-                    "Index":"0x1800\u0000",
-                    "SubIndex":"0x05\u0000",
+                    "Index":"0x1800",
+                    "SubIndex":"0x05",
                     "OSCO Type":"OSCOODSubIndex"
                 },
                 {
@@ -1958,8 +1958,8 @@
                     "PDOMapping":false,
                     "ObjFlags":0,
                     "CompactSubObj":false,
-                    "Index":"0x1800\u0000",
-                    "SubIndex":"0x06\u0000",
+                    "Index":"0x1800",
+                    "SubIndex":"0x06",
                     "OSCO Type":"OSCOODSubIndex"
                 }
             ],
@@ -1977,7 +1977,7 @@
             "PDOMapping":false,
             "ObjFlags":0,
             "CompactSubObj":false,
-            "Index":"0x1801\u0000",
+            "Index":"0x1801",
             "SubIndexes":[
                 {
                     "SubNumber":0,
@@ -1991,8 +1991,8 @@
                     "PDOMapping":false,
                     "ObjFlags":0,
                     "CompactSubObj":false,
-                    "Index":"0x1801\u0000",
-                    "SubIndex":"0x00\u0000",
+                    "Index":"0x1801",
+                    "SubIndex":"0x00",
                     "OSCO Type":"OSCOODSubIndex"
                 },
                 {
@@ -2007,8 +2007,8 @@
                     "PDOMapping":false,
                     "ObjFlags":0,
                     "CompactSubObj":false,
-                    "Index":"0x1801\u0000",
-                    "SubIndex":"0x01\u0000",
+                    "Index":"0x1801",
+                    "SubIndex":"0x01",
                     "OSCO Type":"OSCOODSubIndex"
                 },
                 {
@@ -2023,8 +2023,8 @@
                     "PDOMapping":false,
                     "ObjFlags":0,
                     "CompactSubObj":false,
-                    "Index":"0x1801\u0000",
-                    "SubIndex":"0x02\u0000",
+                    "Index":"0x1801",
+                    "SubIndex":"0x02",
                     "OSCO Type":"OSCOODSubIndex"
                 },
                 {
@@ -2039,8 +2039,8 @@
                     "PDOMapping":false,
                     "ObjFlags":0,
                     "CompactSubObj":false,
-                    "Index":"0x1801\u0000",
-                    "SubIndex":"0x03\u0000",
+                    "Index":"0x1801",
+                    "SubIndex":"0x03",
                     "OSCO Type":"OSCOODSubIndex"
                 },
                 {
@@ -2055,8 +2055,8 @@
                     "PDOMapping":false,
                     "ObjFlags":0,
                     "CompactSubObj":false,
-                    "Index":"0x1801\u0000",
-                    "SubIndex":"0x04\u0000",
+                    "Index":"0x1801",
+                    "SubIndex":"0x04",
                     "OSCO Type":"OSCOODSubIndex"
                 },
                 {
@@ -2071,8 +2071,8 @@
                     "PDOMapping":false,
                     "ObjFlags":0,
                     "CompactSubObj":false,
-                    "Index":"0x1801\u0000",
-                    "SubIndex":"0x05\u0000",
+                    "Index":"0x1801",
+                    "SubIndex":"0x05",
                     "OSCO Type":"OSCOODSubIndex"
                 },
                 {
@@ -2087,8 +2087,8 @@
                     "PDOMapping":false,
                     "ObjFlags":0,
                     "CompactSubObj":false,
-                    "Index":"0x1801\u0000",
-                    "SubIndex":"0x06\u0000",
+                    "Index":"0x1801",
+                    "SubIndex":"0x06",
                     "OSCO Type":"OSCOODSubIndex"
                 }
             ],
@@ -2106,7 +2106,7 @@
             "PDOMapping":false,
             "ObjFlags":0,
             "CompactSubObj":false,
-            "Index":"0x1802\u0000",
+            "Index":"0x1802",
             "SubIndexes":[
                 {
                     "SubNumber":0,
@@ -2120,8 +2120,8 @@
                     "PDOMapping":false,
                     "ObjFlags":0,
                     "CompactSubObj":false,
-                    "Index":"0x1802\u0000",
-                    "SubIndex":"0x00\u0000",
+                    "Index":"0x1802",
+                    "SubIndex":"0x00",
                     "OSCO Type":"OSCOODSubIndex"
                 },
                 {
@@ -2136,8 +2136,8 @@
                     "PDOMapping":false,
                     "ObjFlags":0,
                     "CompactSubObj":false,
-                    "Index":"0x1802\u0000",
-                    "SubIndex":"0x01\u0000",
+                    "Index":"0x1802",
+                    "SubIndex":"0x01",
                     "OSCO Type":"OSCOODSubIndex"
                 },
                 {
@@ -2152,8 +2152,8 @@
                     "PDOMapping":false,
                     "ObjFlags":0,
                     "CompactSubObj":false,
-                    "Index":"0x1802\u0000",
-                    "SubIndex":"0x02\u0000",
+                    "Index":"0x1802",
+                    "SubIndex":"0x02",
                     "OSCO Type":"OSCOODSubIndex"
                 },
                 {
@@ -2168,8 +2168,8 @@
                     "PDOMapping":false,
                     "ObjFlags":0,
                     "CompactSubObj":false,
-                    "Index":"0x1802\u0000",
-                    "SubIndex":"0x03\u0000",
+                    "Index":"0x1802",
+                    "SubIndex":"0x03",
                     "OSCO Type":"OSCOODSubIndex"
                 },
                 {
@@ -2184,8 +2184,8 @@
                     "PDOMapping":false,
                     "ObjFlags":0,
                     "CompactSubObj":false,
-                    "Index":"0x1802\u0000",
-                    "SubIndex":"0x04\u0000",
+                    "Index":"0x1802",
+                    "SubIndex":"0x04",
                     "OSCO Type":"OSCOODSubIndex"
                 },
                 {
@@ -2200,8 +2200,8 @@
                     "PDOMapping":false,
                     "ObjFlags":0,
                     "CompactSubObj":false,
-                    "Index":"0x1802\u0000",
-                    "SubIndex":"0x05\u0000",
+                    "Index":"0x1802",
+                    "SubIndex":"0x05",
                     "OSCO Type":"OSCOODSubIndex"
                 },
                 {
@@ -2216,8 +2216,8 @@
                     "PDOMapping":false,
                     "ObjFlags":0,
                     "CompactSubObj":false,
-                    "Index":"0x1802\u0000",
-                    "SubIndex":"0x06\u0000",
+                    "Index":"0x1802",
+                    "SubIndex":"0x06",
                     "OSCO Type":"OSCOODSubIndex"
                 }
             ],
@@ -2235,7 +2235,7 @@
             "PDOMapping":false,
             "ObjFlags":0,
             "CompactSubObj":false,
-            "Index":"0x1803\u0000",
+            "Index":"0x1803",
             "SubIndexes":[
                 {
                     "SubNumber":0,
@@ -2249,8 +2249,8 @@
                     "PDOMapping":false,
                     "ObjFlags":0,
                     "CompactSubObj":false,
-                    "Index":"0x1803\u0000",
-                    "SubIndex":"0x00\u0000",
+                    "Index":"0x1803",
+                    "SubIndex":"0x00",
                     "OSCO Type":"OSCOODSubIndex"
                 },
                 {
@@ -2265,8 +2265,8 @@
                     "PDOMapping":false,
                     "ObjFlags":0,
                     "CompactSubObj":false,
-                    "Index":"0x1803\u0000",
-                    "SubIndex":"0x01\u0000",
+                    "Index":"0x1803",
+                    "SubIndex":"0x01",
                     "OSCO Type":"OSCOODSubIndex"
                 },
                 {
@@ -2281,8 +2281,8 @@
                     "PDOMapping":false,
                     "ObjFlags":0,
                     "CompactSubObj":false,
-                    "Index":"0x1803\u0000",
-                    "SubIndex":"0x02\u0000",
+                    "Index":"0x1803",
+                    "SubIndex":"0x02",
                     "OSCO Type":"OSCOODSubIndex"
                 },
                 {
@@ -2297,8 +2297,8 @@
                     "PDOMapping":false,
                     "ObjFlags":0,
                     "CompactSubObj":false,
-                    "Index":"0x1803\u0000",
-                    "SubIndex":"0x03\u0000",
+                    "Index":"0x1803",
+                    "SubIndex":"0x03",
                     "OSCO Type":"OSCOODSubIndex"
                 },
                 {
@@ -2313,8 +2313,8 @@
                     "PDOMapping":false,
                     "ObjFlags":0,
                     "CompactSubObj":false,
-                    "Index":"0x1803\u0000",
-                    "SubIndex":"0x04\u0000",
+                    "Index":"0x1803",
+                    "SubIndex":"0x04",
                     "OSCO Type":"OSCOODSubIndex"
                 },
                 {
@@ -2329,8 +2329,8 @@
                     "PDOMapping":false,
                     "ObjFlags":0,
                     "CompactSubObj":false,
-                    "Index":"0x1803\u0000",
-                    "SubIndex":"0x05\u0000",
+                    "Index":"0x1803",
+                    "SubIndex":"0x05",
                     "OSCO Type":"OSCOODSubIndex"
                 },
                 {
@@ -2345,8 +2345,8 @@
                     "PDOMapping":false,
                     "ObjFlags":0,
                     "CompactSubObj":false,
-                    "Index":"0x1803\u0000",
-                    "SubIndex":"0x06\u0000",
+                    "Index":"0x1803",
+                    "SubIndex":"0x06",
                     "OSCO Type":"OSCOODSubIndex"
                 }
             ],
@@ -2364,7 +2364,7 @@
             "PDOMapping":false,
             "ObjFlags":0,
             "CompactSubObj":false,
-            "Index":"0x1A00\u0000",
+            "Index":"0x1A00",
             "SubIndexes":[
                 {
                     "SubNumber":0,
@@ -2378,8 +2378,8 @@
                     "PDOMapping":false,
                     "ObjFlags":0,
                     "CompactSubObj":false,
-                    "Index":"0x1A00\u0000",
-                    "SubIndex":"0x00\u0000",
+                    "Index":"0x1A00",
+                    "SubIndex":"0x00",
                     "OSCO Type":"OSCOODSubIndex"
                 },
                 {
@@ -2394,8 +2394,8 @@
                     "PDOMapping":false,
                     "ObjFlags":0,
                     "CompactSubObj":false,
-                    "Index":"0x1A00\u0000",
-                    "SubIndex":"0x01\u0000",
+                    "Index":"0x1A00",
+                    "SubIndex":"0x01",
                     "OSCO Type":"OSCOODSubIndex"
                 },
                 {
@@ -2410,8 +2410,8 @@
                     "PDOMapping":false,
                     "ObjFlags":0,
                     "CompactSubObj":false,
-                    "Index":"0x1A00\u0000",
-                    "SubIndex":"0x02\u0000",
+                    "Index":"0x1A00",
+                    "SubIndex":"0x02",
                     "OSCO Type":"OSCOODSubIndex"
                 },
                 {
@@ -2426,8 +2426,8 @@
                     "PDOMapping":false,
                     "ObjFlags":0,
                     "CompactSubObj":false,
-                    "Index":"0x1A00\u0000",
-                    "SubIndex":"0x03\u0000",
+                    "Index":"0x1A00",
+                    "SubIndex":"0x03",
                     "OSCO Type":"OSCOODSubIndex"
                 },
                 {
@@ -2442,8 +2442,8 @@
                     "PDOMapping":false,
                     "ObjFlags":0,
                     "CompactSubObj":false,
-                    "Index":"0x1A00\u0000",
-                    "SubIndex":"0x04\u0000",
+                    "Index":"0x1A00",
+                    "SubIndex":"0x04",
                     "OSCO Type":"OSCOODSubIndex"
                 },
                 {
@@ -2458,8 +2458,8 @@
                     "PDOMapping":false,
                     "ObjFlags":0,
                     "CompactSubObj":false,
-                    "Index":"0x1A00\u0000",
-                    "SubIndex":"0x05\u0000",
+                    "Index":"0x1A00",
+                    "SubIndex":"0x05",
                     "OSCO Type":"OSCOODSubIndex"
                 },
                 {
@@ -2474,8 +2474,8 @@
                     "PDOMapping":false,
                     "ObjFlags":0,
                     "CompactSubObj":false,
-                    "Index":"0x1A00\u0000",
-                    "SubIndex":"0x06\u0000",
+                    "Index":"0x1A00",
+                    "SubIndex":"0x06",
                     "OSCO Type":"OSCOODSubIndex"
                 },
                 {
@@ -2490,8 +2490,8 @@
                     "PDOMapping":false,
                     "ObjFlags":0,
                     "CompactSubObj":false,
-                    "Index":"0x1A00\u0000",
-                    "SubIndex":"0x07\u0000",
+                    "Index":"0x1A00",
+                    "SubIndex":"0x07",
                     "OSCO Type":"OSCOODSubIndex"
                 },
                 {
@@ -2506,8 +2506,8 @@
                     "PDOMapping":false,
                     "ObjFlags":0,
                     "CompactSubObj":false,
-                    "Index":"0x1A00\u0000",
-                    "SubIndex":"0x08\u0000",
+                    "Index":"0x1A00",
+                    "SubIndex":"0x08",
                     "OSCO Type":"OSCOODSubIndex"
                 }
             ],
@@ -2525,7 +2525,7 @@
             "PDOMapping":false,
             "ObjFlags":0,
             "CompactSubObj":false,
-            "Index":"0x1A01\u0000",
+            "Index":"0x1A01",
             "SubIndexes":[
                 {
                     "SubNumber":0,
@@ -2539,8 +2539,8 @@
                     "PDOMapping":false,
                     "ObjFlags":0,
                     "CompactSubObj":false,
-                    "Index":"0x1A01\u0000",
-                    "SubIndex":"0x00\u0000",
+                    "Index":"0x1A01",
+                    "SubIndex":"0x00",
                     "OSCO Type":"OSCOODSubIndex"
                 },
                 {
@@ -2555,8 +2555,8 @@
                     "PDOMapping":false,
                     "ObjFlags":0,
                     "CompactSubObj":false,
-                    "Index":"0x1A01\u0000",
-                    "SubIndex":"0x01\u0000",
+                    "Index":"0x1A01",
+                    "SubIndex":"0x01",
                     "OSCO Type":"OSCOODSubIndex"
                 },
                 {
@@ -2571,8 +2571,8 @@
                     "PDOMapping":false,
                     "ObjFlags":0,
                     "CompactSubObj":false,
-                    "Index":"0x1A01\u0000",
-                    "SubIndex":"0x02\u0000",
+                    "Index":"0x1A01",
+                    "SubIndex":"0x02",
                     "OSCO Type":"OSCOODSubIndex"
                 },
                 {
@@ -2587,8 +2587,8 @@
                     "PDOMapping":false,
                     "ObjFlags":0,
                     "CompactSubObj":false,
-                    "Index":"0x1A01\u0000",
-                    "SubIndex":"0x03\u0000",
+                    "Index":"0x1A01",
+                    "SubIndex":"0x03",
                     "OSCO Type":"OSCOODSubIndex"
                 },
                 {
@@ -2603,8 +2603,8 @@
                     "PDOMapping":false,
                     "ObjFlags":0,
                     "CompactSubObj":false,
-                    "Index":"0x1A01\u0000",
-                    "SubIndex":"0x04\u0000",
+                    "Index":"0x1A01",
+                    "SubIndex":"0x04",
                     "OSCO Type":"OSCOODSubIndex"
                 },
                 {
@@ -2619,8 +2619,8 @@
                     "PDOMapping":false,
                     "ObjFlags":0,
                     "CompactSubObj":false,
-                    "Index":"0x1A01\u0000",
-                    "SubIndex":"0x05\u0000",
+                    "Index":"0x1A01",
+                    "SubIndex":"0x05",
                     "OSCO Type":"OSCOODSubIndex"
                 },
                 {
@@ -2635,8 +2635,8 @@
                     "PDOMapping":false,
                     "ObjFlags":0,
                     "CompactSubObj":false,
-                    "Index":"0x1A01\u0000",
-                    "SubIndex":"0x06\u0000",
+                    "Index":"0x1A01",
+                    "SubIndex":"0x06",
                     "OSCO Type":"OSCOODSubIndex"
                 },
                 {
@@ -2651,8 +2651,8 @@
                     "PDOMapping":false,
                     "ObjFlags":0,
                     "CompactSubObj":false,
-                    "Index":"0x1A01\u0000",
-                    "SubIndex":"0x07\u0000",
+                    "Index":"0x1A01",
+                    "SubIndex":"0x07",
                     "OSCO Type":"OSCOODSubIndex"
                 },
                 {
@@ -2667,8 +2667,8 @@
                     "PDOMapping":false,
                     "ObjFlags":0,
                     "CompactSubObj":false,
-                    "Index":"0x1A01\u0000",
-                    "SubIndex":"0x08\u0000",
+                    "Index":"0x1A01",
+                    "SubIndex":"0x08",
                     "OSCO Type":"OSCOODSubIndex"
                 }
             ],
@@ -2686,7 +2686,7 @@
             "PDOMapping":false,
             "ObjFlags":0,
             "CompactSubObj":false,
-            "Index":"0x1A02\u0000",
+            "Index":"0x1A02",
             "SubIndexes":[
                 {
                     "SubNumber":0,
@@ -2700,8 +2700,8 @@
                     "PDOMapping":false,
                     "ObjFlags":0,
                     "CompactSubObj":false,
-                    "Index":"0x1A02\u0000",
-                    "SubIndex":"0x00\u0000",
+                    "Index":"0x1A02",
+                    "SubIndex":"0x00",
                     "OSCO Type":"OSCOODSubIndex"
                 },
                 {
@@ -2716,8 +2716,8 @@
                     "PDOMapping":false,
                     "ObjFlags":0,
                     "CompactSubObj":false,
-                    "Index":"0x1A02\u0000",
-                    "SubIndex":"0x01\u0000",
+                    "Index":"0x1A02",
+                    "SubIndex":"0x01",
                     "OSCO Type":"OSCOODSubIndex"
                 },
                 {
@@ -2732,8 +2732,8 @@
                     "PDOMapping":false,
                     "ObjFlags":0,
                     "CompactSubObj":false,
-                    "Index":"0x1A02\u0000",
-                    "SubIndex":"0x02\u0000",
+                    "Index":"0x1A02",
+                    "SubIndex":"0x02",
                     "OSCO Type":"OSCOODSubIndex"
                 },
                 {
@@ -2748,8 +2748,8 @@
                     "PDOMapping":false,
                     "ObjFlags":0,
                     "CompactSubObj":false,
-                    "Index":"0x1A02\u0000",
-                    "SubIndex":"0x03\u0000",
+                    "Index":"0x1A02",
+                    "SubIndex":"0x03",
                     "OSCO Type":"OSCOODSubIndex"
                 },
                 {
@@ -2764,8 +2764,8 @@
                     "PDOMapping":false,
                     "ObjFlags":0,
                     "CompactSubObj":false,
-                    "Index":"0x1A02\u0000",
-                    "SubIndex":"0x04\u0000",
+                    "Index":"0x1A02",
+                    "SubIndex":"0x04",
                     "OSCO Type":"OSCOODSubIndex"
                 },
                 {
@@ -2780,8 +2780,8 @@
                     "PDOMapping":false,
                     "ObjFlags":0,
                     "CompactSubObj":false,
-                    "Index":"0x1A02\u0000",
-                    "SubIndex":"0x05\u0000",
+                    "Index":"0x1A02",
+                    "SubIndex":"0x05",
                     "OSCO Type":"OSCOODSubIndex"
                 },
                 {
@@ -2796,8 +2796,8 @@
                     "PDOMapping":false,
                     "ObjFlags":0,
                     "CompactSubObj":false,
-                    "Index":"0x1A02\u0000",
-                    "SubIndex":"0x06\u0000",
+                    "Index":"0x1A02",
+                    "SubIndex":"0x06",
                     "OSCO Type":"OSCOODSubIndex"
                 },
                 {
@@ -2812,8 +2812,8 @@
                     "PDOMapping":false,
                     "ObjFlags":0,
                     "CompactSubObj":false,
-                    "Index":"0x1A02\u0000",
-                    "SubIndex":"0x07\u0000",
+                    "Index":"0x1A02",
+                    "SubIndex":"0x07",
                     "OSCO Type":"OSCOODSubIndex"
                 },
                 {
@@ -2828,8 +2828,8 @@
                     "PDOMapping":false,
                     "ObjFlags":0,
                     "CompactSubObj":false,
-                    "Index":"0x1A02\u0000",
-                    "SubIndex":"0x08\u0000",
+                    "Index":"0x1A02",
+                    "SubIndex":"0x08",
                     "OSCO Type":"OSCOODSubIndex"
                 }
             ],
@@ -2847,7 +2847,7 @@
             "PDOMapping":false,
             "ObjFlags":0,
             "CompactSubObj":false,
-            "Index":"0x1A03\u0000",
+            "Index":"0x1A03",
             "SubIndexes":[
                 {
                     "SubNumber":0,
@@ -2861,8 +2861,8 @@
                     "PDOMapping":false,
                     "ObjFlags":0,
                     "CompactSubObj":false,
-                    "Index":"0x1A03\u0000",
-                    "SubIndex":"0x00\u0000",
+                    "Index":"0x1A03",
+                    "SubIndex":"0x00",
                     "OSCO Type":"OSCOODSubIndex"
                 },
                 {
@@ -2877,8 +2877,8 @@
                     "PDOMapping":false,
                     "ObjFlags":0,
                     "CompactSubObj":false,
-                    "Index":"0x1A03\u0000",
-                    "SubIndex":"0x01\u0000",
+                    "Index":"0x1A03",
+                    "SubIndex":"0x01",
                     "OSCO Type":"OSCOODSubIndex"
                 },
                 {
@@ -2893,8 +2893,8 @@
                     "PDOMapping":false,
                     "ObjFlags":0,
                     "CompactSubObj":false,
-                    "Index":"0x1A03\u0000",
-                    "SubIndex":"0x02\u0000",
+                    "Index":"0x1A03",
+                    "SubIndex":"0x02",
                     "OSCO Type":"OSCOODSubIndex"
                 },
                 {
@@ -2909,8 +2909,8 @@
                     "PDOMapping":false,
                     "ObjFlags":0,
                     "CompactSubObj":false,
-                    "Index":"0x1A03\u0000",
-                    "SubIndex":"0x03\u0000",
+                    "Index":"0x1A03",
+                    "SubIndex":"0x03",
                     "OSCO Type":"OSCOODSubIndex"
                 },
                 {
@@ -2925,8 +2925,8 @@
                     "PDOMapping":false,
                     "ObjFlags":0,
                     "CompactSubObj":false,
-                    "Index":"0x1A03\u0000",
-                    "SubIndex":"0x04\u0000",
+                    "Index":"0x1A03",
+                    "SubIndex":"0x04",
                     "OSCO Type":"OSCOODSubIndex"
                 },
                 {
@@ -2941,8 +2941,8 @@
                     "PDOMapping":false,
                     "ObjFlags":0,
                     "CompactSubObj":false,
-                    "Index":"0x1A03\u0000",
-                    "SubIndex":"0x05\u0000",
+                    "Index":"0x1A03",
+                    "SubIndex":"0x05",
                     "OSCO Type":"OSCOODSubIndex"
                 },
                 {
@@ -2957,8 +2957,8 @@
                     "PDOMapping":false,
                     "ObjFlags":0,
                     "CompactSubObj":false,
-                    "Index":"0x1A03\u0000",
-                    "SubIndex":"0x06\u0000",
+                    "Index":"0x1A03",
+                    "SubIndex":"0x06",
                     "OSCO Type":"OSCOODSubIndex"
                 },
                 {
@@ -2973,8 +2973,8 @@
                     "PDOMapping":false,
                     "ObjFlags":0,
                     "CompactSubObj":false,
-                    "Index":"0x1A03\u0000",
-                    "SubIndex":"0x07\u0000",
+                    "Index":"0x1A03",
+                    "SubIndex":"0x07",
                     "OSCO Type":"OSCOODSubIndex"
                 },
                 {
@@ -2989,8 +2989,8 @@
                     "PDOMapping":false,
                     "ObjFlags":0,
                     "CompactSubObj":false,
-                    "Index":"0x1A03\u0000",
-                    "SubIndex":"0x08\u0000",
+                    "Index":"0x1A03",
+                    "SubIndex":"0x08",
                     "OSCO Type":"OSCOODSubIndex"
                 }
             ],
@@ -3008,7 +3008,7 @@
             "PDOMapping":false,
             "ObjFlags":0,
             "CompactSubObj":false,
-            "Index":"0x1F80\u0000",
+            "Index":"0x1F80",
             "SubIndexes":[
 
             ],
@@ -3026,7 +3026,7 @@
             "PDOMapping":false,
             "ObjFlags":0,
             "CompactSubObj":false,
-            "Index":"0x2100\u0000",
+            "Index":"0x2100",
             "SubIndexes":[
 
             ],
@@ -3044,7 +3044,7 @@
             "PDOMapping":false,
             "ObjFlags":0,
             "CompactSubObj":false,
-            "Index":"0x2101\u0000",
+            "Index":"0x2101",
             "SubIndexes":[
 
             ],
@@ -3062,7 +3062,7 @@
             "PDOMapping":false,
             "ObjFlags":0,
             "CompactSubObj":false,
-            "Index":"0x2102\u0000",
+            "Index":"0x2102",
             "SubIndexes":[
 
             ],
@@ -3080,7 +3080,7 @@
             "PDOMapping":false,
             "ObjFlags":0,
             "CompactSubObj":false,
-            "Index":"0x2103\u0000",
+            "Index":"0x2103",
             "SubIndexes":[
 
             ],
@@ -3098,7 +3098,7 @@
             "PDOMapping":false,
             "ObjFlags":0,
             "CompactSubObj":false,
-            "Index":"0x2104\u0000",
+            "Index":"0x2104",
             "SubIndexes":[
 
             ],
@@ -3116,7 +3116,7 @@
             "PDOMapping":false,
             "ObjFlags":0,
             "CompactSubObj":false,
-            "Index":"0x2106\u0000",
+            "Index":"0x2106",
             "SubIndexes":[
 
             ],
@@ -3134,7 +3134,7 @@
             "PDOMapping":false,
             "ObjFlags":0,
             "CompactSubObj":false,
-            "Index":"0x2107\u0000",
+            "Index":"0x2107",
             "SubIndexes":[
                 {
                     "SubNumber":0,
@@ -3148,8 +3148,8 @@
                     "PDOMapping":false,
                     "ObjFlags":0,
                     "CompactSubObj":false,
-                    "Index":"0x2107\u0000",
-                    "SubIndex":"0x00\u0000",
+                    "Index":"0x2107",
+                    "SubIndex":"0x00",
                     "OSCO Type":"OSCOODSubIndex"
                 },
                 {
@@ -3164,8 +3164,8 @@
                     "PDOMapping":false,
                     "ObjFlags":0,
                     "CompactSubObj":false,
-                    "Index":"0x2107\u0000",
-                    "SubIndex":"0x01\u0000",
+                    "Index":"0x2107",
+                    "SubIndex":"0x01",
                     "OSCO Type":"OSCOODSubIndex"
                 },
                 {
@@ -3180,8 +3180,8 @@
                     "PDOMapping":false,
                     "ObjFlags":0,
                     "CompactSubObj":false,
-                    "Index":"0x2107\u0000",
-                    "SubIndex":"0x02\u0000",
+                    "Index":"0x2107",
+                    "SubIndex":"0x02",
                     "OSCO Type":"OSCOODSubIndex"
                 },
                 {
@@ -3196,8 +3196,8 @@
                     "PDOMapping":false,
                     "ObjFlags":0,
                     "CompactSubObj":false,
-                    "Index":"0x2107\u0000",
-                    "SubIndex":"0x03\u0000",
+                    "Index":"0x2107",
+                    "SubIndex":"0x03",
                     "OSCO Type":"OSCOODSubIndex"
                 },
                 {
@@ -3212,8 +3212,8 @@
                     "PDOMapping":false,
                     "ObjFlags":0,
                     "CompactSubObj":false,
-                    "Index":"0x2107\u0000",
-                    "SubIndex":"0x04\u0000",
+                    "Index":"0x2107",
+                    "SubIndex":"0x04",
                     "OSCO Type":"OSCOODSubIndex"
                 },
                 {
@@ -3228,8 +3228,8 @@
                     "PDOMapping":false,
                     "ObjFlags":0,
                     "CompactSubObj":false,
-                    "Index":"0x2107\u0000",
-                    "SubIndex":"0x05\u0000",
+                    "Index":"0x2107",
+                    "SubIndex":"0x05",
                     "OSCO Type":"OSCOODSubIndex"
                 }
             ],
@@ -3247,7 +3247,7 @@
             "PDOMapping":false,
             "ObjFlags":0,
             "CompactSubObj":false,
-            "Index":"0x2108\u0000",
+            "Index":"0x2108",
             "SubIndexes":[
                 {
                     "SubNumber":0,
@@ -3261,8 +3261,8 @@
                     "PDOMapping":false,
                     "ObjFlags":0,
                     "CompactSubObj":false,
-                    "Index":"0x2108\u0000",
-                    "SubIndex":"0x00\u0000",
+                    "Index":"0x2108",
+                    "SubIndex":"0x00",
                     "OSCO Type":"OSCOODSubIndex"
                 },
                 {
@@ -3277,8 +3277,8 @@
                     "PDOMapping":false,
                     "ObjFlags":0,
                     "CompactSubObj":false,
-                    "Index":"0x2108\u0000",
-                    "SubIndex":"0x01\u0000",
+                    "Index":"0x2108",
+                    "SubIndex":"0x01",
                     "OSCO Type":"OSCOODSubIndex"
                 }
             ],
@@ -3296,7 +3296,7 @@
             "PDOMapping":false,
             "ObjFlags":0,
             "CompactSubObj":false,
-            "Index":"0x2109\u0000",
+            "Index":"0x2109",
             "SubIndexes":[
                 {
                     "SubNumber":0,
@@ -3310,8 +3310,8 @@
                     "PDOMapping":false,
                     "ObjFlags":0,
                     "CompactSubObj":false,
-                    "Index":"0x2109\u0000",
-                    "SubIndex":"0x00\u0000",
+                    "Index":"0x2109",
+                    "SubIndex":"0x00",
                     "OSCO Type":"OSCOODSubIndex"
                 },
                 {
@@ -3326,8 +3326,8 @@
                     "PDOMapping":false,
                     "ObjFlags":0,
                     "CompactSubObj":false,
-                    "Index":"0x2109\u0000",
-                    "SubIndex":"0x01\u0000",
+                    "Index":"0x2109",
+                    "SubIndex":"0x01",
                     "OSCO Type":"OSCOODSubIndex"
                 }
             ],
@@ -3345,7 +3345,7 @@
             "PDOMapping":false,
             "ObjFlags":0,
             "CompactSubObj":false,
-            "Index":"0x2110\u0000",
+            "Index":"0x2110",
             "SubIndexes":[
                 {
                     "SubNumber":0,
@@ -3359,8 +3359,8 @@
                     "PDOMapping":false,
                     "ObjFlags":0,
                     "CompactSubObj":false,
-                    "Index":"0x2110\u0000",
-                    "SubIndex":"0x00\u0000",
+                    "Index":"0x2110",
+                    "SubIndex":"0x00",
                     "OSCO Type":"OSCOODSubIndex"
                 },
                 {
@@ -3375,8 +3375,8 @@
                     "PDOMapping":false,
                     "ObjFlags":0,
                     "CompactSubObj":false,
-                    "Index":"0x2110\u0000",
-                    "SubIndex":"0x01\u0000",
+                    "Index":"0x2110",
+                    "SubIndex":"0x01",
                     "OSCO Type":"OSCOODSubIndex"
                 },
                 {
@@ -3391,8 +3391,8 @@
                     "PDOMapping":false,
                     "ObjFlags":0,
                     "CompactSubObj":false,
-                    "Index":"0x2110\u0000",
-                    "SubIndex":"0x02\u0000",
+                    "Index":"0x2110",
+                    "SubIndex":"0x02",
                     "OSCO Type":"OSCOODSubIndex"
                 },
                 {
@@ -3407,8 +3407,8 @@
                     "PDOMapping":false,
                     "ObjFlags":0,
                     "CompactSubObj":false,
-                    "Index":"0x2110\u0000",
-                    "SubIndex":"0x03\u0000",
+                    "Index":"0x2110",
+                    "SubIndex":"0x03",
                     "OSCO Type":"OSCOODSubIndex"
                 },
                 {
@@ -3423,8 +3423,8 @@
                     "PDOMapping":false,
                     "ObjFlags":0,
                     "CompactSubObj":false,
-                    "Index":"0x2110\u0000",
-                    "SubIndex":"0x04\u0000",
+                    "Index":"0x2110",
+                    "SubIndex":"0x04",
                     "OSCO Type":"OSCOODSubIndex"
                 },
                 {
@@ -3439,8 +3439,8 @@
                     "PDOMapping":false,
                     "ObjFlags":0,
                     "CompactSubObj":false,
-                    "Index":"0x2110\u0000",
-                    "SubIndex":"0x05\u0000",
+                    "Index":"0x2110",
+                    "SubIndex":"0x05",
                     "OSCO Type":"OSCOODSubIndex"
                 },
                 {
@@ -3455,8 +3455,8 @@
                     "PDOMapping":false,
                     "ObjFlags":0,
                     "CompactSubObj":false,
-                    "Index":"0x2110\u0000",
-                    "SubIndex":"0x06\u0000",
+                    "Index":"0x2110",
+                    "SubIndex":"0x06",
                     "OSCO Type":"OSCOODSubIndex"
                 },
                 {
@@ -3471,8 +3471,8 @@
                     "PDOMapping":false,
                     "ObjFlags":0,
                     "CompactSubObj":false,
-                    "Index":"0x2110\u0000",
-                    "SubIndex":"0x07\u0000",
+                    "Index":"0x2110",
+                    "SubIndex":"0x07",
                     "OSCO Type":"OSCOODSubIndex"
                 },
                 {
@@ -3487,8 +3487,8 @@
                     "PDOMapping":false,
                     "ObjFlags":0,
                     "CompactSubObj":false,
-                    "Index":"0x2110\u0000",
-                    "SubIndex":"0x08\u0000",
+                    "Index":"0x2110",
+                    "SubIndex":"0x08",
                     "OSCO Type":"OSCOODSubIndex"
                 },
                 {
@@ -3503,8 +3503,8 @@
                     "PDOMapping":false,
                     "ObjFlags":0,
                     "CompactSubObj":false,
-                    "Index":"0x2110\u0000",
-                    "SubIndex":"0x09\u0000",
+                    "Index":"0x2110",
+                    "SubIndex":"0x09",
                     "OSCO Type":"OSCOODSubIndex"
                 },
                 {
@@ -3519,8 +3519,8 @@
                     "PDOMapping":false,
                     "ObjFlags":0,
                     "CompactSubObj":false,
-                    "Index":"0x2110\u0000",
-                    "SubIndex":"0x0A\u0000",
+                    "Index":"0x2110",
+                    "SubIndex":"0x0A",
                     "OSCO Type":"OSCOODSubIndex"
                 },
                 {
@@ -3535,8 +3535,8 @@
                     "PDOMapping":false,
                     "ObjFlags":0,
                     "CompactSubObj":false,
-                    "Index":"0x2110\u0000",
-                    "SubIndex":"0x0B\u0000",
+                    "Index":"0x2110",
+                    "SubIndex":"0x0B",
                     "OSCO Type":"OSCOODSubIndex"
                 },
                 {
@@ -3551,8 +3551,8 @@
                     "PDOMapping":false,
                     "ObjFlags":0,
                     "CompactSubObj":false,
-                    "Index":"0x2110\u0000",
-                    "SubIndex":"0x0C\u0000",
+                    "Index":"0x2110",
+                    "SubIndex":"0x0C",
                     "OSCO Type":"OSCOODSubIndex"
                 },
                 {
@@ -3567,8 +3567,8 @@
                     "PDOMapping":false,
                     "ObjFlags":0,
                     "CompactSubObj":false,
-                    "Index":"0x2110\u0000",
-                    "SubIndex":"0x0D\u0000",
+                    "Index":"0x2110",
+                    "SubIndex":"0x0D",
                     "OSCO Type":"OSCOODSubIndex"
                 },
                 {
@@ -3583,8 +3583,8 @@
                     "PDOMapping":false,
                     "ObjFlags":0,
                     "CompactSubObj":false,
-                    "Index":"0x2110\u0000",
-                    "SubIndex":"0x0E\u0000",
+                    "Index":"0x2110",
+                    "SubIndex":"0x0E",
                     "OSCO Type":"OSCOODSubIndex"
                 },
                 {
@@ -3599,8 +3599,8 @@
                     "PDOMapping":false,
                     "ObjFlags":0,
                     "CompactSubObj":false,
-                    "Index":"0x2110\u0000",
-                    "SubIndex":"0x0F\u0000",
+                    "Index":"0x2110",
+                    "SubIndex":"0x0F",
                     "OSCO Type":"OSCOODSubIndex"
                 },
                 {
@@ -3615,8 +3615,8 @@
                     "PDOMapping":false,
                     "ObjFlags":0,
                     "CompactSubObj":false,
-                    "Index":"0x2110\u0000",
-                    "SubIndex":"0x10\u0000",
+                    "Index":"0x2110",
+                    "SubIndex":"0x10",
                     "OSCO Type":"OSCOODSubIndex"
                 }
             ],
@@ -3634,7 +3634,7 @@
             "PDOMapping":false,
             "ObjFlags":0,
             "CompactSubObj":false,
-            "Index":"0x2111\u0000",
+            "Index":"0x2111",
             "SubIndexes":[
                 {
                     "SubNumber":0,
@@ -3648,8 +3648,8 @@
                     "PDOMapping":false,
                     "ObjFlags":0,
                     "CompactSubObj":false,
-                    "Index":"0x2111\u0000",
-                    "SubIndex":"0x00\u0000",
+                    "Index":"0x2111",
+                    "SubIndex":"0x00",
                     "OSCO Type":"OSCOODSubIndex"
                 },
                 {
@@ -3664,8 +3664,8 @@
                     "PDOMapping":false,
                     "ObjFlags":0,
                     "CompactSubObj":false,
-                    "Index":"0x2111\u0000",
-                    "SubIndex":"0x01\u0000",
+                    "Index":"0x2111",
+                    "SubIndex":"0x01",
                     "OSCO Type":"OSCOODSubIndex"
                 },
                 {
@@ -3680,8 +3680,8 @@
                     "PDOMapping":false,
                     "ObjFlags":0,
                     "CompactSubObj":false,
-                    "Index":"0x2111\u0000",
-                    "SubIndex":"0x02\u0000",
+                    "Index":"0x2111",
+                    "SubIndex":"0x02",
                     "OSCO Type":"OSCOODSubIndex"
                 },
                 {
@@ -3696,8 +3696,8 @@
                     "PDOMapping":false,
                     "ObjFlags":0,
                     "CompactSubObj":false,
-                    "Index":"0x2111\u0000",
-                    "SubIndex":"0x03\u0000",
+                    "Index":"0x2111",
+                    "SubIndex":"0x03",
                     "OSCO Type":"OSCOODSubIndex"
                 },
                 {
@@ -3712,8 +3712,8 @@
                     "PDOMapping":false,
                     "ObjFlags":0,
                     "CompactSubObj":false,
-                    "Index":"0x2111\u0000",
-                    "SubIndex":"0x04\u0000",
+                    "Index":"0x2111",
+                    "SubIndex":"0x04",
                     "OSCO Type":"OSCOODSubIndex"
                 },
                 {
@@ -3728,8 +3728,8 @@
                     "PDOMapping":false,
                     "ObjFlags":0,
                     "CompactSubObj":false,
-                    "Index":"0x2111\u0000",
-                    "SubIndex":"0x05\u0000",
+                    "Index":"0x2111",
+                    "SubIndex":"0x05",
                     "OSCO Type":"OSCOODSubIndex"
                 },
                 {
@@ -3744,8 +3744,8 @@
                     "PDOMapping":false,
                     "ObjFlags":0,
                     "CompactSubObj":false,
-                    "Index":"0x2111\u0000",
-                    "SubIndex":"0x06\u0000",
+                    "Index":"0x2111",
+                    "SubIndex":"0x06",
                     "OSCO Type":"OSCOODSubIndex"
                 },
                 {
@@ -3760,8 +3760,8 @@
                     "PDOMapping":false,
                     "ObjFlags":0,
                     "CompactSubObj":false,
-                    "Index":"0x2111\u0000",
-                    "SubIndex":"0x07\u0000",
+                    "Index":"0x2111",
+                    "SubIndex":"0x07",
                     "OSCO Type":"OSCOODSubIndex"
                 },
                 {
@@ -3776,8 +3776,8 @@
                     "PDOMapping":false,
                     "ObjFlags":0,
                     "CompactSubObj":false,
-                    "Index":"0x2111\u0000",
-                    "SubIndex":"0x08\u0000",
+                    "Index":"0x2111",
+                    "SubIndex":"0x08",
                     "OSCO Type":"OSCOODSubIndex"
                 },
                 {
@@ -3792,8 +3792,8 @@
                     "PDOMapping":false,
                     "ObjFlags":0,
                     "CompactSubObj":false,
-                    "Index":"0x2111\u0000",
-                    "SubIndex":"0x09\u0000",
+                    "Index":"0x2111",
+                    "SubIndex":"0x09",
                     "OSCO Type":"OSCOODSubIndex"
                 },
                 {
@@ -3808,8 +3808,8 @@
                     "PDOMapping":false,
                     "ObjFlags":0,
                     "CompactSubObj":false,
-                    "Index":"0x2111\u0000",
-                    "SubIndex":"0x0A\u0000",
+                    "Index":"0x2111",
+                    "SubIndex":"0x0A",
                     "OSCO Type":"OSCOODSubIndex"
                 },
                 {
@@ -3824,8 +3824,8 @@
                     "PDOMapping":false,
                     "ObjFlags":0,
                     "CompactSubObj":false,
-                    "Index":"0x2111\u0000",
-                    "SubIndex":"0x0B\u0000",
+                    "Index":"0x2111",
+                    "SubIndex":"0x0B",
                     "OSCO Type":"OSCOODSubIndex"
                 },
                 {
@@ -3840,8 +3840,8 @@
                     "PDOMapping":false,
                     "ObjFlags":0,
                     "CompactSubObj":false,
-                    "Index":"0x2111\u0000",
-                    "SubIndex":"0x0C\u0000",
+                    "Index":"0x2111",
+                    "SubIndex":"0x0C",
                     "OSCO Type":"OSCOODSubIndex"
                 },
                 {
@@ -3856,8 +3856,8 @@
                     "PDOMapping":false,
                     "ObjFlags":0,
                     "CompactSubObj":false,
-                    "Index":"0x2111\u0000",
-                    "SubIndex":"0x0D\u0000",
+                    "Index":"0x2111",
+                    "SubIndex":"0x0D",
                     "OSCO Type":"OSCOODSubIndex"
                 },
                 {
@@ -3872,8 +3872,8 @@
                     "PDOMapping":false,
                     "ObjFlags":0,
                     "CompactSubObj":false,
-                    "Index":"0x2111\u0000",
-                    "SubIndex":"0x0E\u0000",
+                    "Index":"0x2111",
+                    "SubIndex":"0x0E",
                     "OSCO Type":"OSCOODSubIndex"
                 },
                 {
@@ -3888,8 +3888,8 @@
                     "PDOMapping":false,
                     "ObjFlags":0,
                     "CompactSubObj":false,
-                    "Index":"0x2111\u0000",
-                    "SubIndex":"0x0F\u0000",
+                    "Index":"0x2111",
+                    "SubIndex":"0x0F",
                     "OSCO Type":"OSCOODSubIndex"
                 },
                 {
@@ -3904,8 +3904,8 @@
                     "PDOMapping":false,
                     "ObjFlags":0,
                     "CompactSubObj":false,
-                    "Index":"0x2111\u0000",
-                    "SubIndex":"0x10\u0000",
+                    "Index":"0x2111",
+                    "SubIndex":"0x10",
                     "OSCO Type":"OSCOODSubIndex"
                 }
             ],
@@ -3923,7 +3923,7 @@
             "PDOMapping":false,
             "ObjFlags":0,
             "CompactSubObj":false,
-            "Index":"0x2112\u0000",
+            "Index":"0x2112",
             "SubIndexes":[
                 {
                     "SubNumber":0,
@@ -3937,8 +3937,8 @@
                     "PDOMapping":false,
                     "ObjFlags":0,
                     "CompactSubObj":false,
-                    "Index":"0x2112\u0000",
-                    "SubIndex":"0x00\u0000",
+                    "Index":"0x2112",
+                    "SubIndex":"0x00",
                     "OSCO Type":"OSCOODSubIndex"
                 },
                 {
@@ -3953,8 +3953,8 @@
                     "PDOMapping":false,
                     "ObjFlags":0,
                     "CompactSubObj":false,
-                    "Index":"0x2112\u0000",
-                    "SubIndex":"0x01\u0000",
+                    "Index":"0x2112",
+                    "SubIndex":"0x01",
                     "OSCO Type":"OSCOODSubIndex"
                 },
                 {
@@ -3969,8 +3969,8 @@
                     "PDOMapping":false,
                     "ObjFlags":0,
                     "CompactSubObj":false,
-                    "Index":"0x2112\u0000",
-                    "SubIndex":"0x02\u0000",
+                    "Index":"0x2112",
+                    "SubIndex":"0x02",
                     "OSCO Type":"OSCOODSubIndex"
                 },
                 {
@@ -3985,8 +3985,8 @@
                     "PDOMapping":false,
                     "ObjFlags":0,
                     "CompactSubObj":false,
-                    "Index":"0x2112\u0000",
-                    "SubIndex":"0x03\u0000",
+                    "Index":"0x2112",
+                    "SubIndex":"0x03",
                     "OSCO Type":"OSCOODSubIndex"
                 },
                 {
@@ -4001,8 +4001,8 @@
                     "PDOMapping":false,
                     "ObjFlags":0,
                     "CompactSubObj":false,
-                    "Index":"0x2112\u0000",
-                    "SubIndex":"0x04\u0000",
+                    "Index":"0x2112",
+                    "SubIndex":"0x04",
                     "OSCO Type":"OSCOODSubIndex"
                 },
                 {
@@ -4017,8 +4017,8 @@
                     "PDOMapping":false,
                     "ObjFlags":0,
                     "CompactSubObj":false,
-                    "Index":"0x2112\u0000",
-                    "SubIndex":"0x05\u0000",
+                    "Index":"0x2112",
+                    "SubIndex":"0x05",
                     "OSCO Type":"OSCOODSubIndex"
                 },
                 {
@@ -4033,8 +4033,8 @@
                     "PDOMapping":false,
                     "ObjFlags":0,
                     "CompactSubObj":false,
-                    "Index":"0x2112\u0000",
-                    "SubIndex":"0x06\u0000",
+                    "Index":"0x2112",
+                    "SubIndex":"0x06",
                     "OSCO Type":"OSCOODSubIndex"
                 },
                 {
@@ -4049,8 +4049,8 @@
                     "PDOMapping":false,
                     "ObjFlags":0,
                     "CompactSubObj":false,
-                    "Index":"0x2112\u0000",
-                    "SubIndex":"0x07\u0000",
+                    "Index":"0x2112",
+                    "SubIndex":"0x07",
                     "OSCO Type":"OSCOODSubIndex"
                 },
                 {
@@ -4065,8 +4065,8 @@
                     "PDOMapping":false,
                     "ObjFlags":0,
                     "CompactSubObj":false,
-                    "Index":"0x2112\u0000",
-                    "SubIndex":"0x08\u0000",
+                    "Index":"0x2112",
+                    "SubIndex":"0x08",
                     "OSCO Type":"OSCOODSubIndex"
                 },
                 {
@@ -4081,8 +4081,8 @@
                     "PDOMapping":false,
                     "ObjFlags":0,
                     "CompactSubObj":false,
-                    "Index":"0x2112\u0000",
-                    "SubIndex":"0x09\u0000",
+                    "Index":"0x2112",
+                    "SubIndex":"0x09",
                     "OSCO Type":"OSCOODSubIndex"
                 },
                 {
@@ -4097,8 +4097,8 @@
                     "PDOMapping":false,
                     "ObjFlags":0,
                     "CompactSubObj":false,
-                    "Index":"0x2112\u0000",
-                    "SubIndex":"0x0A\u0000",
+                    "Index":"0x2112",
+                    "SubIndex":"0x0A",
                     "OSCO Type":"OSCOODSubIndex"
                 },
                 {
@@ -4113,8 +4113,8 @@
                     "PDOMapping":false,
                     "ObjFlags":0,
                     "CompactSubObj":false,
-                    "Index":"0x2112\u0000",
-                    "SubIndex":"0x0B\u0000",
+                    "Index":"0x2112",
+                    "SubIndex":"0x0B",
                     "OSCO Type":"OSCOODSubIndex"
                 },
                 {
@@ -4129,8 +4129,8 @@
                     "PDOMapping":false,
                     "ObjFlags":0,
                     "CompactSubObj":false,
-                    "Index":"0x2112\u0000",
-                    "SubIndex":"0x0C\u0000",
+                    "Index":"0x2112",
+                    "SubIndex":"0x0C",
                     "OSCO Type":"OSCOODSubIndex"
                 },
                 {
@@ -4145,8 +4145,8 @@
                     "PDOMapping":false,
                     "ObjFlags":0,
                     "CompactSubObj":false,
-                    "Index":"0x2112\u0000",
-                    "SubIndex":"0x0D\u0000",
+                    "Index":"0x2112",
+                    "SubIndex":"0x0D",
                     "OSCO Type":"OSCOODSubIndex"
                 },
                 {
@@ -4161,8 +4161,8 @@
                     "PDOMapping":false,
                     "ObjFlags":0,
                     "CompactSubObj":false,
-                    "Index":"0x2112\u0000",
-                    "SubIndex":"0x0E\u0000",
+                    "Index":"0x2112",
+                    "SubIndex":"0x0E",
                     "OSCO Type":"OSCOODSubIndex"
                 },
                 {
@@ -4177,8 +4177,8 @@
                     "PDOMapping":false,
                     "ObjFlags":0,
                     "CompactSubObj":false,
-                    "Index":"0x2112\u0000",
-                    "SubIndex":"0x0F\u0000",
+                    "Index":"0x2112",
+                    "SubIndex":"0x0F",
                     "OSCO Type":"OSCOODSubIndex"
                 },
                 {
@@ -4193,8 +4193,8 @@
                     "PDOMapping":false,
                     "ObjFlags":0,
                     "CompactSubObj":false,
-                    "Index":"0x2112\u0000",
-                    "SubIndex":"0x10\u0000",
+                    "Index":"0x2112",
+                    "SubIndex":"0x10",
                     "OSCO Type":"OSCOODSubIndex"
                 }
             ],
@@ -4212,7 +4212,7 @@
             "PDOMapping":false,
             "ObjFlags":0,
             "CompactSubObj":false,
-            "Index":"0x2120\u0000",
+            "Index":"0x2120",
             "SubIndexes":[
                 {
                     "SubNumber":0,
@@ -4226,8 +4226,8 @@
                     "PDOMapping":false,
                     "ObjFlags":0,
                     "CompactSubObj":false,
-                    "Index":"0x2120\u0000",
-                    "SubIndex":"0x00\u0000",
+                    "Index":"0x2120",
+                    "SubIndex":"0x00",
                     "OSCO Type":"OSCOODSubIndex"
                 },
                 {
@@ -4242,8 +4242,8 @@
                     "PDOMapping":false,
                     "ObjFlags":0,
                     "CompactSubObj":false,
-                    "Index":"0x2120\u0000",
-                    "SubIndex":"0x01\u0000",
+                    "Index":"0x2120",
+                    "SubIndex":"0x01",
                     "OSCO Type":"OSCOODSubIndex"
                 },
                 {
@@ -4258,8 +4258,8 @@
                     "PDOMapping":false,
                     "ObjFlags":0,
                     "CompactSubObj":false,
-                    "Index":"0x2120\u0000",
-                    "SubIndex":"0x02\u0000",
+                    "Index":"0x2120",
+                    "SubIndex":"0x02",
                     "OSCO Type":"OSCOODSubIndex"
                 },
                 {
@@ -4274,8 +4274,8 @@
                     "PDOMapping":false,
                     "ObjFlags":0,
                     "CompactSubObj":false,
-                    "Index":"0x2120\u0000",
-                    "SubIndex":"0x03\u0000",
+                    "Index":"0x2120",
+                    "SubIndex":"0x03",
                     "OSCO Type":"OSCOODSubIndex"
                 },
                 {
@@ -4290,8 +4290,8 @@
                     "PDOMapping":false,
                     "ObjFlags":0,
                     "CompactSubObj":false,
-                    "Index":"0x2120\u0000",
-                    "SubIndex":"0x04\u0000",
+                    "Index":"0x2120",
+                    "SubIndex":"0x04",
                     "OSCO Type":"OSCOODSubIndex"
                 },
                 {
@@ -4306,8 +4306,8 @@
                     "PDOMapping":false,
                     "ObjFlags":0,
                     "CompactSubObj":false,
-                    "Index":"0x2120\u0000",
-                    "SubIndex":"0x05\u0000",
+                    "Index":"0x2120",
+                    "SubIndex":"0x05",
                     "OSCO Type":"OSCOODSubIndex"
                 }
             ],
@@ -4325,7 +4325,7 @@
             "PDOMapping":false,
             "ObjFlags":0,
             "CompactSubObj":false,
-            "Index":"0x2130\u0000",
+            "Index":"0x2130",
             "SubIndexes":[
                 {
                     "SubNumber":0,
@@ -4339,8 +4339,8 @@
                     "PDOMapping":false,
                     "ObjFlags":0,
                     "CompactSubObj":false,
-                    "Index":"0x2130\u0000",
-                    "SubIndex":"0x00\u0000",
+                    "Index":"0x2130",
+                    "SubIndex":"0x00",
                     "OSCO Type":"OSCOODSubIndex"
                 },
                 {
@@ -4355,8 +4355,8 @@
                     "PDOMapping":false,
                     "ObjFlags":0,
                     "CompactSubObj":false,
-                    "Index":"0x2130\u0000",
-                    "SubIndex":"0x01\u0000",
+                    "Index":"0x2130",
+                    "SubIndex":"0x01",
                     "OSCO Type":"OSCOODSubIndex"
                 },
                 {
@@ -4371,8 +4371,8 @@
                     "PDOMapping":false,
                     "ObjFlags":0,
                     "CompactSubObj":false,
-                    "Index":"0x2130\u0000",
-                    "SubIndex":"0x02\u0000",
+                    "Index":"0x2130",
+                    "SubIndex":"0x02",
                     "OSCO Type":"OSCOODSubIndex"
                 },
                 {
@@ -4387,8 +4387,8 @@
                     "PDOMapping":false,
                     "ObjFlags":0,
                     "CompactSubObj":false,
-                    "Index":"0x2130\u0000",
-                    "SubIndex":"0x03\u0000",
+                    "Index":"0x2130",
+                    "SubIndex":"0x03",
                     "OSCO Type":"OSCOODSubIndex"
                 }
             ],
@@ -4406,7 +4406,7 @@
             "PDOMapping":false,
             "ObjFlags":0,
             "CompactSubObj":false,
-            "Index":"0x2301\u0000",
+            "Index":"0x2301",
             "SubIndexes":[
                 {
                     "SubNumber":0,
@@ -4420,8 +4420,8 @@
                     "PDOMapping":false,
                     "ObjFlags":0,
                     "CompactSubObj":false,
-                    "Index":"0x2301\u0000",
-                    "SubIndex":"0x00\u0000",
+                    "Index":"0x2301",
+                    "SubIndex":"0x00",
                     "OSCO Type":"OSCOODSubIndex"
                 },
                 {
@@ -4433,11 +4433,11 @@
                     "DefaultValue":"",
                     "LowLimit":"",
                     "HighLimit":"0",
-                    "PDOMapping":true,
-                    "ObjFlags":-1,
-                    "CompactSubObj":true,
-                    "Index":"0x2301\u0000",
-                    "SubIndex":"0x01\u0000",
+                    "PDOMapping":false,
+                    "ObjFlags":0,
+                    "CompactSubObj":false,
+                    "Index":"0x2301",
+                    "SubIndex":"0x01",
                     "OSCO Type":"OSCOODSubIndex"
                 },
                 {
@@ -4450,10 +4450,10 @@
                     "LowLimit":"",
                     "HighLimit":"0",
                     "PDOMapping":false,
-                    "ObjFlags":1,
+                    "ObjFlags":0,
                     "CompactSubObj":false,
-                    "Index":"0x2301\u0000",
-                    "SubIndex":"0x02\u0000",
+                    "Index":"0x2301",
+                    "SubIndex":"0x02",
                     "OSCO Type":"OSCOODSubIndex"
                 },
                 {
@@ -4468,8 +4468,8 @@
                     "PDOMapping":false,
                     "ObjFlags":0,
                     "CompactSubObj":false,
-                    "Index":"0x2301\u0000",
-                    "SubIndex":"0x03\u0000",
+                    "Index":"0x2301",
+                    "SubIndex":"0x03",
                     "OSCO Type":"OSCOODSubIndex"
                 },
                 {
@@ -4484,8 +4484,8 @@
                     "PDOMapping":false,
                     "ObjFlags":0,
                     "CompactSubObj":false,
-                    "Index":"0x2301\u0000",
-                    "SubIndex":"0x04\u0000",
+                    "Index":"0x2301",
+                    "SubIndex":"0x04",
                     "OSCO Type":"OSCOODSubIndex"
                 },
                 {
@@ -4497,11 +4497,11 @@
                     "DefaultValue":"",
                     "LowLimit":"",
                     "HighLimit":"0",
-                    "PDOMapping":true,
-                    "ObjFlags":7631471,
+                    "PDOMapping":false,
+                    "ObjFlags":0,
                     "CompactSubObj":false,
-                    "Index":"0x2301\u0000",
-                    "SubIndex":"0x05\u0000",
+                    "Index":"0x2301",
+                    "SubIndex":"0x05",
                     "OSCO Type":"OSCOODSubIndex"
                 },
                 {
@@ -4516,8 +4516,8 @@
                     "PDOMapping":false,
                     "ObjFlags":0,
                     "CompactSubObj":false,
-                    "Index":"0x2301\u0000",
-                    "SubIndex":"0x06\u0000",
+                    "Index":"0x2301",
+                    "SubIndex":"0x06",
                     "OSCO Type":"OSCOODSubIndex"
                 },
                 {
@@ -4532,8 +4532,8 @@
                     "PDOMapping":false,
                     "ObjFlags":0,
                     "CompactSubObj":false,
-                    "Index":"0x2301\u0000",
-                    "SubIndex":"0x07\u0000",
+                    "Index":"0x2301",
+                    "SubIndex":"0x07",
                     "OSCO Type":"OSCOODSubIndex"
                 },
                 {
@@ -4548,8 +4548,8 @@
                     "PDOMapping":false,
                     "ObjFlags":0,
                     "CompactSubObj":false,
-                    "Index":"0x2301\u0000",
-                    "SubIndex":"0x08\u0000",
+                    "Index":"0x2301",
+                    "SubIndex":"0x08",
                     "OSCO Type":"OSCOODSubIndex"
                 }
             ],
@@ -4567,7 +4567,7 @@
             "PDOMapping":false,
             "ObjFlags":0,
             "CompactSubObj":false,
-            "Index":"0x2302\u0000",
+            "Index":"0x2302",
             "SubIndexes":[
                 {
                     "SubNumber":0,
@@ -4581,8 +4581,8 @@
                     "PDOMapping":false,
                     "ObjFlags":0,
                     "CompactSubObj":false,
-                    "Index":"0x2302\u0000",
-                    "SubIndex":"0x00\u0000",
+                    "Index":"0x2302",
+                    "SubIndex":"0x00",
                     "OSCO Type":"OSCOODSubIndex"
                 },
                 {
@@ -4597,8 +4597,8 @@
                     "PDOMapping":false,
                     "ObjFlags":0,
                     "CompactSubObj":false,
-                    "Index":"0x2302\u0000",
-                    "SubIndex":"0x01\u0000",
+                    "Index":"0x2302",
+                    "SubIndex":"0x01",
                     "OSCO Type":"OSCOODSubIndex"
                 },
                 {
@@ -4613,8 +4613,8 @@
                     "PDOMapping":false,
                     "ObjFlags":0,
                     "CompactSubObj":false,
-                    "Index":"0x2302\u0000",
-                    "SubIndex":"0x02\u0000",
+                    "Index":"0x2302",
+                    "SubIndex":"0x02",
                     "OSCO Type":"OSCOODSubIndex"
                 },
                 {
@@ -4629,8 +4629,8 @@
                     "PDOMapping":false,
                     "ObjFlags":0,
                     "CompactSubObj":false,
-                    "Index":"0x2302\u0000",
-                    "SubIndex":"0x03\u0000",
+                    "Index":"0x2302",
+                    "SubIndex":"0x03",
                     "OSCO Type":"OSCOODSubIndex"
                 },
                 {
@@ -4645,8 +4645,8 @@
                     "PDOMapping":false,
                     "ObjFlags":0,
                     "CompactSubObj":false,
-                    "Index":"0x2302\u0000",
-                    "SubIndex":"0x04\u0000",
+                    "Index":"0x2302",
+                    "SubIndex":"0x04",
                     "OSCO Type":"OSCOODSubIndex"
                 },
                 {
@@ -4661,8 +4661,8 @@
                     "PDOMapping":false,
                     "ObjFlags":0,
                     "CompactSubObj":false,
-                    "Index":"0x2302\u0000",
-                    "SubIndex":"0x05\u0000",
+                    "Index":"0x2302",
+                    "SubIndex":"0x05",
                     "OSCO Type":"OSCOODSubIndex"
                 },
                 {
@@ -4677,8 +4677,8 @@
                     "PDOMapping":false,
                     "ObjFlags":0,
                     "CompactSubObj":false,
-                    "Index":"0x2302\u0000",
-                    "SubIndex":"0x06\u0000",
+                    "Index":"0x2302",
+                    "SubIndex":"0x06",
                     "OSCO Type":"OSCOODSubIndex"
                 },
                 {
@@ -4693,8 +4693,8 @@
                     "PDOMapping":false,
                     "ObjFlags":0,
                     "CompactSubObj":false,
-                    "Index":"0x2302\u0000",
-                    "SubIndex":"0x07\u0000",
+                    "Index":"0x2302",
+                    "SubIndex":"0x07",
                     "OSCO Type":"OSCOODSubIndex"
                 },
                 {
@@ -4709,8 +4709,8 @@
                     "PDOMapping":false,
                     "ObjFlags":0,
                     "CompactSubObj":false,
-                    "Index":"0x2302\u0000",
-                    "SubIndex":"0x08\u0000",
+                    "Index":"0x2302",
+                    "SubIndex":"0x08",
                     "OSCO Type":"OSCOODSubIndex"
                 }
             ],
@@ -4728,7 +4728,7 @@
             "PDOMapping":false,
             "ObjFlags":0,
             "CompactSubObj":false,
-            "Index":"0x2400\u0000",
+            "Index":"0x2400",
             "SubIndexes":[
 
             ],
@@ -4746,7 +4746,7 @@
             "PDOMapping":false,
             "ObjFlags":0,
             "CompactSubObj":false,
-            "Index":"0x2401\u0000",
+            "Index":"0x2401",
             "SubIndexes":[
                 {
                     "SubNumber":0,
@@ -4760,8 +4760,8 @@
                     "PDOMapping":false,
                     "ObjFlags":0,
                     "CompactSubObj":false,
-                    "Index":"0x2401\u0000",
-                    "SubIndex":"0x00\u0000",
+                    "Index":"0x2401",
+                    "SubIndex":"0x00",
                     "OSCO Type":"OSCOODSubIndex"
                 },
                 {
@@ -4776,8 +4776,8 @@
                     "PDOMapping":false,
                     "ObjFlags":0,
                     "CompactSubObj":false,
-                    "Index":"0x2401\u0000",
-                    "SubIndex":"0x01\u0000",
+                    "Index":"0x2401",
+                    "SubIndex":"0x01",
                     "OSCO Type":"OSCOODSubIndex"
                 },
                 {
@@ -4792,8 +4792,8 @@
                     "PDOMapping":false,
                     "ObjFlags":0,
                     "CompactSubObj":false,
-                    "Index":"0x2401\u0000",
-                    "SubIndex":"0x02\u0000",
+                    "Index":"0x2401",
+                    "SubIndex":"0x02",
                     "OSCO Type":"OSCOODSubIndex"
                 },
                 {
@@ -4808,8 +4808,8 @@
                     "PDOMapping":false,
                     "ObjFlags":0,
                     "CompactSubObj":false,
-                    "Index":"0x2401\u0000",
-                    "SubIndex":"0x03\u0000",
+                    "Index":"0x2401",
+                    "SubIndex":"0x03",
                     "OSCO Type":"OSCOODSubIndex"
                 },
                 {
@@ -4824,8 +4824,8 @@
                     "PDOMapping":false,
                     "ObjFlags":0,
                     "CompactSubObj":false,
-                    "Index":"0x2401\u0000",
-                    "SubIndex":"0x04\u0000",
+                    "Index":"0x2401",
+                    "SubIndex":"0x04",
                     "OSCO Type":"OSCOODSubIndex"
                 },
                 {
@@ -4840,8 +4840,8 @@
                     "PDOMapping":false,
                     "ObjFlags":0,
                     "CompactSubObj":false,
-                    "Index":"0x2401\u0000",
-                    "SubIndex":"0x05\u0000",
+                    "Index":"0x2401",
+                    "SubIndex":"0x05",
                     "OSCO Type":"OSCOODSubIndex"
                 },
                 {
@@ -4856,8 +4856,8 @@
                     "PDOMapping":false,
                     "ObjFlags":0,
                     "CompactSubObj":false,
-                    "Index":"0x2401\u0000",
-                    "SubIndex":"0x06\u0000",
+                    "Index":"0x2401",
+                    "SubIndex":"0x06",
                     "OSCO Type":"OSCOODSubIndex"
                 }
             ],
@@ -4875,7 +4875,7 @@
             "PDOMapping":false,
             "ObjFlags":0,
             "CompactSubObj":false,
-            "Index":"0x2402\u0000",
+            "Index":"0x2402",
             "SubIndexes":[
                 {
                     "SubNumber":0,
@@ -4889,8 +4889,8 @@
                     "PDOMapping":false,
                     "ObjFlags":0,
                     "CompactSubObj":false,
-                    "Index":"0x2402\u0000",
-                    "SubIndex":"0x00\u0000",
+                    "Index":"0x2402",
+                    "SubIndex":"0x00",
                     "OSCO Type":"OSCOODSubIndex"
                 },
                 {
@@ -4905,8 +4905,8 @@
                     "PDOMapping":false,
                     "ObjFlags":0,
                     "CompactSubObj":false,
-                    "Index":"0x2402\u0000",
-                    "SubIndex":"0x01\u0000",
+                    "Index":"0x2402",
+                    "SubIndex":"0x01",
                     "OSCO Type":"OSCOODSubIndex"
                 },
                 {
@@ -4921,8 +4921,8 @@
                     "PDOMapping":false,
                     "ObjFlags":0,
                     "CompactSubObj":false,
-                    "Index":"0x2402\u0000",
-                    "SubIndex":"0x02\u0000",
+                    "Index":"0x2402",
+                    "SubIndex":"0x02",
                     "OSCO Type":"OSCOODSubIndex"
                 },
                 {
@@ -4937,8 +4937,8 @@
                     "PDOMapping":false,
                     "ObjFlags":0,
                     "CompactSubObj":false,
-                    "Index":"0x2402\u0000",
-                    "SubIndex":"0x03\u0000",
+                    "Index":"0x2402",
+                    "SubIndex":"0x03",
                     "OSCO Type":"OSCOODSubIndex"
                 },
                 {
@@ -4953,8 +4953,8 @@
                     "PDOMapping":false,
                     "ObjFlags":0,
                     "CompactSubObj":false,
-                    "Index":"0x2402\u0000",
-                    "SubIndex":"0x04\u0000",
+                    "Index":"0x2402",
+                    "SubIndex":"0x04",
                     "OSCO Type":"OSCOODSubIndex"
                 },
                 {
@@ -4969,8 +4969,8 @@
                     "PDOMapping":false,
                     "ObjFlags":0,
                     "CompactSubObj":false,
-                    "Index":"0x2402\u0000",
-                    "SubIndex":"0x05\u0000",
+                    "Index":"0x2402",
+                    "SubIndex":"0x05",
                     "OSCO Type":"OSCOODSubIndex"
                 },
                 {
@@ -4985,8 +4985,8 @@
                     "PDOMapping":false,
                     "ObjFlags":0,
                     "CompactSubObj":false,
-                    "Index":"0x2402\u0000",
-                    "SubIndex":"0x06\u0000",
+                    "Index":"0x2402",
+                    "SubIndex":"0x06",
                     "OSCO Type":"OSCOODSubIndex"
                 }
             ],
@@ -5004,7 +5004,7 @@
             "PDOMapping":false,
             "ObjFlags":0,
             "CompactSubObj":false,
-            "Index":"0x6000\u0000",
+            "Index":"0x6000",
             "SubIndexes":[
                 {
                     "SubNumber":0,
@@ -5018,8 +5018,8 @@
                     "PDOMapping":false,
                     "ObjFlags":0,
                     "CompactSubObj":false,
-                    "Index":"0x6000\u0000",
-                    "SubIndex":"0x00\u0000",
+                    "Index":"0x6000",
+                    "SubIndex":"0x00",
                     "OSCO Type":"OSCOODSubIndex"
                 },
                 {
@@ -5034,8 +5034,8 @@
                     "PDOMapping":false,
                     "ObjFlags":0,
                     "CompactSubObj":false,
-                    "Index":"0x6000\u0000",
-                    "SubIndex":"0x01\u0000",
+                    "Index":"0x6000",
+                    "SubIndex":"0x01",
                     "OSCO Type":"OSCOODSubIndex"
                 },
                 {
@@ -5050,8 +5050,8 @@
                     "PDOMapping":false,
                     "ObjFlags":0,
                     "CompactSubObj":false,
-                    "Index":"0x6000\u0000",
-                    "SubIndex":"0x02\u0000",
+                    "Index":"0x6000",
+                    "SubIndex":"0x02",
                     "OSCO Type":"OSCOODSubIndex"
                 },
                 {
@@ -5066,8 +5066,8 @@
                     "PDOMapping":false,
                     "ObjFlags":0,
                     "CompactSubObj":false,
-                    "Index":"0x6000\u0000",
-                    "SubIndex":"0x03\u0000",
+                    "Index":"0x6000",
+                    "SubIndex":"0x03",
                     "OSCO Type":"OSCOODSubIndex"
                 },
                 {
@@ -5082,8 +5082,8 @@
                     "PDOMapping":false,
                     "ObjFlags":0,
                     "CompactSubObj":false,
-                    "Index":"0x6000\u0000",
-                    "SubIndex":"0x04\u0000",
+                    "Index":"0x6000",
+                    "SubIndex":"0x04",
                     "OSCO Type":"OSCOODSubIndex"
                 },
                 {
@@ -5098,8 +5098,8 @@
                     "PDOMapping":false,
                     "ObjFlags":0,
                     "CompactSubObj":false,
-                    "Index":"0x6000\u0000",
-                    "SubIndex":"0x05\u0000",
+                    "Index":"0x6000",
+                    "SubIndex":"0x05",
                     "OSCO Type":"OSCOODSubIndex"
                 },
                 {
@@ -5114,8 +5114,8 @@
                     "PDOMapping":false,
                     "ObjFlags":0,
                     "CompactSubObj":false,
-                    "Index":"0x6000\u0000",
-                    "SubIndex":"0x06\u0000",
+                    "Index":"0x6000",
+                    "SubIndex":"0x06",
                     "OSCO Type":"OSCOODSubIndex"
                 },
                 {
@@ -5130,8 +5130,8 @@
                     "PDOMapping":false,
                     "ObjFlags":0,
                     "CompactSubObj":false,
-                    "Index":"0x6000\u0000",
-                    "SubIndex":"0x07\u0000",
+                    "Index":"0x6000",
+                    "SubIndex":"0x07",
                     "OSCO Type":"OSCOODSubIndex"
                 },
                 {
@@ -5146,8 +5146,8 @@
                     "PDOMapping":false,
                     "ObjFlags":0,
                     "CompactSubObj":false,
-                    "Index":"0x6000\u0000",
-                    "SubIndex":"0x08\u0000",
+                    "Index":"0x6000",
+                    "SubIndex":"0x08",
                     "OSCO Type":"OSCOODSubIndex"
                 }
             ],
@@ -5165,7 +5165,7 @@
             "PDOMapping":false,
             "ObjFlags":0,
             "CompactSubObj":false,
-            "Index":"0x6200\u0000",
+            "Index":"0x6200",
             "SubIndexes":[
                 {
                     "SubNumber":0,
@@ -5179,8 +5179,8 @@
                     "PDOMapping":false,
                     "ObjFlags":0,
                     "CompactSubObj":false,
-                    "Index":"0x6200\u0000",
-                    "SubIndex":"0x00\u0000",
+                    "Index":"0x6200",
+                    "SubIndex":"0x00",
                     "OSCO Type":"OSCOODSubIndex"
                 },
                 {
@@ -5195,8 +5195,8 @@
                     "PDOMapping":false,
                     "ObjFlags":0,
                     "CompactSubObj":false,
-                    "Index":"0x6200\u0000",
-                    "SubIndex":"0x01\u0000",
+                    "Index":"0x6200",
+                    "SubIndex":"0x01",
                     "OSCO Type":"OSCOODSubIndex"
                 },
                 {
@@ -5211,8 +5211,8 @@
                     "PDOMapping":false,
                     "ObjFlags":0,
                     "CompactSubObj":false,
-                    "Index":"0x6200\u0000",
-                    "SubIndex":"0x02\u0000",
+                    "Index":"0x6200",
+                    "SubIndex":"0x02",
                     "OSCO Type":"OSCOODSubIndex"
                 },
                 {
@@ -5227,8 +5227,8 @@
                     "PDOMapping":false,
                     "ObjFlags":0,
                     "CompactSubObj":false,
-                    "Index":"0x6200\u0000",
-                    "SubIndex":"0x03\u0000",
+                    "Index":"0x6200",
+                    "SubIndex":"0x03",
                     "OSCO Type":"OSCOODSubIndex"
                 },
                 {
@@ -5243,8 +5243,8 @@
                     "PDOMapping":false,
                     "ObjFlags":0,
                     "CompactSubObj":false,
-                    "Index":"0x6200\u0000",
-                    "SubIndex":"0x04\u0000",
+                    "Index":"0x6200",
+                    "SubIndex":"0x04",
                     "OSCO Type":"OSCOODSubIndex"
                 },
                 {
@@ -5259,8 +5259,8 @@
                     "PDOMapping":false,
                     "ObjFlags":0,
                     "CompactSubObj":false,
-                    "Index":"0x6200\u0000",
-                    "SubIndex":"0x05\u0000",
+                    "Index":"0x6200",
+                    "SubIndex":"0x05",
                     "OSCO Type":"OSCOODSubIndex"
                 },
                 {
@@ -5275,8 +5275,8 @@
                     "PDOMapping":false,
                     "ObjFlags":0,
                     "CompactSubObj":false,
-                    "Index":"0x6200\u0000",
-                    "SubIndex":"0x06\u0000",
+                    "Index":"0x6200",
+                    "SubIndex":"0x06",
                     "OSCO Type":"OSCOODSubIndex"
                 },
                 {
@@ -5291,8 +5291,8 @@
                     "PDOMapping":false,
                     "ObjFlags":0,
                     "CompactSubObj":false,
-                    "Index":"0x6200\u0000",
-                    "SubIndex":"0x07\u0000",
+                    "Index":"0x6200",
+                    "SubIndex":"0x07",
                     "OSCO Type":"OSCOODSubIndex"
                 },
                 {
@@ -5307,8 +5307,8 @@
                     "PDOMapping":false,
                     "ObjFlags":0,
                     "CompactSubObj":false,
-                    "Index":"0x6200\u0000",
-                    "SubIndex":"0x08\u0000",
+                    "Index":"0x6200",
+                    "SubIndex":"0x08",
                     "OSCO Type":"OSCOODSubIndex"
                 }
             ],
@@ -5326,7 +5326,7 @@
             "PDOMapping":false,
             "ObjFlags":0,
             "CompactSubObj":false,
-            "Index":"0x6401\u0000",
+            "Index":"0x6401",
             "SubIndexes":[
                 {
                     "SubNumber":0,
@@ -5340,8 +5340,8 @@
                     "PDOMapping":false,
                     "ObjFlags":0,
                     "CompactSubObj":false,
-                    "Index":"0x6401\u0000",
-                    "SubIndex":"0x00\u0000",
+                    "Index":"0x6401",
+                    "SubIndex":"0x00",
                     "OSCO Type":"OSCOODSubIndex"
                 },
                 {
@@ -5356,8 +5356,8 @@
                     "PDOMapping":false,
                     "ObjFlags":0,
                     "CompactSubObj":false,
-                    "Index":"0x6401\u0000",
-                    "SubIndex":"0x01\u0000",
+                    "Index":"0x6401",
+                    "SubIndex":"0x01",
                     "OSCO Type":"OSCOODSubIndex"
                 },
                 {
@@ -5372,8 +5372,8 @@
                     "PDOMapping":false,
                     "ObjFlags":0,
                     "CompactSubObj":false,
-                    "Index":"0x6401\u0000",
-                    "SubIndex":"0x02\u0000",
+                    "Index":"0x6401",
+                    "SubIndex":"0x02",
                     "OSCO Type":"OSCOODSubIndex"
                 },
                 {
@@ -5388,8 +5388,8 @@
                     "PDOMapping":false,
                     "ObjFlags":0,
                     "CompactSubObj":false,
-                    "Index":"0x6401\u0000",
-                    "SubIndex":"0x03\u0000",
+                    "Index":"0x6401",
+                    "SubIndex":"0x03",
                     "OSCO Type":"OSCOODSubIndex"
                 },
                 {
@@ -5404,8 +5404,8 @@
                     "PDOMapping":false,
                     "ObjFlags":0,
                     "CompactSubObj":false,
-                    "Index":"0x6401\u0000",
-                    "SubIndex":"0x04\u0000",
+                    "Index":"0x6401",
+                    "SubIndex":"0x04",
                     "OSCO Type":"OSCOODSubIndex"
                 },
                 {
@@ -5420,8 +5420,8 @@
                     "PDOMapping":false,
                     "ObjFlags":0,
                     "CompactSubObj":false,
-                    "Index":"0x6401\u0000",
-                    "SubIndex":"0x05\u0000",
+                    "Index":"0x6401",
+                    "SubIndex":"0x05",
                     "OSCO Type":"OSCOODSubIndex"
                 },
                 {
@@ -5436,8 +5436,8 @@
                     "PDOMapping":false,
                     "ObjFlags":0,
                     "CompactSubObj":false,
-                    "Index":"0x6401\u0000",
-                    "SubIndex":"0x06\u0000",
+                    "Index":"0x6401",
+                    "SubIndex":"0x06",
                     "OSCO Type":"OSCOODSubIndex"
                 },
                 {
@@ -5452,8 +5452,8 @@
                     "PDOMapping":false,
                     "ObjFlags":0,
                     "CompactSubObj":false,
-                    "Index":"0x6401\u0000",
-                    "SubIndex":"0x07\u0000",
+                    "Index":"0x6401",
+                    "SubIndex":"0x07",
                     "OSCO Type":"OSCOODSubIndex"
                 },
                 {
@@ -5468,8 +5468,8 @@
                     "PDOMapping":false,
                     "ObjFlags":0,
                     "CompactSubObj":false,
-                    "Index":"0x6401\u0000",
-                    "SubIndex":"0x08\u0000",
+                    "Index":"0x6401",
+                    "SubIndex":"0x08",
                     "OSCO Type":"OSCOODSubIndex"
                 },
                 {
@@ -5484,8 +5484,8 @@
                     "PDOMapping":false,
                     "ObjFlags":0,
                     "CompactSubObj":false,
-                    "Index":"0x6401\u0000",
-                    "SubIndex":"0x09\u0000",
+                    "Index":"0x6401",
+                    "SubIndex":"0x09",
                     "OSCO Type":"OSCOODSubIndex"
                 },
                 {
@@ -5500,8 +5500,8 @@
                     "PDOMapping":false,
                     "ObjFlags":0,
                     "CompactSubObj":false,
-                    "Index":"0x6401\u0000",
-                    "SubIndex":"0x0A\u0000",
+                    "Index":"0x6401",
+                    "SubIndex":"0x0A",
                     "OSCO Type":"OSCOODSubIndex"
                 },
                 {
@@ -5516,8 +5516,8 @@
                     "PDOMapping":false,
                     "ObjFlags":0,
                     "CompactSubObj":false,
-                    "Index":"0x6401\u0000",
-                    "SubIndex":"0x0B\u0000",
+                    "Index":"0x6401",
+                    "SubIndex":"0x0B",
                     "OSCO Type":"OSCOODSubIndex"
                 },
                 {
@@ -5532,8 +5532,8 @@
                     "PDOMapping":false,
                     "ObjFlags":0,
                     "CompactSubObj":false,
-                    "Index":"0x6401\u0000",
-                    "SubIndex":"0x0C\u0000",
+                    "Index":"0x6401",
+                    "SubIndex":"0x0C",
                     "OSCO Type":"OSCOODSubIndex"
                 }
             ],
@@ -5551,7 +5551,7 @@
             "PDOMapping":false,
             "ObjFlags":0,
             "CompactSubObj":false,
-            "Index":"0x6411\u0000",
+            "Index":"0x6411",
             "SubIndexes":[
                 {
                     "SubNumber":0,
@@ -5565,8 +5565,8 @@
                     "PDOMapping":false,
                     "ObjFlags":0,
                     "CompactSubObj":false,
-                    "Index":"0x6411\u0000",
-                    "SubIndex":"0x00\u0000",
+                    "Index":"0x6411",
+                    "SubIndex":"0x00",
                     "OSCO Type":"OSCOODSubIndex"
                 },
                 {
@@ -5581,8 +5581,8 @@
                     "PDOMapping":false,
                     "ObjFlags":0,
                     "CompactSubObj":false,
-                    "Index":"0x6411\u0000",
-                    "SubIndex":"0x01\u0000",
+                    "Index":"0x6411",
+                    "SubIndex":"0x01",
                     "OSCO Type":"OSCOODSubIndex"
                 },
                 {
@@ -5597,8 +5597,8 @@
                     "PDOMapping":false,
                     "ObjFlags":0,
                     "CompactSubObj":false,
-                    "Index":"0x6411\u0000",
-                    "SubIndex":"0x02\u0000",
+                    "Index":"0x6411",
+                    "SubIndex":"0x02",
                     "OSCO Type":"OSCOODSubIndex"
                 },
                 {
@@ -5613,8 +5613,8 @@
                     "PDOMapping":false,
                     "ObjFlags":0,
                     "CompactSubObj":false,
-                    "Index":"0x6411\u0000",
-                    "SubIndex":"0x03\u0000",
+                    "Index":"0x6411",
+                    "SubIndex":"0x03",
                     "OSCO Type":"OSCOODSubIndex"
                 },
                 {
@@ -5629,8 +5629,8 @@
                     "PDOMapping":false,
                     "ObjFlags":0,
                     "CompactSubObj":false,
-                    "Index":"0x6411\u0000",
-                    "SubIndex":"0x04\u0000",
+                    "Index":"0x6411",
+                    "SubIndex":"0x04",
                     "OSCO Type":"OSCOODSubIndex"
                 },
                 {
@@ -5645,8 +5645,8 @@
                     "PDOMapping":false,
                     "ObjFlags":0,
                     "CompactSubObj":false,
-                    "Index":"0x6411\u0000",
-                    "SubIndex":"0x05\u0000",
+                    "Index":"0x6411",
+                    "SubIndex":"0x05",
                     "OSCO Type":"OSCOODSubIndex"
                 },
                 {
@@ -5661,8 +5661,8 @@
                     "PDOMapping":false,
                     "ObjFlags":0,
                     "CompactSubObj":false,
-                    "Index":"0x6411\u0000",
-                    "SubIndex":"0x06\u0000",
+                    "Index":"0x6411",
+                    "SubIndex":"0x06",
                     "OSCO Type":"OSCOODSubIndex"
                 },
                 {
@@ -5677,8 +5677,8 @@
                     "PDOMapping":false,
                     "ObjFlags":0,
                     "CompactSubObj":false,
-                    "Index":"0x6411\u0000",
-                    "SubIndex":"0x07\u0000",
+                    "Index":"0x6411",
+                    "SubIndex":"0x07",
                     "OSCO Type":"OSCOODSubIndex"
                 },
                 {
@@ -5693,8 +5693,8 @@
                     "PDOMapping":false,
                     "ObjFlags":0,
                     "CompactSubObj":false,
-                    "Index":"0x6411\u0000",
-                    "SubIndex":"0x08\u0000",
+                    "Index":"0x6411",
+                    "SubIndex":"0x08",
                     "OSCO Type":"OSCOODSubIndex"
                 }
             ],
