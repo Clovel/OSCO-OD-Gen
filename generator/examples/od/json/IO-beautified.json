@@ -1,0 +1,54 @@
+{
+    "name":"IO Example",
+    "FileInfo":{
+        "FileName":"IO Example",
+        "FileVersion":0,
+        "FileRevision":0,
+        "EDSVersion":"4.0",
+        "Description":"Open Source CANopen implementation",
+        "CreationDate":"2016-03-25",
+        "CreationTime":"03:24PM",
+        "CreatedBy":"JP",
+        "ModificationDate":"98395500-01-13",
+        "ModificationTime":"07:01AM",
+        "ModifiedBy":""
+    },
+    "DeviceInfo":{
+        "VendorName":"CANopenNode",
+        "VendorNumber":0,
+        "ProductName":"CANopenNode",
+        "ProductNumber":0,
+        "RevisionNumber":0,
+        "OrderCode":"0",
+        "BaudRate_10":true,
+        "BaudRate_20":true,
+        "BaudRate_50":true,
+        "BaudRate_125":true,
+        "BaudRate_250":true,
+        "BaudRate_500":true,
+        "BaudRate_800":true,
+        "BaudRate_1000":true,
+        "SimpleBootUpMaster":true,
+        "SimpleBootUpSlave":false,
+        "Granularity":8,
+        "DynamicChannelsSupported":0,
+        "GroupMessaging":false,
+        "NrOfRXPDO":4,
+        "NrOfTXPDO":4,
+        "LSS_Supported":false
+    },
+    "Comments":{
+        "Lines":0,
+        "Comments":""
+    },
+    "DummyUsage":{
+        "Dummy0001":false,
+        "Dummy0002":true,
+        "Dummy0003":true,
+        "Dummy0004":true,
+        "Dummy0005":true,
+        "Dummy0006":true,
+        "Dummy0007":true
+    },
+    "OSCO Type":"OSCOOD"
+}

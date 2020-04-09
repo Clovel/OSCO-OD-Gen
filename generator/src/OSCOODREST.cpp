@@ -12,9 +12,7 @@
 
 #include "RESTServer.hpp"
 
-#include "rapidjson/document.h"
-#include "rapidjson/writer.h"
-#include "rapidjson/stringbuffer.h"
+#include "JSONFactory.hpp"
 
 /* C++ system */
 #include <map>
@@ -108,35 +106,15 @@ bool OSCOODREST::addOD(OSCOOD * const pOD) {
 HttpStatus OSCOODREST::OSCOOD_GET(const std::string &pPath, const std::vector<std::string> &pQueries, std::string &pOut) {
     (void)pQueries;
 
-    /* Create a JSON Document. It is the root of the JSON string */
-    rapidjson::Document lDoc; /* lDoc has type Null for now */
-    lDoc.SetObject(); /* lDoc is no longer of type Null, but of type Object */
+    /* Get OSCOODREST instance */
+    OSCOODREST * const lRESTServer = OSCOODREST::instance();
 
-    /* Get the document's allocator */
-    rapidjson::Document::AllocatorType &lAllocator = lDoc.GetAllocator();
+    /* Get the Object dictionary JSON */
+    const std::string lODJSON = JSONFactory::OSCOODToJSON(*lRESTServer->ODs().at("IO Example"));
 
-    /* Add members to the document */
-    lDoc.AddMember("Hello", "World", lAllocator);
+    std::cout << "[DEBUG] <OSCOODREST::OSCOOD_GET> JSON : " << lODJSON << std::endl;
 
-    rapidjson::Value lVal;
-    lVal.SetString(pPath.c_str(), pPath.size(), lAllocator);
-    lDoc.AddMember("Path", lVal, lAllocator);
-
-    /* Create a value */
-    // rapidjson::Value lVal;
-    // if(0U < pQueries.size()) {
-    //     lVal.SetString(pQueries.at(0U).c_str(), pQueries.at(0U).size(), lDoc.GetAllocator());
-    // } else {
-    //     lVal.SetString("Toto fait du ski", std::strlen("Toto fait du ski"), lDoc.GetAllocator());
-    // }
-
-    rapidjson::StringBuffer lStrBuf;
-    rapidjson::Writer<rapidjson::StringBuffer> lWriter(lStrBuf);
-    lDoc.Accept(lWriter);
-
-    std::cout << "[DEBUG] <OSCOODREST::OSCOOD_GET> JSON : " << lStrBuf.GetString() << std::endl;
-
-    pOut = std::string(lStrBuf.GetString()) + "\r\n";
+    pOut = lODJSON + "\r\n";
 
     return HttpStatus::OK;
 }
