@@ -539,6 +539,31 @@ std::string JSONFactory::OSCOODToJSON(const OSCOOD &pOD) {
         }
         lDoc.AddMember("DummyUsage", lDummyUsageVal, lAlloc);
     }
+    
+    /* Get Indexes */
+    {
+        rapidjson::Value lVal(rapidjson::kArrayType);
+
+        /* Go through every SubIndex */
+        for(const auto &lElmt : pOD.indexes()) {
+            rapidjson::Document lSubDoc;
+            std::string lIndexJSON = OSCOODIndexToJSON(*lElmt.second);
+
+            /* Parse the subindex JSON */
+            lSubDoc.Parse(lIndexJSON.c_str());
+            if(!lDoc.IsObject()) {
+                std::cerr << "[ERROR] <JSONFactory::OSCOODToJSON> Got invalid sub JSON from OSCOODIndexToJSON" << std::endl;
+                return "[ERROR OCCURED]";
+            }
+
+            /* Add the Document to the array */
+            lVal.PushBack(lSubDoc, lAlloc);
+        }
+
+        /* Add the array of objects as a member of the main JSON doc */
+        lDoc.AddMember("Indexes", lVal, lAlloc);
+    }
+
     /* Add OSCO type */
     {
         rapidjson::Value lVal;
