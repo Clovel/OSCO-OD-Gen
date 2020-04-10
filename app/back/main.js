@@ -1,8 +1,15 @@
 const {app, BrowserWindow, nativeTheme, ipcMain} = require('electron')
 const path = require('path')
 const {getDefaultUserDataPath} = require('../common/appdatapath.js')
+const configChecker = require('./configChecker.js')
 
 function createWindow() {
+    /* Check configuration file */
+    if(!configChecker.check()) {
+        console.log("[ERROR] Configuration file is invalid");
+        process.exit(1);
+    }
+
     /* Create the navigator's window */
     const lWindow = new BrowserWindow({
         width: 800,
