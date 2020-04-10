@@ -1,0 +1,6 @@
+{
+    "backEndExe": "/Users/clovel/repository/CAN-CANOpen/OSCO-OD-Gen/generator/dest/bin/OSCO-OD-Gen-util",
+    "odFileName": "/Users/clovel/repository/CAN-CANOpen/OSCO-OD-Gen/generator/example/od/IO.eds",
+    "backEndPort": 3000,
+    "backEndAddr": "http://localhost"
+}
