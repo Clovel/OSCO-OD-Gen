@@ -113,4 +113,7 @@ static std::string uint32ToHexStr(const uint32_t &pInt, const bool &pZeroX = tru
  */
 static std::string uint64ToHexStr(const uint64_t &pInt, const bool &pZeroX = true);
 
+bool hexStrToUInt8(const std::string &pStr, uint8_t &pInt);
+bool hexStrToUInt16(const std::string &pStr, uint16_t &pInt);
+
 #endif /* EDSTOOLS_HPP */
