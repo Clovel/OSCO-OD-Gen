@@ -34,10 +34,73 @@ function checkConfigurationFile() {
             message: '[ERROR] The configuration is invalid',
             detail: 'Missing fields : ' + lMissingFields
         };
-    
-        dialog.showMessageBox(null, lOptions, (response) => {
+
+        dialog.showMessageBoxSync(null, lOptions, (response) => {
             console.log(response);
         });
+
+        return lResult;
+    }
+
+    /* Check the executable file */
+    if(fs.existsSync(lConfig.backEndExe)) {
+        const lExeStat = fs.statSync(lConfig.backEndExe);
+        /* Check if the file is indeed a file */
+        if(lExeStat.isFile()) {
+            /* Check if file is executable */
+            const lExeMode = lExeStat.mode;
+            console.log("[DEBUG] lExeMode = " + '0' + (lExeMode & 0777).toString(8));
+            if(0 != 00100 & lExeMode) {
+                /* We (the owner) have exec rights */
+            } else {
+                /* File is not executable */
+
+                const lOptions = {
+                    type: 'error',
+                    buttons: ['Exit'],
+                    defaultId: 2,
+                    title: 'Back-end executable file error',
+                    message: '[ERROR] Back-end program is not executable',
+                    detail: 'File mode (Unix style) : ' + (lExeMode & 0777).toString(8)
+                };
+        
+                dialog.showMessageBoxSync(null, lOptions, (response) => {
+                    console.log(response);
+                });
+
+                return false;
+            }
+        } else {
+            const lOptions = {
+                type: 'error',
+                buttons: ['Exit'],
+                defaultId: 2,
+                title: 'Back-end executable file error',
+                message: '[ERROR] The configuration is invalid',
+                detail: 'Back-end executable file isn\'t really a file.'
+            };
+
+            dialog.showMessageBoxSync(null, lOptions, (response) => {
+                console.log(response);
+            });
+
+            return false;
+        }
+    } else {
+        const lOptions = {
+            type: 'error',
+            buttons: ['Exit'],
+            defaultId: 2,
+            title: 'Back-end executable file error',
+            message: '[ERROR] The configuration is invalid',
+            detail: 'Back-end executable file doesn\'t exist.'
+        };
+
+        dialog.showMessageBoxSync(null, lOptions, (response) => {
+            console.log(response);
+        });
+
+        return false;
     }
 
     return lResult;
