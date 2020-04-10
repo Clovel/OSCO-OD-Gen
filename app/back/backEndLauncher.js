@@ -1,15 +1,58 @@
 const child  = require('child_process');
-const config = require('../config.json')
+const fs     = require('fs');
 
 /* Set the back-end's path */
-const backEnd     = config.backEnd;
-const backEndPort = config.backEndPort;
-const edsFile     = config.edsFile;
+
+let backEnd;
 
 function launchBackEnd() {
+    let backEnd;
+    let backEndLibDir;
+    let backEndPort;
+    let edsFile;
+
+    lConfig = JSON.parse(fs.readFileSync('./app/config.json', 'utf8'));
+
+    /* Set the configuration variables */
+    backEndExe    = lConfig.backEndExe;
+    backEndPort   = lConfig.backEndPort;
+    backEndLibDir = lConfig.backEndLibDir;
+    edsFile       = lConfig.odFileName;
+
+
+    console.log('backEndExe       : ' + backEndExe       + ' (' + typeof(backEndExe) + ')');
+    console.log('backEndLibDir : ' + backEndLibDir + ' (' + typeof(backEndLibDir) + ')');
+    console.log('backEndPort   : ' + backEndPort   + ' (' + typeof(backEndPort) + ')');
+    console.log('edsFile       : ' + edsFile       + ' (' + typeof(edsFile) + ')');
+
+    var lEnv = Object.create(process.env);
+    lEnv.LD_LIBRARY_PATH = backEndLibDir;
+
     var lParameters = [backEndPort, edsFile];
-    child.execFile(backEnd, lParameters, function(err, data) {
-        console.log(err);
-        console.log(data.toString());
+    console.log('[INFO ] Launching back-end :' + backEndExe + ' ' + backEndPort + ' ' + edsFile);
+    backEnd = child.spawn(backEndExe, lParameters, { env: lEnv }, function(error, stdout, stderr) {
+        if(error) {
+            console.log(error);
+            return;
+        }
+
+        console.log(stdout);
+        console.log(stderr);
     });
+
+    backEnd.stdout.on('data', function(data) {
+        console.log('[B-END] stdout: ' + data.toString('utf-8'));
+    });
+    
+    backEnd.stderr.on('data', function(data) {
+        console.log('[B-END] stderr: ' + data.toString('utf8'));
+    });
+    
+    backEnd.on('exit', function(code) {
+        console.log('[B-END] child process exited with code ' + code.toString('utf-8'));
+    });
+
+    return;
 }
+
+module.exports.launchBackEnd = launchBackEnd;
