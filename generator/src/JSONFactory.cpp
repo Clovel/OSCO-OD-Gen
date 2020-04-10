@@ -183,7 +183,7 @@ std::string JSONFactory::OSCOODSubIndexToJSON(const OSCOODSubIndex &pSubIdx, rap
         lDoc->Accept(lWriter);
 
         /* Create output string */
-        std::string lOutput = std::string(lStrBuf.GetString()) + "\r\n";
+        lOutput = std::string(lStrBuf.GetString()) + "\r\n";
 
         //std::cout << "[DEBUG] <JSONFactory::OSCOODSubIndexToJSON> JSON : " << lOutput << std::endl;
 
