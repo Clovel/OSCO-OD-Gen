@@ -1,3 +1,9 @@
 [submodule "generator/deps/initools"]
 	path = generator/deps/initools
 	url = https://github.com/Clovel/initools.git
+[submodule "generator/deps/rapidjson"]
+	path = generator/deps/rapidjson
+	url = https://github.com/Tencent/rapidjson.git
+[submodule "generator/deps/RESTServer"]
+	path = generator/deps/RESTServer
+	url = https://github.com/Clovel/RESTServer.git

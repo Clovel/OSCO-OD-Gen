@@ -5,7 +5,7 @@
 
 
 [FileInfo]
-FileName=IO Example
+FileName=IO-Example
 FileVersion=0
 FileRevision=0
 EDSVersion=4.0
@@ -2155,7 +2155,7 @@ ObjectType=7
 DataType=0x0009
 AccessType=ro
 PDOMapping=0
-DefaultValue=-                             
+DefaultValue=0
 
 [2130sub2]
 ParameterName=Epoch time base ms
@@ -2208,7 +2208,7 @@ ObjectType=7
 DataType=0x0009
 AccessType=rw
 PDOMapping=0
-DefaultValue=Trace1                        
+DefaultValue=Trace1
 
 [2301sub4]
 ParameterName=Color
@@ -2216,7 +2216,7 @@ ObjectType=7
 DataType=0x0009
 AccessType=rw
 PDOMapping=0
-DefaultValue=red                 
+DefaultValue=red
 
 [2301sub5]
 ParameterName=Map
@@ -2285,7 +2285,7 @@ ObjectType=7
 DataType=0x0009
 AccessType=rw
 PDOMapping=0
-DefaultValue=Trace2                        
+DefaultValue=Trace2
 
 [2302sub4]
 ParameterName=Color
@@ -2293,7 +2293,7 @@ ObjectType=7
 DataType=0x0009
 AccessType=rw
 PDOMapping=0
-DefaultValue=green               
+DefaultValue=green
 
 [2302sub5]
 ParameterName=Map

@@ -30,7 +30,7 @@ class OSCONode;
  * @warning If all the information needed by the class
  * is not available in the file, your object will be incomplete.
  * 
- * @warning The OSCOODFactory create the pointers with `new`,
+ * @warning The OSCOODFactory creates pointers with `new`,
  * but it is the user's responsability to delete the allocated
  * memory if necessary.
  */

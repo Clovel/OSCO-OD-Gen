@@ -12,7 +12,6 @@ jobs:
         # TODO : Make this work for Windows
         # os: [ubuntu-latest, macOS-latest, windows-latest]
         os: [ubuntu-latest, macOS-latest]
-        package_manager: [npm]
 
     steps:
       - name: Checkout
@@ -30,6 +29,17 @@ jobs:
           brew update
           brew install doxygen graphviz coreutils pkg-config
           ln -s /usr/local/bin/greadlink /usr/local/bin/readlink
+
+      - name: Installing dependencies (Ubuntu)
+        if: matrix.os == 'ubuntu-latest'
+        run: |
+          set -x
+          sudo apt-get update
+          sudo apt-get upgrade
+          sudo apt-get install -y doxygen graphviz pkg-config
+          sudo apt-get autoclean
+          sudo apt-get clean
+          sudo apt-get autoremove -y
 
       - name: Build C generator project
         if: matrix.os != 'windows-latest'
