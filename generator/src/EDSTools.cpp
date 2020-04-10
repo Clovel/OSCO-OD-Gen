@@ -176,3 +176,39 @@ std::string uint64ToHexStr(const uint64_t &pInt, const bool &pZeroX) {
 
     return std::string(lChars);
 }
+
+
+
+bool hexStrToUInt8(const std::string &pStr, uint8_t &pInt) {
+    bool lResult = false;
+    unsigned int lInt = 0U;
+    if(1 == std::sscanf(pStr.c_str(), "0x%02X", &lInt)) {
+        lResult = true;
+    } else if(1 == std::sscanf(pStr.c_str(), "%02X", &lInt)) {
+        lResult = true;
+    }
+
+    if((0x0000U != (0xFF00U & lInt)) && (0U != lInt)) {
+        lResult = false;
+    } else {
+        pInt = (uint8_t)(0x00FFU & lInt);
+    }
+
+    return lResult;
+}
+
+bool hexStrToUInt16(const std::string &pStr, uint16_t &pInt) {
+    bool lResult = false;
+    unsigned int lInt = 0U;
+    if(1 == std::sscanf(pStr.c_str(), "0x%04X", &lInt)) {
+        lResult = true;
+    } else if(1 == std::sscanf(pStr.c_str(), "%04X", &lInt)) {
+        lResult = true;
+    }
+
+    if(lResult) {
+        pInt = (uint16_t)(0xFFFFU & lInt);
+    }
+
+    return lResult;
+}

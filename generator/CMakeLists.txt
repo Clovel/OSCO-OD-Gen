@@ -5,7 +5,7 @@
 
 # CMake version required ----------------------------------
 cmake_minimum_required(VERSION 3.0)
-project(osco-od-gen)
+project(OSCO-OD-Gen)
 
 # Project definition --------------------------------------
 if(NOT DEFINED PRJ_VERSION)
@@ -51,7 +51,10 @@ set(CMAKE_SYSTEM_NAME Linux)
 set(CMAKE_PROJECT_BRIEF "OSCO Object Disctionary generator")
 
 if(CMAKE_INSTALL_PREFIX_INITIALIZED_TO_DEFAULT)
-    set(CMAKE_INSTALL_PREFIX ${CMAKE_CURRENT_SOURCE_DIR}/dest CACHE PATH "" FORCE)
+    if(NOT INSTALL_DESTINATION_SET)
+        set(CMAKE_INSTALL_PREFIX ${CMAKE_CURRENT_SOURCE_DIR}/dest CACHE PATH "" FORCE)
+        set(INSTALL_DESTINATION_SET TRUE)
+    endif(NOT INSTALL_DESTINATION_SET)
 endif(CMAKE_INSTALL_PREFIX_INITIALIZED_TO_DEFAULT)
 
 # Allow CTest
@@ -128,6 +131,7 @@ include_directories(
     ${CMAKE_CURRENT_SOURCE_DIR}/src
     ${CMAKE_CURRENT_SOURCE_DIR}/inc
     ${CMAKE_CURRENT_SOURCE_DIR}/deps/initools/inc
+    ${CMAKE_CURRENT_SOURCE_DIR}/deps/RESTServer/inc
     ${CMAKE_CURRENT_SOURCE_DIR}/deps/rapidjson/include
 )
 
@@ -155,23 +159,3 @@ if(ENABLE_DOCS)
 else()
     message(STATUS "DOCS disabled")
 endif (ENABLE_DOCS)
-
-#------------------------------------------------------------------------------
-# Gencov custom command
-#------------------------------------------------------------------------------
-
-set(COVERITY_FILES
-  " ${CMAKE_CURRENT_SOURCE_DIR}/build-coverity/output/summary.txt"
-)
-
-add_custom_command(OUTPUT ${COVERITY_FILES}
-    COMMAND ${CMAKE_COMMAND} -E chdir ${CMAKE_CURRENT_SOURCE_DIR} mkdir -p build-coverity
-    COMMAND ${CMAKE_COMMAND} -E chdir ${CMAKE_CURRENT_SOURCE_DIR} cov-configure --gcc
-    COMMAND ${CMAKE_COMMAND} -E chdir ${CMAKE_CURRENT_SOURCE_DIR} cov-build --dir build-coverity make -j $(nproc)
-    COMMAND ${CMAKE_COMMAND} -E chdir ${CMAKE_CURRENT_SOURCE_DIR} cov-analyze --dir build-coverity --all --aggressiveness-level low --misra-config MISRA_c2012_MM.config
-    COMMAND ${CMAKE_COMMAND} -E chdir ${CMAKE_CURRENT_SOURCE_DIR} cov-commit-defects --dir build-coverity --host coverity3.freescale.net --user committer --password CoverityGuest --stream lib${PROJECT_NAME}
-    COMMAND ${CMAKE_COMMAND} -E touch ${COVERITY_FILES}
-    WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}
-    COMMENT "run coverity"
-)
-add_custom_target(${CMAKE_PROJECT_NAME}-coverity DEPENDS ${COVERITY_FILES})

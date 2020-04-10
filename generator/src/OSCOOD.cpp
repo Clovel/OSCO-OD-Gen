@@ -8,9 +8,6 @@
 #include "OSCOOD.hpp"
 #include "OSCOODIndex.hpp"
 
-/* Library/API export defines */
-#include "APIExports.h"
-
 /* C++ system */
 #include <map>
 #include <vector>
@@ -28,13 +25,15 @@
 /* OSCOOD class implemetation -------------------------- */
 /* Constructors */
 OSCOOD::OSCOOD() {
-    /* Empty */
+    std::memset(&mCreationDateTime,     0, sizeof(mCreationDateTime));
+    std::memset(&mModificationDateTime, 0, sizeof(mModificationDateTime));
 }
 
 OSCOOD::OSCOOD(const std::map<uint16_t, OSCOODIndex *> &pObjects) :
     mObjects(pObjects)
 {
-    /* Empty */
+    std::memset(&mCreationDateTime,     0, sizeof(mCreationDateTime));
+    std::memset(&mModificationDateTime, 0, sizeof(mModificationDateTime));
 }
 
 OSCOOD::OSCOOD(const std::vector<OSCOODIndex *> &pObjects)
@@ -393,6 +392,10 @@ bool OSCOOD::setCreationDate(const std::string &pDate) {
     }
 
     struct tm *lCreationDateTimeStruct = gmtime(&mCreationDateTime);
+    if(nullptr == lCreationDateTimeStruct) {
+        std::cerr << "[ERROR] <OSCOOD::setCreationDate> gmtime failed (mCreationDateTime = " << mCreationDateTime << ")" << std::endl;
+        return false;
+    }
     lCreationDateTimeStruct->tm_mday = lDateTimeStruct.tm_mday;
     lCreationDateTimeStruct->tm_mon  = lDateTimeStruct.tm_mon;
     lCreationDateTimeStruct->tm_year = lDateTimeStruct.tm_year;
@@ -422,6 +425,10 @@ bool OSCOOD::setCreationTime(const std::string &pTime) {
     }
 
     struct tm *lCreationDateTimeStruct = gmtime(&mCreationDateTime);
+    if(nullptr == lCreationDateTimeStruct) {
+        std::cerr << "[ERROR] <OSCOOD::setCreationTime> gmtime failed (mCreationDateTime = " << mCreationDateTime << ")" << std::endl;
+        return false;
+    }
     lCreationDateTimeStruct->tm_hour = lDateTimeStruct.tm_hour;
     lCreationDateTimeStruct->tm_min  = lDateTimeStruct.tm_min;
     lCreationDateTimeStruct->tm_sec  = lDateTimeStruct.tm_sec;
@@ -455,6 +462,10 @@ bool OSCOOD::setModificationDate(const std::string &pDate) {
     }
 
     struct tm *lModificationDateTimeStruct = gmtime(&mModificationDateTime);
+    if(nullptr == lModificationDateTimeStruct) {
+        std::cerr << "[ERROR] <OSCOOD::setModificationDate> gmtime failed (mModificationDateTime = " << mModificationDateTime << ")" << std::endl;
+        return false;
+    }
     lModificationDateTimeStruct->tm_mday = lDateTimeStruct.tm_mday;
     lModificationDateTimeStruct->tm_mon = lDateTimeStruct.tm_mon;
     lModificationDateTimeStruct->tm_year = lDateTimeStruct.tm_year;
@@ -484,6 +495,10 @@ bool OSCOOD::setModificationTime(const std::string &pTime) {
     }
 
     struct tm *lModificationDateTimeStruct = gmtime(&mModificationDateTime);
+    if(nullptr == lModificationDateTimeStruct) {
+        std::cerr << "[ERROR] <OSCOOD::setModificationTime> gmtime failed (mModificationDateTime = " << mModificationDateTime << ")" << std::endl;
+        return false;
+    }
     lModificationDateTimeStruct->tm_hour = lDateTimeStruct.tm_hour;
     lModificationDateTimeStruct->tm_min  = lDateTimeStruct.tm_min;
     lModificationDateTimeStruct->tm_sec  = lDateTimeStruct.tm_sec;
