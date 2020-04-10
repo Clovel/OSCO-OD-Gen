@@ -1,12 +1,14 @@
 {
     "name": "osco-od-gen",
+    "productName": "OSCO-OD-Gen",
     "version": "1.0.0",
     "description": "Object Dictionary code generator for the OSCO stack",
-    "main": "app/main.js",
+    "main": "app/back/main.js",
     "scripts": {
         "test": "cd build/tests/ && ctest -VV",
         "build-gen": "./buildCGen.sh",
-        "start": "electron ."
+        "start": "electron .",
+        "ts": "tsc"
     },
     "repository": {
         "type": "git",
@@ -17,13 +19,74 @@
         "CANOpen",
         "CAN"
     ],
-    "author": "Clovis Durand <cd.clovel19@gmail.com>",
+    "author": {
+        "name": "Clovis Durand",
+        "email": "cd.clovel19@gmail.com",
+        "url": "https://github.com/Clovel"
+    },
+    "contributors": [
+        {
+            "name": "Clovis Durand",
+            "email": "cd.clovel19@gmail.com",
+            "url": "https://github.com/Clovel"
+        }
+    ],
     "license": "GPL-3.0",
     "bugs": {
         "url": "https://github.com/Clovel/OSCO-OD-Gen/issues"
     },
     "homepage": "https://github.com/Clovel/OSCO-OD-Gen/",
     "dependencies": {
-        "electron": "^8.1.1"
+        "electron": "^8.2.1"
+    },
+    "build": {
+        "productName": "OSCO-OD-Gen",
+        "appId": "org.osco.OSCO-OD-Gen",
+        "files": [
+            "dist/",
+            "node_modules/",
+            "index.html",
+            "main.prod.js",
+            "main.prod.js.map",
+            "package.json"
+        ],
+        "dmg": {
+            "contents": [
+                {
+                    "x": 130,
+                    "y": 220
+                },
+                {
+                    "x": 410,
+                    "y": 220,
+                    "type": "link",
+                    "path": "/Applications"
+                }
+            ]
+        },
+        "win": {
+            "target": [
+                "nsis",
+                "msi"
+            ]
+        },
+        "linux": {
+            "target": [
+                "deb",
+                "rpm",
+                "AppImage"
+            ],
+            "category": "Development"
+        },
+        "directories": {
+            "buildResources": "resources",
+            "output": "release"
+        },
+        "publish": {
+            "provider": "github",
+            "owner": "Clovel",
+            "repo": "OSCO-OD-Gen",
+            "private": false
+        }
     }
 }

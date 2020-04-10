@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>Hello World !</title>
+
+        <!-- https://electronjs.org/docs/tutorial/security#csp-meta-tag -->
+        <meta http-equiv="Content-Security-Policy" content="script-src 'self' 'unsafe-inline';" />
+
+        <!-- CSS stylesheets -->
+        <link rel="stylesheet" type="text/css" href="../styles/AppStyle.css" />
+
+        <!-- Icon -->
+        <link rel="icon" href="../resources/icon.ico" />
+
+        <!-- Script that need to be place here because they are used further in the page -->
+        <script src="../renderer.js"></script>
+        <script type="text/javascript">
+        function printAppDataPath(platform) {
+            return getDefaultUserDataPath(process.platform)
+            //return "Toto fait du ski !"
+        }
+        </script>
+    </head>
+
+    <body>
+        <h1>Hello World !</h1>
+        We are using node <script>document.write(process.versions.node)</script>,
+        Chrome <script>document.write(process.versions.chrome)</script>,
+        and Electron <script>document.write(process.versions.electron)</script>
+        on the <script>document.write(process.platform)</script> platform.
+        <br>
+        Default app data path :
+        <script type="text/javascript">
+            document.write(printAppDataPath(process.platform))
+        </script>
+        
+        <br>
+        <br>
+        <button id="test-button">TEST SIGNAL EMISSION</button>
+        <br>
+        
+        <noscript>You need to enable JavaScript to run this app.</noscript>
+        <div id="root"></div>
+
+        <!-- Script are at the end of the page to avoid waiting for the DOM -->
+        <script src="../ipcFront.js"></script>
+    </body>
+</html>
