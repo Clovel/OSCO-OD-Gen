@@ -1,4 +1,5 @@
 const React = require('react');
+const { ipcRenderer } = window.require('electron');
 
 var CustomButtonStyle = {
     margin: '10px 10px 10px 0'
@@ -7,7 +8,8 @@ var CustomButtonStyle = {
 function BackEndLauncherButton (props) {
     return (
         <button className="CustomButton"
-                style={CustomButtonStyle}>
+                style={CustomButtonStyle}
+                onClick={ipcRenderer.send('LaunchBackEnd')}>
             Launch C++ back-end
         </button>
     );
