@@ -172,7 +172,7 @@ function checkConfigurationFile() {
                     message: '[ERROR] The configuration is invalid',
                     detail: 'Back-end libraries are missing : ' + lMissingLibs
                 };
-        
+
                 dialog.showMessageBoxSync(null, lOptions, (response) => {
                     console.log(response);
                 });
@@ -181,6 +181,47 @@ function checkConfigurationFile() {
             }
         }
     }
+
+    /* Check the back-end port */
+    lConfig.backEndPort = parseInt(lConfig.backEndPort, 10)
+    if(lConfig.backEndPort === parseInt(lConfig.backEndPort, 10)) {
+        if(1024 <= lConfig.backEndPort) {
+            /* Nothing to do */
+        } else {
+            const lOptions = {
+                type: 'error',
+                buttons: ['Exit'],
+                defaultId: 2,
+                title: 'Back-end port error',
+                message: '[ERROR] The configuration is invalid',
+                detail: 'Back-end port is under 1024 : ' + lConfig.backEndPort
+            };
+        
+            dialog.showMessageBoxSync(null, lOptions, (response) => {
+                console.log(response);
+            });
+
+            return false;
+        }
+    } else {
+        const lOptions = {
+            type: 'error',
+            buttons: ['Exit'],
+            defaultId: 2,
+            title: 'Back-end port error',
+            message: '[ERROR] The configuration is invalid',
+            detail: 'Back-end port is not a number : ' + lConfig.backEndPort
+        };
+    
+        dialog.showMessageBoxSync(null, lOptions, (response) => {
+            console.log(response);
+        });
+
+        return false;
+    }
+
+    /* Check the backEndAddr */
+    /* TODO */
 
     return lResult;
 }
