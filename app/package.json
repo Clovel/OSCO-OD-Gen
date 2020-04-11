@@ -1,0 +1,141 @@
+{
+    "name": "osco-od-gen",
+    "productName": "OSCO-OD-Gen",
+    "version": "0.1.0",
+    "description": "Object Dictionary code generator for the OSCO stack",
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/Clovel/OSCO-OD-Gen.git"
+    },
+    "keywords": [
+        "OSCO",
+        "CANOpen",
+        "CAN"
+    ],
+    "author": {
+        "name": "Clovis Durand",
+        "email": "cd.clovel19@gmail.com",
+        "url": "https://github.com/Clovel"
+    },
+    "contributors": [
+        {
+            "name": "Clovis Durand",
+            "email": "cd.clovel19@gmail.com",
+            "url": "https://github.com/Clovel"
+        }
+    ],
+    "license": "GPL-3.0",
+    "bugs": {
+        "url": "https://github.com/Clovel/OSCO-OD-Gen/issues"
+    },
+    "homepage": "https://github.com/Clovel/OSCO-OD-Gen/",
+    "scripts": {
+        "react-start": "react-scripts start",
+        "react-build": "react-scripts build",
+        "react-test": "react-scripts test",
+        "react-eject": "react-scripts eject",
+        "electron-build": "electron-builder",
+        "release": "yarn react-build && electron-build && build-gen --publish=always",
+        "build": "yarn react-build && yarn electron-build && build-gen",
+        "start": "concurrently \"cross-env BROWSER=none yarn react-start\" \"wait-on http://localhost:3000 && electron .\"",
+        "test": "cd ../build/tests/ && ctest -VV",
+        "build-gen": "../buildCGen.sh",
+        "clean-gen": "../cleanCGen.sh",
+        "ts": "tsc"
+    },
+    "main": "main-process/main.js",
+    "private": true,
+    "dependencies": {
+        "@testing-library/jest-dom": "^4.2.4",
+        "@testing-library/react": "^9.3.2",
+        "@testing-library/user-event": "^7.1.2",
+        "@types/jest": "^24.0.0",
+        "@types/node": "^12.0.0",
+        "@types/react": "^16.9.0",
+        "@types/react-dom": "^16.9.0",
+        "cross-env": "^7.0.2",
+        "electron": "^8.2.1",
+        "electron-is-dev": "^1.2.0",
+        "react": "^16.13.1",
+        "react-dom": "^16.13.1",
+        "react-scripts": "3.4.1",
+        "typescript": "~3.7.2"
+    },
+    "eslintConfig": {
+        "extends": "react-app"
+    },
+    "browserslist": {
+        "production": [
+            ">0.2%",
+            "not dead",
+            "not op_mini all"
+        ],
+        "development": [
+            "last 1 chrome version",
+            "last 1 firefox version",
+            "last 1 safari version"
+        ]
+    },
+    "devDependencies": {
+        "@typescript-eslint/eslint-plugin": "^2.27.0",
+        "@typescript-eslint/parser": "^2.27.0",
+        "concurrently": "^5.1.0",
+        "electron-builder": "^22.4.1",
+        "eslint": "^6.8.0",
+        "eslint-config-prettier": "^6.10.1",
+        "eslint-plugin-prettier": "^3.1.2",
+        "eslint-plugin-react": "^7.19.0",
+        "prettier": "^2.0.4",
+        "wait-on": "^4.0.2"
+    },
+    "build": {
+        "productName": "OSCO-OD-Gen",
+        "appId": "org.osco.OSCO-OD-Gen",
+        "files": [
+            "dist/",
+            "node_modules/",
+            "public/index.html",
+            "main.prod.js",
+            "main.prod.js.map",
+            "package.json"
+        ],
+        "dmg": {
+            "contents": [
+                {
+                    "x": 130,
+                    "y": 220
+                },
+                {
+                    "x": 410,
+                    "y": 220,
+                    "type": "link",
+                    "path": "/Applications"
+                }
+            ]
+        },
+        "win": {
+            "target": [
+                "nsis",
+                "msi"
+            ]
+        },
+        "linux": {
+            "target": [
+                "deb",
+                "rpm",
+                "AppImage"
+            ],
+            "category": "Development"
+        },
+        "directories": {
+            "buildResources": "resources",
+            "output": "release"
+        },
+        "publish": {
+            "provider": "github",
+            "owner": "Clovel",
+            "repo": "OSCO-OD-Gen",
+            "private": false
+        }
+    }
+}

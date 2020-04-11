@@ -12,14 +12,13 @@ jobs:
         # TODO : Make this work for Windows
         # os: [ubuntu-latest, macOS-latest, windows-latest]
         os: [ubuntu-latest, macOS-latest]
-        package_manager: [npm]
 
     steps:
       - name: Checkout
         uses: actions/checkout@master
 
       - name: Checkout submodules
-        run: | 
+        run: |
           git submodule sync --recursive
           git submodule update --init --recursive
 
@@ -30,7 +29,8 @@ jobs:
 
       - name: Install Node dependencies
         run: |
-          npm install
+          cd app/
+          yarn install
 
       - name: Installing dependencies (macOS)
         if: matrix.os == 'macOS-latest'
@@ -54,7 +54,8 @@ jobs:
       - name: Build C generator project
         if: matrix.os != 'windows-latest'
         run: |
-          npm run build-gen
+          cd app/
+          yarn build-gen
 
       - name: Build C generator project (Windows)
         if: matrix.os == 'windows-latest'
@@ -66,4 +67,5 @@ jobs:
 
       - name: Test project
         run: |
-          npm test
+          cd app/
+          yarn test

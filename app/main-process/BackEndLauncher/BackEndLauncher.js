@@ -9,7 +9,7 @@ function launchBackEnd() {
     let backEndPort;
     let edsFile;
 
-    var lConfig = JSON.parse(fs.readFileSync('./app/config.json', 'utf8'));
+    var lConfig = JSON.parse(fs.readFileSync('./config.json', 'utf8'));
 
     /* Set the configuration variables */
     backEndExe    = lConfig.backEndExe;

@@ -4,8 +4,8 @@ document.getElementById('test-button').addEventListener('click', () => {
     ipcRenderer.send('test-button-signal');
 });
 
-let callCounter = 0;
-const createCallId = () => callCounter++;
+// let callCounter = 0;
+// const createCallId = () => callCounter++;
 
 // export const Methods = new Proxy({}, {
 //     get: (obj, method) => (...args) => new Promise((resolve, reject) => {

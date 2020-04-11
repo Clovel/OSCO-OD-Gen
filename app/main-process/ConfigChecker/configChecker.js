@@ -1,7 +1,7 @@
-const fs = require('fs');
 const {dialog} = require('electron');
+const fs = require('fs');
 
-let configFile = './app/config.json';
+let configFile = './config.json';
 let mandatoryConfigFields = [
     "backEndExe",
     "backEndLibDir",

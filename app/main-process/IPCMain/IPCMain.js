@@ -1,7 +1,7 @@
 const {ipcMain} = require('electron')
-const backEndLauncher = require('./backEndLauncher')
+const backEndLauncher = require('./../BackEndLauncher/BackEndLauncher.js')
 
-ipcMain.on('test-button-signal', () => {
+ipcMain.on('LaunchBackEnd', () => {
     console.log('[DEBUG] IPC signal received by main process');
     console.log('        Launching back-end');
     backEndLauncher.launchBackEnd();
