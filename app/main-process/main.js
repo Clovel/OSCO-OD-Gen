@@ -1,7 +1,8 @@
 const {app, BrowserWindow, nativeTheme, ipcMain} = require('electron')
 const path = require('path')
-const {getDefaultUserDataPath} = require('../common/appdatapath.js')
-const configChecker = require('./configChecker.js')
+const {getDefaultUserDataPath} = require('./AppDataPath/AppDataPath.js')
+const configChecker = require('./ConfigChecker/configChecker.js')
+const isDev = require("electron-is-dev");
 
 function createWindow() {
     /* Check configuration file */
@@ -11,19 +12,23 @@ function createWindow() {
     }
 
     /* Create the navigator's window */
-    const lWindow = new BrowserWindow({
-        width: 800,
-        height: 600,
+    var lWindow = new BrowserWindow({
+        width: 900,
+        height: 680,
         webPreferences: {
             nodeIntegration: true,
             preload: path.join(__dirname, 'preload.js')
         }
     })
 
+    lWindow.loadURL(
+        isDev
+        ? "http://localhost:3000"
+        : `file://${path.join(__dirname, "../build/index.html")}`
+    );
+
     /* Load the index.html of the application */
-    console.log("[DEBUG] Loading index.html")
     console.log("[DEBUG] App Data path is : " + getDefaultUserDataPath(process.platform))
-    lWindow.loadFile(path.join(__dirname, '../front/public/index.html'))
 
     /* Open devtools */
     //lWindow.webContents.openDevTools()
@@ -62,7 +67,7 @@ app.on('activate', () => {
  * and just include it here */
 
 /* Manage Dark mode themes with the OS's settings */
-require('./themehandler.js');
+require('./ThemeHandler/ThemeHandler.js');
 
 /* IPC signal handling */
-require('./ipcBack.js');
+require('./IPCMain/IPCMain.js');
