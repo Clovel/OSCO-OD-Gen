@@ -5,7 +5,8 @@ let configFile = './app/config.json';
 let mandatoryConfigFields = [
     "backEndExe",
     "backEndLibDir",
-    "backEndLibs",
+    "backEndDynLibs",
+    "backEndStatLibs",
     "odFileName",
     "backEndPort",
     "backEndAddr"
@@ -102,6 +103,83 @@ function checkConfigurationFile() {
         });
 
         return false;
+    }
+
+    /* Check library directory path & contents */
+    if(fs.existsSync(lConfig.backEndLibDir)) {
+        /* Check if the directory is indeed a directory */
+        const lDirStat = fs.statSync(lConfig.backEndLibDir);
+        if(lDirStat.isDirectory()) {
+            const lLibDirContents = fs.readdirSync(lConfig.backEndLibDir);
+
+            /* TODO : Check if in Windows, there is a "lib" prefix */
+            const lExpectedDynLibs = [
+                "libOSCO-OD-Gen",
+                "libRESTServer",
+                "libinitools"
+            ];
+
+            const lExpectedStatLibs = [
+            ];
+
+            const lMissingLibs = [
+            ];
+
+            const lDynLibExtension = () => {
+                if('darwin' == process.platform) {
+                    return '.dylib'
+                } else if ('linux' == process.platform) {
+                    return '.so'
+                } else if ('win32' == process.platform) {
+                    return '.dll';
+                }
+            };
+
+            const lStatLibExtension = () => {
+                if('darwin' == process.platform) {
+                    return '.a'
+                } else if ('linux' == process.platform) {
+                    return '.a'
+                } else if ('win32' == process.platform) {
+                    return '.lib';
+                }
+            };
+
+            /* Check if the expected dynamic libraries are here */
+            for(i = 0; i < lExpectedDynLibs.length; i++) {
+                if(!lLibDirContents.includes(lExpectedDynLibs[i] + lDynLibExtension())) {
+                    console.log("[ERROR] Missing dynamic lib : " + lExpectedDynLibs[i]);
+                    lMissingLibs.push(lExpectedDynLibs[i]);
+                    lResult = false;
+                }
+            }
+
+            /* Check if the expected static libraries are here */
+            for(i = 0; i < lExpectedStatLibs.length; i++) {
+                if(!lLibDirContents.includes(lExpectedStatLibs[i] + lStatLibExtension())) {
+                    console.log("[ERROR] Missing static lib : " + lExpectedStatLibs[i]);
+                    lMissingLibs.push(lExpectedStatLibs[i]);
+                    lResult = false;
+                }
+            }
+
+            if(!lResult) {
+                const lOptions = {
+                    type: 'error',
+                    buttons: ['Exit'],
+                    defaultId: 2,
+                    title: 'Back-end library error',
+                    message: '[ERROR] The configuration is invalid',
+                    detail: 'Back-end libraries are missing : ' + lMissingLibs
+                };
+        
+                dialog.showMessageBoxSync(null, lOptions, (response) => {
+                    console.log(response);
+                });
+
+                return false;
+            }
+        }
     }
 
     return lResult;
