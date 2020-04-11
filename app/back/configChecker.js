@@ -16,6 +16,11 @@ function checkConfigurationFile() {
     var lConfig = JSON.parse(fs.readFileSync(configFile, 'utf8'));
     var lResult = true;
     var lMissingFields = [];
+    var lOptions = {
+        type: 'error',
+        buttons: ['Exit'],
+        defaultId: 2
+    };
 
     console.log("[INFO ] Checking configuration file : " + configFile);
 
@@ -28,14 +33,9 @@ function checkConfigurationFile() {
     }
 
     if(!lResult) {
-        const lOptions = {
-            type: 'error',
-            buttons: ['Exit'],
-            defaultId: 2,
-            title: 'Configuration check error',
-            message: '[ERROR] The configuration is invalid',
-            detail: 'Missing fields : ' + lMissingFields
-        };
+        lOptions.title   = 'Configuration check error';
+        lOptions.message = '[ERROR] The configuration is invalid';
+        lOptions.detail  = 'Missing fields : ' + lMissingFields;
 
         dialog.showMessageBoxSync(null, lOptions, (response) => {
             console.log(response);
@@ -57,15 +57,10 @@ function checkConfigurationFile() {
             } else {
                 /* File is not executable */
 
-                const lOptions = {
-                    type: 'error',
-                    buttons: ['Exit'],
-                    defaultId: 2,
-                    title: 'Back-end executable file error',
-                    message: '[ERROR] Back-end program is not executable',
-                    detail: 'File mode (Unix style) : ' + (lExeMode & 0777).toString(8)
-                };
-        
+                lOptions.title   = 'Back-end executable file error';
+                lOptions.message = '[ERROR] Back-end program is not executable';
+                lOptions.detail  = 'File mode (Unix style) : ' + (lExeMode & 0777).toString(8);
+
                 dialog.showMessageBoxSync(null, lOptions, (response) => {
                     console.log(response);
                 });
@@ -73,14 +68,9 @@ function checkConfigurationFile() {
                 return false;
             }
         } else {
-            const lOptions = {
-                type: 'error',
-                buttons: ['Exit'],
-                defaultId: 2,
-                title: 'Back-end executable file error',
-                message: '[ERROR] The configuration is invalid',
-                detail: 'Back-end executable file isn\'t really a file.'
-            };
+            lOptions.title   = 'Back-end executable file error';
+            lOptions.message = '[ERROR] The configuration is invalid';
+            lOptions.detail  = 'Back-end executable file isn\'t really a file.';
 
             dialog.showMessageBoxSync(null, lOptions, (response) => {
                 console.log(response);
@@ -89,14 +79,9 @@ function checkConfigurationFile() {
             return false;
         }
     } else {
-        const lOptions = {
-            type: 'error',
-            buttons: ['Exit'],
-            defaultId: 2,
-            title: 'Back-end executable file error',
-            message: '[ERROR] The configuration is invalid',
-            detail: 'Back-end executable file doesn\'t exist.'
-        };
+        lOptions.title   = 'Back-end executable file error';
+        lOptions.message = '[ERROR] The configuration is invalid';
+        lOptions.detail  = 'Back-end executable file doesn\'t exist.';
 
         dialog.showMessageBoxSync(null, lOptions, (response) => {
             console.log(response);
@@ -164,14 +149,9 @@ function checkConfigurationFile() {
             }
 
             if(!lResult) {
-                const lOptions = {
-                    type: 'error',
-                    buttons: ['Exit'],
-                    defaultId: 2,
-                    title: 'Back-end library error',
-                    message: '[ERROR] The configuration is invalid',
-                    detail: 'Back-end libraries are missing : ' + lMissingLibs
-                };
+                lOptions.title   = 'Back-end library error';
+                lOptions.message = '[ERROR] The configuration is invalid';
+                lOptions.detail  = 'Back-end libraries are missing : ' + lMissingLibs;
 
                 dialog.showMessageBoxSync(null, lOptions, (response) => {
                     console.log(response);
@@ -188,15 +168,10 @@ function checkConfigurationFile() {
         if(1024 <= lConfig.backEndPort) {
             /* Nothing to do */
         } else {
-            const lOptions = {
-                type: 'error',
-                buttons: ['Exit'],
-                defaultId: 2,
-                title: 'Back-end port error',
-                message: '[ERROR] The configuration is invalid',
-                detail: 'Back-end port is under 1024 : ' + lConfig.backEndPort
-            };
-        
+            lOptions.title   = 'Back-end port error';
+            lOptions.message = '[ERROR] The configuration is invalid';
+            lOptions.detail  = 'Back-end port is under 1024 : ' + lConfig.backEndPort;
+
             dialog.showMessageBoxSync(null, lOptions, (response) => {
                 console.log(response);
             });
@@ -204,15 +179,10 @@ function checkConfigurationFile() {
             return false;
         }
     } else {
-        const lOptions = {
-            type: 'error',
-            buttons: ['Exit'],
-            defaultId: 2,
-            title: 'Back-end port error',
-            message: '[ERROR] The configuration is invalid',
-            detail: 'Back-end port is not a number : ' + lConfig.backEndPort
-        };
-    
+        lOptions.title   = 'Back-end port error';
+        lOptions.message = '[ERROR] The configuration is invalid';
+        lOptions.detail  = 'Back-end port is not a number : ' + lConfig.backEndPort;
+
         dialog.showMessageBoxSync(null, lOptions, (response) => {
             console.log(response);
         });
