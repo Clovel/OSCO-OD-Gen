@@ -1,8 +1,6 @@
 const child  = require('child_process');
 const fs     = require('fs');
 
-/* Set the back-end's path */
-
 let backEnd;
 
 function launchBackEnd() {
@@ -11,7 +9,7 @@ function launchBackEnd() {
     let backEndPort;
     let edsFile;
 
-    lConfig = JSON.parse(fs.readFileSync('./app/config.json', 'utf8'));
+    var lConfig = JSON.parse(fs.readFileSync('./app/config.json', 'utf8'));
 
     /* Set the configuration variables */
     backEndExe    = lConfig.backEndExe;
