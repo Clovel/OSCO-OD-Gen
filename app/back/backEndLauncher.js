@@ -4,7 +4,7 @@ const fs     = require('fs');
 let backEnd;
 
 function launchBackEnd() {
-    let backEnd;
+    let backEndExe;
     let backEndLibDir;
     let backEndPort;
     let edsFile;
@@ -18,7 +18,7 @@ function launchBackEnd() {
     edsFile       = lConfig.odFileName;
 
 
-    console.log('backEndExe       : ' + backEndExe       + ' (' + typeof(backEndExe) + ')');
+    console.log('backEndExe    : ' + backEndExe    + ' (' + typeof(backEndExe) + ')');
     console.log('backEndLibDir : ' + backEndLibDir + ' (' + typeof(backEndLibDir) + ')');
     console.log('backEndPort   : ' + backEndPort   + ' (' + typeof(backEndPort) + ')');
     console.log('edsFile       : ' + edsFile       + ' (' + typeof(edsFile) + ')');
