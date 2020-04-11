@@ -5,6 +5,7 @@ let configFile = './app/config.json';
 let mandatoryConfigFields = [
     "backEndExe",
     "backEndLibDir",
+    "backEndLibs",
     "odFileName",
     "backEndPort",
     "backEndAddr"
