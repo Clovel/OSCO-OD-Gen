@@ -1,17 +1,15 @@
 const child  = require('child_process');
 const fs     = require('fs');
 
-/* Set the back-end's path */
-
 let backEnd;
 
 function launchBackEnd() {
-    let backEnd;
+    let backEndExe;
     let backEndLibDir;
     let backEndPort;
     let edsFile;
 
-    lConfig = JSON.parse(fs.readFileSync('./app/config.json', 'utf8'));
+    var lConfig = JSON.parse(fs.readFileSync('./app/config.json', 'utf8'));
 
     /* Set the configuration variables */
     backEndExe    = lConfig.backEndExe;
@@ -20,7 +18,7 @@ function launchBackEnd() {
     edsFile       = lConfig.odFileName;
 
 
-    console.log('backEndExe       : ' + backEndExe       + ' (' + typeof(backEndExe) + ')');
+    console.log('backEndExe    : ' + backEndExe    + ' (' + typeof(backEndExe) + ')');
     console.log('backEndLibDir : ' + backEndLibDir + ' (' + typeof(backEndLibDir) + ')');
     console.log('backEndPort   : ' + backEndPort   + ' (' + typeof(backEndPort) + ')');
     console.log('edsFile       : ' + edsFile       + ' (' + typeof(edsFile) + ')');
