@@ -1,114 +1,107 @@
 import React from 'react';
 
-import cx from 'classnames';
-import Tree from 'react-ui-tree';
-
 // a sample tree object
 // node.children, node.collapsed, node.leaf properties are hardcoded
-const treeContents =  {
-    module: 'react-ui-tree',
-    children: [
+const treeContents = {
+    indexes: [
         {
-            module: 'dist',
-            collapsed: true,
-            children: [
-            {
-                module: 'node.js',
-                leaf: true
-            },
-            {
-                module: 'react-ui-tree.css',
-                leaf: true
-            },
-            {
-                module: 'react-ui-tree.js',
-                leaf: true
-            },
-            {
-                module: 'tree.js',
-                leaf: true
-            }
-            ]
+            index: "0x1001",
+            subIndexes: [
+                {
+                    subIndex: "0x00",
+                    attribute1: "Toto",
+                    attribute2: "Titi",
+                    attribute3: "font du ski",
+                },
+                {
+                    subIndex: "0x01",
+                    attribute1: "Test1",
+                    attribute2: "Test2",
+                    attribute3: "pour tester",
+                },
+            ],
         },
         {
-            module: 'example',
-            children: [
-            {
-                module: 'app.js',
-                leaf: true
-            },
-            {
-                module: 'app.less',
-                leaf: true
-            },
-            {
-                module: 'index.html',
-                leaf: true
-            }
-            ]
-        },
-        {
-            module: 'lib',
-            children: [
-            {
-                module: 'node.js',
-                leaf: true
-            },
-            {
-                module: 'react-ui-tree.js',
-                leaf: true
-            },
-            {
-                module: 'react-ui-tree.less',
-                leaf: true
-            },
-            {
-                module: 'tree.js',
-                leaf: true
-            }
-            ]
-        },
-        {
-            module: '.gitiignore',
-            leaf: true
-        },
-        {
-            module: 'index.js',
-            leaf: true
-        },
-        {
-            module: 'LICENSE',
-            leaf: true
-        },
-        {
-            module: 'Makefile',
-            leaf: true
-        },
-        {
-            module: 'package.json',
-            leaf: true
-        },
-        {
-            module: 'README.md',
-            leaf: true
-        },
-        {
-            module: 'webpack.config.js',
-            leaf: true
+            index: "0x1018",
+            subIndexes: [
+                {
+                    subIndex: "0x00",
+                    attribute1: "Toto",
+                    attribute2: "Titi",
+                    attribute3: "font du ski",
+                },
+                {
+                    subIndex: "0x01",
+                    attribute1: "Test1",
+                    attribute2: "Test2",
+                    attribute3: "pour tester",
+                },
+            ],
         }
-    ]
+    ],
 };
+
+class ODSubIndex extends React.Component {
+    subIndex = this.props.subIndex;
+    attribute1 = null;
+    attribute2 = null;
+    attribute3 = null;
+
+    render() {
+        return (
+            <div>
+                SubIndex {this.subIndex}
+            </div>
+        );
+    }
+}
+
+class ODIndex extends React.Component {
+    index = this.props.index;
+    subIndexes = this.props.subIndexes;
+
+    render() {
+        return (
+            <div>
+                Index {this.index}
+                <div>
+                    {this.subIndexes.map(function(pSubIndex, pArrayIndex) {
+                        return (
+                            <ODSubIndex subIndex={pSubIndex.subIndex}/>
+                        );
+                    })}
+                </div>
+            </div>
+        );
+    }
+}
 
 class ODTree extends React.Component {
     state = {
         active: null,
-        tree: treeContents,
     };
+
+    tree = treeContents;
 
     render() {
         return(
             <div>
                 ODTree placeholder
+                <br/>
+                <br/>
+                Example ODIndex :
+                <ODIndex
+                    index={this.tree.indexes[0].index}
+                    subIndexes={this.tree.indexes[0].subIndexes}/>
+                <br/>
+                <br/>
+                <br/>
+                <br/>
+                {this.tree.indexes.map(function(pIndex, pArrayIndex) {
+                    return (
+                        <ODIndex index={pIndex.index} subIndexes={pIndex.subIndexes}/>
+                    );
+                })}
             </div>
         );
     }
