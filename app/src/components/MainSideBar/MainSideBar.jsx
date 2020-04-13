@@ -20,9 +20,9 @@ class MainSideBar extends React.Component {
                 width='thin'>
                 <Menu.Item
                     as='a'
-                    onClick={() => {ipcRenderer.send('home')}}>
-                    <Icon name='home'/>
-                    Home
+                    onClick={() => {ipcRenderer.send('open-od')}}>
+                    <Icon name='folder open'/>
+                    Open OD
                 </Menu.Item>
                 <Menu.Item
                     as='a'

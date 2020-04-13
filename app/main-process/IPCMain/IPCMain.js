@@ -7,9 +7,9 @@ ipcMain.on('LaunchBackEnd', () => {
     backEndLauncher.launchBackEnd();
 });
 
-ipcMain.on('home', () => {
+ipcMain.on('open-od', () => {
     console.log('[DEBUG] IPC signal received by main process');
-    console.log('        home');
+    console.log('        open-od');
 });
 
 ipcMain.on('Generate-C-code', () => {
