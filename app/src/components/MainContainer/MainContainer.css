@@ -1,0 +1,7 @@
+.MainContainer {
+    margin-left: 150px; /* To match the 'thin' width of the sidebar */
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    left: 1;
+}

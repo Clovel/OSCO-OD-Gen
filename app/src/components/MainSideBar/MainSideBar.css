@@ -1,0 +1,19 @@
+body {
+    min-height: 100vh;
+}
+
+/* SIDEBAR POSITION */
+.MainSideBar {
+    background-color: #f1f1f1;
+    height: 100vh;
+    position: fixed;
+    top: 0;
+    right: 1;
+    width: 150px;  /* To match the 'thin' width of the sidebar */
+}
+
+.sidebar__content {
+    padding: 8px;
+    overflow-y: scroll;
+    overflow-x: hidden;
+}
