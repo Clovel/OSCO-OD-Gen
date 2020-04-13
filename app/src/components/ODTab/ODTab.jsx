@@ -4,9 +4,30 @@ import './ODTab.css';
 import {Tab} from 'semantic-ui-react';
 
 const panes = [
-    { menuItem: 'Tab 1', pane: 'Tab 1 Content' },
-    { menuItem: 'Tab 2', pane: 'Tab 2 Content' },
-    { menuItem: 'Tab 3', pane: 'Tab 3 Content' },
+    {
+        menuItem: {
+            key: 'od-1',
+            content: 'OD 1',
+            icon: 'file code'
+        },
+        pane: 'OD 1 Content'
+    },
+    {
+        menuItem: {
+            key: 'od-2',
+            content: 'OD 2',
+            icon: 'file code'
+        },
+        pane: 'OD 2 Content'
+    },
+    {
+        menuItem: {
+            key: 'od-3',
+            content: 'OD 3',
+            icon: 'file code'
+        },
+        pane: 'OD 3 Content'
+    },
 ];
 
 class ODTab extends React.Component {
