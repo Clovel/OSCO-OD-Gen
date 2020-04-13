@@ -3,9 +3,8 @@ import React from 'react';
 import { Sidebar, Grid, Icon, GridColumn, Menu, List, ListItem } from 'semantic-ui-react';
 
 const { ipcRenderer } = window.require('electron');
-// const {Header, Icon, Image, Menu, Segment, Sidebar} = require('semantic-ui-react');
 
-const lVisible = true;
+var lVisible = true;
 
 class MainSideBar extends React.Component {
     render() {
