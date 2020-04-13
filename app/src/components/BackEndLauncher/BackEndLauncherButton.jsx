@@ -1,16 +1,12 @@
-const React = require('react');
-const { ipcRenderer } = window.require('electron');
+import React from 'react';
 
-var CustomButtonStyle = {
-    margin: '10px 10px 10px 0'
-};
+const { ipcRenderer } = window.require('electron');
 
 class BackEndLauncherButton extends React.Component {
     render() {
         return (
-            <button className="CustomButton"
-                    style={CustomButtonStyle}
-                    // onClick={ipcRenderer.send('LaunchBackEnd')}
+            <button className="BackEndLauncherButton"
+                    onClick={ipcRenderer.send('LaunchBackEnd')}
                     >
                 Launch C++ back-end
             </button>
@@ -18,4 +14,4 @@ class BackEndLauncherButton extends React.Component {
     }
 }
 
-module.exports = BackEndLauncherButton;
+export default BackEndLauncherButton;
