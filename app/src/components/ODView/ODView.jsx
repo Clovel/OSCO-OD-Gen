@@ -1,6 +1,7 @@
 import React from 'react'
 import {Tab} from 'semantic-ui-react';
 
+import ODTree from './../ODTree/ODTree';
 import CommentsForm from './../CommentsForm/CommentsForm';
 
 const panes = [
@@ -18,7 +19,12 @@ const panes = [
             content: 'OD contents',
             icon: 'file code'
         },
-        pane: 'OD Contents'
+        pane: {
+            key: 'od-contents',
+            content: (
+                <ODTree />
+            )
+        }
     },
     {
         menuItem: {
