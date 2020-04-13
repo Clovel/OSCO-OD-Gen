@@ -19,21 +19,23 @@ class MainSideBar extends React.Component {
                 vertical
                 visible={lVisible}
                 width='thin'>
-                <Menu.Item as='a'>
+                <Menu.Item
+                    as='a'
+                    onClick={() => {ipcRenderer.send('home')}}>
                     <Icon name='home'/>
                     Home
                 </Menu.Item>
-                <Menu.Item as='a'>
+                <Menu.Item
+                    as='a'
+                    onClick={() => {ipcRenderer.send('Generate-C-code')}}>
                     <Icon name='cog'/>
                     Generate C code
                 </Menu.Item>
-                <Menu.Item as='a'>
+                <Menu.Item
+                    as='a'
+                    onClick={() => {ipcRenderer.send('Generate-OD-description-file')}}>
                     <Icon name='save'/>
                     Generate OD description file
-                </Menu.Item>
-                <Menu.Item as='a'>
-                    <Icon name='camera'/>
-                    Channels
                 </Menu.Item>
             </Sidebar>
         );
