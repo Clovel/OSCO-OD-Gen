@@ -1,5 +1,19 @@
 import React from 'react';
 
+const { ipcRenderer } = window.require('electron');
+
+class GetODJSON extends React.Component {
+    render () {
+        return (
+            <button onClick={() => {
+                    ipcRenderer.send('GetODJSON');
+                    }}>
+                Get Object Dictionary JSON
+            </button>
+        );
+    }
+}
+
 // a sample tree object
 // node.children, node.collapsed, node.leaf properties are hardcoded
 const treeContents = {
@@ -88,6 +102,7 @@ class ODTree extends React.Component {
             <div>
                 ODTree placeholder
                 <br/>
+                <GetODJSON/>
                 <br/>
                 Example ODIndex :
                 <ODIndex
