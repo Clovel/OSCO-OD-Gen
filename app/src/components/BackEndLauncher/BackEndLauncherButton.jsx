@@ -5,14 +5,17 @@ var CustomButtonStyle = {
     margin: '10px 10px 10px 0'
 };
 
-function BackEndLauncherButton (props) {
-    return (
-        <button className="CustomButton"
-                style={CustomButtonStyle}
-                onClick={ipcRenderer.send('LaunchBackEnd')}>
-            Launch C++ back-end
-        </button>
-    );
+class BackEndLauncherButton extends React.Component {
+    render() {
+        return (
+            <button className="CustomButton"
+                    style={CustomButtonStyle}
+                    // onClick={ipcRenderer.send('LaunchBackEnd')}
+                    >
+                Launch C++ back-end
+            </button>
+        );
+    }
 }
 
 module.exports = BackEndLauncherButton;
