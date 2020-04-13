@@ -3,6 +3,8 @@ import './ODTab.css';
 
 import {Tab} from 'semantic-ui-react';
 
+import ODView from './../ODView/ODView'
+
 const panes = [
     {
         menuItem: {
@@ -10,7 +12,12 @@ const panes = [
             content: 'OD 1',
             icon: 'file code'
         },
-        pane: 'OD 1 Content'
+        pane: {
+            key: 'odview',
+            content: (
+                <ODView/>
+            )
+        }
     },
     {
         menuItem: {
@@ -18,7 +25,12 @@ const panes = [
             content: 'OD 2',
             icon: 'file code'
         },
-        pane: 'OD 2 Content'
+        pane: {
+            key: 'odview',
+            content: (
+                <ODView/>
+            )
+        }
     },
     {
         menuItem: {
@@ -26,7 +38,12 @@ const panes = [
             content: 'OD 3',
             icon: 'file code'
         },
-        pane: 'OD 3 Content'
+        pane: {
+            key: 'odview',
+            content: (
+                <ODView/>
+            )
+        }
     },
 ];
 
