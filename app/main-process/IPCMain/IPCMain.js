@@ -1,10 +1,10 @@
-const {ipcMain} = require('electron')
-const backEndLauncher = require('./../BackEndLauncher/BackEndLauncher.js')
+const {ipcMain} = require('electron');
+const BackEnd = require('./../BackEndManager/BackEndManager');
 
 ipcMain.on('LaunchBackEnd', () => {
     console.log('[DEBUG] IPC signal received by main process');
     console.log('        Launching back-end');
-    backEndLauncher.launchBackEnd();
+    BackEnd.launch();
 });
 
 ipcMain.on('open-od', () => {
@@ -20,6 +20,14 @@ ipcMain.on('Generate-C-code', () => {
 ipcMain.on('Generate-OD-description-file', () => {
     console.log('[DEBUG] IPC signal received by main process');
     console.log('        Generate-OD-description-file');
+});
+
+ipcMain.on('GetODJSON', () => {
+    console.log('[DEBUG] IPC signal received by main process');
+    console.log('        GetODJSON');
+
+    /* Send request to the back-end */
+    return BackEnd.getODJSON('IO-Example');
 });
 
 ipcMain.on('methodCall', async (event, { method, callId, args }) => {

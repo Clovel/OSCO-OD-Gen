@@ -3,7 +3,7 @@ import React from 'react';
 import './ReactHome.css';
 import 'semantic-ui-css/semantic.min.css'
 
-import BackEndLauncherButton from './../BackEndLauncher/BackEndLauncherButton'
+import BackEndLauncherButton from '../BackEndLauncherButton/BackEndLauncherButton'
 
 const logo = require ('./../../logo.svg');
 
