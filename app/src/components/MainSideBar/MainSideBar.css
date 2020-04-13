@@ -9,7 +9,7 @@ body {
     position: fixed;
     top: 0;
     right: 1;
-    min-width: 100px;
+    width: 150px;  /* To match the 'thin' width of the sidebar */
 }
 
 .sidebar__content {
