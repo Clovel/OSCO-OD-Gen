@@ -1,7 +1,7 @@
 import React from 'react';
 import './MainContainer.css'
 
-import ReactHome from './../ReactHome/ReactHome';
+// import ReactHome from './../ReactHome/ReactHome';
 import {Container} from 'semantic-ui-react';
 import ODTab from './../ODTab/ODTab';
 
@@ -10,7 +10,7 @@ class MainContainer extends React.Component {
         return (
             <div class="MainContainer" className="MainContainer">
                 <Container>
-                    <ReactHome />
+                    {/* <ReactHome /> */}
                     <ODTab />
                 </Container>
             </div>
