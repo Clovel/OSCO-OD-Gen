@@ -1,9 +1,5 @@
 const { ipcRenderer } = window.require('electron');
 
-document.getElementById('test-button').addEventListener('click', () => {
-    ipcRenderer.send('test-button-signal');
-});
-
 // let callCounter = 0;
 // const createCallId = () => callCounter++;
 

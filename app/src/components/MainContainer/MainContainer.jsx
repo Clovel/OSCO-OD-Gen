@@ -9,7 +9,7 @@ import ODTab from './../ODTab/ODTab';
 class MainContainer extends React.Component {
     render() {
         return (
-            <div class="MainContainer" className="MainContainer">
+            <div className="MainContainer">
                 <Container>
                     {/* <ReactHome /> */}
                     <BackEndLauncherButton/>

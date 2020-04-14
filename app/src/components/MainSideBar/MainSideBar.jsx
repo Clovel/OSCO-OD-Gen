@@ -1,6 +1,6 @@
 import './MainSideBar.css'
 import React from 'react';
-import { Sidebar, Grid, Icon, GridColumn, Menu, List, ListItem } from 'semantic-ui-react';
+import { Sidebar, Icon, Menu } from 'semantic-ui-react';
 
 const { ipcRenderer } = window.require('electron');
 

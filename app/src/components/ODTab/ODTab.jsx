@@ -13,7 +13,7 @@ const panes = [
             icon: 'file code'
         },
         pane: {
-            key: 'odview',
+            key: 'odview1',
             content: (
                 <ODView/>
             )
@@ -26,7 +26,7 @@ const panes = [
             icon: 'file code'
         },
         pane: {
-            key: 'odview',
+            key: 'odview2',
             content: (
                 <ODView/>
             )
@@ -39,7 +39,7 @@ const panes = [
             icon: 'file code'
         },
         pane: {
-            key: 'odview',
+            key: 'odview3',
             content: (
                 <ODView/>
             )

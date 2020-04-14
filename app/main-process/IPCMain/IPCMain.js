@@ -22,12 +22,19 @@ ipcMain.on('Generate-OD-description-file', () => {
     console.log('        Generate-OD-description-file');
 });
 
-ipcMain.on('GetODJSON', () => {
+ipcMain.on('GetODJSON', (pEvent, pArg) => {
     console.log('[DEBUG] IPC signal received by main process');
     console.log('        GetODJSON');
 
     /* Send request to the back-end */
-    return BackEnd.getODJSON('IO-Example');
+    const lPromise = BackEnd.getODJSON('IO-Example');
+
+    lPromise.then((pResult) => {
+        //console.log('[DEBUG] <IPCMain::GetODJSON> Got JSON : ' + pResult);
+        pEvent.reply('GetODJSON-reply', pResult);
+    }).catch((pError) => {
+        console.log('[ERROR] <IPCMain::GetODJSON> Promise failed');
+    });
 });
 
 ipcMain.on('methodCall', async (event, { method, callId, args }) => {

@@ -86,35 +86,56 @@ var BackEnd = function() {
 
         var lBackEndResponse = '';
 
-        /* Send REST request */
-        const lRequest = httpClient.request(lRequestOptions, pResult => {
-            pResult.setEncoding('utf8');
+        /* Use a promise to send the request.
+         * We will be able to wait for the answer */
+        return new Promise((pResolve, pReject) => {
+            /* Send REST request */
+            const lRequest = httpClient.request(lRequestOptions, pResult => {
+                pResult.setEncoding('utf8');
+                
+                /* Data reception event */
+                pResult.on('data', (pChunk) => {
+                    // console.log('[DEBUG] <BackEnd::sendRequest> Got chunk');
+                    // console.log(pChunk);
+                    lBackEndResponse = lBackEndResponse + pChunk;
+                });
+                
+                /* Data reception complete event */
+                pResult.on('end', () => {
+                    //console.log('[ERROR] <BackEnd::sendRequest> Got response : ' + lBackEndResponse);
 
-            /* Data reception event */
-            pResult.on('data', pChunk => {
-                console.log('[DEBUG] <BackEnd::sendRequest> Got chunk');
-                // console.log(pChunk);
-                lBackEndResponse = lBackEndResponse + pChunk;
+                    /* Resolve the response */
+                    pResolve(lBackEndResponse);
+                });
             });
-
-            /* Data reception complete event */
-            pResult.on('end', () => {
-                console.log('[ERROR] <BackEnd::sendRequest> Got response : ' + lBackEndResponse);
-                return lBackEndResponse;
+    
+            lRequest.on('error', (pError) => {
+                console.log('[ERROR] <BackEnd::sendRequest> Got error ' + pError);
+                pReject(error);
+            });
+    
+            lRequest.end(() => {
+                //console.log('[DEBUG] <BackEnd::sendRequest> Finished sending the request');
             });
         });
 
-        lRequest.on('error', pError => {
-            console.log('[ERROR] <BackEnd::sendRequest> Got error ' + pError);
-        });
 
-        lRequest.end(() => {
-            console.log('[DEBUG] <BackEnd::sendRequest> Finished sending the request');
-        });
     };
 
-    var getODJSON = (pODName) => {
-        return _sendRequest(pODName, 'GET');
+    var getODJSON = async (pODName) => {
+        // now to program the "usual" way
+        // all you need to do is use async functions and await
+        // for functions returning promises
+        try {
+            const lPromise = await _sendRequest(pODName, 'GET');
+    
+            /* We get a promise from the previous call */
+
+            return lPromise;
+        } catch (error) {
+            console.error('[DEBUG] <BackEnd::getODJSON> ERROR:');
+            console.error(error);
+        }
     };
 
     return {
