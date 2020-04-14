@@ -2,14 +2,45 @@ import React from 'react';
 
 const { ipcRenderer } = window.require('electron');
 
+const PrettyPrintJson = ({data}) => {
+    // data could be a prop for example
+    // const { data } = this.props;
+    return (
+        <div>
+            <pre>
+                {JSON.stringify(data, null, 2) }
+            </pre>
+        </div>
+    );
+};
+
 class GetODJSON extends React.Component {
+    constructor() {
+        super();
+        this.state = {
+            ODJSON: '',
+        };
+        console.log('[DEBUG] Setting GetODJSON-reply IPCRenderer callback');
+        window.ipcRenderer.on('GetODJSON-reply', (pEvent, pArg) => {
+            console.log('[DEBUG] <IPCRenderer::GetODJSON-reply> Got response : ' + pArg);
+            this.setState({ODJSON: JSON.parse(pArg)});
+        });
+    }
+
     render () {
         return (
-            <button onClick={() => {
-                    ipcRenderer.send('GetODJSON');
-                    }}>
-                Get Object Dictionary JSON
-            </button>
+            <div>
+                <button onClick={() => {
+                        ipcRenderer.send('GetODJSON');
+                        }}>
+                    Get Object Dictionary JSON
+                </button>
+                <br/>
+                {/* <code>
+                    {JSON.stringify(this.state.ODJSON)}
+                </code> */}
+                <PrettyPrintJson data={this.state.ODJSON}/>
+            </div>
         );
     }
 }
