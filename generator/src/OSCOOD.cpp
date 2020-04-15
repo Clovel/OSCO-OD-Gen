@@ -367,6 +367,14 @@ bool OSCOOD::dummySupported(const uint8_t &pDummy, bool &pSupported) const {
     return true;
 }
 
+std::string OSCOOD::customHeader(void) const {
+    return mCustomHeader;
+}
+
+std::string OSCOOD::sourceFilePath(void) const {
+    return mSourceFilePath;
+}
+
 /* Setters */
 bool OSCOOD::addIndex(OSCOODIndex *pIndex) {
     /* Check if the index already exists */
@@ -730,4 +738,12 @@ bool OSCOOD::setDummySupported(const uint8_t &pDummy, const bool &pSupport) {
     }
 
     return true;
+}
+
+void OSCOOD::setCustomHeader(const std::string &pHeaderName) {
+    mCustomHeader = pHeaderName;
+}
+
+void OSCOOD::setSourceFilePath(const std::string &pSourceFilePath) {
+    mSourceFilePath = pSourceFilePath;
 }

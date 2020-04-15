@@ -100,6 +100,9 @@ class API_EXPORT OSCOOD {
         bool dummy0007Supported(void) const;
         bool dummySupported(const uint8_t &pDummy, bool &pSupported) const;
 
+        std::string customHeader(void) const;
+        std::string sourceFilePath(void) const;
+
         /* Setters */
         bool addIndex(OSCOODIndex *pIndex);
         bool removeIndex(const OSCOODIndex * const pIndex);
@@ -152,6 +155,9 @@ class API_EXPORT OSCOOD {
         void setDummy0006Supported(const bool &pSupport);
         void setDummy0007Supported(const bool &pSupport);
         bool setDummySupported(const uint8_t &pDummy, const bool &pSupport);
+
+        void setCustomHeader(const std::string &pHeaderName);
+        void setSourceFilePath(const std::string &pSourceFilePath);
     protected:
     private:
         std::map<uint16_t, OSCOODIndex *> mObjects; /**< Contents of the Object Dictionary */
@@ -265,6 +271,10 @@ class API_EXPORT OSCOOD {
         bool mDummy0005; /**< Indicated if the usage of Dummy0005 is supported */
         bool mDummy0006; /**< Indicated if the usage of Dummy0006 is supported */
         bool mDummy0007; /**< Indicated if the usage of Dummy0007 is supported */
+
+        /* Data not set in the source file */
+        std::string mCustomHeader; /**< Header defined by the user. Added in generated OD header */
+        std::string mSourceFilePath /**< Absolute path to the source file used to create/save this OD instance */
 };
 
 #endif /* OSCOOD_HPP */

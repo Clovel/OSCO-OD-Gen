@@ -68,6 +68,7 @@ int main(const int argc, const char * const * const argv) {
     } else {
         std::cout << "[INFO ] OSCOODFactory::buildOSCOOD successfully created an Object Dictionary" << std::endl;
         lOD->setName(lOD->fileName());
+        lOD->setSourceFilePath(lEDSFile);
     }
 
     /* Generate OSCO OD C code */
