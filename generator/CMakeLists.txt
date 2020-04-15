@@ -135,6 +135,13 @@ include_directories(
     ${CMAKE_CURRENT_SOURCE_DIR}/deps/rapidjson/include
 )
 
+# Set this define if you want to test the program without the RESTServer.
+# This is mainly used for development purposes.
+if(RESTSERVER_DISABLED)
+    message(STATUS "RESTSERVER_DISABLED=1 defined")
+    add_definitions(-DRESTSERVER_DISABLED=1)
+endif(RESTSERVER_DISABLED)
+
 #------------------------------------------------------------------------------
 # Sub-directories 
 #------------------------------------------------------------------------------
