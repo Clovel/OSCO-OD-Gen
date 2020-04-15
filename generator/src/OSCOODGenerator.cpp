@@ -12,6 +12,8 @@
 #include "FileFiller.hpp"
 #include "FileFillerTagFactory.hpp"
 
+#include "Version.h"
+
 /* C++ system */
 #include <exception>
 #include <iostream>
@@ -121,6 +123,9 @@ int OSCOODGenerator::generate_OSCOGenOD_h(const std::string &pTemplateFilePath, 
     }
 
     /* OSCO OD Generator defines */
+    lOSS << "OSCO_OD_GEN_VERSION_MAJOR;" << OSCO_OD_GEN_VERSION_MAJOR << ";" << std::endl;
+    lOSS << "OSCO_OD_GEN_VERSION_MINOR;" << OSCO_OD_GEN_VERSION_MINOR << ";" << std::endl;
+    lOSS << "OSCO_OD_GEN_VERSION_PATCH;" << OSCO_OD_GEN_VERSION_PATCH << ";" << std::endl;
 
     /* DeviceInfo defines */
     lOSS << "VENDOR_NAME;\"" << pOD.vendorName() << "\";" << std::endl;
