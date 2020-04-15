@@ -133,6 +133,7 @@ include_directories(
     ${CMAKE_CURRENT_SOURCE_DIR}/deps/initools/inc
     ${CMAKE_CURRENT_SOURCE_DIR}/deps/RESTServer/inc
     ${CMAKE_CURRENT_SOURCE_DIR}/deps/rapidjson/include
+    ${CMAKE_CURRENT_SOURCE_DIR}/deps/FileFiller/inc
 )
 
 # Set this define if you want to test the program without the RESTServer.
