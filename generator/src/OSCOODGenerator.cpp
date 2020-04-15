@@ -93,46 +93,46 @@ int OSCOODGenerator::generate_OSCOGenOD_h(const std::string &pTemplateFilePath, 
     (void)pTemplateFilePath;
     (void)pOutputPath;
 
-
-    int lTagMappingEntries = 0;
-
     /* Build the mapping string using an output string stream */
     std::ostringstream lOSS(std::ios_base::ate);
 
     /* Custom include file */
-    lOSS << "CUSTOM_OD_DEFINE_INCLUDE;" << ";" << std::endl;
-    lTagMappingEntries += 1;
+    lOSS << "CUSTOM_OD_DEFINE_INCLUDE;" << LINE_REMOVAL_VAL <<";" << std::endl;
 
     /* OD description defines */
     lOSS << "OD_NAME_DOXYGEN;" << pOD.name() << ";" << std::endl;
+    if(pOD.name().empty()) {
+        lOSS << "OD_NAME;" << "Untitled" << ";" << std::endl;
+    } else {
+        lOSS << "OD_NAME;\"" << pOD.name() << "\";" << std::endl;
+    }
     lOSS << "OD_NAME;\"" << pOD.name() << "\";" << std::endl;
     if(pOD.name().empty()) {
-        lOSS << "OD_NAME;" << ";" << std::endl;
+        lOSS << "OD_NAME;" << LINE_REMOVAL_VAL << ";" << std::endl;
     } else {
         lOSS << "OD_NAME;\"" << pOD.name() << "\";" << std::endl;
     }
     lOSS << "OD_SOURCE_FILE;" << ";" << std::endl; /* TODO */
     lOSS << "OD_DESCRIPTION;\"" << pOD.description() << "\";" << std::endl;
     if(pOD.description().empty()) {
-        lOSS << "OD_DESCRIPTION;" << ";" << std::endl;
+        lOSS << "OD_DESCRIPTION;" << LINE_REMOVAL_VAL << ";" << std::endl;
     } else {
         lOSS << "OD_DESCRIPTION;\"" << pOD.description() << "\";" << std::endl;
     }
-    lTagMappingEntries += 4;
 
     /* OSCO OD Generator defines */
 
     /* DeviceInfo defines */
     lOSS << "VENDOR_NAME;\"" << pOD.vendorName() << "\";" << std::endl;
     if(pOD.vendorName().empty()) {
-        lOSS << "VENDOR_NAME;" << ";" << std::endl;
+        lOSS << "VENDOR_NAME;" << LINE_REMOVAL_VAL << ";" << std::endl;
     } else {
         lOSS << "VENDOR_NAME;\"" << pOD.vendorName() << "\";" << std::endl;
     }
     lOSS << "VENDOR_NUMBER;0x" << std::hex << pOD.vendorNumber() << std::dec << ";" << std::endl;
     lOSS << "PRODUCT_NAME;\"" << pOD.productName() << "\";" << std::endl;
     if(pOD.productName().empty()) {
-        lOSS << "PRODUCT_NAME;" << ";" << std::endl;
+        lOSS << "PRODUCT_NAME;" << LINE_REMOVAL_VAL << ";" << std::endl;
     } else {
         lOSS << "PRODUCT_NAME;\"" << pOD.productName() << "\";" << std::endl;
     }
@@ -140,7 +140,7 @@ int OSCOODGenerator::generate_OSCOGenOD_h(const std::string &pTemplateFilePath, 
     lOSS << "REVISION_NUMBER;" << pOD.revisionNumber() << ";" << std::endl;
     lOSS << "ORDER_CODE;\"" << pOD.orderCode() << "\";" << std::endl;
     if(pOD.orderCode().empty()) {
-        lOSS << "ORDER_CODE;" << ";" << std::endl;
+        lOSS << "ORDER_CODE;" << LINE_REMOVAL_VAL << ";" << std::endl;
     } else {
         lOSS << "ORDER_CODE;\"" << pOD.orderCode() << "\";" << std::endl;
     }
@@ -158,16 +158,14 @@ int OSCOODGenerator::generate_OSCOGenOD_h(const std::string &pTemplateFilePath, 
     lOSS << "DYN_CHANNELS_SUPPORTED;" << (uint16_t)pOD.dynamicChannelsSupported() << ";" << std::endl;
     lOSS << "GROUP_MESSAGING;" << pOD.groupMessaging() << ";" << std::endl;
     lOSS << "LSS_SUPPORTED;" << pOD.LSSSupported() << ";" << std::endl;
-    lTagMappingEntries += 20;
 
     /* OD Comments defines */
     lOSS << "OD_COMMENTS_LINES;" << pOD.commentLineCount() << ";" << std::endl;
     if(pOD.comments().empty()) {
-        lOSS << "OD_COMMENTS;" << ";" << std::endl;
+        lOSS << "OD_COMMENTS;" << LINE_REMOVAL_VAL << ";" << std::endl;
     } else {
         lOSS << "OD_COMMENTS;\"" << pOD.comments() << "\";" << std::endl;
     }
-    lTagMappingEntries += 2;
 
     /* DummyUsage defines */
     lOSS << "OD_DUMMY_0001_SUPPORTED;" << pOD.dummy0001Supported() << ";" << std::endl;
@@ -177,15 +175,13 @@ int OSCOODGenerator::generate_OSCOGenOD_h(const std::string &pTemplateFilePath, 
     lOSS << "OD_DUMMY_0005_SUPPORTED;" << pOD.dummy0005Supported() << ";" << std::endl;
     lOSS << "OD_DUMMY_0006_SUPPORTED;" << pOD.dummy0006Supported() << ";" << std::endl;
     lOSS << "OD_DUMMY_0007_SUPPORTED;" << pOD.dummy0007Supported() << ";" << std::endl;
-    lTagMappingEntries += 7;
 
     /* OD Content defines */
     lOSS << "OD_OBJECT_COUNT;" << ";" << std::endl; /* TODO */
     lOSS << "OD_RPDO_COUNT;" << pOD.nrOfRPDOs() <<";" << std::endl;
     lOSS << "OD_TPDO_COUNT;" << pOD.nrOfTPDOs() <<";" << std::endl;
-    lOSS << "OD_SDO_SERVER;" << ";" << std::endl; /* TODO */
-    lOSS << "OD_SDO_CLIENT;" << ";" << std::endl; /* TODO */
-    lTagMappingEntries += 5;
+    lOSS << "OD_SDO_SERVER;" << LINE_REMOVAL_VAL << ";" << std::endl; /* TODO */
+    lOSS << "OD_SDO_CLIENT;" << LINE_REMOVAL_VAL << ";" << std::endl; /* TODO */
 
     /* Get tag mapping string from the stringstream */
     const std::string lTagMappingStr = lOSS.str();
@@ -209,11 +205,6 @@ int OSCOODGenerator::generate_OSCOGenOD_h(const std::string &pTemplateFilePath, 
     if(0 > lResult) {
         std::cerr << "[ERROR] <OSCOODGenerator::generate_OSCOGenOD_h> FileFiller::parseFile failed" << std::endl;
         return lResult;
-    }
-
-    if(lTagMappingEntries != lResult) {
-        std::cerr << "[ERROR] <OSCOODGenerator::generate_OSCOGenOD_h> Replaced " << lResult << " tags, expected " << lTagMappingEntries << std::endl;
-        return -1;
     }
 
     return lResult;
