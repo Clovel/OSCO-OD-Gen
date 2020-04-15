@@ -1,5 +1,5 @@
 /*
- * @brief @@OD_NAME@@ OD generated header
+ * @brief @@OD_NAME_DOXYGEN@@ OD generated header
  * 
  * @file GeneratedOD.h
  */
@@ -8,7 +8,7 @@
 #define OSCO_GEN_OD_H
 
 /* Includes -------------------------------------------- */
-@@CUSTOM_OD_DEFINE@@
+@@CUSTOM_OD_DEFINE_INCLUDE@@
 
 /* Defines --------------------------------------------- */
 /* OD description defines */
