@@ -5,6 +5,7 @@
  */
 
 /* Includes -------------------------------------------- */
+#include "OSCOODGenerator.hpp"
 #include "OSCOODFactory.hpp"
 #include "OSCOOD.hpp"
 
@@ -74,6 +75,13 @@ int main(const int argc, const char * const * const argv) {
     } else {
         std::cout << "[INFO ] OSCOODFactory::buildOSCOOD successfully created an Object Dictionary" << std::endl;
         lOD->setName(lOD->fileName());
+    }
+
+    /* Generate OSCO OD C code */
+    if(0 > OSCOODGenerator::generate_OSCOGenOD_SourceFiles(*lOD)) {
+        std::cerr << "[ERROR] OSCOODGenerator::generate_OSCOGenOD_SourceFiles failed" << std::endl;
+        delete lOD;
+        return EXIT_FAILURE;
     }
 
 #ifndef RESTSERVER_DISABLED
