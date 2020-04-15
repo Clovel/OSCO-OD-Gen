@@ -22,7 +22,14 @@
 /* OSCOODObject class implementation ------------------- */
 
 /* Constructors */
-OSCOODObject::OSCOODObject() {
+OSCOODObject::OSCOODObject() :
+    mSubNumber(0x00U),
+    mObjectType(0U), /* TODO : What is the default value ? */
+    mDataType(0U), /* TODO : What is the default value ? */
+    mPDOMapping(false),
+    mObjFlags(0U),
+    mCompactSubObj(0U)
+{
     /* Empty */
 }
 

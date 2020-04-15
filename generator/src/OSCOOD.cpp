@@ -24,13 +24,72 @@
 
 /* OSCOOD class implemetation -------------------------- */
 /* Constructors */
-OSCOOD::OSCOOD() {
+OSCOOD::OSCOOD() :
+    mFileVersion(0U),
+    mFileRevision(0U),
+    mVendorNumber(0U),
+    mProductNumber(0U),
+    mRevisionNumber(0U),
+    mBaudRate_10(false),
+    mBaudRate_20(false),
+    mBaudRate_50(false),
+    mBaudRate_125(false),
+    mBaudRate_250(false),
+    mBaudRate_500(false),
+    mBaudRate_800(false),
+    mBaudRate_1000(false),
+    mSimpleBootUpMaster(false),
+    mSimpleBootUpSlave(false),
+    mGranularity(0U),
+    mDynamicChannelsSupported(0U),
+    mGroupMessaging(false),
+    mNrOfRXPDO(0U),
+    mNrOfTXPDO(0U),
+    mLSSSupported(false),
+    mCommentLineCount(0U),
+    mDummy0001(false),
+    mDummy0002(false),
+    mDummy0003(false),
+    mDummy0004(false),
+    mDummy0005(false),
+    mDummy0006(false),
+    mDummy0007(false)
+{
     std::memset(&mCreationDateTime,     0, sizeof(mCreationDateTime));
     std::memset(&mModificationDateTime, 0, sizeof(mModificationDateTime));
 }
 
 OSCOOD::OSCOOD(const std::map<uint16_t, OSCOODIndex *> &pObjects) :
-    mObjects(pObjects)
+    mObjects(pObjects),
+    mFileVersion(0U),
+    mFileRevision(0U),
+    mVendorNumber(0U),
+    mProductNumber(0U),
+    mRevisionNumber(0U),
+    mBaudRate_10(false),
+    mBaudRate_20(false),
+    mBaudRate_50(false),
+    mBaudRate_125(false),
+    mBaudRate_250(false),
+    mBaudRate_500(false),
+    mBaudRate_800(false),
+    mBaudRate_1000(false),
+    mSimpleBootUpMaster(false),
+    mSimpleBootUpSlave(false),
+    mGranularity(0U),
+    mDynamicChannelsSupported(0U),
+    mGroupMessaging(false),
+    mNrOfRXPDO(0U),
+    mNrOfTXPDO(0U),
+    mLSSSupported(false),
+    mCommentLineCount(0U),
+    mDummy0001(false),
+    mDummy0002(false),
+    mDummy0003(false),
+    mDummy0004(false),
+    mDummy0005(false),
+    mDummy0006(false),
+    mDummy0007(false)
 {
     std::memset(&mCreationDateTime,     0, sizeof(mCreationDateTime));
     std::memset(&mModificationDateTime, 0, sizeof(mModificationDateTime));

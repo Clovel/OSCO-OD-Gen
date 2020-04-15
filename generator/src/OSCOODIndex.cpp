@@ -26,10 +26,12 @@
 /* OSCOODIndex class implementation -------------------- */
 /* Constructors */
 OSCOODIndex::OSCOODIndex() : 
-    OSCOODObject()
+    OSCOODObject(),
+    mIndex(0x0000U)
 {
     /* Empty */
 }
+
 OSCOODIndex::OSCOODIndex(const uint16_t &pIndex) : 
     OSCOODObject(),
     mIndex(pIndex)

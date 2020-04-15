@@ -19,10 +19,11 @@
 
 /* OSCONode class implementation ----------------------- */
 /* Constructors */
-OSCONode::OSCONode() : OSCOOD()
+OSCONode::OSCONode() : OSCOOD(), mNodeID(0U)
 {
     /* Empty */
 }
+
 OSCONode::OSCONode(const uint8_t &pNodeID) :
     OSCOOD()
 {

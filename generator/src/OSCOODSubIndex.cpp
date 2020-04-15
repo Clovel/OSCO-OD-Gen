@@ -22,7 +22,9 @@
 /* OSCOODSubIndex class implementation ----------------- */
 /* Constructors */
 OSCOODSubIndex::OSCOODSubIndex() :
-    OSCOODObject()
+    OSCOODObject(),
+    mIndex(0x0000U),
+    mSubIndex(0x00U)
 {
     /* Empty */
 }
