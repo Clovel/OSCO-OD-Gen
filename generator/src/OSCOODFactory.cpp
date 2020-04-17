@@ -8,6 +8,7 @@
 #include "OSCOODFactory.hpp"
 #include "OSCOODIndex.hpp"
 #include "OSCOODSubIndex.hpp"
+#include "OSCONode.hpp"
 #include "OSCOOD.hpp"
 
 /* EDS */
@@ -1076,15 +1077,23 @@ OSCOOD *OSCOODFactory::OSCOODFromDCF(const std::string &pFile) {
 
 /* OSCONode builders */
 OSCONode *OSCOODFactory::OSCONodeFromEDS(const std::string &pFile) {
-    /* TODO : Implement the EDS to OSCONode factory */
-    (void)pFile;
+    OSCOOD *lOD = OSCOODFromEDS(pFile);
 
-    return nullptr;
+    if(nullptr != lOD) {
+        return new OSCONode(*lOD);
+    } else {
+        return nullptr;
+    }
 }
 
 OSCONode *OSCOODFactory::OSCONodeFromDCF(const std::string &pFile) {
-    /* TODO : Implement the DCF factory */
-    (void)pFile;
+    OSCOOD *lOD = OSCOODFromDCF(pFile);
+
+    if(nullptr != lOD) {
+        return new OSCONode(*lOD);
+    } else {
+        return nullptr;
+    }
 
     return nullptr;
 }
