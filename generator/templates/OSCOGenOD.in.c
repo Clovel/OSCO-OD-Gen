@@ -43,48 +43,5 @@ extern const uint64_t minValU64[];
 
 /* CANOpen Object Dictionary declaration --------------- */
 OSCOODElement_t gOD[OD_OBJECT_COUNT] = {
-    /* Device Type */
-    {
-        0x1000U,
-        0x00U,
-        OD_BASIC_TYPE_UNSIGNED32,
-        OD_ACCESS_TYPE_RO,
-        (void *)(objValU32 + 0U),
-        (void *)(defValU32 + 0U),
-        NULL,
-        NULL
-    },
-    /* Error Register */
-    {
-        0x1001U,
-        0x00U,
-        OD_BASIC_TYPE_UNSIGNED8,
-        OD_ACCESS_TYPE_RO,
-        (void *)(objValU32 + 1U),
-        NULL,
-        NULL,
-        NULL
-    },
-    /* SYNC COB OD */
-    {
-        0x1005U,
-        0x00,
-        OD_BASIC_TYPE_UNSIGNED32,
-        OD_ACCESS_TYPE_RW,
-        (void *)(objValU32 + 2U),
-        (void *)(defValU32 + 1U),
-        NULL,
-        NULL
-    },
-    /* Communication Cycle Period */
-    {
-        0x1006U,
-        0x00,
-        OD_BASIC_TYPE_UNSIGNED32,
-        OD_ACCESS_TYPE_RW,
-        (void *)(objValU32 + 3U),
-        (void *)(defValU32 + 2U),
-        NULL,
-        NULL
-    }
+    @@OD_CONTENT_STRUCTURE_ARRAY@@
 };
