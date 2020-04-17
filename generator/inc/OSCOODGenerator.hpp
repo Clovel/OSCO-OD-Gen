@@ -21,6 +21,7 @@
 
 /* Forward declarations -------------------------------- */
 class OSCOOD;
+class OSCONode;
 
 /* OSCOODGenerator exception --------------------------- */
 class OSCOODGeneratorException : public std::exception {
@@ -33,13 +34,16 @@ class OSCOODGeneratorException : public std::exception {
 /* OSCOODGenerator class ------------------------------- */
 class API_EXPORT OSCOODGenerator {
     public:
-        static int generate_OSCOGenOD_SourceFiles(const std::string &pTemplateFilePath, const std::string &pOutputPath, const OSCOOD &pOD);
+        static int generate_OSCOGenOD_SourceFiles(const std::string &pTemplateFilePath, const std::string &pOutputPath, const OSCONode &pNode);
+
         static int generate_OSCOGenOD_h(const std::string &pTemplateFilePath, const std::string &pOutputPath, const OSCOOD &pOD);
         static int generate_OSCOGenOD_c(const std::string &pTemplateFilePath, const std::string &pOutputPath, const OSCOOD &pOD);
         static int generate_OSCOGenOD_DefaultValues_c(const std::string &pTemplateFilePath, const std::string &pOutputPath, const OSCOOD &pOD);
         static int generate_OSCOGenOD_MaxValues_c(const std::string &pTemplateFilePath, const std::string &pOutputPath, const OSCOOD &pOD);
         static int generate_OSCOGenOD_MinValues_c(const std::string &pTemplateFilePath, const std::string &pOutputPath, const OSCOOD &pOD);
         static int generate_OSCOGenOD_Values_c(const std::string &pTemplateFilePath, const std::string &pOutputPath, const OSCOOD &pOD);
+        static int generate_OSCOGenNodeID_h(const std::string &pTemplateFilePath, const std::string &pOutputPath, const OSCONode &pNode);
+
     protected:
     private:
 };

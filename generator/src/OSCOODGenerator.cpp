@@ -6,6 +6,7 @@
 
 /* Includes -------------------------------------------- */
 #include "OSCOODGenerator.hpp"
+#include "OSCONode.hpp"
 #include "OSCOOD.hpp"
 
 /* FileFiller */
@@ -23,6 +24,7 @@
 
 /* Defines --------------------------------------------- */
 /* Template file names */
+#define OSCO_GEN_NODEID_H_TEMPLATE_NAME             "OSCOGenNodeID.in.h"
 #define OSCO_GEN_OD_H_TEMPLATE_NAME                 "OSCOGenOD.in.h"
 #define OSCO_GEN_OD_C_TEMPLATE_NAME                 "OSCOGenOD.in.c"
 #define OSCO_GEN_OD_DEFAULTVALUES_C_TEMPLATE_NAME   "OSCOGenOD_DefaultValues.in.c"
@@ -31,6 +33,7 @@
 #define OSCO_GEN_OD_VALUES_C_TEMPLATE_NAME          "OSCOGenOD_Values.in.c"
 
 /* Output file names */
+#define OSCO_GEN_NODEID_H_NAME              "OSCOGenNodeID.h"
 #define OSCO_GEN_OD_H_NAME                  "OSCOGenOD.h"
 #define OSCO_GEN_OD_C_NAME                  "OSCOGenOD.c"
 #define OSCO_GEN_OD_DEFAULTVALUES_C_NAME    "OSCOGenOD_DefaultValues.c"
@@ -47,42 +50,48 @@
 /* Helper functions ------------------------------------ */
 
 /* OSCOODGenerator class implementation ---------------- */
-int OSCOODGenerator::generate_OSCOGenOD_SourceFiles(const std::string &pTemplateFilePath, const std::string &pOutputPath, const OSCOOD &pOD) {
+int OSCOODGenerator::generate_OSCOGenOD_SourceFiles(const std::string &pTemplateFilePath, const std::string &pOutputPath, const OSCONode &pNode) {
     int lResult = 0;
 
     /* Generate main generated OD header */
-    if(0 > (lResult = generate_OSCOGenOD_h(pTemplateFilePath, pOutputPath, pOD))) {
+    if(0 > (lResult = generate_OSCOGenOD_h(pTemplateFilePath, pOutputPath, pNode))) {
         std::cerr << "[ERROR] <OSCOODGenerator::generate_OSCOGenOD_SourceFiles> generate_OSCOGenOD_h failed" << std::endl;
         return lResult;
     }
 
     /* Generate main generated OD source file */
-    if(0 > (lResult = generate_OSCOGenOD_c(pTemplateFilePath, pOutputPath, pOD))) {
+    if(0 > (lResult = generate_OSCOGenOD_c(pTemplateFilePath, pOutputPath, pNode))) {
         std::cerr << "[ERROR] <OSCOODGenerator::generate_OSCOGenOD_SourceFiles> generate_OSCOGenOD_h failed" << std::endl;
         return lResult;
     }
 
     /* Generate main generated OD default values source file */
-    if(0 > (lResult = generate_OSCOGenOD_DefaultValues_c(pTemplateFilePath, pOutputPath, pOD))) {
+    if(0 > (lResult = generate_OSCOGenOD_DefaultValues_c(pTemplateFilePath, pOutputPath, pNode))) {
         std::cerr << "[ERROR] <OSCOODGenerator::generate_OSCOGenOD_SourceFiles> generate_OSCOGenOD_h failed" << std::endl;
         return lResult;
     }
 
     /* Generate main generated OD max values source file */
-    if(0 > (lResult = generate_OSCOGenOD_MaxValues_c(pTemplateFilePath, pOutputPath, pOD))) {
+    if(0 > (lResult = generate_OSCOGenOD_MaxValues_c(pTemplateFilePath, pOutputPath, pNode))) {
         std::cerr << "[ERROR] <OSCOODGenerator::generate_OSCOGenOD_SourceFiles> generate_OSCOGenOD_h failed" << std::endl;
         return lResult;
     }
 
     /* Generate main generated OD min values source file */
-    if(0 > (lResult = generate_OSCOGenOD_MinValues_c(pTemplateFilePath, pOutputPath, pOD))) {
+    if(0 > (lResult = generate_OSCOGenOD_MinValues_c(pTemplateFilePath, pOutputPath, pNode))) {
         std::cerr << "[ERROR] <OSCOODGenerator::generate_OSCOGenOD_SourceFiles> generate_OSCOGenOD_h failed" << std::endl;
         return lResult;
     }
 
     /* Generate main generated OD value header */
-    if(0 > (lResult = generate_OSCOGenOD_Values_c(pTemplateFilePath, pOutputPath, pOD))) {
+    if(0 > (lResult = generate_OSCOGenOD_Values_c(pTemplateFilePath, pOutputPath, pNode))) {
         std::cerr << "[ERROR] <OSCOODGenerator::generate_OSCOGenOD_SourceFiles> generate_OSCOGenOD_h failed" << std::endl;
+        return lResult;
+    }
+
+    /* Generate main generated OD value header */
+    if(0 > (lResult = generate_OSCOGenNodeID_h(pTemplateFilePath, pOutputPath, pNode))) {
+        std::cerr << "[ERROR] <OSCOODGenerator::generate_OSCOGenNodeID_h> generate_OSCOGenNodeID_h failed" << std::endl;
         return lResult;
     }
 
@@ -92,30 +101,32 @@ int OSCOODGenerator::generate_OSCOGenOD_SourceFiles(const std::string &pTemplate
 int OSCOODGenerator::generate_OSCOGenOD_h(const std::string &pTemplateFilePath, const std::string &pOutputPath, const OSCOOD &pOD) {
     int lResult = 0;
 
-    (void)pTemplateFilePath;
-    (void)pOutputPath;
-
     /* Build the mapping string using an output string stream */
     std::ostringstream lOSS(std::ios_base::ate);
 
     /* Custom include file */
-    lOSS << "CUSTOM_OD_DEFINE_INCLUDE;" << LINE_REMOVAL_VAL <<";" << std::endl;
+    if(pOD.customHeader().empty()) {
+        lOSS << "CUSTOM_OD_DEFINE_INCLUDE;" << LINE_REMOVAL_VAL <<";" << std::endl;
+    } else {
+        lOSS << "CUSTOM_OD_DEFINE_INCLUDE;" << "#include \"" << pOD.customHeader() << "\";" << std::endl;
+    }
 
     /* OD description defines */
-    lOSS << "OD_NAME_DOXYGEN;" << pOD.name() << ";" << std::endl;
     if(pOD.name().empty()) {
-        lOSS << "OD_NAME;" << "Untitled" << ";" << std::endl;
+        lOSS << "OD_NAME_DOXYGEN;" << "Untitled" << ";" << std::endl;
     } else {
-        lOSS << "OD_NAME;\"" << pOD.name() << "\";" << std::endl;
+        lOSS << "OD_NAME_DOXYGEN;" << pOD.name() << ";" << std::endl;
     }
-    lOSS << "OD_NAME;\"" << pOD.name() << "\";" << std::endl;
     if(pOD.name().empty()) {
         lOSS << "OD_NAME;" << LINE_REMOVAL_VAL << ";" << std::endl;
     } else {
         lOSS << "OD_NAME;\"" << pOD.name() << "\";" << std::endl;
     }
-    lOSS << "OD_SOURCE_FILE;" << ";" << std::endl; /* TODO */
-    lOSS << "OD_DESCRIPTION;\"" << pOD.description() << "\";" << std::endl;
+    if(pOD.name().empty()) {
+        lOSS << "OD_SOURCE_FILE;" << LINE_REMOVAL_VAL << ";" << std::endl;
+    } else {
+        lOSS << "OD_SOURCE_FILE;\"" << pOD.sourceFilePath() << "\";" << std::endl;
+    }
     if(pOD.description().empty()) {
         lOSS << "OD_DESCRIPTION;" << LINE_REMOVAL_VAL << ";" << std::endl;
     } else {
@@ -128,14 +139,12 @@ int OSCOODGenerator::generate_OSCOGenOD_h(const std::string &pTemplateFilePath, 
     lOSS << "OSCO_OD_GEN_VERSION_PATCH;" << OSCO_OD_GEN_VERSION_PATCH << ";" << std::endl;
 
     /* DeviceInfo defines */
-    lOSS << "VENDOR_NAME;\"" << pOD.vendorName() << "\";" << std::endl;
     if(pOD.vendorName().empty()) {
         lOSS << "VENDOR_NAME;" << LINE_REMOVAL_VAL << ";" << std::endl;
     } else {
         lOSS << "VENDOR_NAME;\"" << pOD.vendorName() << "\";" << std::endl;
     }
     lOSS << "VENDOR_NUMBER;0x" << std::hex << pOD.vendorNumber() << std::dec << ";" << std::endl;
-    lOSS << "PRODUCT_NAME;\"" << pOD.productName() << "\";" << std::endl;
     if(pOD.productName().empty()) {
         lOSS << "PRODUCT_NAME;" << LINE_REMOVAL_VAL << ";" << std::endl;
     } else {
@@ -143,7 +152,6 @@ int OSCOODGenerator::generate_OSCOGenOD_h(const std::string &pTemplateFilePath, 
     }
     lOSS << "PRODUCT_NUMBER;0x" << std::hex << pOD.productNumber() << std::dec << ";" << std::endl;
     lOSS << "REVISION_NUMBER;" << pOD.revisionNumber() << ";" << std::endl;
-    lOSS << "ORDER_CODE;\"" << pOD.orderCode() << "\";" << std::endl;
     if(pOD.orderCode().empty()) {
         lOSS << "ORDER_CODE;" << LINE_REMOVAL_VAL << ";" << std::endl;
     } else {
@@ -261,6 +269,41 @@ int OSCOODGenerator::generate_OSCOGenOD_Values_c(const std::string &pTemplateFil
     (void)pTemplateFilePath;
     (void)pOutputPath;
     (void)pOD;
+
+    return lResult;
+}
+
+int OSCOODGenerator::generate_OSCOGenNodeID_h(const std::string &pTemplateFilePath, const std::string &pOutputPath, const OSCONode &pNode) {
+    int lResult = 0;
+
+    /* Build the mapping string using an output string stream */
+    std::ostringstream lOSS(std::ios_base::ate);
+
+    lOSS << "NODE_ID;" << (uint16_t)pNode.nodeID() << ";" << std::endl;
+
+    /* Get tag mapping string from the stringstream */
+    const std::string lTagMappingStr = lOSS.str();
+
+    std::cout << "[DEBUG] <OSCOODGenerator::generate_OSCOGenOD_h> Tag mapping string : " << std::endl << lTagMappingStr << std::endl;
+
+    /* Generate the tag map */
+    std::map<std::string, std::string> lTagMap;
+    lResult = FileFillerTagFactory::buildTagMap(lTagMappingStr, lTagMap);
+    if(0 > lResult) {
+        std::cerr << "[ERROR] <OSCOODGenerator::generate_OSCOGenOD_h> FileFillerTagFactory::buildTagMap failed" << std::endl;
+        return lResult;
+    }
+
+    const std::string lTemplateFilePath = pTemplateFilePath + '/' + OSCO_GEN_NODEID_H_TEMPLATE_NAME;
+    const std::string lOutputFilePath = pOutputPath + '/' + OSCO_GEN_NODEID_H_NAME;
+
+    /* Parse the template and generate the code */
+    std::string lTemp = ""; /* TODO Remove need for the output string in FileFiller */
+    lResult = FileFiller::parseFile(lTagMap, lTemplateFilePath, lOutputFilePath, &lTemp);
+    if(0 > lResult) {
+        std::cerr << "[ERROR] <OSCOODGenerator::generate_OSCOGenOD_h> FileFiller::parseFile failed" << std::endl;
+        return lResult;
+    }
 
     return lResult;
 }
