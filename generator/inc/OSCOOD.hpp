@@ -65,6 +65,7 @@ class API_EXPORT OSCOOD {
         std::map<uint16_t, OSCOODIndex *> indexes(void) const;
 
         std::string name(void) const;
+        size_t objectCount(void) const;
 
         std::string fileName(void) const;
         uint8_t     fileVersion(void) const;

@@ -202,7 +202,7 @@ int OSCOODGenerator::generate_OSCOGenOD_h(const std::string &pTemplateFilePath, 
     lOSS << "OD_DUMMY_0007_SUPPORTED;" << pOD.dummy0007Supported() << ";" << std::endl;
 
     /* OD Content defines */
-    lOSS << "OD_OBJECT_COUNT;" << ";" << std::endl; /* TODO */
+    lOSS << "OD_OBJECT_COUNT;" << pOD.objectCount() << ";" << std::endl; /* TODO */
     lOSS << "OD_RPDO_COUNT;" << pOD.nrOfRPDOs() <<";" << std::endl;
     lOSS << "OD_TPDO_COUNT;" << pOD.nrOfTPDOs() <<";" << std::endl;
     lOSS << "OD_SDO_SERVER;" << LINE_REMOVAL_VAL << ";" << std::endl; /* TODO */

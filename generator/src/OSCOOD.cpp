@@ -227,6 +227,10 @@ std::string OSCOOD::name(void) const {
     return mName;
 }
 
+size_t OSCOOD::objectCount(void) const {
+    return mObjects.size();
+}
+
 std::string OSCOOD::fileName(void) const {
     return mFileName;
 }
