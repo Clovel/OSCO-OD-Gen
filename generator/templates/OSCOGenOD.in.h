@@ -1,7 +1,7 @@
 /*
  * @brief @@OD_NAME_DOXYGEN@@ OD generated header
  * 
- * @file GeneratedOD.h
+ * @file OSCOGenOD.h
  */
 
 #ifndef OSCO_GEN_OD_H
