@@ -278,7 +278,7 @@ class API_EXPORT OSCOOD {
 
         /* Data not set in the source file */
         std::string mCustomHeader; /**< Header defined by the user. Added in generated OD header */
-        std::string mSourceFilePath /**< Absolute path to the source file used to create/save this OD instance */
+        std::string mSourceFilePath; /**< Absolute path to the source file used to create/save this OD instance */
 };
 
 #endif /* OSCOOD_HPP */
