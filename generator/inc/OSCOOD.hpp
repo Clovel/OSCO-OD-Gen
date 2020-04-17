@@ -183,7 +183,7 @@ class API_EXPORT OSCOOD {
          */
         std::string mEDSVersion;
 
-        std::string mDesription; /**< Shall provide a file description (max 243 characters) */
+        std::string mDescription; /**< Shall provide a file description (max 243 characters) */
 
         /** 
          * @brief Shall provide the file creation time (24-hour "hh:mm:ss" format)

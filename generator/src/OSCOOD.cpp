@@ -443,7 +443,7 @@ void OSCOOD::setEDSVersion(const std::string &pVersion) {
 }
 
 void OSCOOD::setDescription(const std::string &pDescription) {
-    mDesription = pDescription;
+    mDescription = pDescription;
 }
 
 bool OSCOOD::setCreationDate(const std::string &pDate) {
