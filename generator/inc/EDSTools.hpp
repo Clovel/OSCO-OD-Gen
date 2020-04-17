@@ -67,7 +67,7 @@ bool remove0xPrefix(std::string &pHexStr);
  * - true : the Hex string was changed
  * - false : the hex string did not change
  */
-static bool add0xPrefix(std::string &pHexStr);
+bool add0xPrefix(std::string &pHexStr);
 
 /**
  * @brief Converts a uint8_t value to a hexadecimal string.
@@ -89,7 +89,7 @@ std::string uint8ToHexStr(const uint8_t &pInt, const bool &pZeroX = true);
  * 
  * @return The resulting hexadecimal string
  */
-static std::string uint16ToHexStr(const uint16_t &pInt, const bool &pZeroX = true);
+std::string uint16ToHexStr(const uint16_t &pInt, const bool &pZeroX = true);
 
 /**
  * @brief Converts a uint32_t value to a hexadecimal string.
@@ -100,7 +100,7 @@ static std::string uint16ToHexStr(const uint16_t &pInt, const bool &pZeroX = tru
  * 
  * @return The resulting hexadecimal string
  */
-static std::string uint32ToHexStr(const uint32_t &pInt, const bool &pZeroX = true);
+std::string uint32ToHexStr(const uint32_t &pInt, const bool &pZeroX = true);
 
 /**
  * @brief Converts a uint64_t value to a hexadecimal string.
@@ -111,7 +111,7 @@ static std::string uint32ToHexStr(const uint32_t &pInt, const bool &pZeroX = tru
  * 
  * @return The resulting hexadecimal string
  */
-static std::string uint64ToHexStr(const uint64_t &pInt, const bool &pZeroX = true);
+std::string uint64ToHexStr(const uint64_t &pInt, const bool &pZeroX = true);
 
 bool hexStrToUInt8(const std::string &pStr, uint8_t &pInt);
 bool hexStrToUInt16(const std::string &pStr, uint16_t &pInt);
