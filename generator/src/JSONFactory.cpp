@@ -617,7 +617,7 @@ std::string JSONFactory::OSCONodeToJSON(const OSCONode &pNode, rapidjson::Docume
     }
 
     /* Get the Object's contents */
-    (void)OSCOODToJSON((OSCOOD)pNode, lDoc);
+    (void)OSCOODToJSON(pNode, lDoc);
 
     if(!lDoc->IsObject()) {
         std::cerr << "[ERROR] <JSONFactory::OSCONodeToJSON> Got invalid JSON from OSCOODToJSON" << std::endl;
@@ -637,6 +637,12 @@ std::string JSONFactory::OSCONodeToJSON(const OSCONode &pNode, rapidjson::Docume
         rapidjson::Value lVal;
         lVal.SetInt(pNode.nodeID());
         lDoc->AddMember("Node ID", lVal, sJsonAlloc);
+    }
+    /* Get Node ID validity */
+    {
+        rapidjson::Value lVal;
+        lVal.SetBool(pNode.nodeIDValidity());
+        lDoc->AddMember("Node ID Validity", lVal, sJsonAlloc);
     }
 
     std::string lOutput = "";
