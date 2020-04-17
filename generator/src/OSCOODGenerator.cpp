@@ -8,6 +8,12 @@
 #include "OSCOODGenerator.hpp"
 #include "OSCONode.hpp"
 #include "OSCOOD.hpp"
+#include "OSCOODIndex.hpp"
+#include "OSCOODSubIndex.hpp"
+#include "OSCOODObject.hpp"
+
+/* EDSTools */
+#include "EDSTools.hpp"
 
 /* FileFiller */
 #include "FileFiller.hpp"
@@ -46,8 +52,105 @@
 /* Forward declarations -------------------------------- */
 
 /* Static variable declarations ------------------------ */
+static std::string sOSCOODElementStructTemplate =
+R"=====(/* @@OBJECT_NAME@@ */
+{
+    @@OBJECT_INDEX@@,
+    @@OBJECT_SUBINDEX@@,
+    @@OBJECT_TYPE@@,
+    @@OBJECT_ACCESS_SETTINGS@@,
+    @@OBJECT_VAL_PTR@@,
+    @@OBJECT_DEFAULT_VAL_PTR@@,
+    @@OBJECT_MAX_VAL_PTR@@,
+    @@OBJECT_MIN_VAL_PTR@@,
+}
+")=====";
+
+static size_t objValU8Counter  = 0U;
+static size_t objValU16Counter = 0U;
+static size_t objValU32Counter = 0U;
+static size_t objValU64Counter = 0U;
+
+static size_t maxValU8Counter  = 0U;
+static size_t maxValU16Counter = 0U;
+static size_t maxValU32Counter = 0U;
+static size_t maxValU64Counter = 0U;
+
+static size_t minValU8Counter  = 0U;
+static size_t minValU16Counter = 0U;
+static size_t minValU32Counter = 0U;
+static size_t minValU64Counter = 0U;
+
+static size_t defValU8Counter  = 0U;
+static size_t defValU16Counter = 0U;
+static size_t defValU32Counter = 0U;
+static size_t defValU64Counter = 0U;
 
 /* Helper functions ------------------------------------ */
+static void initializeCounters(void) {
+    objValU8Counter  = 0U;
+    objValU16Counter = 0U;
+    objValU32Counter = 0U;
+    objValU64Counter = 0U;
+
+    maxValU8Counter  = 0U;
+    maxValU16Counter = 0U;
+    maxValU32Counter = 0U;
+    maxValU64Counter = 0U;
+
+    minValU8Counter  = 0U;
+    minValU16Counter = 0U;
+    minValU32Counter = 0U;
+    minValU64Counter = 0U;
+
+    defValU8Counter  = 0U;
+    defValU16Counter = 0U;
+    defValU32Counter = 0U;
+    defValU64Counter = 0U;
+}
+
+static int buildOSCOODElementStructString(OSCOODObject &pObj, size_t pObjCounter, std::string &pOut) {
+    std::ostringstream lOSS(std::ostream::ate);
+
+    enum {
+        OBJECT = 0U,
+        INDEX,
+        SUB_INDEX
+    } lObjClassType = OBJECT;
+
+    /* Is the object an Index or a subIndex ? */
+    OSCOODIndex    *lIndexObj    = nullptr;
+    OSCOODSubIndex *lSubIndexObj = nullptr;
+    if(nullptr != (lIndexObj = dynamic_cast<OSCOODIndex *>(&pObj))) {
+        /* Is an OSCOODIndex */
+        lObjClassType = INDEX;
+        if(0 < lIndexObj->subIndexCount()) {
+            std::cerr << "[ERROR] <buildOSCOODElementStructString> Object is an Index containing subindexes." << std::endl;
+            return -1;
+        }
+    } else if (nullptr != (lSubIndexObj = dynamic_cast<OSCOODSubIndex *>(&pObj))) {
+        /* Is an OSCOODSubIndex */
+        lObjClassType = SUB_INDEX;
+    } else {
+        /* Is neither, this shouldn't be possible */
+        std::cerr << "[ERROR] <buildOSCOODElementStructString> Invalid object class type." << std::endl;
+        return -1;
+    }
+
+    uint16_t lIndexInt    = nullptr == lSubIndexObj ? lIndexObj->index() : lSubIndexObj->index();
+    uint8_t  lSubIndexInt = nullptr == lSubIndexObj ? 0x00U              : lSubIndexObj->subIndex();
+
+    ++pObjCounter;
+
+    /* Description comment */
+    lOSS << "OBJECT_NAME;" << pObj.paramName() << ";" << std::endl;
+    lOSS << "OBJECT_INDEX;" << uint16ToHexStr(lIndexInt) << ";" << std::endl;
+    lOSS << "OBJECT_SUBINDEX;" << uint8ToHexStr(lSubIndexInt) << ";" << std::endl;
+    lOSS << "OBJECT_ACCESS_SETTINGS;" << pObj.accessType() << ";" << std::endl;
+    lOSS << "OBJECT_TYPE;" << pObj.dataType() << ";" << std::endl;
+    lOSS << "OBJECT_VAL_PTR;(void *)(objValU32 + " << ";" << std::endl;
+
+}
 
 /* OSCOODGenerator class implementation ---------------- */
 int OSCOODGenerator::generate_OSCOGenOD_SourceFiles(const std::string &pTemplateFilePath, const std::string &pOutputPath, const OSCOOD &pOD) {
@@ -231,6 +334,25 @@ int OSCOODGenerator::generate_OSCOGenOD_h(const std::string &pTemplateFilePath, 
         std::cerr << "[ERROR] <OSCOODGenerator::generate_OSCOGenOD_h> FileFiller::parseFile failed" << std::endl;
         return lResult;
     }
+
+    return lResult;
+}
+
+int OSCOODGenerator::generate_OSCOGenODContents(const std::string &pTemplateFilePath, const std::string &pOutputPath, const OSCOOD &pOD) {
+    int lResult = 0;
+
+    (void)pTemplateFilePath;
+    (void)pOutputPath;
+    (void)pOD;
+
+    /* Initialize counters */
+    initializeCounters();
+
+    /* Build the mapping string using an output string stream */
+    std::ostringstream lOSS_Values(std::ios_base::ate);
+    std::ostringstream lOSS_MaxValues(std::ios_base::ate);
+    std::ostringstream lOSS_MinValues(std::ios_base::ate);
+    std::ostringstream lOSS_DefaultValues(std::ios_base::ate);
 
     return lResult;
 }

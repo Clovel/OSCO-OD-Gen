@@ -54,6 +54,10 @@ uint16_t OSCOODIndex::index(void) const {
     return mIndex;
 }
 
+size_t OSCOODIndex::subIndexCount(void) const {
+    return mSubObjects.size();
+}
+
 std::map<uint8_t, OSCOODSubIndex *> OSCOODIndex::subIndexes(void) const {
     return mSubObjects;
 }
