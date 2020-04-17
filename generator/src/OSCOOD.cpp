@@ -53,7 +53,8 @@ OSCOOD::OSCOOD() :
     mDummy0004(false),
     mDummy0005(false),
     mDummy0006(false),
-    mDummy0007(false)
+    mDummy0007(false),
+    mOwnership(true)
 {
     std::memset(&mCreationDateTime,     0, sizeof(mCreationDateTime));
     std::memset(&mModificationDateTime, 0, sizeof(mModificationDateTime));
@@ -89,14 +90,48 @@ OSCOOD::OSCOOD(const std::map<uint16_t, OSCOODIndex *> &pObjects) :
     mDummy0004(false),
     mDummy0005(false),
     mDummy0006(false),
-    mDummy0007(false)
+    mDummy0007(false),
+    mOwnership(true)
 {
     std::memset(&mCreationDateTime,     0, sizeof(mCreationDateTime));
     std::memset(&mModificationDateTime, 0, sizeof(mModificationDateTime));
 }
 
-OSCOOD::OSCOOD(const std::vector<OSCOODIndex *> &pObjects)
+OSCOOD::OSCOOD(const std::vector<OSCOODIndex *> &pObjects) :
+    mFileVersion(0U),
+    mFileRevision(0U),
+    mVendorNumber(0U),
+    mProductNumber(0U),
+    mRevisionNumber(0U),
+    mBaudRate_10(false),
+    mBaudRate_20(false),
+    mBaudRate_50(false),
+    mBaudRate_125(false),
+    mBaudRate_250(false),
+    mBaudRate_500(false),
+    mBaudRate_800(false),
+    mBaudRate_1000(false),
+    mSimpleBootUpMaster(false),
+    mSimpleBootUpSlave(false),
+    mGranularity(0U),
+    mDynamicChannelsSupported(0U),
+    mGroupMessaging(false),
+    mNrOfRXPDO(0U),
+    mNrOfTXPDO(0U),
+    mLSSSupported(false),
+    mCommentLineCount(0U),
+    mDummy0001(false),
+    mDummy0002(false),
+    mDummy0003(false),
+    mDummy0004(false),
+    mDummy0005(false),
+    mDummy0006(false),
+    mDummy0007(false),
+    mOwnership(true)
 {
+    std::memset(&mCreationDateTime,     0, sizeof(mCreationDateTime));
+    std::memset(&mModificationDateTime, 0, sizeof(mModificationDateTime));
+
     /* Fill our objects with the given argument */
     for(const auto &lObj : pObjects) {
         if(!mObjects.insert(std::pair(lObj->index(), lObj)).second) {
@@ -106,13 +141,80 @@ OSCOOD::OSCOOD(const std::vector<OSCOODIndex *> &pObjects)
     }
 }
 
+
+OSCOOD::OSCOOD(OSCOOD &pOD, const bool &pTakeOwnership) :
+    mObjects(pOD.indexes()),
+    mName(pOD.name()),
+    mFileName(pOD.fileName()),
+    mFileVersion(pOD.fileVersion()),
+    mFileRevision(pOD.fileRevision()),
+    mEDSVersion(pOD.EDSVersion()),
+    mDescription(pOD.description()),
+    mCreatedBy(pOD.createdBy()),
+    mModifiedBy(pOD.modifiedBy()),
+    mVendorName(pOD.vendorName()),
+    mVendorNumber(pOD.vendorNumber()),
+    mProductName(pOD.productName()),
+    mProductNumber(0U),
+    mRevisionNumber(0U),
+    mOrderCode(pOD.orderCode()),
+    mBaudRate_10(pOD.baudrate10Supported()),
+    mBaudRate_20(pOD.baudrate20Supported()),
+    mBaudRate_50(pOD.baudrate50Supported()),
+    mBaudRate_125(pOD.baudrate125Supported()),
+    mBaudRate_250(pOD.baudrate250Supported()),
+    mBaudRate_500(pOD.baudrate500Supported()),
+    mBaudRate_800(pOD.baudrate800Supported()),
+    mBaudRate_1000(pOD.baudrate1000Supported()),
+    mSimpleBootUpMaster(pOD.simpleBootUpMaster()),
+    mSimpleBootUpSlave(pOD.simpleBootUpSlave()),
+    mGranularity(pOD.granularity()),
+    mDynamicChannelsSupported(pOD.dynamicChannelsSupported()),
+    mGroupMessaging(pOD.groupMessaging()),
+    mNrOfRXPDO(pOD.nrOfRPDOs()),
+    mNrOfTXPDO(pOD.nrOfTPDOs()),
+    mLSSSupported(pOD.LSSSupported()),
+    mComments(pOD.comments()),
+    mCommentLineCount(pOD.commentLineCount()),
+    mDummy0001(pOD.dummy0001Supported()),
+    mDummy0002(pOD.dummy0002Supported()),
+    mDummy0003(pOD.dummy0003Supported()),
+    mDummy0004(pOD.dummy0004Supported()),
+    mDummy0005(pOD.dummy0005Supported()),
+    mDummy0006(pOD.dummy0006Supported()),
+    mDummy0007(pOD.dummy0007Supported()),
+    mCustomHeader(pOD.customHeader()),
+    mSourceFilePath(pOD.sourceFilePath())
+{
+    setCreationDateTime(pOD.creationDateTime());
+    setModificationDateTime(pOD.modificationDateTime());
+
+    /* Take ownership from the source instance */
+    if(pTakeOwnership) {
+        if(pOD.ownership()) {
+            mOwnership = true;
+        } else {
+            std::cerr << "[ERROR] <OSCOOD::OSCOOD> Cannot take ownership from an OSCOOD instance that doesn't have it" << std::endl;
+            mOwnership = false;
+        }
+    }
+}
+
 /* Destructor */
 OSCOOD::~OSCOOD() {
-    for(auto &lObject : mObjects) {
-        if(nullptr != lObject.second) {
-            delete lObject.second;
-            lObject.second = nullptr;
+    /* If this instance has the ownership of the OSCOODIndexes,
+     * then it should delete them upon it's own deletion
+     */
+    if(mOwnership) {
+        for(auto &lObject : mObjects) {
+            if(nullptr != lObject.second) {
+                delete lObject.second;
+                lObject.second = nullptr;
+            }
         }
+    } else {
+        /* Issue a warning */
+        std::cerr << "[WARN ] <~OSCOOD> Deleting an OSCOOD instance that doesn't own the indexes, it won't delete them." << std::endl;
     }
 }
 
@@ -381,6 +483,10 @@ std::string OSCOOD::customHeader(void) const {
 
 std::string OSCOOD::sourceFilePath(void) const {
     return mSourceFilePath;
+}
+
+bool OSCOOD::ownership(void) const {
+    return mOwnership;
 }
 
 /* Setters */
@@ -762,4 +868,8 @@ void OSCOOD::setCustomHeader(const std::string &pHeaderName) {
 
 void OSCOOD::setSourceFilePath(const std::string &pSourceFilePath) {
     mSourceFilePath = pSourceFilePath;
+}
+
+void OSCOOD::setOwnership(const bool &pOwner) {
+    mOwnership = pOwner;
 }
