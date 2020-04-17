@@ -142,7 +142,7 @@ std::string OSCOOD::EDSVersion(void) const {
 }
 
 std::string OSCOOD::description(void) const {
-    return mDesription;
+    return mDescription;
 }
 
 std::string OSCOOD::creationDate(const bool &pFormat) const {
