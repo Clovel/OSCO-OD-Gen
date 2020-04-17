@@ -42,10 +42,15 @@ class API_EXPORT OSCOODREST : public RESTServer {
         /* Getters */
         std::map<std::string, OSCOOD *> ODs(void) const;
         OSCOOD *OD(const std::string &pName) const;
+        bool canGenerateCCode(void) const;
+        std::string generatorTemplateFilePath(void) const;
+        std::string generatorOutputPath(void) const;
 
         /* Setters */
         bool addOD(OSCOOD &pOD);
         bool addOD(OSCOOD * const pOD);
+
+        int setGeneratorSettings(const std::string &pTemplateFilePath, const std::string &pOutputPath);
     protected:
     private:
         /* Constructors */
@@ -53,6 +58,10 @@ class API_EXPORT OSCOODREST : public RESTServer {
 
         /* Object Dictionaries */
         std::map<std::string, OSCOOD *> mObjectDictionaries;
+
+        bool mCanGenerateCCode; /**< Can generate C code */
+        std::string mTemplateFilePath; /**< Path to the C code templates */
+        std::string mOutputPath; /**< Path to the output directory */
 
         /* REST Callbacks */
         static HttpStatus OSCOOD_GET(const std::string &pPath, const std::vector<std::string> &pQueries, std::string &pOut);

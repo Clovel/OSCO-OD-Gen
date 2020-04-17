@@ -73,17 +73,13 @@ int main(const int argc, const char * const * const argv) {
         lNode->setSourceFilePath(lEDSFile);
     }
 
-    /* Generate OSCO OD C code */
-    if(0 > OSCOODGenerator::generate_OSCOGenOD_SourceFiles(lTemplatePath, lOutputPath, *lNode)) {
-        std::cerr << "[ERROR] OSCOODGenerator::generate_OSCOGenOD_SourceFiles failed" << std::endl;
-        delete lNode;
-        return EXIT_FAILURE;
-    }
-
 #ifndef RESTSERVER_DISABLED
     /* Set up the REST API Server */
     OSCOODREST *lRESTServer = OSCOODREST::createInstance(lAddr, lPort, lPath);
     lRESTServer->addOD(lNode);
+
+    /* Setup RESTServer to generate OSCO OD C code */
+    (void)lRESTServer->setGeneratorSettings(lTemplatePath, lOutputPath);
 
     /* Open server socket */
     if(!lRESTServer->open()) {

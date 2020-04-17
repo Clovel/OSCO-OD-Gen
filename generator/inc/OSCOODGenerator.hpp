@@ -34,7 +34,8 @@ class OSCOODGeneratorException : public std::exception {
 /* OSCOODGenerator class ------------------------------- */
 class API_EXPORT OSCOODGenerator {
     public:
-        static int generate_OSCOGenOD_SourceFiles(const std::string &pTemplateFilePath, const std::string &pOutputPath, const OSCONode &pNode);
+        static int generate_OSCOGenOD_SourceFiles(const std::string &pTemplateFilePath, const std::string &pOutputPath, const OSCOOD &pOD);
+        static int generate_OSCOGenNode_SourceFiles(const std::string &pTemplateFilePath, const std::string &pOutputPath, const OSCONode &pNode);
 
         static int generate_OSCOGenOD_h(const std::string &pTemplateFilePath, const std::string &pOutputPath, const OSCOOD &pOD);
         static int generate_OSCOGenOD_c(const std::string &pTemplateFilePath, const std::string &pOutputPath, const OSCOOD &pOD);

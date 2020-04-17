@@ -6,6 +6,8 @@
 
 /* Includes -------------------------------------------- */
 #include "OSCOODREST.hpp"
+#include "OSCOODGenerator.hpp"
+#include "OSCONode.hpp"
 #include "OSCOOD.hpp"
 #include "OSCOODIndex.hpp"
 #include "OSCOODSubIndex.hpp"
@@ -26,6 +28,7 @@
 #include <cstring>
 
 /* Defines --------------------------------------------- */
+#define GENERATE_C_CODE_CMD "generate_c_code"
 
 /* Type definitions ------------------------------------ */
 
@@ -89,7 +92,8 @@ static HttpStatus checkPath(const std::string &lExpectedBasePath, const std::str
 
 /* Constructors */
 OSCOODREST::OSCOODREST(const std::string &pAddr, const std::string pPort, const std::string &pPath) :
-    RESTServer(pAddr, pPort, pPath)
+    RESTServer(pAddr, pPort, pPath),
+    mCanGenerateCCode(false)
 {
     /* Empty */
     setGetCallback(OSCOOD_GET);
@@ -133,6 +137,18 @@ OSCOOD *OSCOODREST::OD(const std::string &pName) const {
     }
 }
 
+bool OSCOODREST::canGenerateCCode(void) const {
+    return mCanGenerateCCode;
+}
+
+std::string OSCOODREST::generatorTemplateFilePath(void) const {
+    return mTemplateFilePath;
+}
+
+std::string OSCOODREST::generatorOutputPath(void) const {
+    return mOutputPath;
+}
+
 /* Setters */
 bool OSCOODREST::addOD(OSCOOD &pOD) {
     try {
@@ -155,6 +171,14 @@ bool OSCOODREST::addOD(OSCOOD * const pOD) {
     }
  
     return addOD(*pOD);
+}
+
+int OSCOODREST::setGeneratorSettings(const std::string &pTemplateFilePath, const std::string &pOutputPath) {
+    mTemplateFilePath = pTemplateFilePath;
+    mOutputPath = pOutputPath;
+    mCanGenerateCCode = true;
+
+    return 0; /* TODO : Check path validity ??? */
 }
 
 /* REST Callbacks */
@@ -195,7 +219,8 @@ HttpStatus OSCOODREST::OSCOOD_GET(const std::string &pPath, const std::vector<st
     std::string lJSON = "";
 
     /* Now analyse the path */
-    const OSCOOD *lOD = nullptr;
+    OSCOOD   *lOD   = nullptr; /* Not const because of a potential dynamic_cast */
+    OSCONode *lNode = nullptr;
     if(2U <= lDepth) {
         /* Search OD name */
         const std::string lRequestedODName = lSubPathSections.at(1U);
@@ -205,10 +230,19 @@ HttpStatus OSCOODREST::OSCOOD_GET(const std::string &pPath, const std::vector<st
             return HttpStatus::NOT_FOUND;
         }
 
+        /* Is the OD an OSCONode */
+        lNode = dynamic_cast<OSCONode *>(lOD);
+
         /* If there is only an OD's name, send whole OD */
         if(2U == lDepth) {
-            /* Get the Object dictionary JSON */
-            lJSON = JSONFactory::OSCOODToJSON(*lOD);
+            /* Is it an OSCONode or an OSCOOD ? */
+            if(nullptr == lNode) {
+                /* Get the Object dictionary JSON */
+                lJSON = JSONFactory::OSCOODToJSON(*lOD);
+            } else {
+                /* Get the Node JSON */
+                lJSON = JSONFactory::OSCONodeToJSON(*lNode);
+            }
             pOut = lJSON + "\r\n";
             return HttpStatus::OK;
         }
@@ -216,8 +250,35 @@ HttpStatus OSCOODREST::OSCOOD_GET(const std::string &pPath, const std::vector<st
 
     const OSCOODIndex *lIndex = nullptr;
     if(3U <= lDepth) {
-        /* Depth 3 is Index */
+        /* Depth 3 is Index OR C code generation command */
         std::string lRequestedIndex = lSubPathSections.at(2U);
+
+        if(GENERATE_C_CODE_CMD == lRequestedIndex) {
+            if(!lRESTServer->canGenerateCCode()) {
+                std::cerr << "[ERROR] <OSCOODREST::OSCOOD_GET> C code generation activate, but not available" << std::endl;
+                return HttpStatus::SERVICE_UNAVAILABLE;
+            }
+
+            /* We were asked to generate the C code */
+            if(nullptr == lNode) {
+                if(0 > OSCOODGenerator::generate_OSCOGenOD_SourceFiles(lRESTServer->generatorTemplateFilePath(), lRESTServer->generatorOutputPath(), *lOD)) {
+                    std::cerr << "[ERROR] <OSCOODREST::OSCOOD_GET> generate_OSCOGenOD_SourceFiles failed" << std::endl;
+                    return HttpStatus::INTERNAL_SERVER_ERROR;
+                } else {
+                    /* Return JSON with generated files + paths ? */
+                    return HttpStatus::OK;
+                }
+            } else {
+                if(0 > OSCOODGenerator::generate_OSCOGenNode_SourceFiles(lRESTServer->generatorTemplateFilePath(), lRESTServer->generatorOutputPath(), *lNode)) {
+                    std::cerr << "[ERROR] <OSCOODREST::OSCOOD_GET> generate_OSCOGenNode_SourceFiles failed" << std::endl;
+                    return HttpStatus::INTERNAL_SERVER_ERROR;
+                } else {
+                    /* Return JSON with generated files + paths ? */
+                    return HttpStatus::OK;
+                }
+            }
+        }
+
         uint16_t lRequestedIndexInt = 0U;
 
         /* Is the requested index valid ? */
@@ -242,7 +303,7 @@ HttpStatus OSCOODREST::OSCOOD_GET(const std::string &pPath, const std::vector<st
     }
 
     const OSCOODSubIndex *lSubIndex = nullptr;
-    if((4U == lDepth)) {
+    if((4U <= lDepth)) {
         /* Depth 4 is SubIndex */
         std::string lRequestedSubIndex = lSubPathSections.at(3U);
         uint8_t lRequestedSubIndexInt = 0U;
@@ -272,6 +333,15 @@ HttpStatus OSCOODREST::OSCOOD_GET(const std::string &pPath, const std::vector<st
         std::cout << "[DEBUG] <OSCOODREST::OSCOOD_GET> Subindex JSON : " << pOut << std::endl;
 
         return HttpStatus::OK;
+    }
+
+    if(5U == lDepth) {
+        /* Depth 5 is subindex info */
+        return HttpStatus::NOT_IMPLEMENTED;
+    }
+
+    if(5U < lDepth) {
+        return HttpStatus::BAD_REQUEST;
     }
 
     return HttpStatus::BAD_REQUEST;

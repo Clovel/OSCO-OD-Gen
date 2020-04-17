@@ -50,48 +50,60 @@
 /* Helper functions ------------------------------------ */
 
 /* OSCOODGenerator class implementation ---------------- */
-int OSCOODGenerator::generate_OSCOGenOD_SourceFiles(const std::string &pTemplateFilePath, const std::string &pOutputPath, const OSCONode &pNode) {
+int OSCOODGenerator::generate_OSCOGenOD_SourceFiles(const std::string &pTemplateFilePath, const std::string &pOutputPath, const OSCOOD &pOD) {
     int lResult = 0;
 
     /* Generate main generated OD header */
-    if(0 > (lResult = generate_OSCOGenOD_h(pTemplateFilePath, pOutputPath, pNode))) {
+    if(0 > (lResult = generate_OSCOGenOD_h(pTemplateFilePath, pOutputPath, pOD))) {
         std::cerr << "[ERROR] <OSCOODGenerator::generate_OSCOGenOD_SourceFiles> generate_OSCOGenOD_h failed" << std::endl;
         return lResult;
     }
 
     /* Generate main generated OD source file */
-    if(0 > (lResult = generate_OSCOGenOD_c(pTemplateFilePath, pOutputPath, pNode))) {
+    if(0 > (lResult = generate_OSCOGenOD_c(pTemplateFilePath, pOutputPath, pOD))) {
         std::cerr << "[ERROR] <OSCOODGenerator::generate_OSCOGenOD_SourceFiles> generate_OSCOGenOD_h failed" << std::endl;
         return lResult;
     }
 
     /* Generate main generated OD default values source file */
-    if(0 > (lResult = generate_OSCOGenOD_DefaultValues_c(pTemplateFilePath, pOutputPath, pNode))) {
+    if(0 > (lResult = generate_OSCOGenOD_DefaultValues_c(pTemplateFilePath, pOutputPath, pOD))) {
         std::cerr << "[ERROR] <OSCOODGenerator::generate_OSCOGenOD_SourceFiles> generate_OSCOGenOD_h failed" << std::endl;
         return lResult;
     }
 
     /* Generate main generated OD max values source file */
-    if(0 > (lResult = generate_OSCOGenOD_MaxValues_c(pTemplateFilePath, pOutputPath, pNode))) {
+    if(0 > (lResult = generate_OSCOGenOD_MaxValues_c(pTemplateFilePath, pOutputPath, pOD))) {
         std::cerr << "[ERROR] <OSCOODGenerator::generate_OSCOGenOD_SourceFiles> generate_OSCOGenOD_h failed" << std::endl;
         return lResult;
     }
 
     /* Generate main generated OD min values source file */
-    if(0 > (lResult = generate_OSCOGenOD_MinValues_c(pTemplateFilePath, pOutputPath, pNode))) {
+    if(0 > (lResult = generate_OSCOGenOD_MinValues_c(pTemplateFilePath, pOutputPath, pOD))) {
         std::cerr << "[ERROR] <OSCOODGenerator::generate_OSCOGenOD_SourceFiles> generate_OSCOGenOD_h failed" << std::endl;
         return lResult;
     }
 
     /* Generate main generated OD value header */
-    if(0 > (lResult = generate_OSCOGenOD_Values_c(pTemplateFilePath, pOutputPath, pNode))) {
+    if(0 > (lResult = generate_OSCOGenOD_Values_c(pTemplateFilePath, pOutputPath, pOD))) {
         std::cerr << "[ERROR] <OSCOODGenerator::generate_OSCOGenOD_SourceFiles> generate_OSCOGenOD_h failed" << std::endl;
+        return lResult;
+    }
+
+    return lResult;
+}
+
+int OSCOODGenerator::generate_OSCOGenNode_SourceFiles(const std::string &pTemplateFilePath, const std::string &pOutputPath, const OSCONode &pNode) {
+    int lResult = 0;
+
+    /* Generate main generated OD header */
+    if(0 > (lResult = generate_OSCOGenOD_SourceFiles(pTemplateFilePath, pOutputPath, pNode))) {
+        std::cerr << "[ERROR] <OSCOODGenerator::generate_OSCOGenNode_SourceFiles> generate_OSCOGenOD_SourceFiles failed" << std::endl;
         return lResult;
     }
 
     /* Generate main generated OD value header */
     if(0 > (lResult = generate_OSCOGenNodeID_h(pTemplateFilePath, pOutputPath, pNode))) {
-        std::cerr << "[ERROR] <OSCOODGenerator::generate_OSCOGenNodeID_h> generate_OSCOGenNodeID_h failed" << std::endl;
+        std::cerr << "[ERROR] <OSCOODGenerator::generate_OSCOGenNode_SourceFiles> generate_OSCOGenNodeID_h failed" << std::endl;
         return lResult;
     }
 
