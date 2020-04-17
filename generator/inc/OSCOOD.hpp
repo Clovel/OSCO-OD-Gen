@@ -59,9 +59,11 @@ class API_EXPORT OSCOOD {
         std::string description(void) const;
         std::string creationDate(const bool &pFormat = false) const;
         std::string creationTime(const bool &pFormat = false) const;
+        std::time_t creationDateTime(void) const;
         std::string createdBy(void) const;
         std::string modificationDate(const bool &pFormat = false) const;
         std::string modificationTime(const bool &pFormat = false) const;
+        std::time_t modificationDateTime(void) const;
         std::string modifiedBy(void) const;
 
         std::string vendorName(void) const;
@@ -117,9 +119,11 @@ class API_EXPORT OSCOOD {
         void setDescription(const std::string &pDescription);
         bool setCreationDate(const std::string &pDate);
         bool setCreationTime(const std::string &pTime);
+        void setCreationDateTime(const std::time_t &pDateTime);
         void setCreatedBy(const std::string &pCreatedBy);
         bool setModificationDate(const std::string &pDate);
         bool setModificationTime(const std::string &pTime);
+        void setModificationDateTime(const std::time_t &pDateTime);
         void setModifiedBy(const std::string &pModifiedBy);
 
         void setVendorName(const std::string &pName);

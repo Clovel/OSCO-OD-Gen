@@ -165,6 +165,10 @@ std::string OSCOOD::creationTime(const bool &pFormat) const {
     return std::string(lTimeStr);
 }
 
+std::time_t OSCOOD::creationDateTime(void) const {
+    return mCreationDateTime;
+}
+
 std::string OSCOOD::createdBy(void) const {
     return mCreatedBy;
 }
@@ -187,6 +191,10 @@ std::string OSCOOD::modificationTime(const bool &pFormat) const {
     else
         (void)strftime(lTimeStr, 20U, "%I:%M%p", lDateTimeStruct);
     return std::string(lTimeStr);
+}
+
+std::time_t OSCOOD::modificationDateTime(void) const {
+    return mModificationDateTime;
 }
 
 std::string OSCOOD::modifiedBy(void) const {
@@ -504,6 +512,10 @@ bool OSCOOD::setCreationTime(const std::string &pTime) {
     return true;
 }
 
+void OSCOOD::setCreationDateTime(const std::time_t &pDateTime) {
+    mCreationDateTime = pDateTime;
+}
+
 void OSCOOD::setCreatedBy(const std::string &pCreatedBy) {
     mCreatedBy = pCreatedBy;
 }
@@ -572,6 +584,10 @@ bool OSCOOD::setModificationTime(const std::string &pTime) {
     mModificationDateTime = mktime(lModificationDateTimeStruct);
 
     return true;
+}
+
+void OSCOOD::setModificationDateTime(const std::time_t &pDateTime) {
+    mModificationDateTime = pDateTime;
 }
 
 void OSCOOD::setModifiedBy(const std::string &pModifiedBy) {
