@@ -11,6 +11,8 @@
 #include "OSCONode.hpp"
 #include "OSCOOD.hpp"
 
+#include "OSCOTypes.h"
+
 /* EDS */
 #include "EDS.hpp"
 #include "EDSTools.hpp"
@@ -136,9 +138,22 @@ static bool fillObjectAtrributes(OSCOODObject * const pObj, const std::string pK
             std::sscanf(pVal.c_str(), "%u", &lTempVal);
         }
 
-        if(0U <= lTempVal && 0xFFU >= lTempVal)
-            pObj->setObjectType((uint8_t)lTempVal);
-        else {
+        if(0U <= lTempVal && 0xFFU >= lTempVal) {
+            switch((uint8_t)lTempVal) {
+                case OD_OBJ_TYPE_NULL:
+                case OD_OBJ_TYPE_DOMAIN:
+                case OD_OBJ_TYPE_DEFTYPE:
+                case OD_OBJ_TYPE_DEFSTRUCT:
+                case OD_OBJ_TYPE_VAR:
+                case OD_OBJ_TYPE_ARRAY:
+                case OD_OBJ_TYPE_RECORD:
+                    pObj->setObjectType(OD_OBJ_TYPE_RECORD);
+                    break;
+                default:
+                    pObj->setObjectType(OD_OBJ_TYPE_UNKNOWN);
+                    break;
+            }
+        } else {
             std::cerr << "[ERROR] <fillObjectAtrributes> ObjectType is out of bounds (" << lTempVal << ")" << std::endl;
             return false;
         }
@@ -154,7 +169,45 @@ static bool fillObjectAtrributes(OSCOODObject * const pObj, const std::string pK
         }
 
         if(0U <= lTempVal && 0xFFU >= lTempVal)
-            pObj->setDataType((uint8_t)lTempVal);
+        
+            switch((OSCOODDataType_t)lTempVal) {
+                case OD_BASIC_TYPE_BOOLEAN:
+                case OD_BASIC_TYPE_INTEGER8:
+                case OD_BASIC_TYPE_INTEGER16:
+                case OD_BASIC_TYPE_INTEGER24:
+                case OD_BASIC_TYPE_INTEGER32:
+                case OD_BASIC_TYPE_INTEGER40:
+                case OD_BASIC_TYPE_INTEGER48:
+                case OD_BASIC_TYPE_INTEGER56:
+                case OD_BASIC_TYPE_INTEGER64:
+                case OD_BASIC_TYPE_UNSIGNED8:
+                case OD_BASIC_TYPE_UNSIGNED16:
+                case OD_BASIC_TYPE_UNSIGNED24:
+                case OD_BASIC_TYPE_UNSIGNED32:
+                case OD_BASIC_TYPE_UNSIGNED40:
+                case OD_BASIC_TYPE_UNSIGNED48:
+                case OD_BASIC_TYPE_UNSIGNED56:
+                case OD_BASIC_TYPE_UNSIGNED64:
+                case OD_BASIC_TYPE_REAL32:
+                case OD_BASIC_TYPE_REAL64:
+                case OD_BASIC_TYPE_OCTET_STRING:
+                case OD_BASIC_TYPE_VISIBLE_STRING:
+                case OD_BASIC_TYPE_UNICODE_STRING:
+                case OD_BASIC_TYPE_TIME_OF_DAY:
+                case OD_BASIC_TYPE_DOMAIN:
+                case OD_COMPLEX_TYPE_PDOCOMMPARAM:
+                case OD_COMPLEX_TYPE_PDOMAPPING:
+                case OD_COMPLEX_TYPE_SDOPARAM:
+                case OD_COMPLEX_TYPE_IDENTITY:
+                case OD_COMPLEX_TYPE_DEBUGGERPARAM:
+                case OD_COMPLEX_TYPE_CMDPARAM:
+                case OD_BASIC_TYPE_VOID:
+                    pObj->setDataType((OSCOODDataType_t)lTempVal);
+                    break;
+                default:
+                    pObj->setDataType(OD_UNKNOWN_TYPE);
+                    break;
+            }
         else {
             std::cerr << "[ERROR] <fillObjectAtrributes> DataType is out of bounds (" << lTempVal << ")" << std::endl;
             return false;
@@ -163,7 +216,7 @@ static bool fillObjectAtrributes(OSCOODObject * const pObj, const std::string pK
 
     /* AccessType */
     if(caseInSensStringCompare(sGenericKeys[4U], pKey)) {
-        pObj->setAccessType(pVal);
+        pObj->setAccessType(strToAccessType(pVal.c_str()));
     }
 
     /* DefaultValue */
