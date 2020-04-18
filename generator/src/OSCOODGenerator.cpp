@@ -66,47 +66,95 @@ R"=====(/* @@OBJECT_NAME@@ */
 }
 ")=====";
 
-static size_t objValU8Counter  = 0U;
-static size_t objValU16Counter = 0U;
-static size_t objValU32Counter = 0U;
-static size_t objValU64Counter = 0U;
+static size_t objValU8Counter     = 0U;
+static size_t objValU16Counter    = 0U;
+static size_t objValU32Counter    = 0U;
+static size_t objValU64Counter    = 0U;
+static size_t objValI8Counter     = 0U;
+static size_t objValI16Counter    = 0U;
+static size_t objValI32Counter    = 0U;
+static size_t objValI64Counter    = 0U;
+static size_t objValBoolCounter   = 0U;
+static size_t objValReal32Counter = 0U;
 
-static size_t maxValU8Counter  = 0U;
-static size_t maxValU16Counter = 0U;
-static size_t maxValU32Counter = 0U;
-static size_t maxValU64Counter = 0U;
+static size_t maxValU8Counter     = 0U;
+static size_t maxValU16Counter    = 0U;
+static size_t maxValU32Counter    = 0U;
+static size_t maxValU64Counter    = 0U;
+static size_t maxValI8Counter     = 0U;
+static size_t maxValI16Counter    = 0U;
+static size_t maxValI32Counter    = 0U;
+static size_t maxValI64Counter    = 0U;
+static size_t maxValBoolCounter   = 0U;
+static size_t maxValReal32Counter = 0U;
 
-static size_t minValU8Counter  = 0U;
-static size_t minValU16Counter = 0U;
-static size_t minValU32Counter = 0U;
-static size_t minValU64Counter = 0U;
+static size_t minValU8Counter     = 0U;
+static size_t minValU16Counter    = 0U;
+static size_t minValU32Counter    = 0U;
+static size_t minValU64Counter    = 0U;
+static size_t minValI8Counter     = 0U;
+static size_t minValI16Counter    = 0U;
+static size_t minValI32Counter    = 0U;
+static size_t minValI64Counter    = 0U;
+static size_t minValBoolCounter   = 0U;
+static size_t minValReal32Counter = 0U;
 
-static size_t defValU8Counter  = 0U;
-static size_t defValU16Counter = 0U;
-static size_t defValU32Counter = 0U;
-static size_t defValU64Counter = 0U;
+static size_t defValU8Counter     = 0U;
+static size_t defValU16Counter    = 0U;
+static size_t defValU32Counter    = 0U;
+static size_t defValU64Counter    = 0U;
+static size_t defValI8Counter     = 0U;
+static size_t defValI16Counter    = 0U;
+static size_t defValI32Counter    = 0U;
+static size_t defValI64Counter    = 0U;
+static size_t defValBoolCounter   = 0U;
+static size_t defValReal32Counter = 0U;
 
 /* Helper functions ------------------------------------ */
 static void initializeCounters(void) {
-    objValU8Counter  = 0U;
-    objValU16Counter = 0U;
-    objValU32Counter = 0U;
-    objValU64Counter = 0U;
+    objValU8Counter     = 0U;
+    objValU16Counter    = 0U;
+    objValU32Counter    = 0U;
+    objValU64Counter    = 0U;
+    objValI8Counter     = 0U;
+    objValI16Counter    = 0U;
+    objValI32Counter    = 0U;
+    objValI64Counter    = 0U;
+    objValBoolCounter   = 0U;
+    objValReal32Counter = 0U;
 
-    maxValU8Counter  = 0U;
-    maxValU16Counter = 0U;
-    maxValU32Counter = 0U;
-    maxValU64Counter = 0U;
+    maxValU8Counter     = 0U;
+    maxValU16Counter    = 0U;
+    maxValU32Counter    = 0U;
+    maxValU64Counter    = 0U;
+    maxValI8Counter     = 0U;
+    maxValI16Counter    = 0U;
+    maxValI32Counter    = 0U;
+    maxValI64Counter    = 0U;
+    maxValBoolCounter   = 0U;
+    maxValReal32Counter = 0U;
 
-    minValU8Counter  = 0U;
-    minValU16Counter = 0U;
-    minValU32Counter = 0U;
-    minValU64Counter = 0U;
+    minValU8Counter     = 0U;
+    minValU16Counter    = 0U;
+    minValU32Counter    = 0U;
+    minValU64Counter    = 0U;
+    minValI8Counter     = 0U;
+    minValI16Counter    = 0U;
+    minValI32Counter    = 0U;
+    minValI64Counter    = 0U;
+    minValBoolCounter   = 0U;
+    minValReal32Counter = 0U;
 
-    defValU8Counter  = 0U;
-    defValU16Counter = 0U;
-    defValU32Counter = 0U;
-    defValU64Counter = 0U;
+    defValU8Counter     = 0U;
+    defValU16Counter    = 0U;
+    defValU32Counter    = 0U;
+    defValU64Counter    = 0U;
+    defValI8Counter     = 0U;
+    defValI16Counter    = 0U;
+    defValI32Counter    = 0U;
+    defValI64Counter    = 0U;
+    defValBoolCounter   = 0U;
+    defValReal32Counter = 0U;
 }
 
 static int buildOSCOODElementStructString(OSCOODObject &pObj, size_t pObjCounter, std::string &pOut) {
@@ -144,12 +192,256 @@ static int buildOSCOODElementStructString(OSCOODObject &pObj, size_t pObjCounter
 
     /* Description comment */
     lOSS << "OBJECT_NAME;" << pObj.paramName() << ";" << std::endl;
-    lOSS << "OBJECT_INDEX;" << uint16ToHexStr(lIndexInt) << ";" << std::endl;
-    lOSS << "OBJECT_SUBINDEX;" << uint8ToHexStr(lSubIndexInt) << ";" << std::endl;
-    lOSS << "OBJECT_ACCESS_SETTINGS;" << pObj.accessType() << ";" << std::endl;
-    lOSS << "OBJECT_TYPE;" << pObj.dataType() << ";" << std::endl;
-    lOSS << "OBJECT_VAL_PTR;(void *)(objValU32 + " << ";" << std::endl;
+    lOSS << "OBJECT_INDEX;" << uint16ToHexStr(lIndexInt) << ",;" << std::endl;
+    lOSS << "OBJECT_SUBINDEX;" << uint8ToHexStr(lSubIndexInt) << ",;" << std::endl;
+    /* TODO : Factor this code */
+    switch(pObj.accessType()) {
+        case OD_ACCESS_TYPE_RO:
+            lOSS << "OBJECT_ACCESS_SETTINGS;OD_ACCESS_TYPE_RO,;" << std::endl;
+            break;
+        case OD_ACCESS_TYPE_WO:
+            lOSS << "OBJECT_ACCESS_SETTINGS;OD_ACCESS_TYPE_WO,;" << std::endl;
+            break;
+        case OD_ACCESS_TYPE_RW:
+            lOSS << "OBJECT_ACCESS_SETTINGS;OD_ACCESS_TYPE_RW,;" << std::endl;
+            break;
+        case OD_ACCESS_TYPE_CONST:
+            lOSS << "OBJECT_ACCESS_SETTINGS;OD_ACCESS_TYPE_CONST,;" << std::endl;
+            break;
+        case OD_ACCESS_TYPE_RWW:
+            lOSS << "OBJECT_ACCESS_SETTINGS;OD_ACCESS_TYPE_RWW,;" << std::endl;
+            break;
+        case OD_ACCESS_TYPE_RWR:
+            lOSS << "OBJECT_ACCESS_SETTINGS;OD_ACCESS_TYPE_RWR,;" << std::endl;
+            break;
+        default:
+            std::cerr << "[ERROR] <buildOSCOODElementStructString> Failed to get access type string" std::endl;
+            return -1;
+    }
+    /* TODO : Factor this code */
+    switch(pObj.dataType()) {
+        case OD_BASIC_TYPE_BOOLEAN:
+            lOSS << "OBJECT_TYPE;OD_BASIC_TYPE_BOOLEAN;" << std::endl;
+            lOSS << "OBJECT_VAL_PTR;(void *)(objValBool + " << objValBoolCounter++ << "),;" << std::endl;
+            if(!pObj.defaultValue().empty())
+                lOSS << "OBJECT_DEFAULT_VAL_PTR;(void *)(defValBool + " << defValBoolCounter++ << "),;" << std::endl;
+            else
+                lOSS << "OBJECT_DEFAULT_VAL_PTR;NULL,;" << std::endl;
+            if(!pObj.maxValue().empty())
+                lOSS << "OBJECT_MAX_VAL_PTR;(void *)(maxValBool + " << maxValBoolCounter++ << "),;" << std::endl;
+            else
+                lOSS << "OBJECT_MAX_VAL_PTR;NULL,;" << std::endl;
+            if(!pObj.minValue().empty())
+                lOSS << "OBJECT_MIN_VAL_PTR;(void *)(minValBool + " << minValBoolCounter++ << ");" << std::endl;
+            else
+                lOSS << "OBJECT_MIN_VAL_PTR;NULL;" << std::endl;
+            break;
+        case OD_BASIC_TYPE_INTEGER8:
+            lOSS << "OBJECT_TYPE;OD_BASIC_TYPE_INTEGER8,;" << std::endl;
+            lOSS << "OBJECT_VAL_PTR;(void *)(objValI8 + " << objValBoolCounter++ << "),;" << std::endl;
+            if(!pObj.defaultValue().empty())
+                lOSS << "OBJECT_DEFAULT_VAL_PTR;(void *)(defValI8 + " << defValI8Counter++ << "),;" << std::endl;
+            else
+                lOSS << "OBJECT_DEFAULT_VAL_PTR;NULL,;" << std::endl;
+            if(!pObj.maxValue().empty())
+                lOSS << "OBJECT_MAX_VAL_PTR;(void *)(maxValI8 + " << maxValI8Counter++ << "),;" << std::endl;
+            else
+                lOSS << "OBJECT_MAX_VAL_PTR;NULL,;" << std::endl;
+            if(!pObj.minValue().empty())
+                lOSS << "OBJECT_MIN_VAL_PTR;(void *)(minValI8 + " << minValI8Counter++ << ");" << std::endl;
+            else
+                lOSS << "OBJECT_MIN_VAL_PTR;NULL;" << std::endl;
+            break;
+        case OD_BASIC_TYPE_INTEGER16:
+            lOSS << "OBJECT_TYPE;OD_BASIC_TYPE_INTEGER16,;" << std::endl;
+            lOSS << "OBJECT_VAL_PTR;(void *)(objValI16 + " << objValBoolCounter++ << "),;" << std::endl;
+            if(!pObj.defaultValue().empty())
+                lOSS << "OBJECT_VAL_PTR;(void *)(defValI16 + " << defValI16Counter++ << "),;" << std::endl;
+            else
+                lOSS << "OBJECT_VAL_PTR;NULL,;" << std::endl;
+            if(!pObj.maxValue().empty())
+                lOSS << "OBJECT_MAX_VAL_PTR;(void *)(maxValI16 + " << maxValI16Counter++ << "),;" << std::endl;
+            else
+                lOSS << "OBJECT_MAX_VAL_PTR;NULL,;" << std::endl;
+            if(!pObj.minValue().empty())
+                lOSS << "OBJECT_MIN_VAL_PTR;(void *)(minValI16 + " << minValI16Counter++ << ");" << std::endl;
+            else
+                lOSS << "OBJECT_MIN_VAL_PTR;NULL;" << std::endl;
+            break;
+        case OD_BASIC_TYPE_INTEGER32:
+            lOSS << "OBJECT_TYPE;OD_BASIC_TYPE_INTEGER32,;" << std::endl;
+            lOSS << "OBJECT_VAL_PTR;(void *)(objValI32 + " << objValBoolCounter++ << "),;" << std::endl;
+            if(!pObj.defaultValue().empty())
+                lOSS << "OBJECT_DEFAULT_VAL_PTR;(void *)(defValI32 + " << defValI32Counter++ << "),;" << std::endl;
+            else
+                lOSS << "OBJECT_DEFAULT_VAL_PTR;NULL,;" << std::endl;
+            if(!pObj.maxValue().empty())
+                lOSS << "OBJECT_MAX_VAL_PTR;(void *)(maxValI32 + " << maxValI32Counter++ << "),;" << std::endl;
+            else
+                lOSS << "OBJECT_MAX_VAL_PTR;NULL,;" << std::endl;
+            if(!pObj.minValue().empty())
+                lOSS << "OBJECT_MIN_VAL_PTR;(void *)(minValI32 + " << minValI32Counter++ << ");" << std::endl;
+            else
+                lOSS << "OBJECT_MIN_VAL_PTR;NULL;" << std::endl;
+            break;
+        case OD_BASIC_TYPE_INTEGER64:
+            lOSS << "OBJECT_TYPE;OD_BASIC_TYPE_INTEGER64,;" << std::endl;
+            lOSS << "OBJECT_VAL_PTR;(void *)(objValI64 + " << objValBoolCounter++ << "),;" << std::endl;
+            if(!pObj.defaultValue().empty())
+                lOSS << "OBJECT_DEFAULT_VAL_PTR;(void *)(defValI64 + " << defValI64Counter++ << "),;" << std::endl;
+            else
+                lOSS << "OBJECT_DEFAULT_VAL_PTR;NULL,;" << std::endl;
+            if(!pObj.maxValue().empty())
+                lOSS << "OBJECT_MAX_VAL_PTR;(void *)(maxValI64 + " << maxValI64Counter++ << "),;" << std::endl;
+            else
+                lOSS << "OBJECT_MAX_VAL_PTR;NULL,;" << std::endl;
+            if(!pObj.minValue().empty())
+                lOSS << "OBJECT_MIN_VAL_PTR;(void *)(minValI64 + " << minValI64Counter++ << ");" << std::endl;
+            else
+                lOSS << "OBJECT_MIN_VAL_PTR;NULL;" << std::endl;
+            break;
+        case OD_BASIC_TYPE_UNSIGNED8:
+            lOSS << "OBJECT_TYPE;OD_BASIC_TYPE_UNSIGNED8,;" << std::endl;
+            lOSS << "OBJECT_VAL_PTR;(void *)(objValU8 + " << objValBoolCounter++ << "),;" << std::endl;
+            if(!pObj.defaultValue().empty())
+                lOSS << "OBJECT_DEFAULT_VAL_PTR;(void *)(defValU8 + " << defValU8Counter++ << "),;" << std::endl;
+            else
+                lOSS << "OBJECT_DEFAULT_VAL_PTR;NULL,;" << std::endl;
+            if(!pObj.maxValue().empty())
+                lOSS << "OBJECT_MAX_VAL_PTR;(void *)(maxValU8 + " << maxValU8Counter++ << "),;" << std::endl;
+            else
+                lOSS << "OBJECT_MAX_VAL_PTR;NULL,;" << std::endl;
+            if(!pObj.minValue().empty())
+                lOSS << "OBJECT_MIN_VAL_PTR;(void *)(minValU8 + " << minValU8Counter++ << ");" << std::endl;
+            else
+                lOSS << "OBJECT_MIN_VAL_PTR;NULL;" << std::endl;
+            break;
+        case OD_BASIC_TYPE_UNSIGNED16:
+            lOSS << "OBJECT_TYPE;OD_BASIC_TYPE_UNSIGNED16,;" << std::endl;
+            lOSS << "OBJECT_VAL_PTR;(void *)(objValU16 + " << objValBoolCounter++ << "),;" << std::endl;
+            if(!pObj.defaultValue().empty())
+                lOSS << "OBJECT_DEFAULT_VAL_PTR;(void *)(defValU16 + " << defValU16Counter++ << "),;" << std::endl;
+            else
+                lOSS << "OBJECT_DEFAULT_VAL_PTR;NULL,;" << std::endl;
+            if(!pObj.maxValue().empty())
+                lOSS << "OBJECT_MAX_VAL_PTR;(void *)(maxValU16 + " << maxValU16Counter++ << "),;" << std::endl;
+            else
+                lOSS << "OBJECT_MAX_VAL_PTR;NULL,;" << std::endl;
+            if(!pObj.minValue().empty())
+                lOSS << "OBJECT_MIN_VAL_PTR;(void *)(minValU16 + " << minValU16Counter++ << ");" << std::endl;
+            else
+                lOSS << "OBJECT_MIN_VAL_PTR;NULL;" << std::endl;
+            break;
+        case OD_BASIC_TYPE_UNSIGNED32:
+            lOSS << "OBJECT_TYPE;OD_BASIC_TYPE_UNSIGNED32,;" << std::endl;
+            lOSS << "OBJECT_VAL_PTR;(void *)(objValU32 + " << objValBoolCounter++ << "),;" << std::endl;
+            if(!pObj.defaultValue().empty())
+                lOSS << "OBJECT_DEFAULT_VAL_PTR;(void *)(defValU32 + " << defValU32Counter++ << "),;" << std::endl;
+            else
+                lOSS << "OBJECT_DEFAULT_VAL_PTR;NULL,;" << std::endl;
+            if(!pObj.maxValue().empty())
+                lOSS << "OBJECT_MAX_VAL_PTR;(void *)(maxValU32 + " << maxValU32Counter++ << "),;" << std::endl;
+            else
+                lOSS << "OBJECT_MAX_VAL_PTR;NULL,;" << std::endl;
+            if(!pObj.minValue().empty())
+                lOSS << "OBJECT_MIN_VAL_PTR;(void *)(minValU32 + " << minValU32Counter++ << ");" << std::endl;
+            else
+                lOSS << "OBJECT_MIN_VAL_PTR;NULL;" << std::endl;
+            break;
+        case OD_BASIC_TYPE_UNSIGNED64:
+            lOSS << "OBJECT_TYPE;OD_BASIC_TYPE_UNSIGNED64,;" << std::endl;
+            lOSS << "OBJECT_VAL_PTR;(void *)(objValU64 + " << objValBoolCounter++ << "),;" << std::endl;
+            if(!pObj.defaultValue().empty())
+                lOSS << "OBJECT_DEFAULT_VAL_PTR;(void *)(defValU64 + " << defValU64Counter++ << "),;" << std::endl;
+            else
+                lOSS << "OBJECT_DEFAULT_VAL_PTR;NULL,;" << std::endl;
+            if(!pObj.maxValue().empty())
+                lOSS << "OBJECT_MAX_VAL_PTR;(void *)(maxValU64 + " << maxValU64Counter++ << "),;" << std::endl;
+            else
+                lOSS << "OBJECT_MAX_VAL_PTR;NULL,;" << std::endl;
+            if(!pObj.minValue().empty())
+                lOSS << "OBJECT_MIN_VAL_PTR;(void *)(minValU64 + " << minValU64Counter++ << ");" << std::endl;
+            else
+                lOSS << "OBJECT_MIN_VAL_PTR;NULL;" << std::endl;
+            break;
+        case OD_BASIC_TYPE_REAL32:
+            lOSS << "OBJECT_TYPE;OD_BASIC_TYPE_REAL32,;" << std::endl;
+            lOSS << "OBJECT_VAL_PTR;(void *)(objValReal32 + " << objValBoolCounter++ << "),;" << std::endl;
+            if(!pObj.defaultValue().empty())
+                lOSS << "OBJECT_DEFAULT_VAL_PTR;(void *)(defValReal32 + " << defValReal32Counter++ << "),;" << std::endl;
+            else
+                lOSS << "OBJECT_DEFAULT_VAL_PTR;NULL,;" << std::endl;
+            if(!pObj.maxValue().empty())
+                lOSS << "OBJECT_MAX_VAL_PTR;(void *)(maxValReal32 + " << maxValReal32Counter++ << "),;" << std::endl;
+            else
+                lOSS << "OBJECT_MAX_VAL_PTR;NULL,;" << std::endl;
+            if(!pObj.minValue().empty())
+                lOSS << "OBJECT_MIN_VAL_PTR;(void *)(minValReal32 + " << minValReal32Counter++ << ");" << std::endl;
+            else
+                lOSS << "OBJECT_MIN_VAL_PTR;NULL;" << std::endl;
+            break;
+        case OD_BASIC_TYPE_REAL64:
+            lOSS << "OBJECT_TYPE;OD_BASIC_TYPE_REAL64,;" << std::endl;
+            lOSS << "OBJECT_VAL_PTR;(void *)(objValReal64 + " << objValBoolCounter++ << "),;" << std::endl;
+            if(!pObj.defaultValue().empty())
+                lOSS << "OBJECT_DEFAULT_VAL_PTR;(void *)(defValReal64 + " << defValReal64Counter++ << "),;" << std::endl;
+            else
+                lOSS << "OBJECT_DEFAULT_VAL_PTR;NULL,;" << std::endl;
+            if(!pObj.maxValue().empty())
+                lOSS << "OBJECT_MAX_VAL_PTR;(void *)(maxValReal64 + " << minValReal64Counter++ << "),;" << std::endl;
+            else
+                lOSS << "OBJECT_MAX_VAL_PTR;NULL,;" << std::endl;
+            if(!pObj.minValue().empty())
+                lOSS << "OBJECT_MIN_VAL_PTR;(void *)(minValReal64 + " << maxValReal64Counter++ << ");" << std::endl;
+            else
+                lOSS << "OBJECT_MIN_VAL_PTR;NULL;" << std::endl;
+            break;
+        case OD_BASIC_TYPE_INTEGER24:
+        case OD_BASIC_TYPE_INTEGER40:
+        case OD_BASIC_TYPE_INTEGER48:
+        case OD_BASIC_TYPE_INTEGER56:
+        case OD_BASIC_TYPE_UNSIGNED24:
+        case OD_BASIC_TYPE_UNSIGNED40:
+        case OD_BASIC_TYPE_UNSIGNED48:
+        case OD_BASIC_TYPE_UNSIGNED56:
+        case OD_BASIC_TYPE_OCTET_STRING:
+        case OD_BASIC_TYPE_VISIBLE_STRING:
+        case OD_BASIC_TYPE_UNICODE_STRING:
+        case OD_BASIC_TYPE_DOMAIN:
+        case OD_BASIC_TYPE_TIME_OF_DAY:
+        case OD_COMPLEX_TYPE_PDOCOMMPARAM:
+        case OD_COMPLEX_TYPE_PDOMAPPING:
+        case OD_COMPLEX_TYPE_SDOPARAM:
+        case OD_COMPLEX_TYPE_IDENTITY:
+        case OD_COMPLEX_TYPE_DEBUGGERPARAM:
+        case OD_COMPLEX_TYPE_CMDPARAM:
+        case OD_BASIC_TYPE_VOID:
+            /* TODO */
+        default:
+            std::cerr << "[ERROR] <buildOSCOODElementStructString> Unsupported of failed to get data type string" std::endl;
+            return -1;
+    }
 
+    /* Get tag mapping string from the stringstream */
+    const std::string lTagMappingStr = lOSS.str();
+
+    /* Build FileFiller tag mapping */
+    std::map<std::string, std::string> lTagMap;
+    lResult = FileFillerTagFactory::buildTagMap(lTagMappingStr, lTagMap);
+    if(0 > lResult) {
+        std::cerr << "[ERROR] <buildOSCOODElementStructString> FileFillerTagFactory::buildTagMap failed" << std::endl;
+        return lResult;
+    }
+
+    /* Parse the template and generate the code */
+    std::string lTemp = ""; /* TODO Remove need for the output string in FileFiller */
+    lResult = FileFiller::parseString(lTagMap, sOSCOODElementStructTemplate, &pOut);
+    if(0 > lResult) {
+        std::cerr << "[ERROR] <OSCOODGenerator::generate_OSCOGenOD_h> FileFiller::parseFile failed" << std::endl;
+        return lResult;
+    }
+
+    return lResult;
 }
 
 /* OSCOODGenerator class implementation ---------------- */
@@ -347,12 +639,21 @@ int OSCOODGenerator::generate_OSCOGenODContents(const std::string &pTemplateFile
 
     /* Initialize counters */
     initializeCounters();
+    
+    /* Loop through the Object Dictionary's objects */
+    for(const auto &lElmt : pOD.indexes()) {
+        const OSCOODIndex *lIndex = lElmt.second;
 
-    /* Build the mapping string using an output string stream */
-    std::ostringstream lOSS_Values(std::ios_base::ate);
-    std::ostringstream lOSS_MaxValues(std::ios_base::ate);
-    std::ostringstream lOSS_MinValues(std::ios_base::ate);
-    std::ostringstream lOSS_DefaultValues(std::ios_base::ate);
+        /* Check if they have subindexes */
+        if(0 < lIndex->subIndexCount()) {
+            /* Loop through subindexes */
+            for(const auto &llElmt : lIndex->subIndexes()) {
+                const OSCOODSubIndex *lSubIndex = llElmt.second;
+            }
+        } else {
+            /* Generate the OD structure string */
+        }
+    }
 
     return lResult;
 }
