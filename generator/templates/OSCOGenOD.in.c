@@ -1,7 +1,7 @@
 /*
- * @brief Test OD
+ * @brief Generated OD
  * 
- * @file testOD.c
+ * @file OSCOGenOD.c
  */
 
 /* Includes -------------------------------------------- */
