@@ -95,7 +95,7 @@ static bool fillObjectAtrributes(OSCOODObject * const pObj, const std::string pK
         "ObjectType",
         "DataType",
         "AccessType",
-        "DefaultValue"
+        "DefaultValue",
         "LowLimit",
         "HighLimit",
         "PDOMapping",
