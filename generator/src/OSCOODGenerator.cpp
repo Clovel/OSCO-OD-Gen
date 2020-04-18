@@ -28,6 +28,9 @@
 #include <string>
 #include <map>
 
+/* C system */
+#include <cstring> /* std::memset */
+
 /* Defines --------------------------------------------- */
 /* Template file names */
 #define OSCO_GEN_NODEID_H_TEMPLATE_NAME             "OSCOGenNodeID.in.h"
