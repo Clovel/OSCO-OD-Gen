@@ -5,7 +5,7 @@ This folder contains various EDS, DCF, XML or OSCO (C) object dictionary files f
 ## Sources
 These files were either made from scratch or come from various sources.
 
-[Lely project](https://opensource.lely.com/canopen/) : 
+[Lely project](https://opensource.lely.com/canopen/) :
 - co-nmt-master.dcf
 - co-nmt-slave.dcf
 - co-pdo-receive.dcf
@@ -17,3 +17,7 @@ These files were either made from scratch or come from various sources.
 
 [CANOpenNode](https://github.com/CANopenNode/CANopenNode/blob/master/example/IO.eds)
 - IO.eds
+
+`test` : Test OSCO OD
+- node1
+- node2
