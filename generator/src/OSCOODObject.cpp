@@ -22,7 +22,15 @@
 /* OSCOODObject class implementation ------------------- */
 
 /* Constructors */
-OSCOODObject::OSCOODObject() {
+OSCOODObject::OSCOODObject() :
+    mSubNumber(0x00U),
+    mObjectType(OD_OBJ_TYPE_UNKNOWN), /* TODO : What is the default value ? */
+    mDataType(OD_UNKNOWN_TYPE), /* TODO : What is the default value ? */
+    mAccessType(OD_ACCESS_TYPE_UNKNOWN),
+    mPDOMapping(false),
+    mObjFlags(0U),
+    mCompactSubObj(0U)
+{
     /* Empty */
 }
 
@@ -40,15 +48,15 @@ std::string OSCOODObject::paramName(void) const {
     return mParamName;
 }
 
-uint8_t OSCOODObject::objectType(void) const {
+OSCOODObjectType_t OSCOODObject::objectType(void) const {
     return mObjectType;
 }
 
-uint8_t OSCOODObject::dataType(void) const {
+OSCOODDataType_t OSCOODObject::dataType(void) const {
     return mDataType;
 }
 
-std::string OSCOODObject::accessType(void) const {
+OSCOODAccessType_t OSCOODObject::accessType(void) const {
     return mAccessType;
 }
 
@@ -75,7 +83,6 @@ uint8_t OSCOODObject::compactSubObj(void) const {
     return mCompactSubObj;
 }
 
-
 /* Setters */
 void OSCOODObject::setSubNumber(const uint8_t &pSubNb) {
     mSubNumber = pSubNb;
@@ -85,15 +92,15 @@ void OSCOODObject::setParamName(const std::string &pParamName) {
     mParamName = pParamName;
 }
 
-void OSCOODObject::setObjectType(const uint8_t &pObjType) {
+void OSCOODObject::setObjectType(const OSCOODObjectType_t &pObjType) {
     mObjectType = pObjType;
 }
 
-void OSCOODObject::setDataType(const uint8_t &pDataType) {
+void OSCOODObject::setDataType(const OSCOODDataType_t &pDataType) {
     mDataType = pDataType;
 }
 
-void OSCOODObject::setAccessType(const std::string &pAccessType) {
+void OSCOODObject::setAccessType(const OSCOODAccessType_t &pAccessType) {
     mAccessType = pAccessType;
 }
 

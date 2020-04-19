@@ -44,6 +44,20 @@ class API_EXPORT OSCOOD {
         OSCOOD(const std::map<uint16_t, OSCOODIndex *> &pObjects);
         OSCOOD(const std::vector<OSCOODIndex *> &pObjects);
 
+        /**
+         * @brief This copy constructor can take the ownership of the
+         * OSCOODIndex opbjects contained within the source OSCOOD instance.
+         * 
+         * @details Using the pTakeOwnership parameter, you can take
+         * or not the ownership of the OSCOODIndex contained in the source
+         * OSCOOD instance.
+         * 
+         * @param[in]   pOD             Source OSCOOD instance to copy.
+         * @param[in]   pTakeOwnership  Weither to take ownership or not.
+         *  `true` by default
+         */
+        OSCOOD(OSCOOD &pOD, const bool &pTakeOwnership = true);
+
         /* Destructor */
         virtual ~OSCOOD();
 
@@ -51,6 +65,7 @@ class API_EXPORT OSCOOD {
         std::map<uint16_t, OSCOODIndex *> indexes(void) const;
 
         std::string name(void) const;
+        size_t objectCount(void) const;
 
         std::string fileName(void) const;
         uint8_t     fileVersion(void) const;
@@ -59,9 +74,11 @@ class API_EXPORT OSCOOD {
         std::string description(void) const;
         std::string creationDate(const bool &pFormat = false) const;
         std::string creationTime(const bool &pFormat = false) const;
+        std::time_t creationDateTime(void) const;
         std::string createdBy(void) const;
         std::string modificationDate(const bool &pFormat = false) const;
         std::string modificationTime(const bool &pFormat = false) const;
+        std::time_t modificationDateTime(void) const;
         std::string modifiedBy(void) const;
 
         std::string vendorName(void) const;
@@ -100,6 +117,11 @@ class API_EXPORT OSCOOD {
         bool dummy0007Supported(void) const;
         bool dummySupported(const uint8_t &pDummy, bool &pSupported) const;
 
+        std::string customHeader(void) const;
+        std::string sourceFilePath(void) const;
+
+        bool ownership(void) const;
+
         /* Setters */
         bool addIndex(OSCOODIndex *pIndex);
         bool removeIndex(const OSCOODIndex * const pIndex);
@@ -114,9 +136,11 @@ class API_EXPORT OSCOOD {
         void setDescription(const std::string &pDescription);
         bool setCreationDate(const std::string &pDate);
         bool setCreationTime(const std::string &pTime);
+        void setCreationDateTime(const std::time_t &pDateTime);
         void setCreatedBy(const std::string &pCreatedBy);
         bool setModificationDate(const std::string &pDate);
         bool setModificationTime(const std::string &pTime);
+        void setModificationDateTime(const std::time_t &pDateTime);
         void setModifiedBy(const std::string &pModifiedBy);
 
         void setVendorName(const std::string &pName);
@@ -152,6 +176,11 @@ class API_EXPORT OSCOOD {
         void setDummy0006Supported(const bool &pSupport);
         void setDummy0007Supported(const bool &pSupport);
         bool setDummySupported(const uint8_t &pDummy, const bool &pSupport);
+
+        void setCustomHeader(const std::string &pHeaderName);
+        void setSourceFilePath(const std::string &pSourceFilePath);
+
+        void setOwnership(const bool &pOwner);
     protected:
     private:
         std::map<uint16_t, OSCOODIndex *> mObjects; /**< Contents of the Object Dictionary */
@@ -173,7 +202,7 @@ class API_EXPORT OSCOOD {
          */
         std::string mEDSVersion;
 
-        std::string mDesription; /**< Shall provide a file description (max 243 characters) */
+        std::string mDescription; /**< Shall provide a file description (max 243 characters) */
 
         /** 
          * @brief Shall provide the file creation time (24-hour "hh:mm:ss" format)
@@ -265,6 +294,20 @@ class API_EXPORT OSCOOD {
         bool mDummy0005; /**< Indicated if the usage of Dummy0005 is supported */
         bool mDummy0006; /**< Indicated if the usage of Dummy0006 is supported */
         bool mDummy0007; /**< Indicated if the usage of Dummy0007 is supported */
+
+        /* Data not set in the source file */
+        std::string mCustomHeader; /**< Header defined by the user. Added in generated OD header */
+        std::string mSourceFilePath; /**< Absolute path to the source file used to create/save this OD instance */
+
+        /** @brief This properies dictates the ownership of the indexes and subindexes
+         * contained by this class instance.
+         * 
+         * @details If the ownership is to be shifted, then upon deletion of this instance the
+         * OSCOIndexes will not be deleted. Default is true.
+         * 
+         * @warning If used incorrectly, this can lead to memory leakage.
+         */
+        bool mOwnership;
 };
 
 #endif /* OSCOOD_HPP */

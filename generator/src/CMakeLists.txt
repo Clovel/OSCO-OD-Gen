@@ -39,10 +39,12 @@ add_library(${CMAKE_PROJECT_NAME} SHARED
 add_dependencies(${CMAKE_PROJECT_NAME}
     initools
     RESTServer
+    FileFiller
 )
 target_link_libraries(${CMAKE_PROJECT_NAME}
     initools
     RESTServer
+    FileFiller
 )
 set_target_properties(${CMAKE_PROJECT_NAME} PROPERTIES 
     PUBLIC_HEADER "${PUBLIC_HEADERS}"

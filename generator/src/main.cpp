@@ -5,8 +5,10 @@
  */
 
 /* Includes -------------------------------------------- */
-#include "OSCOODFactory.hpp"
+#include "OSCOODGenerator.hpp"
+#include "OSCONode.hpp"
 #include "OSCOOD.hpp"
+#include "OSCOODFactory.hpp"
 
 #include "EDS.hpp"
 
@@ -18,6 +20,7 @@
 
 /* C system */
 #include <cstring>
+#include <cstdlib> /* realpath() */
 
 /* Defines --------------------------------------------- */
 #define ADDRESS "localhost"
@@ -34,13 +37,15 @@ static void printUsage(const char * const pProgName)
     std::cout << "[USAGE] %s" << pProgName << std::endl;
     std::cout << "        <arg1> : REST API port number" << std::endl;
     std::cout << "        <arg2> : EDS file" << std::endl;
+    std::cout << "        <arg3> : Template path" << std::endl;
+    std::cout << "        <arg4> : Output path" << std::endl;
 }
 
 /* ----------------------------------------------------- */
 /* Main tests ------------------------------------------ */
 /* ----------------------------------------------------- */
 int main(const int argc, const char * const * const argv) {
-    if ((argc < 3) || (argc > 3) || (std::strcmp(argv[1U], "--help") == 0)) {
+    if ((5 != argc)  || (std::strcmp(argv[1U], "--help") == 0)) {
         printUsage(argv[0]);
         return EXIT_FAILURE;
     }
@@ -49,28 +54,36 @@ int main(const int argc, const char * const * const argv) {
     const std::string lPort = std::string(argv[1U]);
     const std::string lPath = "OSCO-OD-Gen";
 
-    const std::string lEDSFile = std::string(argv[2U]);
+    const std::string lEDSFile = std::string(realpath(std::string(argv[2U]).c_str(), nullptr));
+
+    const std::string lTemplatePath = std::string(argv[3U]);
+    const std::string lOutputPath   = std::string(argv[4U]);
 
     /* Generate an OSCO Object Dictionary */
-    OSCOOD* lOD = OSCOODFactory::buildOSCOOD(lEDSFile);
-    if(nullptr == lOD) {
-        std::cerr << "[ERROR] OSCOODFactory::buildOSCOOD failed" << std::endl;
+    OSCONode* lNode = OSCOODFactory::buildOSCONode(lEDSFile);
+    if(nullptr == lNode) {
+        std::cerr << "[ERROR] OSCOODFactory::buildOSCONode failed" << std::endl;
 
-        delete lOD;
+        delete lNode;
 
         return EXIT_FAILURE;
     } else {
-        std::cout << "[INFO ] OSCOODFactory::buildOSCOOD successfully created an Object Dictionary" << std::endl;
-        lOD->setName(lOD->fileName());
+        std::cout << "[INFO ] OSCOODFactory::buildOSCONode successfully created a CANOpen node" << std::endl;
+        lNode->setName(lNode->fileName());
+        lNode->setSourceFilePath(lEDSFile);
     }
 
+#ifndef RESTSERVER_DISABLED
     /* Set up the REST API Server */
     OSCOODREST *lRESTServer = OSCOODREST::createInstance(lAddr, lPort, lPath);
-    lRESTServer->addOD(lOD);
+    lRESTServer->addOD(lNode);
+
+    /* Setup RESTServer to generate OSCO OD C code */
+    (void)lRESTServer->setGeneratorSettings(lTemplatePath, lOutputPath);
 
     /* Open server socket */
     if(!lRESTServer->open()) {
-        delete lOD;
+        delete lNode;
         return EXIT_FAILURE;
     }
 
@@ -82,11 +95,13 @@ int main(const int argc, const char * const * const argv) {
     /* Close server */
     if(!lRESTServer->close()) {
         delete lRESTServer;
-        delete lOD;
+        delete lNode;
         return EXIT_FAILURE;
     }
 
     delete lRESTServer;
-    delete lOD;
+#endif /* RESTSERVER_DISABLED */
+
+    delete lNode;
     return EXIT_SUCCESS;
 }

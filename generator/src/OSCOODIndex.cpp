@@ -26,10 +26,12 @@
 /* OSCOODIndex class implementation -------------------- */
 /* Constructors */
 OSCOODIndex::OSCOODIndex() : 
-    OSCOODObject()
+    OSCOODObject(),
+    mIndex(0x0000U)
 {
     /* Empty */
 }
+
 OSCOODIndex::OSCOODIndex(const uint16_t &pIndex) : 
     OSCOODObject(),
     mIndex(pIndex)
@@ -50,6 +52,10 @@ OSCOODIndex::~OSCOODIndex() {
 /* Getters */
 uint16_t OSCOODIndex::index(void) const {
     return mIndex;
+}
+
+size_t OSCOODIndex::subIndexCount(void) const {
+    return mSubObjects.size();
 }
 
 std::map<uint8_t, OSCOODSubIndex *> OSCOODIndex::subIndexes(void) const {

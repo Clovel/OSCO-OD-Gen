@@ -38,6 +38,7 @@ class API_EXPORT OSCOODIndex : public OSCOODObject {
 
         /* Getters */
         uint16_t index(void) const;
+        size_t subIndexCount(void) const;
         std::map<uint8_t, OSCOODSubIndex *> subIndexes(void) const;
 
         /* Setters */

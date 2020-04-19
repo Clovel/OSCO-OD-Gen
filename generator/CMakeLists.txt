@@ -5,12 +5,7 @@
 
 # CMake version required ----------------------------------
 cmake_minimum_required(VERSION 3.0)
-project(OSCO-OD-Gen)
-
-# Project definition --------------------------------------
-if(NOT DEFINED PRJ_VERSION)
-    set(PRJ_VERSION "1.0.0")
-endif(NOT DEFINED PRJ_VERSION)
+project(OSCO-OD-Gen VERSION "1.0.0")
 
 #------------------------------------------------------------------------------
 # Build definition (to do before calling 'project()')
@@ -105,6 +100,12 @@ set(RELEASE_VERSION ${tmp_SOVERSION} CACHE STRING "Release version" FORCE)
 # Build version is generated using the hash of the current commit build with
 set(BUILD_VERSION ${GIT_COMMIT_HASH} CACHE STRING "Build version" FORCE)
 
+message(STATUS "OSCO OD Gen version : ${CMAKE_PROJECT_VERSION}")
+configure_file(
+    ${CMAKE_CURRENT_SOURCE_DIR}/inc/Version.h.in
+    ${CMAKE_CURRENT_SOURCE_DIR}/inc/Version.h
+)
+
 #------------------------------------------------------------------------------
 # pkgconfig
 #------------------------------------------------------------------------------
@@ -133,7 +134,15 @@ include_directories(
     ${CMAKE_CURRENT_SOURCE_DIR}/deps/initools/inc
     ${CMAKE_CURRENT_SOURCE_DIR}/deps/RESTServer/inc
     ${CMAKE_CURRENT_SOURCE_DIR}/deps/rapidjson/include
+    ${CMAKE_CURRENT_SOURCE_DIR}/deps/FileFiller/inc
 )
+
+# Set this define if you want to test the program without the RESTServer.
+# This is mainly used for development purposes.
+if(RESTSERVER_DISABLED)
+    message(STATUS "RESTSERVER_DISABLED=1 defined")
+    add_definitions(-DRESTSERVER_DISABLED=1)
+endif(RESTSERVER_DISABLED)
 
 #------------------------------------------------------------------------------
 # Sub-directories 

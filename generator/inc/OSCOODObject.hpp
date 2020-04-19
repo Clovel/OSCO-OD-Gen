@@ -15,6 +15,8 @@
 /* Library/API export defines */
 #include "APIExports.h"
 
+#include "OSCOTypes.h"
+
 /* C++ system */
 #include <string>
 
@@ -41,24 +43,24 @@ class API_EXPORT OSCOODObject {
         virtual ~OSCOODObject();
 
         /* Getters */
-        uint8_t     subNumber(void) const;
-        std::string paramName(void) const;
-        uint8_t     objectType(void) const;
-        uint8_t     dataType(void) const;
-        std::string accessType(void) const;
-        std::string defaultValue(void) const;
-        std::string lowLimit(void) const;
-        std::string highLimit(void) const;
-        bool        pdoMapping(void) const;
-        uint32_t    objFlags(void) const;
-        uint8_t     compactSubObj(void) const;
+        uint8_t            subNumber(void) const;
+        std::string        paramName(void) const;
+        OSCOODObjectType_t objectType(void) const;
+        OSCOODDataType_t   dataType(void) const;
+        OSCOODAccessType_t accessType(void) const;
+        std::string        defaultValue(void) const;
+        std::string        lowLimit(void) const;
+        std::string        highLimit(void) const;
+        bool               pdoMapping(void) const;
+        uint32_t           objFlags(void) const;
+        uint8_t            compactSubObj(void) const;
 
         /* Setters */
         void setSubNumber(const uint8_t &pSubNb);
         void setParamName(const std::string &pParamName);
-        void setObjectType(const uint8_t &pObjType);
-        void setDataType(const uint8_t &pDataType);
-        void setAccessType(const std::string &pAccessType);
+        void setObjectType(const OSCOODObjectType_t &pObjType);
+        void setDataType(const OSCOODDataType_t &pDataType);
+        void setAccessType(const OSCOODAccessType_t &pAccessType);
         void setDefaultValue(const std::string &pDefaultValue);
         void setLowLimit(const std::string &pLowLimit);
         void setHighLimit(const std::string &pHighLimit);
@@ -77,10 +79,10 @@ class API_EXPORT OSCOODObject {
          * This may be used for the description of sub-objects as defined below. 
          * This entry may be empty or missing, if no sub-objects exist.
          */
-        uint8_t     mSubNumber;
-        std::string mParamName; /**< Name of the OD entry (up to 241 characters). */
-        uint8_t     mObjectType; /**< Shall indicate the object code */
-        uint8_t     mDataType; /**< Shall indicate the index of the data type of the object in the object dictionary */
+        uint8_t            mSubNumber;
+        std::string        mParamName; /**< Name of the OD entry (up to 241 characters). */
+        OSCOODObjectType_t mObjectType; /**< Shall indicate the object code */
+        OSCOODDataType_t   mDataType; /**< Shall indicate the index of the data type of the object in the object dictionary */
         /**
          * @brief Access type/rights for this object, represented by the following strings 
          * - „ro“ - read only,
@@ -90,7 +92,7 @@ class API_EXPORT OSCOODObject {
          * - „rww“ - read/write on process output,
          * - „const“ - constant value
          */
-        std::string mAccessType;
+        OSCOODAccessType_t mAccessType;
         std::string mDefaultValue; /**< Shall indicate the default value for this object, */
         std::string mLowLimit; /**< Shall indicate the lowest limit of the object value (only if applicable). */
         std::string mHighLimit; /**< Shall indicate the upper limit of the object value (only if applicable). */

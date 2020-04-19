@@ -7,3 +7,6 @@
 [submodule "generator/deps/RESTServer"]
 	path = generator/deps/RESTServer
 	url = https://github.com/Clovel/RESTServer.git
+[submodule "generator/deps/FileFiller"]
+	path = generator/deps/FileFiller
+	url = https://github.com/Clovel/FileFiller.git

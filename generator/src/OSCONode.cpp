@@ -6,6 +6,7 @@
 
 /* Includes -------------------------------------------- */
 #include "OSCONode.hpp"
+#include "OSCOOD.hpp"
 
 /* Library/API export defines */
 #include "APIExports.h"
@@ -19,34 +20,40 @@
 
 /* OSCONode class implementation ----------------------- */
 /* Constructors */
-OSCONode::OSCONode() : OSCOOD()
+OSCONode::OSCONode() : OSCOOD(), mNodeID(0U)
 {
     /* Empty */
 }
+
 OSCONode::OSCONode(const uint8_t &pNodeID) :
     OSCOOD()
 {
-    if(!setNodeID(pNodeID)) {
-        throw OSCONodeException();
-    }
+    (void)setNodeID(pNodeID);
 }
 
 OSCONode::OSCONode(const uint8_t &pNodeID, const std::map<uint16_t, OSCOODIndex *> &pObjects) :
     OSCOOD(pObjects)
 {
-    if(!setNodeID(pNodeID)) {
-        throw OSCONodeException();
-    }
+    (void)setNodeID(pNodeID);
 }
 
 OSCONode::OSCONode(const uint8_t &pNodeID, const std::vector<OSCOODIndex *> &pObjects) :
     OSCOOD(pObjects)
 {
-    if(!setNodeID(pNodeID)) {
-        throw OSCONodeException();
-    }
+    (void)setNodeID(pNodeID);
 }
 
+OSCONode::OSCONode(OSCOOD &pOD, const uint8_t &pNodeID, const bool &pTakeOwnership) :
+    OSCOOD(pOD, pTakeOwnership)
+{
+    (void)setNodeID(pNodeID);
+}
+
+OSCONode::OSCONode(OSCONode &pNode, const bool &pTakeOwnership) :
+    OSCONode(pNode, pNode.nodeID(), pTakeOwnership)
+{
+    /* Empty */
+}
 
 /* Destructor */
 OSCONode::~OSCONode() {
@@ -58,10 +65,17 @@ uint8_t OSCONode::nodeID(void) const {
     return mNodeID;
 }
 
+bool OSCONode::nodeIDValidity(void) const {
+    return mNodeIDValid;
+}
+
 /* Setters */
 bool OSCONode::setNodeID(const uint8_t &pNodeID) {
-    if(0U < pNodeID && 128U > pNodeID) {
-        mNodeID = pNodeID;
-        return true;
-    } else return false;
+    mNodeID = pNodeID;
+    if(CANOPEN_NODE_ID_MIN <= pNodeID && CANOPEN_NODE_ID_MAX >= pNodeID)
+        mNodeIDValid = true;
+    else
+        mNodeIDValid = false;
+    
+    return mNodeIDValid;
 }

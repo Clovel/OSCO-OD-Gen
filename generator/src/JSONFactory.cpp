@@ -13,6 +13,8 @@
 #include "OSCOODSubIndex.hpp"
 #include "OSCOODObject.hpp"
 
+#include "OSCOTypes.h"
+
 /* RapidJSON */
 #include "rapidjson/document.h"
 #include "rapidjson/writer.h"
@@ -21,6 +23,9 @@
 /* C++ system */
 #include <string>
 #include <iostream>
+
+/* C system */
+#include <cstring> /* strlen */
 
 /* Defines --------------------------------------------- */
 
@@ -71,7 +76,9 @@ std::string JSONFactory::OSCOODObjectToJSON(const OSCOODObject &pObj, rapidjson:
     /* AccessType */
     {
         rapidjson::Value lVal;
-        lVal.SetString(pObj.accessType().c_str(), pObj.accessType().size(), sJsonAlloc);
+        char *lAccessTypeStr = nullptr;
+        (void)accessTypeToStr(pObj.accessType(), &lAccessTypeStr);
+        lVal.SetString(lAccessTypeStr, std::strlen(lAccessTypeStr), sJsonAlloc);
         lDoc->AddMember("AccessType", lVal, sJsonAlloc);
     }
     /* DefaultValue */
@@ -617,7 +624,7 @@ std::string JSONFactory::OSCONodeToJSON(const OSCONode &pNode, rapidjson::Docume
     }
 
     /* Get the Object's contents */
-    (void)OSCOODToJSON((OSCOOD)pNode, lDoc);
+    (void)OSCOODToJSON(pNode, lDoc);
 
     if(!lDoc->IsObject()) {
         std::cerr << "[ERROR] <JSONFactory::OSCONodeToJSON> Got invalid JSON from OSCOODToJSON" << std::endl;
@@ -637,6 +644,12 @@ std::string JSONFactory::OSCONodeToJSON(const OSCONode &pNode, rapidjson::Docume
         rapidjson::Value lVal;
         lVal.SetInt(pNode.nodeID());
         lDoc->AddMember("Node ID", lVal, sJsonAlloc);
+    }
+    /* Get Node ID validity */
+    {
+        rapidjson::Value lVal;
+        lVal.SetBool(pNode.nodeIDValidity());
+        lDoc->AddMember("Node ID Validity", lVal, sJsonAlloc);
     }
 
     std::string lOutput = "";

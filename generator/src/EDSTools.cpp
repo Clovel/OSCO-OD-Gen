@@ -135,17 +135,17 @@ std::string uint8ToHexStr(const uint8_t &pInt, const bool &pZeroX) {
     if(pZeroX) {
         snprintf(lChars, 5U, "0x%02X", pInt);
     } else {
-        snprintf(lChars, 5U, "%02X", pInt);
+        snprintf(lChars, 3U, "%02X", pInt);
     }
 
     return std::string(lChars);
 }
 
 std::string uint16ToHexStr(const uint16_t &pInt, const bool &pZeroX) {
-    char lChars[5U];
-    std::memset(lChars, 0, 5U);
+    char lChars[7U];
+    std::memset(lChars, 0, 7U);
     if(pZeroX) {
-        snprintf(lChars, 5U, "0x%04X", pInt);
+        snprintf(lChars, 7U, "0x%04X", pInt);
     } else {
         snprintf(lChars, 5U, "%04X", pInt);
     }
@@ -154,24 +154,24 @@ std::string uint16ToHexStr(const uint16_t &pInt, const bool &pZeroX) {
 }
 
 std::string uint32ToHexStr(const uint32_t &pInt, const bool &pZeroX) {
-    char lChars[5U];
-    std::memset(lChars, 0, 5U);
+    char lChars[11U];
+    std::memset(lChars, 0, 11U);
     if(pZeroX) {
-        snprintf(lChars, 5U, "0x%08X", pInt);
+        snprintf(lChars, 11U, "0x%08X", pInt);
     } else {
-        snprintf(lChars, 5U, "%08X", pInt);
+        snprintf(lChars, 9U, "%08X", pInt);
     }
 
     return std::string(lChars);
 }
 
 std::string uint64ToHexStr(const uint64_t &pInt, const bool &pZeroX) {
-    char lChars[5U];
-    std::memset(lChars, 0, 5U);
+    char lChars[19U];
+    std::memset(lChars, 0, 19U);
     if(pZeroX) {
-        snprintf(lChars, 5U, "0x%16X", pInt);
+        snprintf(lChars, 19U, "0x%16X", pInt);
     } else {
-        snprintf(lChars, 5U, "%16X", pInt);
+        snprintf(lChars, 17U, "%16X", pInt);
     }
 
     return std::string(lChars);
