@@ -4,9 +4,9 @@ FileVersion=1
 FileRevision=1
 EDSVersion=4.0
 Description=EDS
-CreationTime=14:19PM
+CreationTime=19:06PM
 CreationDate=04-19-20
-ModificationTime=14:19PM
+ModificationTime=19:06PM
 ModificationDate=04-19-20
 CreatedBy=Clovel
 ModifiedBy=Clovel
@@ -63,20 +63,21 @@ SupportedObjects=5
 5=0x2100
 
 [OptionalObjects]
-SupportedObjects=13
-1=0x1017
-2=0x1200
-3=0x1280
-4=0x1400
-5=0x1401
-6=0x1600
-7=0x1601
-8=0x1800
-9=0x1801
-10=0x1802
-11=0x1a00
-12=0x1a01
-13=0x1a02
+SupportedObjects=14
+1=0x1016
+2=0x1017
+3=0x1200
+4=0x1280
+5=0x1400
+6=0x1401
+7=0x1600
+8=0x1601
+9=0x1800
+10=0x1801
+11=0x1802
+12=0x1a00
+13=0x1a01
+14=0x1a02
 
 [1000]
 ParameterName=Device Type
@@ -95,6 +96,30 @@ AccessType=ro
 PDOMapping=1
 DefaultValue=0
 ;;This object contains a register of 8 error information bits.
+;;
+;;This object contains a register of 8 error information bits.
+;;
+
+[1016]
+ParameterName=Consumer Heartbeat Time
+ObjectType=8
+SubNumber=2
+
+[1016sub0]
+ParameterName=Highest sub-index supported
+ObjectType=7
+DataType=5
+AccessType=const
+PDOMapping=0
+DefaultValue=1
+
+[1016sub1]
+ParameterName=Consumer Heartbeat Time 1
+ObjectType=7
+DataType=7
+AccessType=rw
+PDOMapping=0
+DefaultValue=0x50320
 
 [1017]
 ParameterName=Producer Heartbeat Time
@@ -102,7 +127,7 @@ ObjectType=7
 DataType=6
 AccessType=rw
 PDOMapping=0
-DefaultValue=0
+DefaultValue=1000
 ;;The producer heartbeat time shall indicate the configured cycle time of the heartbeat produced by the device.
 ;;
 ;;The value shall be given in multiples of 1 ms. The value 0 shall disable the producer heartbeat.
@@ -122,6 +147,9 @@ DataType=5
 AccessType=ro
 PDOMapping=0
 DefaultValue=4
+;;This objects contains the identity information of the device.
+;;
+;;
 
 [1018sub1]
 ParameterName=Vendor Id
@@ -194,7 +222,7 @@ ObjectType=7
 DataType=5
 AccessType=const
 PDOMapping=0
-DefaultValue=0x03
+DefaultValue=3
 
 [1280sub1]
 ParameterName=COB-ID client -> server
@@ -246,6 +274,7 @@ ObjectType=7
 DataType=5
 AccessType=rw
 PDOMapping=0
+DefaultValue=255
 
 [1400sub3]
 ParameterName=Inhibit time
@@ -295,6 +324,7 @@ ObjectType=7
 DataType=5
 AccessType=rw
 PDOMapping=0
+DefaultValue=255
 
 [1401sub3]
 ParameterName=Inhibit time
@@ -394,6 +424,7 @@ ObjectType=7
 DataType=7
 AccessType=rw
 PDOMapping=0
+DefaultValue=0x180+$NODEID
 
 [1800sub2]
 ParameterName=Transmission type
@@ -401,6 +432,7 @@ ObjectType=7
 DataType=5
 AccessType=rw
 PDOMapping=0
+DefaultValue=1
 
 [1800sub3]
 ParameterName=Inhibit time
@@ -449,6 +481,7 @@ ObjectType=7
 DataType=7
 AccessType=rw
 PDOMapping=0
+DefaultValue=0x190+$NODEID
 
 [1801sub2]
 ParameterName=Transmission type
@@ -456,6 +489,7 @@ ObjectType=7
 DataType=5
 AccessType=rw
 PDOMapping=0
+DefaultValue=1
 
 [1801sub3]
 ParameterName=Inhibit time
@@ -504,6 +538,7 @@ ObjectType=7
 DataType=7
 AccessType=rw
 PDOMapping=0
+DefaultValue=0x1A0+$NODEID
 
 [1802sub2]
 ParameterName=Transmission type
@@ -511,6 +546,7 @@ ObjectType=7
 DataType=5
 AccessType=rw
 PDOMapping=0
+DefaultValue=1
 
 [1802sub3]
 ParameterName=Inhibit time
