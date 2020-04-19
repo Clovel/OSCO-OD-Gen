@@ -569,7 +569,15 @@ bool OSCOOD::setCreationDate(const std::string &pDate) {
 
     if(strptime(pDate.c_str(), "%Y-%m-%d", &lDateTimeStruct)) {
         /* Do nothing */
+    } else if(strptime(pDate.c_str(), "%Y/%m/%d", &lDateTimeStruct)) {
+        /* Do nothing */
     } else if(strptime(pDate.c_str(), "%d/%m/%Y", &lDateTimeStruct)) {
+        /* Do nothing */
+    } else if(strptime(pDate.c_str(), "%d-%m-%Y", &lDateTimeStruct)) {
+        /* Do nothing */
+    } else if(strptime(pDate.c_str(), "%m-%d-%Y", &lDateTimeStruct)) {
+        /* Do nothing */
+    } else if(strptime(pDate.c_str(), "%m/%d/%Y", &lDateTimeStruct)) {
         /* Do nothing */
     } else {
         std::cerr << "[ERROR] <OSCOOD::setCreationDate> Wrong date format" << std::endl;
@@ -643,7 +651,15 @@ bool OSCOOD::setModificationDate(const std::string &pDate) {
 
     if(strptime(pDate.c_str(), "%Y-%m-%d", &lDateTimeStruct)) {
         /* Do nothing */
+    } else if(strptime(pDate.c_str(), "%Y/%m/%d", &lDateTimeStruct)) {
+        /* Do nothing */
     } else if(strptime(pDate.c_str(), "%d/%m/%Y", &lDateTimeStruct)) {
+        /* Do nothing */
+    } else if(strptime(pDate.c_str(), "%d-%m-%Y", &lDateTimeStruct)) {
+        /* Do nothing */
+    } else if(strptime(pDate.c_str(), "%m-%d-%Y", &lDateTimeStruct)) {
+        /* Do nothing */
+    } else if(strptime(pDate.c_str(), "%m/%d/%Y", &lDateTimeStruct)) {
         /* Do nothing */
     } else {
         std::cerr << "[ERROR] <OSCOOD::setModificationDate> Wrong date format" << std::endl;
