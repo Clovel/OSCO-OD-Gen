@@ -4,9 +4,9 @@ FileVersion=1
 FileRevision=1
 EDSVersion=4.0
 Description=EDS
-CreationTime=14:19PM
+CreationTime=18:57PM
 CreationDate=04-19-20
-ModificationTime=14:19PM
+ModificationTime=18:57PM
 ModificationDate=04-19-20
 CreatedBy=Clovel
 ModifiedBy=Clovel
@@ -63,20 +63,23 @@ SupportedObjects=5
 5=0x2100
 
 [OptionalObjects]
-SupportedObjects=13
-1=0x1017
-2=0x1200
-3=0x1280
-4=0x1400
-5=0x1401
-6=0x1402
-7=0x1600
-8=0x1601
-9=0x1602
-10=0x1800
-11=0x1801
-12=0x1a00
-13=0x1a01
+SupportedObjects=16
+1=0x1005
+2=0x1006
+3=0x1016
+4=0x1017
+5=0x1200
+6=0x1280
+7=0x1400
+8=0x1401
+9=0x1402
+10=0x1600
+11=0x1601
+12=0x1602
+13=0x1800
+14=0x1801
+15=0x1a00
+16=0x1a01
 
 [1000]
 ParameterName=Device Type
@@ -96,13 +99,57 @@ PDOMapping=1
 DefaultValue=0
 ;;This object contains a register of 8 error information bits.
 
+[1005]
+ParameterName=COB ID SYNC
+ObjectType=7
+DataType=7
+AccessType=rw
+PDOMapping=0
+DefaultValue=0x40000080
+;;This object shall indicate the configured COB-ID of the synchronization object (SYNC). Further, it defines whether the CANopen device generates the SYNC.
+
+[1006]
+ParameterName=Communication Cycle Period
+ObjectType=7
+DataType=7
+AccessType=rw
+PDOMapping=0
+DefaultValue=100000
+;;This object shall provide the communication cycle period. This period defines the SYNC interval.
+;;
+;;The value shall be given in multiple of μs. If the value is set to 0x00000000  the transmission of SYNC messages shall be disabled. By changing the value from 0x00000000 and the synchronous counter overflow value is greater than 0 the first SYNC mess
+;;
+;;The transmission of SYNC messages shall start within one communication cycle period as given by the value after it is set to the new value.
+;;
+
+[1016]
+ParameterName=Consumer Heartbeat Time
+ObjectType=8
+SubNumber=2
+
+[1016sub0]
+ParameterName=Highest sub-index supported
+ObjectType=7
+DataType=5
+AccessType=const
+PDOMapping=0
+DefaultValue=1
+
+[1016sub1]
+ParameterName=Consumer Heartbeat Time 1
+ObjectType=7
+DataType=7
+AccessType=rw
+PDOMapping=0
+DefaultValue=0x103e8
+
 [1017]
 ParameterName=Producer Heartbeat Time
 ObjectType=7
 DataType=6
 AccessType=rw
 PDOMapping=0
-DefaultValue=0
+DefaultValue=800
 ;;The producer heartbeat time shall indicate the configured cycle time of the heartbeat produced by the device.
 ;;
 ;;The value shall be given in multiples of 1 ms. The value 0 shall disable the producer heartbeat.
@@ -122,6 +169,9 @@ DataType=5
 AccessType=ro
 PDOMapping=0
 DefaultValue=4
+;;This objects contains the identity information of the device.
+;;
+;;
 
 [1018sub1]
 ParameterName=Vendor Id
@@ -194,7 +244,7 @@ ObjectType=7
 DataType=5
 AccessType=const
 PDOMapping=0
-DefaultValue=0x03
+DefaultValue=3
 
 [1280sub1]
 ParameterName=COB-ID client -> server
@@ -586,6 +636,7 @@ ObjectType=7
 DataType=7
 AccessType=const
 PDOMapping=0
+DefaultValue=0x0000
 
 [1a01]
 ParameterName=TPDO 2 mapping parameter
