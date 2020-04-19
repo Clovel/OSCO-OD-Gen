@@ -223,7 +223,7 @@ ObjectType=7
 DataType=7
 AccessType=const
 PDOMapping=0
-DefaultValue=$NODEID+0x600
+DefaultValue=0x605
 
 [1200sub2]
 ParameterName=COB-ID server to client
@@ -231,7 +231,7 @@ ObjectType=7
 DataType=7
 AccessType=ro
 PDOMapping=0
-DefaultValue=$NODEID+0x580
+DefaultValue=0x585
 
 [1280]
 ParameterName=SDO client parameter

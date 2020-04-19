@@ -201,7 +201,7 @@ ObjectType=7
 DataType=7
 AccessType=const
 PDOMapping=0
-DefaultValue=$NODEID+0x600
+DefaultValue=0x60F
 
 [1200sub2]
 ParameterName=COB-ID server to client
@@ -209,7 +209,7 @@ ObjectType=7
 DataType=7
 AccessType=ro
 PDOMapping=0
-DefaultValue=$NODEID+0x580
+DefaultValue=0x58F
 
 [1280]
 ParameterName=SDO client parameter
@@ -424,7 +424,7 @@ ObjectType=7
 DataType=7
 AccessType=rw
 PDOMapping=0
-DefaultValue=0x180+$NODEID
+DefaultValue=0x18F
 
 [1800sub2]
 ParameterName=Transmission type
@@ -481,7 +481,7 @@ ObjectType=7
 DataType=7
 AccessType=rw
 PDOMapping=0
-DefaultValue=0x190+$NODEID
+DefaultValue=0x19F
 
 [1801sub2]
 ParameterName=Transmission type
@@ -538,7 +538,7 @@ ObjectType=7
 DataType=7
 AccessType=rw
 PDOMapping=0
-DefaultValue=0x1A0+$NODEID
+DefaultValue=0x1AF
 
 [1802sub2]
 ParameterName=Transmission type
