@@ -4,9 +4,9 @@ FileVersion=1
 FileRevision=1
 EDSVersion=4.0
 Description=EDS
-CreationTime=18:57PM
+CreationTime=19:13PM
 CreationDate=04-19-20
-ModificationTime=18:57PM
+ModificationTime=19:13PM
 ModificationDate=04-19-20
 CreatedBy=Clovel
 ModifiedBy=Clovel
@@ -296,6 +296,7 @@ ObjectType=7
 DataType=5
 AccessType=rw
 PDOMapping=0
+DefaultValue=255
 
 [1400sub3]
 ParameterName=Inhibit time
@@ -345,6 +346,7 @@ ObjectType=7
 DataType=5
 AccessType=rw
 PDOMapping=0
+DefaultValue=255
 
 [1401sub3]
 ParameterName=Inhibit time
@@ -394,6 +396,7 @@ ObjectType=7
 DataType=5
 AccessType=rw
 PDOMapping=0
+DefaultValue=255
 
 [1402sub3]
 ParameterName=Inhibit time
@@ -526,6 +529,7 @@ ObjectType=7
 DataType=7
 AccessType=rw
 PDOMapping=0
+DefaultValue=0x185
 
 [1800sub2]
 ParameterName=Transmission type
@@ -533,6 +537,7 @@ ObjectType=7
 DataType=5
 AccessType=rw
 PDOMapping=0
+DefaultValue=1
 
 [1800sub3]
 ParameterName=Inhibit time
@@ -581,6 +586,7 @@ ObjectType=7
 DataType=7
 AccessType=rw
 PDOMapping=0
+DefaultValue=0x195
 
 [1801sub2]
 ParameterName=Transmission type
@@ -588,6 +594,7 @@ ObjectType=7
 DataType=5
 AccessType=rw
 PDOMapping=0
+DefaultValue=1
 
 [1801sub3]
 ParameterName=Inhibit time
