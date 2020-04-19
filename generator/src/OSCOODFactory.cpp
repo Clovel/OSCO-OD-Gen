@@ -696,7 +696,8 @@ static bool fillOSCOODDeviceInfo(const INI * const pINI, OSCOOD * const pOD) {
         pOD->setBaudrate1000Supported(false);
     }
 
-    if(0 == pINI->getValue("SimpleBootUpMaster", lTempVal, "DeviceInfo")) {
+    if((0 == pINI->getValue("SimpleBootUpMaster", lTempVal, "DeviceInfo"))
+        || (0 == pINI->getValue("SimpleBootupMaster", lTempVal, "DeviceInfo"))) {
         if((lTempVal == "true")
             || (lTempVal == "True")
             || (lTempVal == "1"))
@@ -716,7 +717,8 @@ static bool fillOSCOODDeviceInfo(const INI * const pINI, OSCOOD * const pOD) {
         pOD->setSimpleBootUpMaster(false);
     }
 
-    if(0 == pINI->getValue("SimpleBootUpSlave", lTempVal, "DeviceInfo")) {
+    if((0 == pINI->getValue("SimpleBootUpSlave", lTempVal, "DeviceInfo"))
+        || (0 == pINI->getValue("SimpleBootupSlave", lTempVal, "DeviceInfo"))) {
         if((lTempVal == "true")
             || (lTempVal == "True")
             || (lTempVal == "1"))
@@ -797,7 +799,9 @@ static bool fillOSCOODDeviceInfo(const INI * const pINI, OSCOOD * const pOD) {
         pOD->setGroupMessaging(false);
     }
 
-    if(0 == pINI->getValue("NrOfRXPDO", lTempVal, "DeviceInfo")) {
+    if((0 == pINI->getValue("NrOfRXPDO", lTempVal, "DeviceInfo"))
+        || (0 == pINI->getValue("NrOfRxPDO", lTempVal, "DeviceInfo"))
+        || (0 == pINI->getValue("NrOfRxPdo", lTempVal, "DeviceInfo"))) {
         /* Convert string to uint */
         unsigned long lNrOfRXPDO = 0U;
         try {
@@ -818,7 +822,9 @@ static bool fillOSCOODDeviceInfo(const INI * const pINI, OSCOOD * const pOD) {
         return false;
     }
 
-    if(0 == pINI->getValue("NrOfTXPDO", lTempVal, "DeviceInfo")) {
+    if((0 == pINI->getValue("NrOfTXPDO", lTempVal, "DeviceInfo"))
+        || (0 == pINI->getValue("NrOfTxPDO", lTempVal, "DeviceInfo"))
+        || (0 == pINI->getValue("NrOfTxPdo", lTempVal, "DeviceInfo"))) {
         /* Convert string to uint */
         unsigned long lNrOfTXPDO = 0U;
         try {

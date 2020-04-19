@@ -85,9 +85,26 @@ int EDS::reorderEDSSections(void) {
 int EDS::checkMandatoryKeys(const std::vector<std::string> &pKeys, const std::string &pSection) const {
     int lResult = 0;
     for(const auto &lElmt : pKeys) {
-        if(!keyExists(lElmt, pSection)) {
-            std::cerr << "[ERROR] <EDS::checkMandatoryKeys> Missing key " << lElmt << " for section [" << pSection << "]" << std::endl;
-            lResult = -1;
+        /* Is there multiple keys proposed for this element ? */
+        size_t lPos = 0U, lOldPos = 0U;
+        while(std::string::npos == lPos) {
+
+            lPos = lElmt.find('|');
+            std::string lTempStr = lElmt.substr(lOldPos, lPos - lOldPos);
+
+            if(!keyExists(lTempStr, pSection)) {
+                std::cerr << "[ERROR] <EDS::checkMandatoryKeys> Missing key " << lTempStr << " for section [" << pSection << "]" << std::endl;
+
+                /* If this was the last of the proposed keys, return */
+                if(std::string::npos == lPos) {
+                    lResult = -1;
+                } else {
+                    lOldPos = lPos;
+                }
+            } else {
+                /* Key was found, break from while and continue for loop */
+                break;
+            }
         }
     }
 
@@ -121,9 +138,26 @@ int EDS::checkMandatoryValues(const std::vector<std::string> &pValues, const std
 int EDS::checkRecommendedKeys(const std::vector<std::string> &pKeys, const std::string &pSection) const {
     int lResult = 0;
     for(const auto &lElmt : pKeys) {
-        if(!keyExists(lElmt, pSection)) {
-            std::cerr << "[WARN ] <EDS::checkRecommendedKeys> Missing key " << lElmt << " for section [" << pSection << "]" << std::endl;
-            lResult = -1;
+        /* Is there multiple keys proposed for this element ? */
+        size_t lPos = 0U, lOldPos = 0U;
+        while(std::string::npos == lPos) {
+
+            lPos = lElmt.find('|');
+            std::string lTempStr = lElmt.substr(lOldPos, lPos - lOldPos);
+
+            if(!keyExists(lTempStr, pSection)) {
+                std::cerr << "[WARN ] <EDS::checkRecommendedKeys> Missing key " << lTempStr << " for section [" << pSection << "]" << std::endl;
+
+                /* If this was the last of the proposed keys, return */
+                if(std::string::npos == lPos) {
+                    lResult = -1;
+                } else {
+                    lOldPos = lPos;
+                }
+            } else {
+                /* Key was found, break from while and continue for loop */
+                break;
+            }
         }
     }
 
@@ -329,13 +363,13 @@ int EDS::check(void) const {
             "BaudRate_500",
             "BaudRate_800",
             "BaudRate_1000",
-            "SimpleBootUpMaster",
-            "SimpleBootUpSlave",
+            "SimpleBootUpMaster|SimpleBootupMaster",
+            "SimpleBootUpSlave|SimpleBootupSlave",
             "Granularity",
             "DynamicChannelsSupported",
             "GroupMessaging",
-            "NrOfRXPDO",
-            "NrOfTXPDO",
+            "NrOfRXPDO|NrOfRxPDO|NrOfRxPdo",
+            "NrOfTXPDO|NrOfTxPDO|NrOfTxPdo",
             "LSS_Supported"
         };
         if(0 != checkMandatoryKeys(lMandatoryKeys, std::string("DeviceInfo"))) {
