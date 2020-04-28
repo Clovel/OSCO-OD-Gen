@@ -654,6 +654,8 @@ static int buildOSCOODElementStructString(OSCOODObject &pObj, std::string &pOut)
             else {
                 lOSS << "OBJECT_DEFAULT_VAL_PTR;NULL;" << std::endl;
             }
+            lOSS << "OBJECT_MAX_VAL_PTR;NULL;" << std::endl;
+            lOSS << "OBJECT_MIN_VAL_PTR;NULL;" << std::endl;
             /* Update the object structure vector */
             sObjValVisStrIndexArray.push_back(lObjStruct);
             break;
@@ -668,6 +670,8 @@ static int buildOSCOODElementStructString(OSCOODObject &pObj, std::string &pOut)
             else {
                 lOSS << "OBJECT_DEFAULT_VAL_PTR;NULL;" << std::endl;
             }
+            lOSS << "OBJECT_MAX_VAL_PTR;NULL;" << std::endl;
+            lOSS << "OBJECT_MIN_VAL_PTR;NULL;" << std::endl;
             /* Update the object structure vector */
             sObjValOctStrIndexArray.push_back(lObjStruct);
             break;
@@ -682,6 +686,8 @@ static int buildOSCOODElementStructString(OSCOODObject &pObj, std::string &pOut)
             else {
                 lOSS << "OBJECT_DEFAULT_VAL_PTR;NULL;" << std::endl;
             }
+            lOSS << "OBJECT_MAX_VAL_PTR;NULL;" << std::endl;
+            lOSS << "OBJECT_MIN_VAL_PTR;NULL;" << std::endl;
             /* Update the object structure vector */
             sObjValUniStrIndexArray.push_back(lObjStruct);
             break;
@@ -696,6 +702,8 @@ static int buildOSCOODElementStructString(OSCOODObject &pObj, std::string &pOut)
             else {
                 lOSS << "OBJECT_DEFAULT_VAL_PTR;NULL;" << std::endl;
             }
+            lOSS << "OBJECT_MAX_VAL_PTR;NULL;" << std::endl;
+            lOSS << "OBJECT_MIN_VAL_PTR;NULL;" << std::endl;
             /* Update the object structure vector */
             sObjValDomainIndexArray.push_back(lObjStruct);
             break;
