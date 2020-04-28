@@ -1284,7 +1284,7 @@ int OSCOODGenerator::generate_OSCOGenOD_MinValues_c(const std::string &pTemplate
 int OSCOODGenerator::generate_OSCOGenOD_Values_c(const std::string &pTemplateFilePath, const std::string &pOutputPath) {
     int lResult = 0;
 
-    lResult = buildOSCOODArrayFile(pTemplateFilePath, pOutputPath, "minVal", OBJECT);
+    lResult = buildOSCOODArrayFile(pTemplateFilePath, pOutputPath, "objVal", OBJECT);
     if(0 > lResult) {
         std::cerr << "[ERROR] <OSCOODGenerator::generate_OSCOGenOD_MinValues_c> buildOSCOODArrayFile failed" << std::endl;
     }
