@@ -937,6 +937,9 @@ static int buildOSCOODArrayFile(const std::string &pTemplateFilePath, const std:
         llTagMap["ARRAY_SIZE"]     = std::to_string(lArraySize) + "U";
         llTagMap["ARRAY_CONTENTS"] = llOSS.str();
 
+        /* Clear the string stream */
+        llOSS.str("");
+
         std::string lTempStr = "";
         lResult = FileFiller::parseString(llTagMap, sOSCOODValArrayTemplate, &lTempStr);
         if(0 > lResult) {
@@ -950,6 +953,9 @@ static int buildOSCOODArrayFile(const std::string &pTemplateFilePath, const std:
     /* Generate the tag map for OSCOGenOD_DefaultValues.in.c */
     std::map<std::string, std::string> lTagMap;
     lTagMap["VALUE_ARRAYS"] = lOSS.str();
+
+    /* Clear the string stream */
+    lOSS.str("");
 
     std::string lTemplateFilePath = pTemplateFilePath + '/';
     std::string lOutputFilePath   = pOutputPath + '/';
@@ -1288,6 +1294,9 @@ int OSCOODGenerator::generate_OSCOGenNodeID_h(const std::string &pTemplateFilePa
 
     /* Get tag mapping string from the stringstream */
     const std::string lTagMappingStr = lOSS.str();
+
+    /* Clear the string stream */
+    lOSS.str("");
 
     std::cout << "[DEBUG] <OSCOODGenerator::generate_OSCOGenOD_h> Tag mapping string : " << std::endl << lTagMappingStr << std::endl;
 

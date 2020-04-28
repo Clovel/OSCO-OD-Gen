@@ -54,6 +54,7 @@ int main(const int argc, const char * const * const argv) {
     const std::string lPort = std::string(argv[1U]);
     const std::string lPath = "OSCO-OD-Gen";
 
+    /* TODO : Check if file exists */
     const std::string lEDSFile = std::string(realpath(std::string(argv[2U]).c_str(), nullptr));
 
     const std::string lTemplatePath = std::string(argv[3U]);

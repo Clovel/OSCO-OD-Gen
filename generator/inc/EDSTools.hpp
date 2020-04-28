@@ -1,7 +1,7 @@
 /**
  * @brief EDS tools
  * 
- * @file EDS.hpp
+ * @file EDSTools.hpp
  */
 
 #ifndef EDSTOOLS_HPP
