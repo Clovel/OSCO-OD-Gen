@@ -288,6 +288,7 @@ static int buildOSCOODElementStructString(OSCOODObject &pObj, std::string &pOut)
         lObjClassType = INDEX;
         if(0 < lIndexObj->subIndexCount()) {
             std::cerr << "[WARN ] <buildOSCOODElementStructString> Object is an Index containing subindexes." << std::endl;
+            --objCounter;
             return 0;
         }
         lObjStruct.index = lIndexObj->index();
@@ -299,6 +300,7 @@ static int buildOSCOODElementStructString(OSCOODObject &pObj, std::string &pOut)
     } else {
         /* Is neither, this shouldn't be possible */
         std::cerr << "[ERROR] <buildOSCOODElementStructString> Invalid object class type." << std::endl;
+        --objCounter;
         return -1;
     }
 
@@ -1004,12 +1006,6 @@ static int buildOSCOODArrayFile(const std::string &pTemplateFilePath, const std:
 int OSCOODGenerator::generate_OSCOGenOD_SourceFiles(const std::string &pTemplateFilePath, const std::string &pOutputPath, const OSCOOD &pOD) {
     int lResult = 0;
 
-    /* Generate main generated OD header */
-    if(0 > (lResult = generate_OSCOGenOD_h(pTemplateFilePath, pOutputPath, pOD))) {
-        std::cerr << "[ERROR] <OSCOODGenerator::generate_OSCOGenOD_SourceFiles> generate_OSCOGenOD_h failed" << std::endl;
-        return lResult;
-    }
-
     /* Generate main generated OD source file */
     if(0 > (lResult = generate_OSCOGenOD_c(pTemplateFilePath, pOutputPath, pOD))) {
         std::cerr << "[ERROR] <OSCOODGenerator::generate_OSCOGenOD_SourceFiles> generate_OSCOGenOD_c failed" << std::endl;
@@ -1037,6 +1033,12 @@ int OSCOODGenerator::generate_OSCOGenOD_SourceFiles(const std::string &pTemplate
     /* Generate main generated OD value header */
     if(0 > (lResult = generate_OSCOGenOD_Values_c(pTemplateFilePath, pOutputPath))) {
         std::cerr << "[ERROR] <OSCOODGenerator::generate_OSCOGenOD_SourceFiles> generate_OSCOGenOD_Values_c failed" << std::endl;
+        return lResult;
+    }
+
+    /* Generate main generated OD header */
+    if(0 > (lResult = generate_OSCOGenOD_h(pTemplateFilePath, pOutputPath, pOD))) {
+        std::cerr << "[ERROR] <OSCOODGenerator::generate_OSCOGenOD_SourceFiles> generate_OSCOGenOD_h failed" << std::endl;
         return lResult;
     }
 
@@ -1153,7 +1155,7 @@ int OSCOODGenerator::generate_OSCOGenOD_h(const std::string &pTemplateFilePath, 
     lOSS << "OD_DUMMY_0007_SUPPORTED;" << pOD.dummy0007Supported() << ";" << std::endl;
 
     /* OD Content defines */
-    lOSS << "OD_OBJECT_COUNT;" << pOD.objectCount() << ";" << std::endl; /* TODO */
+    lOSS << "OD_OBJECT_COUNT;" << objCounter << ";" << std::endl; /* TODO */
     lOSS << "OD_RPDO_COUNT;" << pOD.nrOfRPDOs() <<";" << std::endl;
     lOSS << "OD_TPDO_COUNT;" << pOD.nrOfTPDOs() <<";" << std::endl;
     lOSS << "OD_SDO_SERVER;" << LINE_REMOVAL_VAL << ";" << std::endl; /* TODO */
